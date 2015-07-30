@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C60D5ACD1B6A11D800672EC1 /* magicBlast.sks in Resources */ = {isa = PBXBuildFile; fileRef = C60D5ACB1B6A11D800672EC1 /* magicBlast.sks */; };
+		C60D5ACE1B6A11D800672EC1 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = C60D5ACC1B6A11D800672EC1 /* spark.png */; };
+		C60D5AD01B6A140900672EC1 /* death.sks in Resources */ = {isa = PBXBuildFile; fileRef = C60D5ACF1B6A140900672EC1 /* death.sks */; };
+		C658633E1B6864FA00F89D71 /* engine.sks in Resources */ = {isa = PBXBuildFile; fileRef = C658633D1B6864FA00F89D71 /* engine.sks */; };
 		C6D395E41B64579100830790 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D395E31B64579100830790 /* AppDelegate.swift */; };
 		C6D395E61B64579100830790 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = C6D395E51B64579100830790 /* GameScene.sks */; };
 		C6D395E81B64579100830790 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D395E71B64579100830790 /* GameScene.swift */; };
@@ -16,6 +20,12 @@
 		C6D395F21B64579200830790 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6D395F01B64579200830790 /* LaunchScreen.storyboard */; };
 		C6D395FD1B64579200830790 /* relliKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D395FC1B64579200830790 /* relliKTests.swift */; };
 		C6D396081B64579200830790 /* relliKUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D396071B64579200830790 /* relliKUITests.swift */; };
+		C6D396201B64594F00830790 /* GlobalsAndConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D3961F1B64594F00830790 /* GlobalsAndConstants.swift */; };
+		C6D396221B64595B00830790 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D396211B64595B00830790 /* GameOverScene.swift */; };
+		C6D396241B64596300830790 /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D396231B64596300830790 /* Int+Extensions.swift */; };
+		C6D396261B64596B00830790 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D396251B64596B00830790 /* Enemy.swift */; };
+		C6D396281B64597400830790 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D396271B64597400830790 /* MainMenuScene.swift */; };
+		C6D3962A1B64597D00830790 /* MyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D396291B64597D00830790 /* MyUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +46,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C60D5ACB1B6A11D800672EC1 /* magicBlast.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = magicBlast.sks; sourceTree = "<group>"; };
+		C60D5ACC1B6A11D800672EC1 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		C60D5ACF1B6A140900672EC1 /* death.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = death.sks; sourceTree = "<group>"; };
+		C658633D1B6864FA00F89D71 /* engine.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = engine.sks; sourceTree = "<group>"; };
 		C6D395E01B64579100830790 /* relliK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = relliK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6D395E31B64579100830790 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C6D395E51B64579100830790 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -51,6 +65,12 @@
 		C6D396031B64579200830790 /* relliKUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = relliKUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6D396071B64579200830790 /* relliKUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = relliKUITests.swift; sourceTree = "<group>"; };
 		C6D396091B64579200830790 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C6D3961F1B64594F00830790 /* GlobalsAndConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalsAndConstants.swift; sourceTree = "<group>"; };
+		C6D396211B64595B00830790 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
+		C6D396231B64596300830790 /* Int+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
+		C6D396251B64596B00830790 /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
+		C6D396271B64597400830790 /* MainMenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
+		C6D396291B64597D00830790 /* MyUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,10 +121,20 @@
 		C6D395E21B64579100830790 /* relliK */ = {
 			isa = PBXGroup;
 			children = (
+				C6D3961F1B64594F00830790 /* GlobalsAndConstants.swift */,
 				C6D395E31B64579100830790 /* AppDelegate.swift */,
 				C6D395E51B64579100830790 /* GameScene.sks */,
 				C6D395E71B64579100830790 /* GameScene.swift */,
+				C6D396271B64597400830790 /* MainMenuScene.swift */,
 				C6D395E91B64579100830790 /* GameViewController.swift */,
+				C6D396291B64597D00830790 /* MyUtils.swift */,
+				C658633D1B6864FA00F89D71 /* engine.sks */,
+				C60D5ACB1B6A11D800672EC1 /* magicBlast.sks */,
+				C60D5ACC1B6A11D800672EC1 /* spark.png */,
+				C60D5ACF1B6A140900672EC1 /* death.sks */,
+				C6D396251B64596B00830790 /* Enemy.swift */,
+				C6D396231B64596300830790 /* Int+Extensions.swift */,
+				C6D396211B64595B00830790 /* GameOverScene.swift */,
 				C6D395EB1B64579100830790 /* Main.storyboard */,
 				C6D395EE1B64579200830790 /* Assets.xcassets */,
 				C6D395F01B64579200830790 /* LaunchScreen.storyboard */,
@@ -235,8 +265,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6D395E61B64579100830790 /* GameScene.sks in Resources */,
+				C658633E1B6864FA00F89D71 /* engine.sks in Resources */,
+				C60D5ACD1B6A11D800672EC1 /* magicBlast.sks in Resources */,
+				C60D5ACE1B6A11D800672EC1 /* spark.png in Resources */,
 				C6D395F21B64579200830790 /* LaunchScreen.storyboard in Resources */,
 				C6D395EF1B64579200830790 /* Assets.xcassets in Resources */,
+				C60D5AD01B6A140900672EC1 /* death.sks in Resources */,
 				C6D395ED1B64579100830790 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,8 +296,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6D396261B64596B00830790 /* Enemy.swift in Sources */,
+				C6D396221B64595B00830790 /* GameOverScene.swift in Sources */,
+				C6D396201B64594F00830790 /* GlobalsAndConstants.swift in Sources */,
 				C6D395E81B64579100830790 /* GameScene.swift in Sources */,
+				C6D3962A1B64597D00830790 /* MyUtils.swift in Sources */,
+				C6D396241B64596300830790 /* Int+Extensions.swift in Sources */,
 				C6D395EA1B64579100830790 /* GameViewController.swift in Sources */,
+				C6D396281B64597400830790 /* MainMenuScene.swift in Sources */,
 				C6D395E41B64579100830790 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -491,6 +531,7 @@
 				C6D3960E1B64579200830790 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C6D3960F1B64579200830790 /* Build configuration list for PBXNativeTarget "relliKTests" */ = {
 			isa = XCConfigurationList;
@@ -499,6 +540,7 @@
 				C6D396111B64579200830790 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C6D396121B64579200830790 /* Build configuration list for PBXNativeTarget "relliKUITests" */ = {
 			isa = XCConfigurationList;
@@ -507,6 +549,7 @@
 				C6D396141B64579200830790 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
