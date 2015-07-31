@@ -8,15 +8,16 @@
 
 import SpriteKit
 
-class GameScene: SKScene {
-    
+class GameScene: SKScene ,SKPhysicsContactDelegate {
+
     var monstorsInField = [Enemy]()
     var bulletsInField = [Bullet]()
     var isShootable:Bool = false
     
     var lastUpdateTime: NSTimeInterval = 0
     var dt: NSTimeInterval = 0
-    var incrementGameSpeedTime: NSTimeInterval = 0
+    var incrementCurrentGameSpeedTime: NSTimeInterval = 0
+    var incrementGameSpeedTime: NSTimeInterval = NSTimeInterval(10)
     let movePointsPerSec: CGFloat = 480.0
     var velocity = CGPointZero
     let playableRect: CGRect
@@ -40,10 +41,6 @@ class GameScene: SKScene {
     
     var shotStart = 50
     
-    
-    var moveRight : SKAction!
-    var moveLeft : SKAction!
-    var moveDown : SKAction!
     var moveUp : SKAction!
     
     var bulletMoveRightAction: SKAction!
@@ -86,6 +83,9 @@ class GameScene: SKScene {
         myLabel.fontSize = 20
         myLabel.position = CGPoint(x:CGRectGetMinX(playableRect) + myLabel.frame.size.width * 0.75, y:CGRectGetMaxY(playableRect) - myLabel.frame.size.height * 2);
         
+        self.physicsWorld.contactDelegate = self
+        self.physicsWorld.gravity = CGVectorMake(CGFloat(0), CGFloat(0))
+        
         playBackgroundMusic("backgroundMusic.mp3")
         
         createActions()
@@ -115,17 +115,18 @@ class GameScene: SKScene {
     }
     
     override func update(currentTime: NSTimeInterval) {
-        if dt >= gameSpeed{
+        if dt >= gameSpeed + enemyWaitTime{
             dt = 0
+            
             spawnEnemy()
             moveEnemies()
-                    }
+        }
         
-            if bulletCurrentCoolDownTime > bulletCoolDownTime{
-                isShootable = true
-                bulletCurrentCoolDownTime = 0.0
-                lastShot = currentTime
-            }else{
+        if bulletCurrentCoolDownTime > bulletCoolDownTime{
+            isShootable = true
+            bulletCurrentCoolDownTime = 0.0
+            lastShot = currentTime
+        }else{
             bulletCurrentCoolDownTime += (currentTime - lastShot)
             lastShot = currentTime
         }
@@ -136,11 +137,26 @@ class GameScene: SKScene {
             dt = 0
         }
         
-        if incrementGameSpeedTime > 10 {
-            gameSpeed += gameIncrementalSpeed
-            incrementGameSpeedTime = 0
+        if incrementCurrentGameSpeedTime > incrementGameSpeedTime {
+            print(incrementGameSpeedTime)
+            if gameSpeed >= GAME_MAX_SPEED{
+                if gameSpeed <= GAME_MAX_SPEED * 0.75{
+                    if enemyWaitTime >= enemyWaitMaxSpeed{
+                        enemyWaitTime -= enemyWaitIncrementalSpeed
+                    }
+                }else if gameSpeed <= gameSpeed * 0.25{
+                    enemyWaitTime += enemyWaitIncrementalSpeed
+                }
+                
+                gameSpeed -= gameIncrementalSpeed
+                print(gameSpeed)
+                incrementCurrentGameSpeedTime = 0
+            }else{
+                gameSpeed == GAME_MAX_SPEED
+            }
+            
         }else{
-            incrementGameSpeedTime += lastUpdateTime - currentTime
+            incrementCurrentGameSpeedTime += currentTime - lastUpdateTime
         }
         
         moveBullets()
@@ -171,6 +187,7 @@ class GameScene: SKScene {
         for monstor in monstorsInField{
             //Check if enemy has reached middle if so removeionOf {
             monstor.moveFunc()
+            //iterate through to next space
             
         }
         //Insert Speed it moves
@@ -190,19 +207,15 @@ class GameScene: SKScene {
         case 1:
             enemy = randomEnemy(rightSideEnemyStartPosition)
             enemy.directionOf = .right
-            enemy.move = moveLeft
         case 2:
             enemy = randomEnemy(leftSideEnemyStartPosition)
             enemy.directionOf = .left
-            enemy.move = moveRight
         case 3:
             enemy = randomEnemy(upSideEnemyStartPosition)
             enemy.directionOf = .up
-            enemy.move = moveDown
         case 4:
             enemy = randomEnemy(downSideEnemyStartPosition)
             enemy.directionOf = .down
-            enemy.move = moveUp
         case 5:
             return//This doesn't send out an enemy
         default:
@@ -291,7 +304,7 @@ class GameScene: SKScene {
             addChild(rightBoxes[i])
             addChild(upBoxes[i])
             addChild(downBoxes[i])
-            
+            player.physicsBody?.categoryBitMask
             pointBetweenBlocks += incrementalSpaceBetweenBlocks
             
             createPlayerBlock()
@@ -302,31 +315,31 @@ class GameScene: SKScene {
     func shotDirection(sender: UISwipeGestureRecognizer) {
         
         if isShootable{
-        let newBullet = Bullet(entityPosition: CGPoint(x: CGRectGetMidX(playableRect), y: CGRectGetMidY(playableRect)))
-
-        switch sender.direction{
-        case UISwipeGestureRecognizerDirection.Right:
-            newBullet.directionTo = entityDirection.right
-            newBullet.move = bulletMoveRightAction
-            player.directionOf = entityDirection.right
-        case UISwipeGestureRecognizerDirection.Left:
-            newBullet.directionTo = entityDirection.left
-            newBullet.move = bulletMoveLeftAction
-            player.directionOf = entityDirection.left
-        case UISwipeGestureRecognizerDirection.Up:
-            newBullet.directionTo = entityDirection.up
-            newBullet.move = bulletMoveUpAction
-            player.directionOf = entityDirection.up
-        case UISwipeGestureRecognizerDirection.Down:
-            newBullet.directionTo = entityDirection.down
-            newBullet.move = bulletMoveDownAction
-            player.directionOf = entityDirection.down
-        default:
-            assertionFailure("Out of bounds")
-        }
-        
-        addChild(newBullet)
-        bulletsInField.append(newBullet)
+            let newBullet = Bullet(entityPosition: CGPoint(x: CGRectGetMidX(playableRect), y: CGRectGetMidY(playableRect)))
+            
+            switch sender.direction{
+            case UISwipeGestureRecognizerDirection.Right:
+                newBullet.directionOf = entityDirection.right
+                newBullet.move = bulletMoveRightAction
+                player.directionOf = entityDirection.right
+            case UISwipeGestureRecognizerDirection.Left:
+                newBullet.directionOf = entityDirection.left
+                newBullet.move = bulletMoveLeftAction
+                player.directionOf = entityDirection.left
+            case UISwipeGestureRecognizerDirection.Up:
+                newBullet.directionOf = entityDirection.up
+                newBullet.move = bulletMoveUpAction
+                player.directionOf = entityDirection.up
+            case UISwipeGestureRecognizerDirection.Down:
+                newBullet.directionOf = entityDirection.down
+                newBullet.move = bulletMoveDownAction
+                player.directionOf = entityDirection.down
+            default:
+                assertionFailure("Out of bounds")
+            }
+            
+            addChild(newBullet)
+            bulletsInField.append(newBullet)
             isShootable = false
         }
         
@@ -351,22 +364,11 @@ class GameScene: SKScene {
     }
     
     func createActions(){
-        let moveRightAction = SKAction.moveByX(incrementalSpaceBetweenBlocks, y: 0, duration: gameSpeed - enemyWaitTime)//insert gameSpeed in duration
-        let moveLeftAction = SKAction.reversedAction(moveRightAction)()
-        let moveDownAction = SKAction.moveByX(0, y:-incrementalSpaceBetweenBlocks, duration: gameSpeed - enemyWaitTime)
-        let moveUpAction = SKAction.reversedAction(moveDownAction)()
-        
-        let wait = SKAction.waitForDuration(enemyWaitTime)
-        
         bulletMoveRightAction = SKAction.moveByX(CGFloat(1000), y: 0, duration: NSTimeInterval(4))
         bulletMoveLeftAction = SKAction.reversedAction(bulletMoveRightAction)()
         bulletMoveDownAction = SKAction.moveByX(0, y: -CGFloat(1000), duration: NSTimeInterval(4))
         bulletMoveUpAction = SKAction.reversedAction(bulletMoveDownAction)()
         
-        moveRight = SKAction.sequence([moveRightAction, wait])
-        moveLeft = SKAction.sequence([moveLeftAction, wait])
-        moveDown = SKAction.sequence([moveDownAction, wait])
-        moveUp = SKAction.sequence([moveUpAction, wait])
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -387,4 +389,32 @@ class GameScene: SKScene {
         view?.presentScene(gameOverScene, transition: reveal)
     }
     
+    func didBeginContact(contact: SKPhysicsContact) {
+        let firstNode = contact.bodyA.node as! Entity
+        let secondNode = contact.bodyB.node as! Entity
+        
+        if (contact.bodyA.categoryBitMask == PhysicsCategory.Player) &&
+            (contact.bodyB.categoryBitMask == PhysicsCategory.Enemy){
+                firstNode.hurt()
+                secondNode.kill()
+        }
+        
+        if (contact.bodyB.categoryBitMask == PhysicsCategory.Player) &&
+            (contact.bodyA.categoryBitMask == PhysicsCategory.Enemy){
+                firstNode.hurt()
+                secondNode.kill()
+        }
+        
+        if (contact.bodyA.categoryBitMask == PhysicsCategory.Enemy) &&
+            (contact.bodyB.categoryBitMask == PhysicsCategory.Bullet){
+                firstNode.hurt()
+                secondNode.kill()
+        }
+        
+        if (contact.bodyB.categoryBitMask == PhysicsCategory.Enemy) &&
+            (contact.bodyA.categoryBitMask == PhysicsCategory.Bullet){
+                firstNode.hurt()
+                secondNode.kill()
+        }
+    }
 }
