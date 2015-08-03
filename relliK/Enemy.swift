@@ -15,20 +15,21 @@ class Enemy: Entity{
     
     init(texture: SKTexture) {
         super.init(position: CGPoint(), texture: texture)
-        directionOf = entityDirection.down
+        directionOf = entityDirection.unSelected
         size = texture.size()
         setScale(enemyScale)
         zPosition = 90.00
         updateSpriteAtrributes()
-    }
+        createHealthBar()    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     func moveFunc(){
+        playMoveSound()
         setAngle()
-        move.timingMode = SKActionTimingMode.EaseInEaseOut
+        //move.timingMode = SKActionTimingMode.EaseInEaseOut
         runAction(moveAction())
         moveToNextBlock()
     }
@@ -72,14 +73,29 @@ class Enemy: Entity{
     override func updateSpriteAtrributes() {
         super.updateSpriteAtrributes()
         physicsBody = SKPhysicsBody(rectangleOfSize: (frame.size))
+        physicsBody?.usesPreciseCollisionDetection = true
         physicsBody?.categoryBitMask = PhysicsCategory.Enemy
         physicsBody?.contactTestBitMask = PhysicsCategory.Player | PhysicsCategory.Bullet
         physicsBody?.collisionBitMask = PhysicsCategory.None
+        
     }
     
     override func hurt() {
         super.hurt()
         died()
+    }
+    
+    func createHealthBar(){
+        
+
+    }
+    
+     func loadedEnemySettings() {
+        lightingBitMask = BitMaskOfLighting.left & BitMaskOfLighting.right & BitMaskOfLighting.up & BitMaskOfLighting.down//super.getSideForLighting()
+        shadowedBitMask = BitMaskOfLighting.left & BitMaskOfLighting.right & BitMaskOfLighting.up & BitMaskOfLighting.down//super.getSideForLighting()
+        
+//        texture!.textureByGeneratingNormalMap()
+//        texture!.textureByGeneratingNormalMapWithSmoothness(0.3, contrast: 0.6)
     }
 }
 
@@ -93,13 +109,15 @@ class Boss:Enemy {
         name = "boss"
         setScale(enemyScale)
         directionOf = entityDirection.unSelected
+        
+        loadedEnemySettings()
     }
     
     func setEntityTypeAttribures(){
         maxHealth = 3
         health = maxHealth
         hurtSoundString = "hurt"
-        attackSoundString = "attack"
+        attackSoundString = "bulletAttack"
         moveSoundString = "move"
         diedSoundString = "died"
         directionOf = entityDirection.unSelected
@@ -118,6 +136,19 @@ class Boss:Enemy {
             // 2
             let enemy = SKSpriteNode(imageNamed: "enemy")
             
+            let healthLabel = SKLabelNode(fontNamed: "Chalkduster")
+            healthLabel.fontSize = 100
+            //healthLabel.alpha = 0.7
+            healthLabel.fontColor = SKColor.greenColor()
+            healthLabel.name = "healthLabel"
+            //
+            //healthLabel.zPosition = zPosition + 1
+            healthLabel.text = "==="
+            
+            enemy.addChild(healthLabel)
+            healthLabel.position = CGPoint(x: 0.5, y: 20.0)
+            healthLabel.runAction(SKAction.rotateToAngle(π, duration: NSTimeInterval(0.0), shortestUnitArc: true))
+            
             // 5
             let textureView = SKView()
             SharedTexture.texture = textureView.textureFromNode(enemy)!
@@ -131,8 +162,6 @@ class Boss:Enemy {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
-
 class Ghost: Enemy{
     
     init(entityPosition: CGPoint) {
@@ -157,7 +186,6 @@ class Ghost: Enemy{
         entityCurrentBlock = blockPlace.unSelected
         entityInRangeBlock = blockPlace.first
     }
-    
     
     override class func generateTexture() -> SKTexture? {
         // 1
@@ -184,6 +212,7 @@ class Ghost: Enemy{
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
 }
 
 class Soldier: Enemy{
@@ -236,6 +265,7 @@ class Soldier: Enemy{
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
 }
 
 class Minion:Enemy {

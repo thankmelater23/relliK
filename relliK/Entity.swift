@@ -21,6 +21,7 @@ class Entity: SKSpriteNode {
     var move: SKAction = SKAction()
     var entityCurrentBlock:blockPlace = blockPlace.unSelected
     var entityInRangeBlock:blockPlace = blockPlace.unSelected
+    //var healthLabel:SKLabelNode = SKLabelNode()
     
     var isDead: Bool{
         return health < 1
@@ -31,6 +32,24 @@ class Entity: SKSpriteNode {
         super.init(texture: texture, color: SKColor.whiteColor(), size: texture.size())
         
         self.position = position
+//        
+//        shadowedBitMask = getSideForLighting()
+//        lightingBitMask = getSideForLighting()
+    }
+    
+    func getSideForLighting() -> UInt32{
+        switch directionOf{
+        case .right:
+            return BitMaskOfLighting.right
+        case .left:
+            return BitMaskOfLighting.left
+        case .up:
+            return BitMaskOfLighting.up
+        case .down:
+            return BitMaskOfLighting.down
+        case .unSelected:
+            return BitMaskOfLighting.None
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -47,11 +66,6 @@ class Entity: SKSpriteNode {
     }
     
     func updateSpriteAtrributes(){
-//        physicsBody = SKPhysicsBody(rectangleOfSize: size)
-//        physicsBody?.categoryBitMask = PhysicsCategory.None
-//        physicsBody?.contactTestBitMask = PhysicsCategory.None
-//        physicsBody?.collisionBitMask = PhysicsCategory.None
-//        physicsBody?.dynamic = false
     }
     
     func kill(){
@@ -103,6 +117,27 @@ class Entity: SKSpriteNode {
         if isDead{
             runAction(SKAction.removeFromParent())
         }
+    }
+    
+    //Sounds
+    func playSoundEffect(fileName: String){
+        SKAction.playSoundFileNamed(fileName, waitForCompletion: false)
+    }
+    
+    func playDeadSound(){
+        playSoundEffect(diedSoundString)
+    }
+    
+    func playHurtSound(){
+        playSoundEffect(hurtSoundString)
+    }
+    
+    func playattackSound(){
+    playSoundEffect(attackSoundString)
+    }
+    
+    func playMoveSound(){
+    playSoundEffect(moveSoundString)
     }
 }
 

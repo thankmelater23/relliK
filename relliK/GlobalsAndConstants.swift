@@ -42,6 +42,15 @@ import SpriteKit
     static let Enemy: UInt32 = 0x1 << 2
     static let Bullet: UInt32 = 0x1 << 3
   }
+  
+  struct BitMaskOfLighting {
+    static let None: UInt32 = 0x1 << 0
+    static let right: UInt32 = 0x1 << 1
+    static let left: UInt32 = 0x1 << 2
+    static let down: UInt32 = 0x1 << 3
+    static let up: UInt32 = 0x1 << 4
+    
+  }
 
 
   let GAME_MAX_SPEED:NSTimeInterval = 0.3

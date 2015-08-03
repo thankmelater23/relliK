@@ -70,6 +70,7 @@ class Player:Entity {
     override func updateSpriteAtrributes() {
         super.updateSpriteAtrributes()
         physicsBody = SKPhysicsBody(rectangleOfSize: (frame.size))
+        physicsBody?.usesPreciseCollisionDetection = true
         physicsBody?.categoryBitMask = PhysicsCategory.Player
         physicsBody?.contactTestBitMask = PhysicsCategory.Enemy
         physicsBody?.collisionBitMask = PhysicsCategory.None
@@ -78,6 +79,7 @@ class Player:Entity {
 
 
 class Bullet: Entity{
+    var light = SKLightNode()
     
     init(entityPosition: CGPoint) {
         let entityTexture = Bullet.generateTexture()!
@@ -89,7 +91,16 @@ class Bullet: Entity{
         let shot = SKEmitterNode(fileNamed: "engine")
         shot?.position = CGPoint(x: 0.5, y: 1.0)
         updateSpriteAtrributes()
+        attackSoundString = "bulletAttack"
         addChild(shot!)
+        
+        
+        light.position = CGPoint(x: 0.5, y: 0.5)
+        light.categoryBitMask = getSideForLighting()
+        light.enabled = true
+        light.lightColor = SKColor.whiteColor()
+        light.falloff = 2.0
+        addChild(light)
     }
 
     func setEntityTypeAttribures(){
@@ -150,6 +161,7 @@ class Bullet: Entity{
     
     func moveFunc(){//Sets Angle, moves sprite an then removesSpriteFromParent
         setAngle()
+        playattackSound()
         runAction(SKAction.sequence([move, SKAction.removeFromParent()]))
     }
     
