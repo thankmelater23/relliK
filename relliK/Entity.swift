@@ -13,10 +13,10 @@ import SpriteKit
 class Entity: SKSpriteNode {
     var health = 0
     var maxHealth = 0
-    var hurtSoundString = String()
-    var attackSoundString = String()
-    var moveSoundString = String()
-    var diedSoundString = String()
+    var hurtSoundString = "hurt.wav"
+    var attackSoundString = "attack.wav"
+    var moveSoundString = "move.wav"
+    var diedSoundString = "died.wav"
     var directionOf = entityDirection.unSelected
     var move: SKAction = SKAction()
     var entityCurrentBlock:blockPlace = blockPlace.unSelected
@@ -75,6 +75,7 @@ class Entity: SKSpriteNode {
     
     func hurt(){
         --health
+        playHurtSound()
     }
     
     func moveToNextBlock(){
@@ -121,7 +122,7 @@ class Entity: SKSpriteNode {
     
     //Sounds
     func playSoundEffect(fileName: String){
-        SKAction.playSoundFileNamed(fileName, waitForCompletion: false)
+        runAction(SKAction.playSoundFileNamed(fileName, waitForCompletion: false))
     }
     
     func playDeadSound(){

@@ -75,6 +75,20 @@ class Player:Entity {
         physicsBody?.contactTestBitMask = PhysicsCategory.Enemy
         physicsBody?.collisionBitMask = PhysicsCategory.None
     }
+    
+    func setEntityTypeAttribures(){
+        maxHealth = 3
+        health = maxHealth
+        hurtSoundString = "playerPain1.wav"
+//        attackSoundString = "attack"
+//        moveSoundString = "move"
+//        diedSoundString = "died"
+//        directionOf = entityDirection.unSelected
+//        entityCurrentBlock = blockPlace.unSelected
+//        entityInRangeBlock = blockPlace.fourth
+        
+        //childNodeWithName("bulletNode")
+    }
 }
 
 
@@ -91,7 +105,7 @@ class Bullet: Entity{
         let shot = SKEmitterNode(fileNamed: "engine")
         shot?.position = CGPoint(x: 0.5, y: 1.0)
         updateSpriteAtrributes()
-        attackSoundString = "bulletAttack"
+        attackSoundString = "bulletAttack.wav"
         addChild(shot!)
         
         
@@ -137,6 +151,7 @@ class Bullet: Entity{
             let textureView = SKView()
             SharedTexture.texture = textureView.textureFromNode(bullet)!
             SharedTexture.texture.filteringMode = .Nearest
+            
         })
         
         return SharedTexture.texture
@@ -162,7 +177,9 @@ class Bullet: Entity{
     func moveFunc(){//Sets Angle, moves sprite an then removesSpriteFromParent
         setAngle()
         playattackSound()
-        runAction(SKAction.sequence([move, SKAction.removeFromParent()]))
+        let action = SKAction.sequence([move, SKAction.removeFromParent()])
+        runAction(action, withKey: "move")
+        SKAction.sequence([SKAction()])
     }
     
     override func updateSpriteAtrributes() {
@@ -173,4 +190,6 @@ class Bullet: Entity{
         physicsBody?.contactTestBitMask = PhysicsCategory.Enemy
         physicsBody?.collisionBitMask = PhysicsCategory.None
     }
+    
+    
 }

@@ -13,6 +13,7 @@ import SpriteKit
 
 class Enemy: Entity{
     
+    //Initializars
     init(texture: SKTexture) {
         super.init(position: CGPoint(), texture: texture)
         directionOf = entityDirection.unSelected
@@ -21,19 +22,39 @@ class Enemy: Entity{
         zPosition = 90.00
         updateSpriteAtrributes()
         createHealthBar()    }
-    
+    func createHealthBar(){
+        
+        
+    }
+    func loadedEnemySettings() {
+        lightingBitMask = BitMaskOfLighting.left & BitMaskOfLighting.right & BitMaskOfLighting.up & BitMaskOfLighting.down//super.getSideForLighting()
+        shadowedBitMask = BitMaskOfLighting.left & BitMaskOfLighting.right & BitMaskOfLighting.up & BitMaskOfLighting.down//super.getSideForLighting()
+        
+                //texture!.textureByGeneratingNormalMap()
+                //texture!.textureByGeneratingNormalMapWithSmoothness(0.3, contrast: 0.6)
+    }
+    override func updateSpriteAtrributes() {
+        super.updateSpriteAtrributes()
+        physicsBody = SKPhysicsBody(rectangleOfSize: (frame.size))
+        physicsBody?.usesPreciseCollisionDetection = true
+        physicsBody?.categoryBitMask = PhysicsCategory.Enemy
+        physicsBody?.contactTestBitMask = PhysicsCategory.Player | PhysicsCategory.Bullet
+        physicsBody?.collisionBitMask = PhysicsCategory.None
+        loadedEnemySettings()
+        
+    }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //Action Methods
     func moveFunc(){
-        playMoveSound()
         setAngle()
-        //move.timingMode = SKActionTimingMode.EaseInEaseOut
+        move.timingMode = SKActionTimingMode.EaseInEaseOut
         runAction(moveAction())
         moveToNextBlock()
+        playMoveSound()
     }
-    
     override func moveToNextBlock() {
         super.moveToNextBlock()
         
@@ -41,7 +62,6 @@ class Enemy: Entity{
             self.kill()
         }
     }
-    
     func moveAction() ->SKAction{
         
         let wait = SKAction.waitForDuration(enemyWaitTime)
@@ -49,7 +69,6 @@ class Enemy: Entity{
         switch (directionOf){
         case entityDirection.left:
             let moveLeftAction = SKAction.moveByX(incrementalSpaceBetweenBlocks, y: 0, duration: gameSpeed)
-            
             return SKAction.sequence([moveLeftAction, wait])
         case entityDirection.right:
             let moveRightAction = SKAction.moveByX(-incrementalSpaceBetweenBlocks, y: 0, duration: gameSpeed)
@@ -57,7 +76,7 @@ class Enemy: Entity{
             return SKAction.sequence([moveRightAction, wait])
         case entityDirection.down:
             let moveDownAction = SKAction.moveByX(0, y: incrementalSpaceBetweenBlocks, duration: gameSpeed)
-            
+
             return SKAction.sequence([moveDownAction, wait])
         case entityDirection.up:
             let moveUpAction = SKAction.moveByX(0, y: -incrementalSpaceBetweenBlocks, duration: gameSpeed)
@@ -70,34 +89,12 @@ class Enemy: Entity{
         }
     }
     
-    override func updateSpriteAtrributes() {
-        super.updateSpriteAtrributes()
-        physicsBody = SKPhysicsBody(rectangleOfSize: (frame.size))
-        physicsBody?.usesPreciseCollisionDetection = true
-        physicsBody?.categoryBitMask = PhysicsCategory.Enemy
-        physicsBody?.contactTestBitMask = PhysicsCategory.Player | PhysicsCategory.Bullet
-        physicsBody?.collisionBitMask = PhysicsCategory.None
-        
-    }
-    
+    //SFX
     override func hurt() {
         super.hurt()
         died()
     }
-    
-    func createHealthBar(){
-        
-
     }
-    
-     func loadedEnemySettings() {
-        lightingBitMask = BitMaskOfLighting.left & BitMaskOfLighting.right & BitMaskOfLighting.up & BitMaskOfLighting.down//super.getSideForLighting()
-        shadowedBitMask = BitMaskOfLighting.left & BitMaskOfLighting.right & BitMaskOfLighting.up & BitMaskOfLighting.down//super.getSideForLighting()
-        
-//        texture!.textureByGeneratingNormalMap()
-//        texture!.textureByGeneratingNormalMapWithSmoothness(0.3, contrast: 0.6)
-    }
-}
 
 class Boss:Enemy {
     
@@ -110,7 +107,6 @@ class Boss:Enemy {
         setScale(enemyScale)
         directionOf = entityDirection.unSelected
         
-        loadedEnemySettings()
     }
     
     func setEntityTypeAttribures(){
@@ -153,6 +149,7 @@ class Boss:Enemy {
             let textureView = SKView()
             SharedTexture.texture = textureView.textureFromNode(enemy)!
             SharedTexture.texture.filteringMode = .Nearest
+            SharedTexture.texture.textureByGeneratingNormalMapWithSmoothness(0.6, contrast: 0.3)
         })
         
         return SharedTexture.texture
@@ -197,8 +194,8 @@ class Ghost: Enemy{
         dispatch_once(&SharedTexture.onceToken, {
             // 2
             let enemy = SKSpriteNode(imageNamed: "cat")
-            enemy.color = SKColor.blackColor()
-            enemy.colorBlendFactor = 1.0
+            enemy.color = SKColor.yellowColor()
+            enemy.colorBlendFactor = 0.8
             
             // 5
             let textureView = SKView()

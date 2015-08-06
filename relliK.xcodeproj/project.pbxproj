@@ -29,7 +29,7 @@
 		C6D396281B64597400830790 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D396271B64597400830790 /* MainMenuScene.swift */; };
 		C6D3962A1B64597D00830790 /* MyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D396291B64597D00830790 /* MyUtils.swift */; };
 		C6DB59C51B6E29900013362E /* light.sks in Resources */ = {isa = PBXBuildFile; fileRef = C6DB59C41B6E29900013362E /* light.sks */; };
-		C6E98B071B6F5E75005B1B29 /* attack2.wav in Resources */ = {isa = PBXBuildFile; fileRef = C6E98AFE1B6F5E75005B1B29 /* attack2.wav */; };
+		C6E98B071B6F5E75005B1B29 /* attack.wav in Resources */ = {isa = PBXBuildFile; fileRef = C6E98AFE1B6F5E75005B1B29 /* attack.wav */; };
 		C6E98B081B6F5E75005B1B29 /* bossHurt.wav in Resources */ = {isa = PBXBuildFile; fileRef = C6E98AFF1B6F5E75005B1B29 /* bossHurt.wav */; };
 		C6E98B091B6F5E75005B1B29 /* hurt.wav in Resources */ = {isa = PBXBuildFile; fileRef = C6E98B001B6F5E75005B1B29 /* hurt.wav */; };
 		C6E98B0A1B6F5E75005B1B29 /* playerPain1.wav in Resources */ = {isa = PBXBuildFile; fileRef = C6E98B011B6F5E75005B1B29 /* playerPain1.wav */; };
@@ -38,7 +38,7 @@
 		C6E98B0D1B6F5E75005B1B29 /* playerPain4.wav in Resources */ = {isa = PBXBuildFile; fileRef = C6E98B041B6F5E75005B1B29 /* playerPain4.wav */; };
 		C6E98B0E1B6F5E75005B1B29 /* bulletAttack.wav in Resources */ = {isa = PBXBuildFile; fileRef = C6E98B051B6F5E75005B1B29 /* bulletAttack.wav */; };
 		C6E98B0F1B6F5E75005B1B29 /* spawn.wav in Resources */ = {isa = PBXBuildFile; fileRef = C6E98B061B6F5E75005B1B29 /* spawn.wav */; };
-		C6E98B111B6F6089005B1B29 /* moving.wav in Resources */ = {isa = PBXBuildFile; fileRef = C6E98B101B6F6089005B1B29 /* moving.wav */; };
+		C6E98B111B6F6089005B1B29 /* move.wav in Resources */ = {isa = PBXBuildFile; fileRef = C6E98B101B6F6089005B1B29 /* move.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,7 +87,7 @@
 		C6D396271B64597400830790 /* MainMenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
 		C6D396291B64597D00830790 /* MyUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUtils.swift; sourceTree = "<group>"; };
 		C6DB59C41B6E29900013362E /* light.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = light.sks; sourceTree = "<group>"; };
-		C6E98AFE1B6F5E75005B1B29 /* attack2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = attack2.wav; sourceTree = "<group>"; };
+		C6E98AFE1B6F5E75005B1B29 /* attack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = attack.wav; sourceTree = "<group>"; };
 		C6E98AFF1B6F5E75005B1B29 /* bossHurt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bossHurt.wav; sourceTree = "<group>"; };
 		C6E98B001B6F5E75005B1B29 /* hurt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hurt.wav; sourceTree = "<group>"; };
 		C6E98B011B6F5E75005B1B29 /* playerPain1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = playerPain1.wav; sourceTree = "<group>"; };
@@ -96,7 +96,7 @@
 		C6E98B041B6F5E75005B1B29 /* playerPain4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = playerPain4.wav; sourceTree = "<group>"; };
 		C6E98B051B6F5E75005B1B29 /* bulletAttack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bulletAttack.wav; sourceTree = "<group>"; };
 		C6E98B061B6F5E75005B1B29 /* spawn.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = spawn.wav; sourceTree = "<group>"; };
-		C6E98B101B6F6089005B1B29 /* moving.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = moving.wav; sourceTree = "<group>"; };
+		C6E98B101B6F6089005B1B29 /* move.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = move.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,7 +147,6 @@
 		C6D395E21B64579100830790 /* relliK */ = {
 			isa = PBXGroup;
 			children = (
-				C6D3961F1B64594F00830790 /* GlobalsAndConstants.swift */,
 				C6E98AFD1B6F5E64005B1B29 /* SFX */,
 				C6D395E31B64579100830790 /* AppDelegate.swift */,
 				C6D395E51B64579100830790 /* GameScene.sks */,
@@ -194,10 +193,11 @@
 		C6E98AFD1B6F5E64005B1B29 /* SFX */ = {
 			isa = PBXGroup;
 			children = (
-				C6E98AFE1B6F5E75005B1B29 /* attack2.wav */,
+				C6D3961F1B64594F00830790 /* GlobalsAndConstants.swift */,
+				C6E98AFE1B6F5E75005B1B29 /* attack.wav */,
 				C6E98AFF1B6F5E75005B1B29 /* bossHurt.wav */,
 				C6E98B001B6F5E75005B1B29 /* hurt.wav */,
-				C6E98B101B6F6089005B1B29 /* moving.wav */,
+				C6E98B101B6F6089005B1B29 /* move.wav */,
 				C6E98B011B6F5E75005B1B29 /* playerPain1.wav */,
 				C6E98B021B6F5E75005B1B29 /* playerPain2.wav */,
 				C6E98B031B6F5E75005B1B29 /* playerPain3.wav */,
@@ -275,6 +275,7 @@
 				TargetAttributes = {
 					C6D395DF1B64579100830790 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = ZJWNZ643CG;
 					};
 					C6D395F71B64579200830790 = {
 						CreatedOnToolsVersion = 7.0;
@@ -323,12 +324,12 @@
 				C6E98B0A1B6F5E75005B1B29 /* playerPain1.wav in Resources */,
 				C6E98B0F1B6F5E75005B1B29 /* spawn.wav in Resources */,
 				C60D5ACE1B6A11D800672EC1 /* spark.png in Resources */,
-				C6E98B111B6F6089005B1B29 /* moving.wav in Resources */,
+				C6E98B111B6F6089005B1B29 /* move.wav in Resources */,
 				C6D395F21B64579200830790 /* LaunchScreen.storyboard in Resources */,
 				C6E98B081B6F5E75005B1B29 /* bossHurt.wav in Resources */,
 				C6D395EF1B64579200830790 /* Assets.xcassets in Resources */,
 				C60D5AD01B6A140900672EC1 /* death.sks in Resources */,
-				C6E98B071B6F5E75005B1B29 /* attack2.wav in Resources */,
+				C6E98B071B6F5E75005B1B29 /* attack.wav in Resources */,
 				C6D395ED1B64579100830790 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -506,10 +507,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = relliK/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BangBangStudios.relliK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -517,10 +521,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = relliK/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BangBangStudios.relliK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

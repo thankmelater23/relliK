@@ -26,6 +26,9 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     let playableRect: CGRect
     var lastTouchLocation: CGPoint?
     let rotateRadiansPerSec:CGFloat = 4.0 * π
+    var gameScore: Int = 0
+    var killedEnemies: Int = 0
+    var errorsMade: Int = 0
     
     var player: Player!
     var backgroundNode: SKSpriteNode!
@@ -133,7 +136,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         backgroundNode.zPosition = -1
         
         let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        myLabel.text = "Andre's New Game"
+        myLabel.text = "Andre's New Game to with sound"
         myLabel.color = SKColor.redColor()
         myLabel.fontSize = 20
         myLabel.position = CGPoint(x:CGRectGetMinX(playableRect) + myLabel.frame.size.width * 0.75, y:CGRectGetMaxY(playableRect) - myLabel.frame.size.height * 2);
@@ -187,39 +190,41 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         
         if (contact.bodyB.categoryBitMask == PhysicsCategory.Player) &&
             (contact.bodyA.categoryBitMask == PhysicsCategory.Enemy){
-                firstNode.hurt()
-                secondNode.kill()
+                secondNode.hurt()
+                firstNode.kill()
         }
         
         if (contact.bodyA.categoryBitMask == PhysicsCategory.Enemy) &&
             (contact.bodyB.categoryBitMask == PhysicsCategory.Bullet){
                 firstNode.hurt()
+                secondNode.removeActionForKey("move")
                 secondNode.kill()
         }
         
         if (contact.bodyB.categoryBitMask == PhysicsCategory.Enemy) &&
             (contact.bodyA.categoryBitMask == PhysicsCategory.Bullet){
-                firstNode.hurt()
-                secondNode.kill()
+                firstNode.removeActionForKey("move")
+                firstNode.kill()
+                secondNode.hurt()
         }
     }
     
-    func didEndContact(contact: SKPhysicsContact) {
-        let firstNode = contact.bodyA.node as! Entity
-        let secondNode = contact.bodyB.node as! Entity
-        
-        if (contact.bodyA.categoryBitMask == PhysicsCategory.Enemy) &&
-            (contact.bodyB.categoryBitMask == PhysicsCategory.Bullet){
-                secondNode.kill()
-        }
-        
-        if (contact.bodyB.categoryBitMask == PhysicsCategory.Enemy) &&
-            (contact.bodyA.categoryBitMask == PhysicsCategory.Bullet){
-                secondNode.kill()
-        }
-    }
+//    func didEndContact(contact: SKPhysicsContact) {
+//        let firstNode = contact.bodyA.node as! Entity
+//        let secondNode = contact.bodyB.node as! Entity
+//        
+//        if (contact.bodyA.categoryBitMask == PhysicsCategory.Enemy) &&
+//            (contact.bodyB.categoryBitMask == PhysicsCategory.Bullet){
+//                secondNode.kill()
+//        }
+//        
+//        if (contact.bodyB.categoryBitMask == PhysicsCategory.Enemy) &&
+//            (contact.bodyA.categoryBitMask == PhysicsCategory.Bullet){
+//                secondNode.kill()
+//        }
+//    }
     
-    //UI
+    //UI Methods
     func createSwipeRecognizers() {
         var swipeDown = UISwipeGestureRecognizer(target: self, action: "shotDirection:")
         swipeDown.direction = UISwipeGestureRecognizerDirection.Down
@@ -263,7 +268,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         }
     }
     
-    //Enemies
+    //Enemies Methods
     func moveEnemies(){
         //Insert Angle to face(SKActionAngle)
         
@@ -323,7 +328,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         }
     }
 
-    //Player and Bullets
+    //Player and Bullets Methods
     func createPlayer(){
         self.player = Player(entityPosition: CGPoint(x: CGRectGetMidX(playableRect), y: CGRectGetMidY(playableRect)))
         addChild(player)
@@ -404,10 +409,10 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
             x: CGRectGetWidth(playableRect)/2, y: CGRectGetHeight(playableRect) + 10)
         emitterNOde.particlePositionRange = CGVector(dx: CGRectGetWidth(playableRect), dy: CGRectGetHeight(playableRect))
         
-        addChild(emitterNOde)
+        //addChild(emitterNOde)
     }
     
-    //Block creatoir
+    //Block creator Methods
     func createPlayerBlock(){
         
         self.playerBlock = SKSpriteNode(imageNamed: "stone")
@@ -475,7 +480,16 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         }
     }
     
-    //Other Game Scenes
+    //GamePlay Methods
+    func upScore(){
+        gameScore++
+    }
+    
+    func upKilledEnemy(){
+        killedEnemies++
+    }
+    
+    //Other Game Scenes Methods
     func createGameOverScene(won: Bool){
         backgroundMusicPlayer.stop()
         let gameOverScene = GameOverScene(size: size, won: won)
