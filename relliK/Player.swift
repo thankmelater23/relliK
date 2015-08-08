@@ -112,8 +112,10 @@ class Bullet: Entity{
         light.position = CGPoint(x: 0.5, y: 0.5)
         light.categoryBitMask = getSideForLighting()
         light.enabled = true
-        light.lightColor = SKColor.whiteColor()
-        light.falloff = 2.0
+        light.lightColor = SKColor(red: 0, green: 0, blue: 200, alpha: 0.1)
+        light.shadowColor = SKColor.blackColor()// SKColor(red: 0, green: 0, blue: 0, alpha: 1.0)
+        light.ambientColor = SKColor(red: 0, green: 0, blue: 200, alpha: 0.1)
+        light.falloff = 1.0
         addChild(light)
     }
 

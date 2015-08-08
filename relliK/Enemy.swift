@@ -21,17 +21,16 @@ class Enemy: Entity{
         setScale(enemyScale)
         zPosition = 90.00
         updateSpriteAtrributes()
-        createHealthBar()    }
+        createHealthBar()
+        
+    }
     func createHealthBar(){
         
         
     }
     func loadedEnemySettings() {
-        lightingBitMask = BitMaskOfLighting.left & BitMaskOfLighting.right & BitMaskOfLighting.up & BitMaskOfLighting.down//super.getSideForLighting()
-        shadowedBitMask = BitMaskOfLighting.left & BitMaskOfLighting.right & BitMaskOfLighting.up & BitMaskOfLighting.down//super.getSideForLighting()
-        
-                //texture!.textureByGeneratingNormalMap()
-                //texture!.textureByGeneratingNormalMapWithSmoothness(0.3, contrast: 0.6)
+        lightingBitMask = super.getSideForLighting()
+        shadowedBitMask = super.getSideForLighting()
     }
     override func updateSpriteAtrributes() {
         super.updateSpriteAtrributes()
@@ -63,6 +62,9 @@ class Enemy: Entity{
         }
     }
     func moveAction() ->SKAction{
+        defer{
+            loadedEnemySettings()
+        }
         
         let wait = SKAction.waitForDuration(enemyWaitTime)
         
@@ -87,6 +89,7 @@ class Enemy: Entity{
             print("direction unselected")
             return SKAction()
         }
+        
     }
     
     //SFX
@@ -149,7 +152,7 @@ class Boss:Enemy {
             let textureView = SKView()
             SharedTexture.texture = textureView.textureFromNode(enemy)!
             SharedTexture.texture.filteringMode = .Nearest
-            SharedTexture.texture.textureByGeneratingNormalMapWithSmoothness(0.6, contrast: 0.3)
+            SharedTexture.texture.textureByGeneratingNormalMapWithSmoothness(0.6, contrast: 1.0)
         })
         
         return SharedTexture.texture
@@ -201,6 +204,7 @@ class Ghost: Enemy{
             let textureView = SKView()
             SharedTexture.texture = textureView.textureFromNode(enemy)!
             SharedTexture.texture.filteringMode = .Nearest
+            SharedTexture.texture.textureByGeneratingNormalMapWithSmoothness(0.6, contrast: 1.0)
         })
         
         return SharedTexture.texture
@@ -254,6 +258,7 @@ class Soldier: Enemy{
             let textureView = SKView()
             SharedTexture.texture = textureView.textureFromNode(enemy)!
             SharedTexture.texture.filteringMode = .Nearest
+            SharedTexture.texture.textureByGeneratingNormalMapWithSmoothness(0.6, contrast: 1.0)
         })
         
         return SharedTexture.texture
@@ -306,6 +311,7 @@ class Minion:Enemy {
             let textureView = SKView()
             SharedTexture.texture = textureView.textureFromNode(enemy)!
             SharedTexture.texture.filteringMode = .Nearest
+            SharedTexture.texture.textureByGeneratingNormalMapWithSmoothness(0.6, contrast: 1.0)
         })
         
         return SharedTexture.texture

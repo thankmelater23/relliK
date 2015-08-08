@@ -422,7 +422,6 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         self.playerBlock.position = CGPoint(x: horizontalXAxis, y: verticalAxis)
         self.playerBlock.setScale(playerBlockScale)
         self.playerBlock.texture?.filteringMode = .Nearest
-        //self.playerBlock.texture!.textureByGeneratingNormalMap()
         self.playerBlock.texture!.textureByGeneratingNormalMapWithSmoothness(0.5, contrast: 1.0)
         self.playerBlock.lightingBitMask = BitMaskOfLighting.left | BitMaskOfLighting.right | BitMaskOfLighting.up | BitMaskOfLighting.down
         
@@ -432,9 +431,8 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         playerBlockLight.enabled = true
         playerBlockLight.position = playerBlock.position
         playerBlockLight.falloff = 1.0
-        playerBlockLight.ambientColor = SKColor.blackColor()
+        playerBlockLight.ambientColor = SKColor(red: 0, green: 0, blue: 0, alpha: 1.0)// SKColor.yellowColor()
         playerBlockLight.lightColor = SKColor(white: 0.1, alpha: 1.0)
-
         
         addChild(playerBlockLight)
         addChild(playerBlock)
