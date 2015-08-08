@@ -110,11 +110,12 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     
     //Initialization methods
     override init(size: CGSize) {
-        let maxAspectRatio:CGFloat = 4.0/3.0 // 16.0/9.0 // iPhone 5"
+        let maxAspectRatio:CGFloat = 16.0/9.0 // iPhone 5"
         let maxAspectRatioHeight = size.width / maxAspectRatio
+        let maxAspectRationWidth = size.height / maxAspectRatio
         let playableMargin = (size.height-maxAspectRatioHeight)/2.0
-        playableRect =        CGRect(x: 0, y: playableMargin, width: size.width, height: size.height-playableMargin*2)
-        let minPlayableRect = CGRect(x: 0, y: playableMargin, width: size.width, height: size.height-playableMargin*2)//Use to position labels
+        let playableMarginWidth = (size.width - maxAspectRationWidth) / 2.0
+        playableRect =        CGRect(x: 0, y: playableMargin, width: size.width - playableMarginWidth * 2, height: size.height-playableMargin*2)
         
         leftSideEnemyStartPosition = CGPoint(x: CGRectGetMidX(playableRect) -  (spaceBetweenEnemyBlock + spaceToLastBox), y: CGRectGetMidY(playableRect))
         rightSideEnemyStartPosition = CGPoint(x: CGRectGetMidX(playableRect) + (spaceBetweenEnemyBlock + spaceToLastBox), y: CGRectGetMidY(playableRect))
@@ -124,13 +125,13 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         horizontalXAxis = CGRectGetMidX(playableRect)
         verticalAxis = CGRectGetMidY(playableRect)
         
-        super.init(size: size)
+        super.init(size: playableRect.size)
     }
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         backgroundNode = SKSpriteNode(imageNamed: "background1")// dmgdCheckers
-        backgroundNode.size = size
+        backgroundNode.size = playableRect.size
         backgroundNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         backgroundNode.position = CGPoint(x: playableRect.width/2, y: playableRect.height/2)
         backgroundNode.zPosition = -1
@@ -254,9 +255,9 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     }
     
     func createActions(){
-        bulletMoveRightAction = SKAction.repeatAction(SKAction.moveByX(CGFloat(incrementalSpaceBetweenBlocks), y: 0, duration: NSTimeInterval(0.5)), count: 5)
+        bulletMoveRightAction = SKAction.repeatAction(SKAction.moveByX(CGFloat(incrementalSpaceBetweenBlocks), y: 0, duration: NSTimeInterval(0.1)), count: 5)
         bulletMoveLeftAction = SKAction.reversedAction(bulletMoveRightAction)()
-        bulletMoveDownAction = SKAction.moveByX(0, y: -CGFloat(1000), duration: NSTimeInterval(4))
+        bulletMoveDownAction = SKAction.repeatAction(SKAction.moveByX(0, y: CGFloat(-incrementalSpaceBetweenBlocks), duration: NSTimeInterval(0.1)), count: 5)
         bulletMoveUpAction = SKAction.reversedAction(bulletMoveDownAction)()
     }
     
