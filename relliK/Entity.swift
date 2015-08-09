@@ -17,14 +17,21 @@ class Entity: SKSpriteNode {
     var attackSoundString = "attack.wav"
     var moveSoundString = "move.wav"
     var diedSoundString = "died.wav"
+    var blockSoundString = "block.wav"
+    var dodgeSoundString = "dodge.wav"
     var directionOf = entityDirection.unSelected
     var move: SKAction = SKAction()
     var entityCurrentBlock:blockPlace = blockPlace.unSelected
     var entityInRangeBlock:blockPlace = blockPlace.unSelected
-    //var healthLabel:SKLabelNode = SKLabelNode()
+    var flashRedEffect:SKAction!
+    var healthLabel:SKLabelNode = SKLabelNode()
     
     var isDead: Bool{
         return health < 1
+    }
+    
+    func isBlockPlaceMoreThanRange()->Bool{
+        return entityCurrentBlock.rawValue <= entityInRangeBlock.rawValue ? true : false
     }
     
     init(position: CGPoint, texture: SKTexture) {
@@ -32,9 +39,7 @@ class Entity: SKSpriteNode {
         super.init(texture: texture, color: SKColor.whiteColor(), size: texture.size())
         
         self.position = position
-//        
-//        shadowedBitMask = getSideForLighting()
-//        lightingBitMask = getSideForLighting()
+        hurtEffects()
     }
     
     func getSideForLighting() -> UInt32{
@@ -76,6 +81,7 @@ class Entity: SKSpriteNode {
     func hurt(){
         --health
         playHurtSound()
+        runAction(flashRedEffect)
     }
     
     func moveToNextBlock(){
@@ -120,6 +126,20 @@ class Entity: SKSpriteNode {
         }
     }
     
+    func hurtEffects(){
+        let colorizeSpriteToRed = SKAction.colorizeWithColor(SKColor.redColor(), colorBlendFactor: 1.0, duration: 0.5)
+        let colorizeSpriteToNorm = SKAction.colorizeWithColor(SKColor.redColor(), colorBlendFactor: 0.0, duration: 0.5)
+        let ColorOnOfSprite = SKAction.sequence([colorizeSpriteToRed, colorizeSpriteToNorm])
+        let ColorsGoing = SKAction.repeatAction(ColorOnOfSprite, count: 2)
+        let fadeOut:SKAction = SKAction.fadeOutWithDuration(0.25)
+        let fadeIn:SKAction = SKAction.reversedAction(fadeOut)()
+        let twinkleTwincle = SKAction.sequence([fadeOut, fadeIn])
+        let flash = SKAction.repeatAction(twinkleTwincle, count: 4)
+        
+        let groupAction = SKAction.group([flash, ColorsGoing])
+        flashRedEffect = groupAction
+    }
+    
     //Sounds
     func playSoundEffect(fileName: String){
         runAction(SKAction.playSoundFileNamed(fileName, waitForCompletion: false))
@@ -139,6 +159,14 @@ class Entity: SKSpriteNode {
     
     func playMoveSound(){
     playSoundEffect(moveSoundString)
+    }
+    
+    func playDodgeSound(){
+        playSoundEffect(dodgeSoundString)
+    }
+    
+    func playBlockSound(){
+        playSoundEffect(blockSoundString)
     }
 }
 

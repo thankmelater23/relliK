@@ -9,7 +9,7 @@
 import SpriteKit
 
 class GameScene: SKScene ,SKPhysicsContactDelegate {
-
+    
     var monstorsInField = [Enemy]()
     var bulletsInField = [Bullet]()
     var isShootable:Bool = false
@@ -110,7 +110,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     
     //Initialization methods
     override init(size: CGSize) {
-        let maxAspectRatio:CGFloat = 16.0/9.0 // iPhone 5"
+        let maxAspectRatio:CGFloat = 71.0/40.0 // iPhone 5"
         let maxAspectRatioHeight = size.width / maxAspectRatio
         let maxAspectRationWidth = size.height / maxAspectRatio
         let playableMargin = (size.height-maxAspectRatioHeight)/2.0
@@ -189,41 +189,61 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
                 secondNode.kill()
         }
         
-        if (contact.bodyB.categoryBitMask == PhysicsCategory.Player) &&
-            (contact.bodyA.categoryBitMask == PhysicsCategory.Enemy){
-                secondNode.hurt()
-                firstNode.kill()
-        }
+        //        if (contact.bodyB.categoryBitMask == PhysicsCategory.Player) &&
+        //            (contact.bodyA.categoryBitMask == PhysicsCategory.Enemy){
+        //                secondNode.hurt()
+        //                firstNode.kill()
+        //        }
         
         if (contact.bodyA.categoryBitMask == PhysicsCategory.Enemy) &&
             (contact.bodyB.categoryBitMask == PhysicsCategory.Bullet){
-                firstNode.hurt()
-                secondNode.removeActionForKey("move")
-                secondNode.kill()
-        }
-        
-        if (contact.bodyB.categoryBitMask == PhysicsCategory.Enemy) &&
-            (contact.bodyA.categoryBitMask == PhysicsCategory.Bullet){
-                firstNode.removeActionForKey("move")
-                firstNode.kill()
-                secondNode.hurt()
+//                if(firstNode.isBlockPlaceMoreThanRange()){
+                    secondNode.removeActionForKey("move")
+                    secondNode.kill()
+                    firstNode.hurt()}
+//                }else{
+//                    if firstNode.name == "boss" || firstNode.name == "soldier"{
+//                        secondNode.removeActionForKey("move")
+//                        secondNode.kill()
+//                        firstNode.playBlockSound()
+//                    }else{
+//                        firstNode.playDodgeSound()
+//                    }
+//                }
+                
+                if (contact.bodyB.categoryBitMask == PhysicsCategory.Enemy) &&
+                    (contact.bodyA.categoryBitMask == PhysicsCategory.Bullet){
+//                        if(secondNode.isBlockPlaceMoreThanRange()){
+                            firstNode.removeActionForKey("move")
+                            firstNode.kill()
+                            secondNode.hurt()
+//                        }else{
+//                            if secondNode.name == "boss" || secondNode.name == "soldier"{
+//                                firstNode.removeActionForKey("move")
+//                                firstNode.kill()
+//                                firstNode.playBlockSound()
+//                            }else{
+//                                firstNode.playDodgeSound()
+//                            }
+//                        }
+//                }
         }
     }
     
-//    func didEndContact(contact: SKPhysicsContact) {
-//        let firstNode = contact.bodyA.node as! Entity
-//        let secondNode = contact.bodyB.node as! Entity
-//        
-//        if (contact.bodyA.categoryBitMask == PhysicsCategory.Enemy) &&
-//            (contact.bodyB.categoryBitMask == PhysicsCategory.Bullet){
-//                secondNode.kill()
-//        }
-//        
-//        if (contact.bodyB.categoryBitMask == PhysicsCategory.Enemy) &&
-//            (contact.bodyA.categoryBitMask == PhysicsCategory.Bullet){
-//                secondNode.kill()
-//        }
-//    }
+    //    func didEndContact(contact: SKPhysicsContact) {
+    //        let firstNode = contact.bodyA.node as! Entity
+    //        let secondNode = contact.bodyB.node as! Entity
+    //
+    //        if (contact.bodyA.categoryBitMask == PhysicsCategory.Enemy) &&
+    //            (contact.bodyB.categoryBitMask == PhysicsCategory.Bullet){
+    //                secondNode.kill()
+    //        }
+    //
+    //        if (contact.bodyB.categoryBitMask == PhysicsCategory.Enemy) &&
+    //            (contact.bodyA.categoryBitMask == PhysicsCategory.Bullet){
+    //                secondNode.kill()
+    //        }
+    //    }
     
     //UI Methods
     func createSwipeRecognizers() {
@@ -255,9 +275,9 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     }
     
     func createActions(){
-        bulletMoveRightAction = SKAction.repeatAction(SKAction.moveByX(CGFloat(incrementalSpaceBetweenBlocks), y: 0, duration: NSTimeInterval(0.1)), count: 5)
+        bulletMoveRightAction = SKAction.repeatAction(SKAction.moveByX(CGFloat(incrementalSpaceBetweenBlocks), y: 0, duration: NSTimeInterval(0.3)), count: 6)
         bulletMoveLeftAction = SKAction.reversedAction(bulletMoveRightAction)()
-        bulletMoveDownAction = SKAction.repeatAction(SKAction.moveByX(0, y: CGFloat(-incrementalSpaceBetweenBlocks), duration: NSTimeInterval(0.1)), count: 5)
+        bulletMoveDownAction = SKAction.repeatAction(SKAction.moveByX(0, y: CGFloat(-incrementalSpaceBetweenBlocks), duration: NSTimeInterval(0.3)), count: 6)
         bulletMoveUpAction = SKAction.reversedAction(bulletMoveDownAction)()
     }
     
@@ -305,6 +325,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         default:
             assertionFailure("out of bounds Spawn enemy")
         }
+        enemy.entityCurrentBlock = blockPlace.fifth
         monstorsInField.append(enemy)
         
         addChild(enemy)
@@ -328,7 +349,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
             return Minion(entityPosition: enemyLocation)
         }
     }
-
+    
     //Player and Bullets Methods
     func createPlayer(){
         self.player = Player(entityPosition: CGPoint(x: CGRectGetMidX(playableRect), y: CGRectGetMidY(playableRect)))
@@ -336,11 +357,11 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     }
     
     func moveBullets(){
-//        if bulletsInField.isEmpty{
-//            middleLight.enabled = true
-//        }else{
-//            middleLight.enabled = false
-//        }
+        //        if bulletsInField.isEmpty{
+        //            middleLight.enabled = true
+        //        }else{
+        //            middleLight.enabled = false
+        //        }
         
         for bullet in bulletsInField{
             bullet.moveFunc()
@@ -498,5 +519,5 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         
         view?.presentScene(gameOverScene, transition: reveal)
     }
-
+    
 }

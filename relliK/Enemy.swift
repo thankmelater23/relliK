@@ -28,9 +28,9 @@ class Enemy: Entity{
         
         
     }
-    func loadedEnemySettings() {
-        lightingBitMask = super.getSideForLighting()
-        shadowedBitMask = super.getSideForLighting()
+    func loadedEnemySettings() {//Turns on Lighting and shadowing
+//        lightingBitMask = super.getSideForLighting()
+//        shadowedBitMask = super.getSideForLighting()
     }
     override func updateSpriteAtrributes() {
         super.updateSpriteAtrributes()
@@ -51,7 +51,6 @@ class Enemy: Entity{
         setAngle()
         move.timingMode = SKActionTimingMode.EaseInEaseOut
         runAction(moveAction())
-        moveToNextBlock()
         playMoveSound()
     }
     override func moveToNextBlock() {
@@ -68,25 +67,31 @@ class Enemy: Entity{
         
         let wait = SKAction.waitForDuration(enemyWaitTime)
         
+        let moveToNextBlockAction = SKAction.runBlock({
+            node in
+            self.moveToNextBlock()
+        })
+        
         switch (directionOf){
         case entityDirection.left:
             let moveLeftAction = SKAction.moveByX(incrementalSpaceBetweenBlocks, y: 0, duration: gameSpeed)
-            return SKAction.sequence([moveLeftAction, wait])
+            return SKAction.sequence([moveToNextBlockAction, wait, moveLeftAction])
         case entityDirection.right:
             let moveRightAction = SKAction.moveByX(-incrementalSpaceBetweenBlocks, y: 0, duration: gameSpeed)
             
-            return SKAction.sequence([moveRightAction, wait])
+            return SKAction.sequence([moveToNextBlockAction, wait, moveRightAction])
         case entityDirection.down:
             let moveDownAction = SKAction.moveByX(0, y: incrementalSpaceBetweenBlocks, duration: gameSpeed)
-
-            return SKAction.sequence([moveDownAction, wait])
+            
+            return SKAction.sequence([moveToNextBlockAction, wait, moveDownAction])
         case entityDirection.up:
             let moveUpAction = SKAction.moveByX(0, y: -incrementalSpaceBetweenBlocks, duration: gameSpeed)
             
-            return SKAction.sequence([moveUpAction , wait])
+            return SKAction.sequence([moveToNextBlockAction, wait, moveUpAction])
         case entityDirection.unSelected:
             //Dont run
             print("direction unselected")
+            assertionFailure("Entity direction was never sent, this should never happen")
             return SKAction()
         }
         
@@ -97,7 +102,7 @@ class Enemy: Entity{
         super.hurt()
         died()
     }
-    }
+}
 
 class Boss:Enemy {
     
@@ -109,19 +114,20 @@ class Boss:Enemy {
         name = "boss"
         setScale(enemyScale)
         directionOf = entityDirection.unSelected
+        setEntityTypeAttribures()
         
     }
     
     func setEntityTypeAttribures(){
         maxHealth = 3
         health = maxHealth
-        hurtSoundString = "hurt"
-        attackSoundString = "bulletAttack"
-        moveSoundString = "move"
-        diedSoundString = "died"
-        directionOf = entityDirection.unSelected
         entityCurrentBlock = blockPlace.unSelected
         entityInRangeBlock = blockPlace.fourth
+        //        hurtSoundString = "hurt"
+        //        attackSoundString = "bulletAttack"
+        //        moveSoundString = "move"
+        //        diedSoundString = "died"
+        //        directionOf = entityDirection.unSelected
     }
     
     override class func generateTexture() -> SKTexture? {
@@ -135,19 +141,25 @@ class Boss:Enemy {
             // 2
             let enemy = SKSpriteNode(imageNamed: "enemy")
             
-            let healthLabel = SKLabelNode(fontNamed: "Chalkduster")
-            healthLabel.fontSize = 100
-            //healthLabel.alpha = 0.7
-            healthLabel.fontColor = SKColor.greenColor()
-            healthLabel.name = "healthLabel"
-            //
-            //healthLabel.zPosition = zPosition + 1
-            healthLabel.text = "==="
-            
-            enemy.addChild(healthLabel)
-            healthLabel.position = CGPoint(x: 0.5, y: 20.0)
-            healthLabel.runAction(SKAction.rotateToAngle(π, duration: NSTimeInterval(0.0), shortestUnitArc: true))
-            
+//            healthLabel = SKLabelNode(fontNamed: "Chalkduster")
+//            healthLabel.fontSize = 100
+//            //healthLabel.alpha = 0.7
+//            healthLabel.fontColor = SKColor.greenColor()
+//            healthLabel.name = "healthLabel"
+//            //
+//            //healthLabel.zPosition = zPosition + 1
+//            var healthString: Int!
+////            while var i <= healthString{
+////                healthString++
+////                i++
+////            }
+//            healthLabel.text = String(healthString)
+//            
+//            
+//            healthLabel.position = CGPoint(x: 0.5, y: (enemy.texture?.size().height)!)// + (healthLabel.frame.size.height / 2))
+//            enemy.addChild(healthLabel)
+//            healthLabel.runAction(SKAction.rotateToAngle(π, duration: NSTimeInterval(0.0), shortestUnitArc: true))
+//            
             // 5
             let textureView = SKView()
             SharedTexture.texture = textureView.textureFromNode(enemy)!
@@ -172,19 +184,20 @@ class Ghost: Enemy{
         name = "ghost"
         setScale(enemyScale)
         directionOf = entityDirection.unSelected
-        
+        setEntityTypeAttribures()
     }
     
     func setEntityTypeAttribures(){
         maxHealth = 1
         health = maxHealth
-        hurtSoundString = "hurt"
-        attackSoundString = "attack"
-        moveSoundString = "move"
-        diedSoundString = "died"
-        directionOf = entityDirection.unSelected
         entityCurrentBlock = blockPlace.unSelected
         entityInRangeBlock = blockPlace.first
+        
+        //        hurtSoundString = "hurt"
+        //        attackSoundString = "attack"
+        //        moveSoundString = "move"
+        //        diedSoundString = "died"
+        //        directionOf = entityDirection.unSelected
     }
     
     override class func generateTexture() -> SKTexture? {
@@ -228,18 +241,20 @@ class Soldier: Enemy{
         name = "soldier"
         setScale(enemyScale)
         directionOf = entityDirection.unSelected
+        setEntityTypeAttribures()
     }
     
     func setEntityTypeAttribures(){
         maxHealth = 2
         health = maxHealth
-        hurtSoundString = "hurt"
-        attackSoundString = "attack"
-        moveSoundString = "move"
-        diedSoundString = "died"
-        directionOf = entityDirection.unSelected
         entityCurrentBlock = blockPlace.unSelected
         entityInRangeBlock = blockPlace.second
+        //        hurtSoundString = "hurt"
+        //        attackSoundString = "attack"
+        //        moveSoundString = "move"
+        //        diedSoundString = "died"
+        //        directionOf = entityDirection.unSelected
+        
     }
     
     override class func generateTexture() -> SKTexture? {
@@ -281,18 +296,20 @@ class Minion:Enemy {
         name = "ninion"
         setScale(enemyScale)
         directionOf = entityDirection.unSelected
+        setEntityTypeAttribures()
     }
     
     func setEntityTypeAttribures(){
         maxHealth = 1
         health = maxHealth
-        hurtSoundString = "hurt"
-        attackSoundString = "attack"
-        moveSoundString = "move"
-        diedSoundString = "died"
-        directionOf = entityDirection.unSelected
         entityCurrentBlock = blockPlace.unSelected
         entityInRangeBlock = blockPlace.fifth
+        //        hurtSoundString = "hurt"
+        //        attackSoundString = "attack"
+        //        moveSoundString = "move"
+        //        diedSoundString = "died"
+        //        directionOf = entityDirection.unSelected
+        
     }
     
     override class func generateTexture() -> SKTexture? {

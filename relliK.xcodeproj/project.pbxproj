@@ -12,6 +12,8 @@
 		C60D5AD01B6A140900672EC1 /* death.sks in Resources */ = {isa = PBXBuildFile; fileRef = C60D5ACF1B6A140900672EC1 /* death.sks */; };
 		C60D5AD21B6AF57300672EC1 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60D5AD11B6AF57300672EC1 /* Entity.swift */; };
 		C60D5AD41B6AF5B000672EC1 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60D5AD31B6AF5B000672EC1 /* Player.swift */; };
+		C63933ED1B775ECC009FFC3B /* Breaking Blocks SFX.wav in Resources */ = {isa = PBXBuildFile; fileRef = C63933EB1B775ECC009FFC3B /* Breaking Blocks SFX.wav */; };
+		C63933EE1B775ECC009FFC3B /* dodge.wav in Resources */ = {isa = PBXBuildFile; fileRef = C63933EC1B775ECC009FFC3B /* dodge.wav */; };
 		C658633E1B6864FA00F89D71 /* engine.sks in Resources */ = {isa = PBXBuildFile; fileRef = C658633D1B6864FA00F89D71 /* engine.sks */; };
 		C6D395E41B64579100830790 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D395E31B64579100830790 /* AppDelegate.swift */; };
 		C6D395E61B64579100830790 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = C6D395E51B64579100830790 /* GameScene.sks */; };
@@ -64,6 +66,8 @@
 		C60D5ACF1B6A140900672EC1 /* death.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = death.sks; sourceTree = "<group>"; };
 		C60D5AD11B6AF57300672EC1 /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		C60D5AD31B6AF5B000672EC1 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		C63933EB1B775ECC009FFC3B /* Breaking Blocks SFX.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Breaking Blocks SFX.wav"; sourceTree = "<group>"; };
+		C63933EC1B775ECC009FFC3B /* dodge.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = dodge.wav; sourceTree = "<group>"; };
 		C658633D1B6864FA00F89D71 /* engine.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = engine.sks; sourceTree = "<group>"; };
 		C6D395E01B64579100830790 /* relliK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = relliK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6D395E31B64579100830790 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -149,6 +153,7 @@
 			children = (
 				C6E98AFD1B6F5E64005B1B29 /* SFX */,
 				C6D395E31B64579100830790 /* AppDelegate.swift */,
+				C6D3961F1B64594F00830790 /* GlobalsAndConstants.swift */,
 				C6D395E51B64579100830790 /* GameScene.sks */,
 				C6D395E71B64579100830790 /* GameScene.swift */,
 				C60D5AD11B6AF57300672EC1 /* Entity.swift */,
@@ -193,11 +198,12 @@
 		C6E98AFD1B6F5E64005B1B29 /* SFX */ = {
 			isa = PBXGroup;
 			children = (
-				C6D3961F1B64594F00830790 /* GlobalsAndConstants.swift */,
 				C6E98AFE1B6F5E75005B1B29 /* attack.wav */,
 				C6E98AFF1B6F5E75005B1B29 /* bossHurt.wav */,
 				C6E98B001B6F5E75005B1B29 /* hurt.wav */,
 				C6E98B101B6F6089005B1B29 /* move.wav */,
+				C63933EB1B775ECC009FFC3B /* Breaking Blocks SFX.wav */,
+				C63933EC1B775ECC009FFC3B /* dodge.wav */,
 				C6E98B011B6F5E75005B1B29 /* playerPain1.wav */,
 				C6E98B021B6F5E75005B1B29 /* playerPain2.wav */,
 				C6E98B031B6F5E75005B1B29 /* playerPain3.wav */,
@@ -313,11 +319,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6D395E61B64579100830790 /* GameScene.sks in Resources */,
+				C63933ED1B775ECC009FFC3B /* Breaking Blocks SFX.wav in Resources */,
 				C6E98B0C1B6F5E75005B1B29 /* playerPain3.wav in Resources */,
 				C658633E1B6864FA00F89D71 /* engine.sks in Resources */,
 				C6DB59C51B6E29900013362E /* light.sks in Resources */,
 				C6E98B0D1B6F5E75005B1B29 /* playerPain4.wav in Resources */,
 				C6E98B091B6F5E75005B1B29 /* hurt.wav in Resources */,
+				C63933EE1B775ECC009FFC3B /* dodge.wav in Resources */,
 				C6E98B0B1B6F5E75005B1B29 /* playerPain2.wav in Resources */,
 				C60D5ACD1B6A11D800672EC1 /* magicBlast.sks in Resources */,
 				C6E98B0E1B6F5E75005B1B29 /* bulletAttack.wav in Resources */,

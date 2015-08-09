@@ -181,7 +181,6 @@ class Bullet: Entity{
         playattackSound()
         let action = SKAction.sequence([move, SKAction.removeFromParent()])
         runAction(action, withKey: "move")
-        SKAction.sequence([SKAction()])
     }
     
     override func updateSpriteAtrributes() {
