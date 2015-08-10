@@ -78,8 +78,8 @@ class Entity: SKSpriteNode {
     
     func hurt(){
         --health
-        playHurtSound()
         runAction(flashRedEffect)
+        died()
     }
     
     func moveToNextBlock(){
@@ -118,9 +118,16 @@ class Entity: SKSpriteNode {
         }
     }
     
-    func died(){
-        if isDead{
-            runAction(SKAction.removeFromParent())
+    func died() {
+        if isDead{//If dead turns sprite red waits for x seconds and then removes the sprite from parent
+            physicsBody?.categoryBitMask = PhysicsCategory.dead//Stops all contact and collision detection after death
+            runAction(SKAction.sequence([SKAction.colorizeWithColor(SKColor.redColor(), colorBlendFactor: 1.0, duration: 0.0),
+                SKAction.waitForDuration(0.3),
+                SKAction.removeFromParent()]))
+            removeActionForKey("move")
+            playHurtSound()
+        }else{
+            playHurtSound()
         }
     }
     
@@ -152,11 +159,11 @@ class Entity: SKSpriteNode {
     }
     
     func playattackSound(){
-    playSoundEffect(attackSoundString)
+        playSoundEffect(attackSoundString)
     }
     
     func playMoveSound(){
-    playSoundEffect(moveSoundString)
+        playSoundEffect(moveSoundString)
     }
     
     func playDodgeSound(){

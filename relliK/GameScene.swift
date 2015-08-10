@@ -26,9 +26,6 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     let playableRect: CGRect
     var lastTouchLocation: CGPoint?
     let rotateRadiansPerSec:CGFloat = 4.0 * π
-    var gameScore: Int = 0
-    var killedEnemies: Int = 0
-    var errorsMade: Int = 0
     
     var player: Player!
     var backgroundNode: SKSpriteNode!
@@ -56,6 +53,32 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     
     let horizontalXAxis :CGFloat
     let verticalAxis :CGFloat
+    
+    var scoreBoardLabel = SKLabelNode()
+    var score:Int = 0 {
+        willSet{
+            scoreBoardLabel.text = String("Score: \(newValue)")
+            scoreBoardLabel.runAction(SKAction.sequence([SKAction.scaleTo(1.5, duration: 0.1),
+                SKAction.scaleTo(1, duration: 0.1)]))
+        }
+    }
+    var killBoardLabel = SKLabelNode()
+    var killed:Int = 0 {
+        willSet{
+            killBoardLabel.text = String("Killed: \(newValue)")
+            killBoardLabel.runAction(SKAction.sequence([SKAction.scaleTo(1.5, duration: 0.1),
+                SKAction.scaleTo(1, duration: 0.1)]))
+        }
+    }
+    
+    var errorsBoardLabel = SKLabelNode()
+    var errors:Int = 0 {
+        willSet{
+            errorsBoardLabel.text = String("Errors: \(newValue)")
+            errorsBoardLabel.runAction(SKAction.sequence([SKAction.scaleTo(1.5, duration: 0.1),
+                SKAction.scaleTo(1, duration: 0.1)]))
+        }
+    }
     
     //Update Methods
     override func update(currentTime: NSTimeInterval) {
@@ -130,17 +153,47 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
-        backgroundNode = SKSpriteNode(imageNamed: "background1")// dmgdCheckers
+        backgroundNode = SKSpriteNode(imageNamed: "appleSpaceBackground")
         backgroundNode.size = playableRect.size
         backgroundNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         backgroundNode.position = CGPoint(x: playableRect.width/2, y: playableRect.height/2)
         backgroundNode.zPosition = -1
         
+        
+        scoreBoardLabel = SKLabelNode(fontNamed:"Chalkduster")
+        scoreBoardLabel.name = "scoreBoard"
+        score = 0
+        scoreBoardLabel.text = String("Score: \(score)")
+        scoreBoardLabel.color = SKColor.redColor()
+        scoreBoardLabel.fontSize = 20
+        scoreBoardLabel.position =  CGPoint(x: horizontalXAxis * 1.50, y: verticalAxis * 1.8)
+        scoreBoardLabel.zPosition = 100
+        
+        
+        killBoardLabel = SKLabelNode(fontNamed:"Chalkduster")
+        killBoardLabel.name = "killBoard"
+        killed = 0
+        killBoardLabel.text = String("Killed: \(killed)")
+        killBoardLabel.color = SKColor.redColor()
+        killBoardLabel.fontSize = 20
+        killBoardLabel.position = CGPoint(x: horizontalXAxis * 0.50, y: verticalAxis * 1.8)
+        killBoardLabel.zPosition = 100
+        
+        errorsBoardLabel = SKLabelNode(fontNamed:"Chalkduster")
+        errorsBoardLabel.name = "killBoard"
+        errors = 0
+        errorsBoardLabel.text = String("Errors: \(killed)")
+        errorsBoardLabel.color = SKColor.redColor()
+        errorsBoardLabel.fontSize = 20
+        errorsBoardLabel.position = CGPoint(x: horizontalXAxis * 0.50, y: verticalAxis * 0.8)
+        errorsBoardLabel.zPosition = 100
+        
+        
         let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        myLabel.text = "Andre's New Game to with sound"
+        myLabel.text = "relliK"
         myLabel.color = SKColor.redColor()
         myLabel.fontSize = 20
-        myLabel.position = CGPoint(x:CGRectGetMinX(playableRect) + myLabel.frame.size.width * 0.75, y:CGRectGetMaxY(playableRect) - myLabel.frame.size.height * 2);
+        myLabel.position = CGPoint(x:horizontalXAxis, y:CGRectGetMaxY(playableRect) - myLabel.frame.size.height)
         
         self.physicsWorld.contactDelegate = self
         self.physicsWorld.gravity = CGVectorMake(CGFloat(0), CGFloat(0))
@@ -168,7 +221,10 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         createBlocks()
         
         self.addChild(myLabel)
+        self.addChild(killBoardLabel)
         addChild(backgroundNode)
+        addChild(scoreBoardLabel)
+        addChild(errorsBoardLabel)
         
         debugDrawPlayableArea()
         createSwipeRecognizers()
@@ -189,61 +245,55 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
                 secondNode.kill()
         }
         
-        //        if (contact.bodyB.categoryBitMask == PhysicsCategory.Player) &&
-        //            (contact.bodyA.categoryBitMask == PhysicsCategory.Enemy){
-        //                secondNode.hurt()
-        //                firstNode.kill()
-        //        }
+        if (contact.bodyB.categoryBitMask == PhysicsCategory.Player) &&
+            (contact.bodyA.categoryBitMask == PhysicsCategory.Enemy){
+                secondNode.hurt()
+                firstNode.kill()
+        }
         
         if (contact.bodyA.categoryBitMask == PhysicsCategory.Enemy) &&
             (contact.bodyB.categoryBitMask == PhysicsCategory.Bullet){
-//                if(firstNode.isBlockPlaceMoreThanRange()){
-                    secondNode.removeActionForKey("move")
-                    secondNode.kill()
-                    firstNode.hurt()}
+                firstNode as! Enemy
+                //                if(firstNode.isBlockPlaceMoreThanRange()){
+                secondNode.removeActionForKey("move")
+                secondNode.kill()
+                firstNode.hurt()
+                
+                if firstNode.isDead{
+                    self.upScore()
+                    self.upKilledEnemy()
+                }
+        }
+                //                }else{
+                //                    if firstNode.name == "boss" || firstNode.name == "soldier"{
+                //                        secondNode.removeActionForKey("move")
+                //                        secondNode.kill()
+                //                        firstNode.playBlockSound()
+                //                    }else{
+                //                        firstNode.playDodgeSound()
+                //                    }
+                //                }
+                
+                if (contact.bodyB.categoryBitMask == PhysicsCategory.Enemy) &&
+                    (contact.bodyA.categoryBitMask == PhysicsCategory.Bullet){
+                        //                        if(secondNode.isBlockPlaceMoreThanRange()){
+                        secondNode as! Enemy
+                        firstNode.removeActionForKey("move")
+                        firstNode.kill()
+                        secondNode.hurt()
+                        self.upScore()
+                        self.upKilledEnemy()
 //                }else{
-//                    if firstNode.name == "boss" || firstNode.name == "soldier"{
-//                        secondNode.removeActionForKey("move")
-//                        secondNode.kill()
+//                    if secondNode.name == "boss" || secondNode.name == "soldier"{
+//                        firstNode.removeActionForKey("move")
+//                        firstNode.kill()
 //                        firstNode.playBlockSound()
 //                    }else{
 //                        firstNode.playDodgeSound()
 //                    }
 //                }
-                
-                if (contact.bodyB.categoryBitMask == PhysicsCategory.Enemy) &&
-                    (contact.bodyA.categoryBitMask == PhysicsCategory.Bullet){
-//                        if(secondNode.isBlockPlaceMoreThanRange()){
-                            firstNode.removeActionForKey("move")
-                            firstNode.kill()
-                            secondNode.hurt()
-//                        }else{
-//                            if secondNode.name == "boss" || secondNode.name == "soldier"{
-//                                firstNode.removeActionForKey("move")
-//                                firstNode.kill()
-//                                firstNode.playBlockSound()
-//                            }else{
-//                                firstNode.playDodgeSound()
-//                            }
-//                        }
-//                }
+                }
         }
-    }
-    
-    //    func didEndContact(contact: SKPhysicsContact) {
-    //        let firstNode = contact.bodyA.node as! Entity
-    //        let secondNode = contact.bodyB.node as! Entity
-    //
-    //        if (contact.bodyA.categoryBitMask == PhysicsCategory.Enemy) &&
-    //            (contact.bodyB.categoryBitMask == PhysicsCategory.Bullet){
-    //                secondNode.kill()
-    //        }
-    //
-    //        if (contact.bodyB.categoryBitMask == PhysicsCategory.Enemy) &&
-    //            (contact.bodyA.categoryBitMask == PhysicsCategory.Bullet){
-    //                secondNode.kill()
-    //        }
-    //    }
     
     //UI Methods
     func createSwipeRecognizers() {
@@ -335,6 +385,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     func randomEnemy(enemyLocation: CGPoint) -> Enemy{
         let randomNum = Int.random(min: 1, max: 4)
         
+        runAction(SKAction.playSoundFileNamed("spawn.wav", waitForCompletion: false))
         switch randomNum {
         case 1:
             return Boss(entityPosition: enemyLocation)
@@ -348,8 +399,6 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
             assertionFailure("out of bounds Spawn enemy")
             return Minion(entityPosition: enemyLocation)
         }
-        
-        runAction(SKAction.playSoundFileNamed("spawn", waitForCompletion: false))
     }
     
     //Player and Bullets Methods
@@ -359,22 +408,15 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     }
     
     func moveBullets(){
-        //        if bulletsInField.isEmpty{
-        //            middleLight.enabled = true
-        //        }else{
-        //            middleLight.enabled = false
-        //        }
-        
         for bullet in bulletsInField{
             bullet.moveFunc()
-            bullet.getSideForLighting()
         }
+        
         bulletsInField.removeAll()
         
     }
     
-    func shotDirection(sender: UISwipeGestureRecognizer) {
-        
+    func shotDirection(sender: UISwipeGestureRecognizer){
         if isShootable{
             let newBullet = Bullet(entityPosition: CGPoint(x: CGRectGetMidX(playableRect), y: CGRectGetMidY(playableRect)))
             
@@ -398,13 +440,10 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
             default:
                 assertionFailure("Out of bounds")
             }
-            
             addChild(newBullet)
-            newBullet.light.categoryBitMask = newBullet.getSideForLighting()
             bulletsInField.append(newBullet)
             isShootable = false
         }
-        
     }
     
     func rotateSprite(sprite: SKSpriteNode, direction: CGPoint, rotateRadiansPerSec: CGFloat) {
@@ -432,8 +471,6 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         emitterNOde.position = CGPoint(
             x: CGRectGetWidth(playableRect)/2, y: CGRectGetHeight(playableRect) + 10)
         emitterNOde.particlePositionRange = CGVector(dx: CGRectGetWidth(playableRect), dy: CGRectGetHeight(playableRect))
-        
-        //addChild(emitterNOde)
     }
     
     //Block creator Methods
@@ -504,11 +541,11 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     
     //GamePlay Methods
     func upScore(){
-        gameScore++
+        score++
     }
     
     func upKilledEnemy(){
-        killedEnemies++
+        killed++
     }
     
     //Other Game Scenes Methods

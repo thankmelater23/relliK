@@ -16,7 +16,8 @@
 		C63933EE1B775ECC009FFC3B /* minionHurt.wav in Resources */ = {isa = PBXBuildFile; fileRef = C63933EC1B775ECC009FFC3B /* minionHurt.wav */; };
 		C63933F11B78DBF8009FFC3B /* ghostHurt.wav in Resources */ = {isa = PBXBuildFile; fileRef = C63933EF1B78DBF8009FFC3B /* ghostHurt.wav */; };
 		C63933F21B78DBF8009FFC3B /* soldierHurt.wav in Resources */ = {isa = PBXBuildFile; fileRef = C63933F01B78DBF8009FFC3B /* soldierHurt.wav */; };
-		C63933F41B78DDE2009FFC3B /* background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C63933F31B78DDE2009FFC3B /* background.mp3 */; };
+		C63933F41B78DDE2009FFC3B /* backgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C63933F31B78DDE2009FFC3B /* backgroundMusic.mp3 */; };
+		C63933F61B78E8FA009FFC3B /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63933F51B78E8F9009FFC3B /* Actions.swift */; };
 		C658633E1B6864FA00F89D71 /* engine.sks in Resources */ = {isa = PBXBuildFile; fileRef = C658633D1B6864FA00F89D71 /* engine.sks */; };
 		C6D395E41B64579100830790 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D395E31B64579100830790 /* AppDelegate.swift */; };
 		C6D395E61B64579100830790 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = C6D395E51B64579100830790 /* GameScene.sks */; };
@@ -73,7 +74,8 @@
 		C63933EC1B775ECC009FFC3B /* minionHurt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = minionHurt.wav; sourceTree = "<group>"; };
 		C63933EF1B78DBF8009FFC3B /* ghostHurt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ghostHurt.wav; sourceTree = "<group>"; };
 		C63933F01B78DBF8009FFC3B /* soldierHurt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = soldierHurt.wav; sourceTree = "<group>"; };
-		C63933F31B78DDE2009FFC3B /* background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background.mp3; sourceTree = "<group>"; };
+		C63933F31B78DDE2009FFC3B /* backgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = backgroundMusic.mp3; sourceTree = "<group>"; };
+		C63933F51B78E8F9009FFC3B /* Actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
 		C658633D1B6864FA00F89D71 /* engine.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = engine.sks; sourceTree = "<group>"; };
 		C6D395E01B64579100830790 /* relliK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = relliK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6D395E31B64579100830790 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				C6D395E51B64579100830790 /* GameScene.sks */,
 				C6D395E71B64579100830790 /* GameScene.swift */,
 				C60D5AD11B6AF57300672EC1 /* Entity.swift */,
+				C63933F51B78E8F9009FFC3B /* Actions.swift */,
 				C60D5AD31B6AF5B000672EC1 /* Player.swift */,
 				C6D396271B64597400830790 /* MainMenuScene.swift */,
 				C6D395E91B64579100830790 /* GameViewController.swift */,
@@ -215,7 +218,7 @@
 				C6E98B011B6F5E75005B1B29 /* playerPain1.wav */,
 				C6E98B021B6F5E75005B1B29 /* playerPain2.wav */,
 				C6E98B031B6F5E75005B1B29 /* playerPain3.wav */,
-				C63933F31B78DDE2009FFC3B /* background.mp3 */,
+				C63933F31B78DDE2009FFC3B /* backgroundMusic.mp3 */,
 				C6E98B041B6F5E75005B1B29 /* playerPain4.wav */,
 				C6E98B051B6F5E75005B1B29 /* bulletAttack.wav */,
 				C6E98B061B6F5E75005B1B29 /* spawn.wav */,
@@ -331,7 +334,7 @@
 				C63933ED1B775ECC009FFC3B /* Breaking Blocks SFX.wav in Resources */,
 				C6E98B0C1B6F5E75005B1B29 /* playerPain3.wav in Resources */,
 				C658633E1B6864FA00F89D71 /* engine.sks in Resources */,
-				C63933F41B78DDE2009FFC3B /* background.mp3 in Resources */,
+				C63933F41B78DDE2009FFC3B /* backgroundMusic.mp3 in Resources */,
 				C6DB59C51B6E29900013362E /* light.sks in Resources */,
 				C6E98B0D1B6F5E75005B1B29 /* playerPain4.wav in Resources */,
 				C6E98B091B6F5E75005B1B29 /* bulletHurt.wav in Resources */,
@@ -384,6 +387,7 @@
 				C6D396241B64596300830790 /* Int+Extensions.swift in Sources */,
 				C60D5AD21B6AF57300672EC1 /* Entity.swift in Sources */,
 				C6D395EA1B64579100830790 /* GameViewController.swift in Sources */,
+				C63933F61B78E8FA009FFC3B /* Actions.swift in Sources */,
 				C6D396281B64597400830790 /* MainMenuScene.swift in Sources */,
 				C6D395E41B64579100830790 /* AppDelegate.swift in Sources */,
 			);

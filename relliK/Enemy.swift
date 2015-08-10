@@ -12,6 +12,8 @@ import SpriteKit
 
 
 class Enemy: Entity{
+    var scoreValue = 0
+    
     
     //Initializars
     init(texture: SKTexture) {
@@ -29,8 +31,8 @@ class Enemy: Entity{
         
     }
     func loadedEnemySettings() {//Turns on Lighting and shadowing
-//        lightingBitMask = super.getSideForLighting()
-//        shadowedBitMask = super.getSideForLighting()
+        //        lightingBitMask = super.getSideForLighting()
+        //        shadowedBitMask = super.getSideForLighting()
     }
     override func updateSpriteAtrributes() {
         super.updateSpriteAtrributes()
@@ -51,14 +53,9 @@ class Enemy: Entity{
         setAngle()
         move.timingMode = SKActionTimingMode.EaseInEaseOut
         runAction(moveAction(), withKey: "move")
-        playMoveSound()
-    }
+        }
     override func moveToNextBlock() {
         super.moveToNextBlock()
-        
-//        if entityCurrentBlock == blockPlace.home{
-//            self.kill()
-//        }
     }
     func moveAction() ->SKAction{
         defer{
@@ -72,22 +69,24 @@ class Enemy: Entity{
             self.moveToNextBlock()
         })
         
+        let moveSound = SKAction.playSoundFileNamed(moveSoundString, waitForCompletion: false)
+        
         switch (directionOf){
         case entityDirection.left:
             let moveLeftAction = SKAction.moveByX(incrementalSpaceBetweenBlocks, y: 0, duration: gameSpeed)
-            return SKAction.sequence([moveToNextBlockAction, wait, moveLeftAction])
+            return SKAction.sequence([moveToNextBlockAction, wait, moveSound, moveLeftAction])
         case entityDirection.right:
             let moveRightAction = SKAction.moveByX(-incrementalSpaceBetweenBlocks, y: 0, duration: gameSpeed)
             
-            return SKAction.sequence([moveToNextBlockAction, wait, moveRightAction])
+            return SKAction.sequence([moveToNextBlockAction, wait, moveSound, moveRightAction])
         case entityDirection.down:
             let moveDownAction = SKAction.moveByX(0, y: incrementalSpaceBetweenBlocks, duration: gameSpeed)
             
-            return SKAction.sequence([moveToNextBlockAction, wait, moveDownAction])
+            return SKAction.sequence([moveToNextBlockAction, wait, moveSound, moveDownAction])
         case entityDirection.up:
             let moveUpAction = SKAction.moveByX(0, y: -incrementalSpaceBetweenBlocks, duration: gameSpeed)
             
-            return SKAction.sequence([moveToNextBlockAction, wait, moveUpAction])
+            return SKAction.sequence([moveToNextBlockAction, wait, moveSound, moveUpAction])
         case entityDirection.unSelected:
             //Dont run
             print("direction unselected")
@@ -96,21 +95,14 @@ class Enemy: Entity{
         }
         
     }
+    func upKill()->Int{
+        return scoreValue
+    }
+    func upScore()->Int{
+
+        return scoreValue
+    }
     
-    //SFX
-    override func hurt() {
-        super.hurt()
-        died()
-    }
-    override func died() {
-        if isDead{//If dead turns sprite red waits for x seconds and then removes the sprite from parent
-            physicsBody?.categoryBitMask = PhysicsCategory.None//Stops all contact and collision detection after death
-            removeActionForKey("move")
-            runAction(SKAction.sequence([SKAction.colorizeWithColor(SKColor.redColor(), colorBlendFactor: 1.0, duration: 0.0),
-                SKAction.waitForDuration(0.3),
-                SKAction.removeFromParent()]))
-    }
-}
 }
 class Boss:Enemy {
     
@@ -131,10 +123,12 @@ class Boss:Enemy {
         health = maxHealth
         entityCurrentBlock = blockPlace.unSelected
         entityInRangeBlock = blockPlace.fourth
-                hurtSoundString = "bossHurt.wav"
-                attackSoundString = "attack.wav"
-                moveSoundString = "move.wav"
-                diedSoundString = "died.wav"
+        scoreValue = 30
+        //Sound
+        hurtSoundString = "bossHurt.wav"
+        attackSoundString = "attack.wav"
+        moveSoundString = "move.wav"
+        diedSoundString = "died.wav"
         //        directionOf = entityDirection.unSelected
     }
     
@@ -149,26 +143,26 @@ class Boss:Enemy {
             // 2
             let enemy = SKSpriteNode(imageNamed: "enemy")
             
-//            healthLabel = SKLabelNode(fontNamed: "Chalkduster")
-//            healthLabel.fontSize = 100
-//            //healthLabel.alpha = 0.7
-//            healthLabel.fontColor = SKColor.greenColor()
-//            healthLabel.name = "healthLabel"
-//            //
-//            //healthLabel.zPosition = zPosition + 1
-//            var healthString: Int!
-////            while var i <= healthString{
-////                healthString++
-////                i++
-////            }
-//            healthLabel.text = String(healthString)
-//            
-//            
-//            healthLabel.position = CGPoint(x: 0.5, y: (enemy.texture?.size().height)!)// + (healthLabel.frame.size.height / 2))
-//            enemy.addChild(healthLabel)
-//            healthLabel.runAction(SKAction.rotateToAngle(π, duration: NSTimeInterval(0.0), shortestUnitArc: true))
-//            
-
+            //            healthLabel = SKLabelNode(fontNamed: "Chalkduster")
+            //            healthLabel.fontSize = 100
+            //            //healthLabel.alpha = 0.7
+            //            healthLabel.fontColor = SKColor.greenColor()
+            //            healthLabel.name = "healthLabel"
+            //            //
+            //            //healthLabel.zPosition = zPosition + 1
+            //            var healthString: Int!
+            ////            while var i <= healthString{
+            ////                healthString++
+            ////                i++
+            ////            }
+            //            healthLabel.text = String(healthString)
+            //
+            //
+            //            healthLabel.position = CGPoint(x: 0.5, y: (enemy.texture?.size().height)!)// + (healthLabel.frame.size.height / 2))
+            //            enemy.addChild(healthLabel)
+            //            healthLabel.runAction(SKAction.rotateToAngle(π, duration: NSTimeInterval(0.0), shortestUnitArc: true))
+            //
+            
             // 5
             let textureView = SKView()
             SharedTexture.texture = textureView.textureFromNode(enemy)!
@@ -201,12 +195,13 @@ class Ghost: Enemy{
         health = maxHealth
         entityCurrentBlock = blockPlace.unSelected
         entityInRangeBlock = blockPlace.first
-        
-                hurtSoundString = "ghostHurt.wav"
-                attackSoundString = "attack.wav"
-                moveSoundString = "move.wav"
-                diedSoundString = "died.wav"
-                directionOf = entityDirection.unSelected
+        scoreValue = 30
+        //Sound
+        hurtSoundString = "ghostHurt.wav"
+        attackSoundString = "attack.wav"
+        moveSoundString = "move.wav"
+        diedSoundString = hurtSoundString
+        directionOf = entityDirection.unSelected
     }
     
     override class func generateTexture() -> SKTexture? {
@@ -258,10 +253,12 @@ class Soldier: Enemy{
         health = maxHealth
         entityCurrentBlock = blockPlace.unSelected
         entityInRangeBlock = blockPlace.second
-                hurtSoundString = "soldierHurt.wav"
-                attackSoundString = "attack.wav"
-                moveSoundString = "move.wav"
-                diedSoundString = "died.wav"
+        scoreValue = 30
+        //Sound
+        hurtSoundString = "soldierHurt.wav"
+        attackSoundString = "attack.wav"
+        moveSoundString = "move.wav"
+        diedSoundString = "died.wav"
         //        directionOf = entityDirection.unSelected
         
     }
@@ -302,7 +299,7 @@ class Minion:Enemy {
         
         super.init(texture: entityTexture)
         position = entityPosition
-        name = "ninion"
+        name = "minion"
         setScale(enemyScale)
         directionOf = entityDirection.unSelected
         setEntityTypeAttribures()
@@ -313,10 +310,12 @@ class Minion:Enemy {
         health = maxHealth
         entityCurrentBlock = blockPlace.unSelected
         entityInRangeBlock = blockPlace.fifth
-                hurtSoundString = "minionHurt.wav"
-                attackSoundString = "attack.wav"
-                moveSoundString = "move.wav"
-                diedSoundString = "died.wav"
+        scoreValue = 10
+        //Sound
+        hurtSoundString = "minionHurt.wav"
+        attackSoundString = "attack.wav"
+        moveSoundString = "move.wav"
+        diedSoundString = hurtSoundString
         //        directionOf = entityDirection.unSelected
         
     }

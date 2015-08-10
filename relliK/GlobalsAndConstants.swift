@@ -37,10 +37,12 @@ import SpriteKit
   }
   
   struct PhysicsCategory {
-    static let None: UInt32 = 0x1 << 0
+    static let All: UInt32 = 0x1 << 0
     static let Player: UInt32 = 0x1 << 1
     static let Enemy: UInt32 = 0x1 << 2
     static let Bullet: UInt32 = 0x1 << 3
+    static let dead: UInt32 = 0x1 << 30
+    static let None: UInt32 = 0x1 << 29
   }
   
   struct BitMaskOfLighting {
