@@ -348,6 +348,8 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
             assertionFailure("out of bounds Spawn enemy")
             return Minion(entityPosition: enemyLocation)
         }
+        
+        runAction(SKAction.playSoundFileNamed("spawn", waitForCompletion: false))
     }
     
     //Player and Bullets Methods

@@ -80,12 +80,12 @@ class Player:Entity {
         maxHealth = 3
         health = maxHealth
         hurtSoundString = "playerPain1.wav"
-//        attackSoundString = "attack"
-//        moveSoundString = "move"
-//        diedSoundString = "died"
-//        directionOf = entityDirection.unSelected
-//        entityCurrentBlock = blockPlace.unSelected
-//        entityInRangeBlock = blockPlace.fourth
+        attackSoundString = "attack.wav"
+        moveSoundString = "move.wav"
+        diedSoundString = "died.wav"
+        directionOf = entityDirection.unSelected
+        entityCurrentBlock = blockPlace.unSelected
+        entityInRangeBlock = blockPlace.fourth
         
         //childNodeWithName("bulletNode")
     }
@@ -130,10 +130,10 @@ class Bullet: Entity{
     func setEntityTypeAttribures(){
         maxHealth = 1
         health = maxHealth
-        hurtSoundString = "hurt"
-        attackSoundString = "attack"
-        moveSoundString = "move"
-        diedSoundString = "died"
+        hurtSoundString = "bulletHurt.wav"
+        attackSoundString = "attack.wav"
+        moveSoundString = "move.wav"
+        diedSoundString = "died.wav"
         directionOf = entityDirection.unSelected
         entityCurrentBlock = blockPlace.unSelected
         entityInRangeBlock = blockPlace.fourth

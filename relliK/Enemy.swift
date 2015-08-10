@@ -131,10 +131,10 @@ class Boss:Enemy {
         health = maxHealth
         entityCurrentBlock = blockPlace.unSelected
         entityInRangeBlock = blockPlace.fourth
-        //        hurtSoundString = "hurt"
-        //        attackSoundString = "bulletAttack"
-        //        moveSoundString = "move"
-        //        diedSoundString = "died"
+                hurtSoundString = "bossHurt.wav"
+                attackSoundString = "attack.wav"
+                moveSoundString = "move.wav"
+                diedSoundString = "died.wav"
         //        directionOf = entityDirection.unSelected
     }
     
@@ -202,11 +202,11 @@ class Ghost: Enemy{
         entityCurrentBlock = blockPlace.unSelected
         entityInRangeBlock = blockPlace.first
         
-        //        hurtSoundString = "hurt"
-        //        attackSoundString = "attack"
-        //        moveSoundString = "move"
-        //        diedSoundString = "died"
-        //        directionOf = entityDirection.unSelected
+                hurtSoundString = "ghostHurt.wav"
+                attackSoundString = "attack.wav"
+                moveSoundString = "move.wav"
+                diedSoundString = "died.wav"
+                directionOf = entityDirection.unSelected
     }
     
     override class func generateTexture() -> SKTexture? {
@@ -258,10 +258,10 @@ class Soldier: Enemy{
         health = maxHealth
         entityCurrentBlock = blockPlace.unSelected
         entityInRangeBlock = blockPlace.second
-        //        hurtSoundString = "hurt"
-        //        attackSoundString = "attack"
-        //        moveSoundString = "move"
-        //        diedSoundString = "died"
+                hurtSoundString = "soldierHurt.wav"
+                attackSoundString = "attack.wav"
+                moveSoundString = "move.wav"
+                diedSoundString = "died.wav"
         //        directionOf = entityDirection.unSelected
         
     }
@@ -313,10 +313,10 @@ class Minion:Enemy {
         health = maxHealth
         entityCurrentBlock = blockPlace.unSelected
         entityInRangeBlock = blockPlace.fifth
-        //        hurtSoundString = "hurt"
-        //        attackSoundString = "attack"
-        //        moveSoundString = "move"
-        //        diedSoundString = "died"
+                hurtSoundString = "minionHurt.wav"
+                attackSoundString = "attack.wav"
+                moveSoundString = "move.wav"
+                diedSoundString = "died.wav"
         //        directionOf = entityDirection.unSelected
         
     }
