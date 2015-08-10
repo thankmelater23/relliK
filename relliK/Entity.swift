@@ -26,9 +26,7 @@ class Entity: SKSpriteNode {
     var flashRedEffect:SKAction!
     var healthLabel:SKLabelNode = SKLabelNode()
     
-    var isDead: Bool{
-        return health < 1
-    }
+    var isDead: Bool{ return health < 1 }
     
     func isBlockPlaceMoreThanRange()->Bool{
         return entityCurrentBlock.rawValue <= entityInRangeBlock.rawValue ? true : false

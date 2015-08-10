@@ -89,8 +89,16 @@ class Player:Entity {
         
         //childNodeWithName("bulletNode")
     }
+    
+    override func died() {
+        if isDead{//If dead turns sprite red waits for x seconds and then removes the sprite from parent
+            physicsBody?.categoryBitMask = PhysicsCategory.None//Stops all contact and collision detection after death
+            runAction(SKAction.sequence([SKAction.colorizeWithColor(SKColor.redColor(), colorBlendFactor: 1.0, duration: 0.0),
+                SKAction.waitForDuration(0.3),
+                SKAction.removeFromParent()]))
+        }
 }
-
+}
 
 class Bullet: Entity{
     var light = SKLightNode()
@@ -192,5 +200,7 @@ class Bullet: Entity{
         physicsBody?.collisionBitMask = PhysicsCategory.None
     }
     
-    
+    override func died() {
+        super.died()
+    }
 }

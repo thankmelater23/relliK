@@ -50,15 +50,15 @@ class Enemy: Entity{
     func moveFunc(){
         setAngle()
         move.timingMode = SKActionTimingMode.EaseInEaseOut
-        runAction(moveAction())
+        runAction(moveAction(), withKey: "move")
         playMoveSound()
     }
     override func moveToNextBlock() {
         super.moveToNextBlock()
         
-        if entityCurrentBlock == blockPlace.home{
-            self.kill()
-        }
+//        if entityCurrentBlock == blockPlace.home{
+//            self.kill()
+//        }
     }
     func moveAction() ->SKAction{
         defer{
@@ -102,8 +102,16 @@ class Enemy: Entity{
         super.hurt()
         died()
     }
+    override func died() {
+        if isDead{//If dead turns sprite red waits for x seconds and then removes the sprite from parent
+            physicsBody?.categoryBitMask = PhysicsCategory.None//Stops all contact and collision detection after death
+            removeActionForKey("move")
+            runAction(SKAction.sequence([SKAction.colorizeWithColor(SKColor.redColor(), colorBlendFactor: 1.0, duration: 0.0),
+                SKAction.waitForDuration(0.3),
+                SKAction.removeFromParent()]))
+    }
 }
-
+}
 class Boss:Enemy {
     
     init(entityPosition: CGPoint) {
@@ -160,6 +168,7 @@ class Boss:Enemy {
 //            enemy.addChild(healthLabel)
 //            healthLabel.runAction(SKAction.rotateToAngle(π, duration: NSTimeInterval(0.0), shortestUnitArc: true))
 //            
+
             // 5
             let textureView = SKView()
             SharedTexture.texture = textureView.textureFromNode(enemy)!
