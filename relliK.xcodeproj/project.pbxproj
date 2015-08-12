@@ -13,7 +13,6 @@
 		C60D5AD21B6AF57300672EC1 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60D5AD11B6AF57300672EC1 /* Entity.swift */; };
 		C60D5AD41B6AF5B000672EC1 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60D5AD31B6AF5B000672EC1 /* Player.swift */; };
 		C63933ED1B775ECC009FFC3B /* Breaking Blocks SFX.wav in Resources */ = {isa = PBXBuildFile; fileRef = C63933EB1B775ECC009FFC3B /* Breaking Blocks SFX.wav */; };
-		C63933EE1B775ECC009FFC3B /* minionHurt.wav in Resources */ = {isa = PBXBuildFile; fileRef = C63933EC1B775ECC009FFC3B /* minionHurt.wav */; };
 		C63933F11B78DBF8009FFC3B /* ghostHurt.wav in Resources */ = {isa = PBXBuildFile; fileRef = C63933EF1B78DBF8009FFC3B /* ghostHurt.wav */; };
 		C63933F21B78DBF8009FFC3B /* soldierHurt.wav in Resources */ = {isa = PBXBuildFile; fileRef = C63933F01B78DBF8009FFC3B /* soldierHurt.wav */; };
 		C63933F41B78DDE2009FFC3B /* backgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C63933F31B78DDE2009FFC3B /* backgroundMusic.mp3 */; };
@@ -38,9 +37,9 @@
 		C6E98B071B6F5E75005B1B29 /* attack.wav in Resources */ = {isa = PBXBuildFile; fileRef = C6E98AFE1B6F5E75005B1B29 /* attack.wav */; };
 		C6E98B081B6F5E75005B1B29 /* bossHurt.wav in Resources */ = {isa = PBXBuildFile; fileRef = C6E98AFF1B6F5E75005B1B29 /* bossHurt.wav */; };
 		C6E98B091B6F5E75005B1B29 /* bulletHurt.wav in Resources */ = {isa = PBXBuildFile; fileRef = C6E98B001B6F5E75005B1B29 /* bulletHurt.wav */; };
-		C6E98B0A1B6F5E75005B1B29 /* playerPain1.wav in Resources */ = {isa = PBXBuildFile; fileRef = C6E98B011B6F5E75005B1B29 /* playerPain1.wav */; };
+		C6E98B0A1B6F5E75005B1B29 /* minionHurt.wav in Resources */ = {isa = PBXBuildFile; fileRef = C6E98B011B6F5E75005B1B29 /* minionHurt.wav */; };
 		C6E98B0B1B6F5E75005B1B29 /* playerPain2.wav in Resources */ = {isa = PBXBuildFile; fileRef = C6E98B021B6F5E75005B1B29 /* playerPain2.wav */; };
-		C6E98B0C1B6F5E75005B1B29 /* playerPain3.wav in Resources */ = {isa = PBXBuildFile; fileRef = C6E98B031B6F5E75005B1B29 /* playerPain3.wav */; };
+		C6E98B0C1B6F5E75005B1B29 /* playerPain1.wav in Resources */ = {isa = PBXBuildFile; fileRef = C6E98B031B6F5E75005B1B29 /* playerPain1.wav */; };
 		C6E98B0D1B6F5E75005B1B29 /* playerPain4.wav in Resources */ = {isa = PBXBuildFile; fileRef = C6E98B041B6F5E75005B1B29 /* playerPain4.wav */; };
 		C6E98B0E1B6F5E75005B1B29 /* bulletAttack.wav in Resources */ = {isa = PBXBuildFile; fileRef = C6E98B051B6F5E75005B1B29 /* bulletAttack.wav */; };
 		C6E98B0F1B6F5E75005B1B29 /* spawn.wav in Resources */ = {isa = PBXBuildFile; fileRef = C6E98B061B6F5E75005B1B29 /* spawn.wav */; };
@@ -71,7 +70,6 @@
 		C60D5AD11B6AF57300672EC1 /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		C60D5AD31B6AF5B000672EC1 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		C63933EB1B775ECC009FFC3B /* Breaking Blocks SFX.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Breaking Blocks SFX.wav"; sourceTree = "<group>"; };
-		C63933EC1B775ECC009FFC3B /* minionHurt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = minionHurt.wav; sourceTree = "<group>"; };
 		C63933EF1B78DBF8009FFC3B /* ghostHurt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ghostHurt.wav; sourceTree = "<group>"; };
 		C63933F01B78DBF8009FFC3B /* soldierHurt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = soldierHurt.wav; sourceTree = "<group>"; };
 		C63933F31B78DDE2009FFC3B /* backgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = backgroundMusic.mp3; sourceTree = "<group>"; };
@@ -102,9 +100,9 @@
 		C6E98AFE1B6F5E75005B1B29 /* attack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = attack.wav; sourceTree = "<group>"; };
 		C6E98AFF1B6F5E75005B1B29 /* bossHurt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bossHurt.wav; sourceTree = "<group>"; };
 		C6E98B001B6F5E75005B1B29 /* bulletHurt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bulletHurt.wav; sourceTree = "<group>"; };
-		C6E98B011B6F5E75005B1B29 /* playerPain1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = playerPain1.wav; sourceTree = "<group>"; };
+		C6E98B011B6F5E75005B1B29 /* minionHurt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = minionHurt.wav; sourceTree = "<group>"; };
 		C6E98B021B6F5E75005B1B29 /* playerPain2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = playerPain2.wav; sourceTree = "<group>"; };
-		C6E98B031B6F5E75005B1B29 /* playerPain3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = playerPain3.wav; sourceTree = "<group>"; };
+		C6E98B031B6F5E75005B1B29 /* playerPain1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = playerPain1.wav; sourceTree = "<group>"; };
 		C6E98B041B6F5E75005B1B29 /* playerPain4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = playerPain4.wav; sourceTree = "<group>"; };
 		C6E98B051B6F5E75005B1B29 /* bulletAttack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bulletAttack.wav; sourceTree = "<group>"; };
 		C6E98B061B6F5E75005B1B29 /* spawn.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = spawn.wav; sourceTree = "<group>"; };
@@ -214,10 +212,9 @@
 				C6E98B001B6F5E75005B1B29 /* bulletHurt.wav */,
 				C6E98B101B6F6089005B1B29 /* move.wav */,
 				C63933EB1B775ECC009FFC3B /* Breaking Blocks SFX.wav */,
-				C63933EC1B775ECC009FFC3B /* minionHurt.wav */,
-				C6E98B011B6F5E75005B1B29 /* playerPain1.wav */,
+				C6E98B011B6F5E75005B1B29 /* minionHurt.wav */,
 				C6E98B021B6F5E75005B1B29 /* playerPain2.wav */,
-				C6E98B031B6F5E75005B1B29 /* playerPain3.wav */,
+				C6E98B031B6F5E75005B1B29 /* playerPain1.wav */,
 				C63933F31B78DDE2009FFC3B /* backgroundMusic.mp3 */,
 				C6E98B041B6F5E75005B1B29 /* playerPain4.wav */,
 				C6E98B051B6F5E75005B1B29 /* bulletAttack.wav */,
@@ -332,18 +329,17 @@
 			files = (
 				C6D395E61B64579100830790 /* GameScene.sks in Resources */,
 				C63933ED1B775ECC009FFC3B /* Breaking Blocks SFX.wav in Resources */,
-				C6E98B0C1B6F5E75005B1B29 /* playerPain3.wav in Resources */,
+				C6E98B0C1B6F5E75005B1B29 /* playerPain1.wav in Resources */,
 				C658633E1B6864FA00F89D71 /* engine.sks in Resources */,
 				C63933F41B78DDE2009FFC3B /* backgroundMusic.mp3 in Resources */,
 				C6DB59C51B6E29900013362E /* light.sks in Resources */,
 				C6E98B0D1B6F5E75005B1B29 /* playerPain4.wav in Resources */,
 				C6E98B091B6F5E75005B1B29 /* bulletHurt.wav in Resources */,
-				C63933EE1B775ECC009FFC3B /* minionHurt.wav in Resources */,
 				C63933F21B78DBF8009FFC3B /* soldierHurt.wav in Resources */,
 				C6E98B0B1B6F5E75005B1B29 /* playerPain2.wav in Resources */,
 				C60D5ACD1B6A11D800672EC1 /* magicBlast.sks in Resources */,
 				C6E98B0E1B6F5E75005B1B29 /* bulletAttack.wav in Resources */,
-				C6E98B0A1B6F5E75005B1B29 /* playerPain1.wav in Resources */,
+				C6E98B0A1B6F5E75005B1B29 /* minionHurt.wav in Resources */,
 				C6E98B0F1B6F5E75005B1B29 /* spawn.wav in Resources */,
 				C60D5ACE1B6A11D800672EC1 /* spark.png in Resources */,
 				C6E98B111B6F6089005B1B29 /* move.wav in Resources */,

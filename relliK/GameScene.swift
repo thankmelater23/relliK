@@ -10,50 +10,66 @@ import SpriteKit
 
 class GameScene: SKScene ,SKPhysicsContactDelegate {
     
+    //Array of Monstors and Bullets
     var monstorsInField = [Enemy]()
     var bulletsInField = [Bullet]()
-    var isShootable:Bool = false
-    var leftLight = SKLightNode()
-    var rightLight = SKLightNode()
-    var upLight = SKLightNode()
-    var downLight = SKLightNode()
-    var lastUpdateTime: NSTimeInterval = 0
-    var dt: NSTimeInterval = 0
-    var incrementCurrentGameSpeedTime: NSTimeInterval = 0
-    var incrementGameSpeedTime: NSTimeInterval = NSTimeInterval(10)
-    let movePointsPerSec: CGFloat = 480.0
-    var velocity = CGPointZero
-    let playableRect: CGRect
-    var lastTouchLocation: CGPoint?
-    let rotateRadiansPerSec:CGFloat = 4.0 * π
     
+    //Sprite Objects
     var player: Player!
+    var isShootable:Bool = false
+    
+    //Background
     var backgroundNode: SKSpriteNode!
+    
+    //Blocks
     var playerBlock: SKSpriteNode!
     var leftBoxes: [SKSpriteNode]! = []
     var rightBoxes: [SKSpriteNode]! = []
     var upBoxes: [SKSpriteNode]! = []
     var downBoxes: [SKSpriteNode]! = []
     
+    //Light Nodes
+    var leftLight = SKLightNode()
+    var rightLight = SKLightNode()
+    var upLight = SKLightNode()
+    var downLight = SKLightNode()
+    
+    //Game Time
+    var lastUpdateTime: NSTimeInterval = 0
+    var dt: NSTimeInterval = 0
+    var incrementCurrentGameSpeedTime: NSTimeInterval = 0
+    var incrementGameSpeedTime: NSTimeInterval = GAME_MIN_SPEED * 5
+    
+    //Position and Moving Values
+    let movePointsPerSec: CGFloat = 480.0
+    var velocity = CGPointZero
+    
+    //Location and sizes
+    let playableRect: CGRect
+    var lastTouchLocation: CGPoint?
+    let rotateRadiansPerSec:CGFloat = 4.0 * π
+    var pointBetweenBlocks = CGFloat(spaceBetweenEnemyBlock)
+    var shotStart = 50//No use right now 9-10-15
+    let horizontalXAxis :CGFloat
+    let verticalAxis :CGFloat
+    
+    //Enemy Spawn positions
     var leftSideEnemyStartPosition: CGPoint
     var rightSideEnemyStartPosition: CGPoint
     var upSideEnemyStartPosition: CGPoint
     var downSideEnemyStartPosition: CGPoint
     
-    var pointBetweenBlocks = CGFloat(spaceBetweenEnemyBlock)
     
-    var shotStart = 50
-    
-    var moveUp : SKAction!
-    
+    //Actions
+    //var moveUp : SKAction!
+    //Move bullets actions to bullet
     var bulletMoveRightAction: SKAction!
     var bulletMoveLeftAction: SKAction!
     var bulletMoveDownAction: SKAction!
     var bulletMoveUpAction: SKAction!
     
-    let horizontalXAxis :CGFloat
-    let verticalAxis :CGFloat
     
+    //Game Labels
     var scoreBoardLabel = SKLabelNode()
     var score:Int = 0 {
         willSet{
@@ -80,13 +96,60 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         }
     }
     
+    
+    
     //Update Methods
     override func update(currentTime: NSTimeInterval) {
+        
+        if incrementCurrentGameSpeedTime > incrementGameSpeedTime {
+            print("Update game speed")
+            
+            if gameSpeed < GAME_MIN_SPEED * 0.75{
+                enemyWaitTime -= enemyWaitIncrementalSpeed
+                if enemyWaitTime < enemyWaitMaxSpeed{
+                    enemyWaitTime = enemyWaitMaxSpeed
+                }
+                print("decrease wait time")
+            }
+            if gameSpeed < GAME_MIN_SPEED * 0.25{
+                enemyWaitTime += enemyWaitIncrementalSpeed
+                if enemyWaitTime > enemyWaitMinSpeed{
+                    enemyWaitTime = enemyWaitMinSpeed
+                }
+                print("increase wait time")
+            }
+            
+            gameSpeed -= gameIncrementalSpeed
+            
+            if gameSpeed < GAME_MAX_SPEED{
+                print("Current gamespeed under min: \(gameSpeed)")
+                gameSpeed = GAME_MAX_SPEED
+                print("Current gameSpeedChanged to: \(gameSpeed)")
+            }
+            if gameSpeed > GAME_MIN_SPEED{
+                print("Current gameSpeed over max: \(gameSpeed)")
+                gameSpeed = GAME_MIN_SPEED
+                print("Current gameSpeedChanged: \(gameSpeed)")
+            }
+            
+            incrementCurrentGameSpeedTime = 0
+            
+            print("Current gameSpeed: \(gameSpeed)")
+        }else{
+            incrementCurrentGameSpeedTime += currentTime - lastUpdateTime
+        }
+        
         if dt >= gameSpeed + enemyWaitTime{
             dt = 0
-            
             spawnEnemy()
             moveEnemies()
+            print("Spawn and move time")
+        }
+        
+        if lastUpdateTime > 0 {
+            dt += currentTime - lastUpdateTime
+        } else {
+            dt = 0
         }
         
         if bulletCurrentCoolDownTime > bulletCoolDownTime{
@@ -98,36 +161,8 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
             lastShot = currentTime
         }
         
-        if lastUpdateTime > 0 {
-            dt += currentTime - lastUpdateTime
-        } else {
-            dt = 0
-        }
-        
-        if incrementCurrentGameSpeedTime > incrementGameSpeedTime {
-            print(incrementGameSpeedTime)
-            if gameSpeed >= GAME_MAX_SPEED{
-                if gameSpeed <= GAME_MAX_SPEED * 0.75{
-                    if enemyWaitTime >= enemyWaitMaxSpeed{
-                        enemyWaitTime -= enemyWaitIncrementalSpeed
-                    }
-                }else if gameSpeed <= gameSpeed * 0.25{
-                    enemyWaitTime += enemyWaitIncrementalSpeed
-                }
-                
-                gameSpeed -= gameIncrementalSpeed
-                print(gameSpeed)
-                incrementCurrentGameSpeedTime = 0
-            }else{
-                gameSpeed == GAME_MAX_SPEED
-            }
-            
-        }else{
-            incrementCurrentGameSpeedTime += currentTime - lastUpdateTime
-        }
         
         moveBullets()
-        player.setAngle()
         lastUpdateTime = currentTime
     }
     
@@ -150,7 +185,6 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         
         super.init(size: playableRect.size)
     }
-    
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         backgroundNode = SKSpriteNode(imageNamed: "appleSpaceBackground")
@@ -189,16 +223,16 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         errorsBoardLabel.zPosition = 100
         
         
-        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        myLabel.text = "relliK"
-        myLabel.color = SKColor.redColor()
-        myLabel.fontSize = 20
-        myLabel.position = CGPoint(x:horizontalXAxis, y:CGRectGetMaxY(playableRect) - myLabel.frame.size.height)
+        let gameName = SKLabelNode(fontNamed:"Chalkduster")
+        gameName.text = "relliK"
+        gameName.color = SKColor.redColor()
+        gameName.fontSize = 20
+        gameName.position = CGPoint(x:horizontalXAxis, y:CGRectGetMaxY(playableRect) - gameName.frame.size.height)
         
         self.physicsWorld.contactDelegate = self
         self.physicsWorld.gravity = CGVectorMake(CGFloat(0), CGFloat(0))
         
-        playBackgroundMusic("backgroundMusic.mp3")
+        playGameBackgroundMusic()
         
         rightLight.position = CGPoint(x: 0.5, y: 0.5)
         leftLight.position = CGPoint(x: 0.5, y: 0.5)
@@ -220,7 +254,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         createPlayer()
         createBlocks()
         
-        self.addChild(myLabel)
+        self.addChild(gameName)
         self.addChild(killBoardLabel)
         addChild(backgroundNode)
         addChild(scoreBoardLabel)
@@ -229,7 +263,6 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         debugDrawPlayableArea()
         createSwipeRecognizers()
     }
-    
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -260,40 +293,43 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
                 firstNode.hurt()
                 
                 if firstNode.isDead{
-                    self.upScore()
+                    self.upScore(firstNode.scoreValue)
                     self.upKilledEnemy()
                 }
         }
+        //                }else{
+        //                    if firstNode.name == "boss" || firstNode.name == "soldier"{
+        //                        secondNode.removeActionForKey("move")
+        //                        secondNode.kill()
+        //                        firstNode.playBlockSound()
+        //                    }else{
+        //                        firstNode.playDodgeSound()
+        //                    }
+        //                }
+        
+        if (contact.bodyB.categoryBitMask == PhysicsCategory.Enemy) &&
+            (contact.bodyA.categoryBitMask == PhysicsCategory.Bullet){
+                //                        if(secondNode.isBlockPlaceMoreThanRange()){
+                secondNode as! Enemy
+                firstNode.removeActionForKey("move")
+                firstNode.kill()
+                secondNode.hurt()
+                
+                if secondNode.isDead{
+                    self.upScore(secondNode.scoreValue)
+                    self.upKilledEnemy()
+                }
                 //                }else{
-                //                    if firstNode.name == "boss" || firstNode.name == "soldier"{
-                //                        secondNode.removeActionForKey("move")
-                //                        secondNode.kill()
+                //                    if secondNode.name == "boss" || secondNode.name == "soldier"{
+                //                        firstNode.removeActionForKey("move")
+                //                        firstNode.kill()
                 //                        firstNode.playBlockSound()
                 //                    }else{
                 //                        firstNode.playDodgeSound()
                 //                    }
                 //                }
-                
-                if (contact.bodyB.categoryBitMask == PhysicsCategory.Enemy) &&
-                    (contact.bodyA.categoryBitMask == PhysicsCategory.Bullet){
-                        //                        if(secondNode.isBlockPlaceMoreThanRange()){
-                        secondNode as! Enemy
-                        firstNode.removeActionForKey("move")
-                        firstNode.kill()
-                        secondNode.hurt()
-                        self.upScore()
-                        self.upKilledEnemy()
-//                }else{
-//                    if secondNode.name == "boss" || secondNode.name == "soldier"{
-//                        firstNode.removeActionForKey("move")
-//                        firstNode.kill()
-//                        firstNode.playBlockSound()
-//                    }else{
-//                        firstNode.playDodgeSound()
-//                    }
-//                }
-                }
         }
+    }
     
     //UI Methods
     func createSwipeRecognizers() {
@@ -313,7 +349,6 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
         self.view?.addGestureRecognizer(swipeLeft)
     }
-    
     func debugDrawPlayableArea() {
         let shape = SKShapeNode()
         let path = CGPathCreateMutable()
@@ -323,14 +358,12 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         shape.lineWidth = 4.0
         addChild(shape)
     }
-    
     func createActions(){
         bulletMoveRightAction = SKAction.repeatAction(SKAction.moveByX(CGFloat(incrementalSpaceBetweenBlocks), y: 0, duration: NSTimeInterval(0.3)), count: 6)
         bulletMoveLeftAction = SKAction.reversedAction(bulletMoveRightAction)()
         bulletMoveDownAction = SKAction.repeatAction(SKAction.moveByX(0, y: CGFloat(-incrementalSpaceBetweenBlocks), duration: NSTimeInterval(0.3)), count: 6)
         bulletMoveUpAction = SKAction.reversedAction(bulletMoveDownAction)()
     }
-    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
         
@@ -341,18 +374,14 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     
     //Enemies Methods
     func moveEnemies(){
-        //Insert Angle to face(SKActionAngle)
-        
-        //Insert Space to move(SKActionMoveByX)
         for monstor in monstorsInField{
-            //Check if enemy has reached middle if so removeionOf {
-            monstor.moveFunc()
-            //iterate through to next space
+            if(!monstor.isDead){
+                monstor.moveFunc()
+            }
             
+            monstorsInField = monstorsInField.filter({!$0.clearedForMorgue})
         }
-        //Insert Speed it moves
     }
-    
     func spawnEnemy() {
         let randomNum = Int.random(min: 1, max: 5)
         var enemy: Enemy!
@@ -381,7 +410,6 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         addChild(enemy)
         
     }
-    
     func randomEnemy(enemyLocation: CGPoint) -> Enemy{
         let randomNum = Int.random(min: 1, max: 4)
         
@@ -406,16 +434,21 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         self.player = Player(entityPosition: CGPoint(x: CGRectGetMidX(playableRect), y: CGRectGetMidY(playableRect)))
         addChild(player)
     }
-    
     func moveBullets(){
-        for bullet in bulletsInField{
-            bullet.moveFunc()
-        }
+        bulletsInField.map({
+            $0 as Bullet
+            if !$0.isShot{
+                $0.moveFunc()
+            }else{
+                if $0.stopped{
+                    addError()
+                }
+            }
+        })
         
-        bulletsInField.removeAll()
+        bulletsInField = bulletsInField.filter({$0.stopped == true && $0.isShot == true})
         
     }
-    
     func shotDirection(sender: UISwipeGestureRecognizer){
         if isShootable{
             let newBullet = Bullet(entityPosition: CGPoint(x: CGRectGetMidX(playableRect), y: CGRectGetMidY(playableRect)))
@@ -443,15 +476,9 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
             addChild(newBullet)
             bulletsInField.append(newBullet)
             isShootable = false
+            player.setAngle()
         }
     }
-    
-    func rotateSprite(sprite: SKSpriteNode, direction: CGPoint, rotateRadiansPerSec: CGFloat) {
-        let shortest = shortestAngleBetween(sprite.zRotation, angle2: velocity.angle)
-        let amountToRotate = min(rotateRadiansPerSec * CGFloat(dt), abs(shortest))
-        sprite.zRotation += shortest.sign() * amountToRotate
-    }
-    
     func particleCreator(){
         let rainTexture = SKTexture(imageNamed: "rainDrop")
         let emitterNOde = SKEmitterNode()
@@ -498,16 +525,13 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         addChild(playerBlockLight)
         addChild(playerBlock)
     }
-    
     func createBlocks(){
-        for _ in 0...4{
+        for i in 0...4{
             leftBoxes.append(SKSpriteNode(imageNamed: "stone"))
             rightBoxes.append(SKSpriteNode(imageNamed: "stone"))
             upBoxes.append(SKSpriteNode(imageNamed: "stone"))
             downBoxes.append(SKSpriteNode(imageNamed: "stone"))
-        }
-        
-        for i in 0...4{
+            
             leftBoxes[i].position = CGPoint(x: horizontalXAxis - pointBetweenBlocks, y: verticalAxis)
             rightBoxes[i].position = CGPoint(x: horizontalXAxis + pointBetweenBlocks, y: verticalAxis)
             upBoxes[i].position = CGPoint(x: horizontalXAxis, y: verticalAxis  + pointBetweenBlocks)
@@ -540,12 +564,19 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     }
     
     //GamePlay Methods
-    func upScore(){
-        score++
+    func upScore(enemyScoreValue: Int){
+        score += enemyScoreValue
     }
-    
     func upKilledEnemy(){
         killed++
+    }
+    func addError(){
+        errors++
+    }
+    
+    //Actions
+    func playGameBackgroundMusic(){
+        playBackgroundMusic("backgroundMusic.mp3")
     }
     
     //Other Game Scenes Methods
@@ -558,5 +589,4 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         
         view?.presentScene(gameOverScene, transition: reveal)
     }
-    
 }

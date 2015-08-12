@@ -11,20 +11,17 @@ import UIKit
 import SpriteKit
 
 class Player:Entity {
-    
     init(entityPosition: CGPoint) {
         let entityTexture = Player.generateTexture()!
         
         super.init(position: entityPosition, texture: entityTexture)
-        //physicsBody!.categoryBitMask = PhysicsCategory.Player
-        //        physicsBody!.contactTestBitMask = PhysicsCategory.Enemy
         name = "player"
         setScale(playerScale)
         directionOf = entityDirection.down
         zPosition = 100.00
         updateSpriteAtrributes()
+        setEntityTypeAttribures()
     }
-    
     override class func generateTexture() -> SKTexture? {
         // 1
         struct SharedTexture {
@@ -45,11 +42,9 @@ class Player:Entity {
         
         return SharedTexture.texture
     }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     override func setAngle(){
         switch (directionOf){
         case entityDirection.right:
@@ -66,7 +61,6 @@ class Player:Entity {
             print("direction unselected")
         }
     }
-    
     override func updateSpriteAtrributes() {
         super.updateSpriteAtrributes()
         physicsBody = SKPhysicsBody(rectangleOfSize: (frame.size))
@@ -75,7 +69,6 @@ class Player:Entity {
         physicsBody?.contactTestBitMask = PhysicsCategory.Enemy
         physicsBody?.collisionBitMask = PhysicsCategory.None
     }
-    
     func setEntityTypeAttribures(){
         maxHealth = 3
         health = maxHealth
@@ -93,6 +86,10 @@ class Player:Entity {
 
 class Bullet: Entity{
     var light = SKLightNode()
+    var isShot = false
+    var stopped = false
+    
+    
     
     init(entityPosition: CGPoint) {
         let entityTexture = Bullet.generateTexture()!
@@ -104,7 +101,6 @@ class Bullet: Entity{
         let shot = SKEmitterNode(fileNamed: "engine")
         shot?.position = CGPoint(x: 0.5, y: 1.0)
         updateSpriteAtrributes()
-        attackSoundString = "bulletAttack.wav"
         addChild(shot!)
         
         
@@ -117,12 +113,11 @@ class Bullet: Entity{
         light.falloff = 1.0
         addChild(light)
     }
-
     func setEntityTypeAttribures(){
         maxHealth = 1
         health = maxHealth
         hurtSoundString = "bulletHurt.wav"
-        attackSoundString = "attack.wav"
+        attackSoundString = "bulletAttack.wav"
         moveSoundString = "move.wav"
         diedSoundString = "died.wav"
         directionOf = entityDirection.unSelected
@@ -131,11 +126,9 @@ class Bullet: Entity{
         
         //childNodeWithName("bulletNode")
     }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     override class func generateTexture() -> SKTexture? {
         // 1
         struct SharedTexture {
@@ -158,7 +151,6 @@ class Bullet: Entity{
         
         return SharedTexture.texture
     }
-    
     override func setAngle(){
         switch (directionOf){
         case entityDirection.right:
@@ -175,15 +167,16 @@ class Bullet: Entity{
             print("direction unselected")
         }
     }
-    
     func moveFunc(){//Sets Angle, moves sprite an then removesSpriteFromParent
         setAngle()
         getSideForLighting()
         playattackSound()
-        let action = SKAction.sequence([move, SKAction.removeFromParent()])
+        
+        let action = SKAction.sequence([move, SKAction.removeFromParent(), SKAction.runBlock({ self.stopped = true})])
         runAction(action, withKey: "move")
+        
+        isShot = true
     }
-    
     override func updateSpriteAtrributes() {
         super.updateSpriteAtrributes()
         physicsBody = SKPhysicsBody(rectangleOfSize: (frame.size))
@@ -194,10 +187,10 @@ class Bullet: Entity{
     }
     override func died() {
         if isDead{//If dead turns sprite red waits for x seconds and then removes the sprite from parent
-            removeActionForKey("move")
+            //removeActionForKey("move")
             physicsBody?.categoryBitMask = PhysicsCategory.dead//Stops all contact and collision detection after death
             runAction(SKAction.removeFromParent())
-            playHurtSound()
+            //playHurtSound()
         }
     }
 }

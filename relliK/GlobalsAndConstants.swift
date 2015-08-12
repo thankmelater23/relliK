@@ -56,6 +56,8 @@ import SpriteKit
 
   let GAME_MAX_SPEED:NSTimeInterval = 0.3
   let GAME_MIN_SPEED:NSTimeInterval = 2.0
+  let enemyWaitMinSpeed:NSTimeInterval = 1.0
+  let enemyWaitMaxSpeed:NSTimeInterval = 0.2
   
   //Scales
   let playerScale: CGFloat  = 0.10
@@ -70,14 +72,10 @@ import SpriteKit
   var spaceToLastBox: CGFloat = incrementalSpaceBetweenBlocks * 4
 
   var gameSpeed: NSTimeInterval = GAME_MIN_SPEED
-  let gameIncrementalSpeed: NSTimeInterval = 0.20
-//  var enemySpawnSpeed: NSTimeInterval = 2.0
-//  let enemyIncrementalSpawnSpeed: NSTimeInterval = 0.1
+  let gameIncrementalSpeed: NSTimeInterval = (GAME_MIN_SPEED - GAME_MAX_SPEED) * 0.10
   
   //Time Vars
-  let enemyWaitIncrementalSpeed: NSTimeInterval = gameIncrementalSpeed * 2
-  let enemyWaitMinSpeed:NSTimeInterval = 1.0
-  let enemyWaitMaxSpeed:NSTimeInterval = 0.2
+  let enemyWaitIncrementalSpeed: NSTimeInterval = (enemyWaitMinSpeed - enemyWaitMaxSpeed) * 0.10 //gameIncrementalSpeed * 2
   var enemyWaitTime:NSTimeInterval = enemyWaitMinSpeed
   var bulletCoolDownTime:NSTimeInterval =  GAME_MAX_SPEED / NSTimeInterval(1.0)
   var bulletCurrentCoolDownTime: NSTimeInterval = bulletCoolDownTime

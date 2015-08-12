@@ -12,8 +12,6 @@ import SpriteKit
 
 
 class Enemy: Entity{
-    var scoreValue = 0
-    
     
     //Initializars
     init(texture: SKTexture) {
@@ -24,6 +22,10 @@ class Enemy: Entity{
         zPosition = 90.00
         updateSpriteAtrributes()
         createHealthBar()
+        setEntityTypeAttribures()
+        
+    }
+    func setEntityTypeAttribures(){
         
     }
     func createHealthBar(){
@@ -53,7 +55,7 @@ class Enemy: Entity{
         setAngle()
         move.timingMode = SKActionTimingMode.EaseInEaseOut
         runAction(moveAction(), withKey: "move")
-        }
+    }
     override func moveToNextBlock() {
         super.moveToNextBlock()
     }
@@ -95,17 +97,8 @@ class Enemy: Entity{
         }
         
     }
-    func upKill()->Int{
-        return scoreValue
-    }
-    func upScore()->Int{
-
-        return scoreValue
-    }
-    
 }
 class Boss:Enemy {
-    
     init(entityPosition: CGPoint) {
         let entityTexture = Boss.generateTexture()!
         
@@ -114,16 +107,14 @@ class Boss:Enemy {
         name = "boss"
         setScale(enemyScale)
         directionOf = entityDirection.unSelected
-        setEntityTypeAttribures()
         
     }
-    
-    func setEntityTypeAttribures(){
+    override func setEntityTypeAttribures(){
         maxHealth = 3
         health = maxHealth
         entityCurrentBlock = blockPlace.unSelected
         entityInRangeBlock = blockPlace.fourth
-        scoreValue = 30
+        scoreValue = 50
         //Sound
         hurtSoundString = "bossHurt.wav"
         attackSoundString = "attack.wav"
@@ -131,7 +122,6 @@ class Boss:Enemy {
         diedSoundString = "died.wav"
         //        directionOf = entityDirection.unSelected
     }
-    
     override class func generateTexture() -> SKTexture? {
         // 1
         struct SharedTexture {
@@ -172,13 +162,11 @@ class Boss:Enemy {
         
         return SharedTexture.texture
     }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
 class Ghost: Enemy{
-    
     init(entityPosition: CGPoint) {
         let entityTexture = Ghost.generateTexture()!
         
@@ -187,10 +175,8 @@ class Ghost: Enemy{
         name = "ghost"
         setScale(enemyScale)
         directionOf = entityDirection.unSelected
-        setEntityTypeAttribures()
     }
-    
-    func setEntityTypeAttribures(){
+    override func setEntityTypeAttribures(){
         maxHealth = 1
         health = maxHealth
         entityCurrentBlock = blockPlace.unSelected
@@ -200,10 +186,9 @@ class Ghost: Enemy{
         hurtSoundString = "ghostHurt.wav"
         attackSoundString = "attack.wav"
         moveSoundString = "move.wav"
-        diedSoundString = hurtSoundString
+        diedSoundString = "ghostHurt.wav"
         directionOf = entityDirection.unSelected
     }
-    
     override class func generateTexture() -> SKTexture? {
         // 1
         struct SharedTexture {
@@ -226,15 +211,12 @@ class Ghost: Enemy{
         
         return SharedTexture.texture
     }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
 
 class Soldier: Enemy{
-    
     init(entityPosition: CGPoint) {
         
         let entityTexture = Soldier.generateTexture()!
@@ -245,15 +227,13 @@ class Soldier: Enemy{
         name = "soldier"
         setScale(enemyScale)
         directionOf = entityDirection.unSelected
-        setEntityTypeAttribures()
     }
-    
-    func setEntityTypeAttribures(){
+    override func setEntityTypeAttribures(){
         maxHealth = 2
         health = maxHealth
         entityCurrentBlock = blockPlace.unSelected
         entityInRangeBlock = blockPlace.second
-        scoreValue = 30
+        scoreValue = 20
         //Sound
         hurtSoundString = "soldierHurt.wav"
         attackSoundString = "attack.wav"
@@ -262,7 +242,6 @@ class Soldier: Enemy{
         //        directionOf = entityDirection.unSelected
         
     }
-    
     override class func generateTexture() -> SKTexture? {
         // 1
         struct SharedTexture {
@@ -284,15 +263,12 @@ class Soldier: Enemy{
         
         return SharedTexture.texture
     }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
 
-class Minion:Enemy {
-    
+class Minion:Enemy{
     init(entityPosition: CGPoint) {
         
         let entityTexture = Minion.generateTexture()!
@@ -302,10 +278,8 @@ class Minion:Enemy {
         name = "minion"
         setScale(enemyScale)
         directionOf = entityDirection.unSelected
-        setEntityTypeAttribures()
     }
-    
-    func setEntityTypeAttribures(){
+    override func setEntityTypeAttribures(){
         maxHealth = 1
         health = maxHealth
         entityCurrentBlock = blockPlace.unSelected
@@ -315,11 +289,9 @@ class Minion:Enemy {
         hurtSoundString = "minionHurt.wav"
         attackSoundString = "attack.wav"
         moveSoundString = "move.wav"
-        diedSoundString = hurtSoundString
-        //        directionOf = entityDirection.unSelected
+        diedSoundString = "died.wav"
         
     }
-    
     override class func generateTexture() -> SKTexture? {
         // 1
         struct SharedTexture {
@@ -341,7 +313,6 @@ class Minion:Enemy {
         
         return SharedTexture.texture
     }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
