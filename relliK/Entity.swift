@@ -29,6 +29,26 @@ class Entity: SKSpriteNode {
     var healthLabel:SKLabelNode = SKLabelNode()
     var isDead: Bool{ return health < 1 }
     
+    func sumForScore()->Int{
+        var maximumPoints = 20
+        var timeTillFill : NSTimeInterval = 0
+        
+        while(timeTillFill <= gameTotalSpeed){
+            timeTillFill += NSTimeInterval(0.10)
+            maximumPoints -= 2
+            if(maximumPoints < 0){
+                maximumPoints = 0
+            }
+        }
+        
+        let placeValue = (25 / entityCurrentBlock.rawValue)
+        let total = maximumPoints + placeValue + scoreValue
+        return total
+        //position + score + game speed
+        //place starting with enemy start = 5,4,3,4,5
+        //gameTotalSpeed * 100
+    }
+
     func isBlockPlaceMoreThanRange()->Bool{
         return entityCurrentBlock.rawValue <= entityInRangeBlock.rawValue ? true : false
     }

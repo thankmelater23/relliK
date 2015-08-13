@@ -187,7 +187,6 @@ class Bullet: Entity{
     }
     override func died() {
         if isDead{//If dead turns sprite red waits for x seconds and then removes the sprite from parent
-            //removeActionForKey("move")
             physicsBody?.categoryBitMask = PhysicsCategory.dead//Stops all contact and collision detection after death
             runAction(SKAction.removeFromParent())
             //playHurtSound()

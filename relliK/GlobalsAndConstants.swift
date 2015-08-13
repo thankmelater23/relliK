@@ -81,6 +81,8 @@ import SpriteKit
   var bulletCurrentCoolDownTime: NSTimeInterval = bulletCoolDownTime
   var lastShot: NSTimeInterval = NSTimeInterval(0.0)
   
+  var gameTotalSpeed: NSTimeInterval = gameSpeed + enemyWaitTime
+  
   
   
   

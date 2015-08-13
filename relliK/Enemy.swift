@@ -97,7 +97,7 @@ class Enemy: Entity{
         }
         
     }
-}
+    }
 class Boss:Enemy {
     init(entityPosition: CGPoint) {
         let entityTexture = Boss.generateTexture()!
@@ -114,7 +114,7 @@ class Boss:Enemy {
         health = maxHealth
         entityCurrentBlock = blockPlace.unSelected
         entityInRangeBlock = blockPlace.fourth
-        scoreValue = 50
+        scoreValue = 15
         //Sound
         hurtSoundString = "bossHurt.wav"
         attackSoundString = "attack.wav"
@@ -181,7 +181,7 @@ class Ghost: Enemy{
         health = maxHealth
         entityCurrentBlock = blockPlace.unSelected
         entityInRangeBlock = blockPlace.first
-        scoreValue = 30
+        scoreValue = 5
         //Sound
         hurtSoundString = "ghostHurt.wav"
         attackSoundString = "attack.wav"
@@ -233,8 +233,7 @@ class Soldier: Enemy{
         health = maxHealth
         entityCurrentBlock = blockPlace.unSelected
         entityInRangeBlock = blockPlace.second
-        scoreValue = 20
-        //Sound
+        scoreValue = 10        //Sound
         hurtSoundString = "soldierHurt.wav"
         attackSoundString = "attack.wav"
         moveSoundString = "move.wav"
@@ -284,7 +283,7 @@ class Minion:Enemy{
         health = maxHealth
         entityCurrentBlock = blockPlace.unSelected
         entityInRangeBlock = blockPlace.fifth
-        scoreValue = 10
+        scoreValue = 5
         //Sound
         hurtSoundString = "minionHurt.wav"
         attackSoundString = "attack.wav"

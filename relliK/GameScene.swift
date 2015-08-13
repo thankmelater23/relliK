@@ -9,6 +9,8 @@
 import SpriteKit
 
 class GameScene: SKScene ,SKPhysicsContactDelegate {
+    //Unassigned
+    var isGamePaused: Bool = false
     
     //Array of Monstors and Bullets
     var monstorsInField = [Enemy]()
@@ -68,6 +70,22 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     var bulletMoveDownAction: SKAction!
     var bulletMoveUpAction: SKAction!
     
+    func gameOver(){
+        if(player.isDead || errors >= 5){
+            exit(EXIT_SUCCESS)
+        }
+    }
+    
+    func loadDefaults(){
+        let gameHighScore = NSUserDefaults.standardUserDefaults().valueForKey("highscore") as! Int?
+        guard let defaultHighScore = gameHighScore else {
+            NSUserDefaults.standardUserDefaults().setValue(0, forKeyPath: "highscore")
+            NSUserDefaults.standardUserDefaults().synchronize()
+            return
+        }
+        
+        highscores = NSUserDefaults.standardUserDefaults().valueForKey("highscore") as! Int!
+    }
     
     //Game Labels
     var scoreBoardLabel = SKLabelNode()
@@ -76,6 +94,17 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
             scoreBoardLabel.text = String("Score: \(newValue)")
             scoreBoardLabel.runAction(SKAction.sequence([SKAction.scaleTo(1.5, duration: 0.1),
                 SKAction.scaleTo(1, duration: 0.1)]))
+            
+            if newValue > highscores{
+                
+                var defaults = NSUserDefaults.standardUserDefaults().valueForKey("highscore") as! Int
+                if(newValue > defaults){
+                    NSUserDefaults.standardUserDefaults().setValue(highscores, forKey: "highscore")
+                    NSUserDefaults.standardUserDefaults().synchronize()
+                    
+                    highscores = newValue
+                }
+            }
         }
     }
     var killBoardLabel = SKLabelNode()
@@ -96,11 +125,20 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         }
     }
     
+    var highScoreBoardLabel = SKLabelNode()
+    var highscores:Int = 0 {
+        willSet{
+            highScoreBoardLabel.text = String("High Score: \(newValue)")
+            highScoreBoardLabel.runAction(SKAction.sequence([SKAction.scaleTo(1.5, duration: 0.1),
+                SKAction.scaleTo(1, duration: 0.1)]))
+        }
+    }
     
     
     //Update Methods
     override func update(currentTime: NSTimeInterval) {
         
+        if !isGamePaused{
         if incrementCurrentGameSpeedTime > incrementGameSpeedTime {
             print("Update game speed")
             
@@ -139,7 +177,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
             incrementCurrentGameSpeedTime += currentTime - lastUpdateTime
         }
         
-        if dt >= gameSpeed + enemyWaitTime{
+        if dt >= gameTotalSpeed{
             dt = 0
             spawnEnemy()
             moveEnemies()
@@ -163,7 +201,9 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         
         
         moveBullets()
+        gameOver()
         lastUpdateTime = currentTime
+        }
     }
     
     //Initialization methods
@@ -214,13 +254,22 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         killBoardLabel.zPosition = 100
         
         errorsBoardLabel = SKLabelNode(fontNamed:"Chalkduster")
-        errorsBoardLabel.name = "killBoard"
+        errorsBoardLabel.name = "errorsBoaard"
         errors = 0
-        errorsBoardLabel.text = String("Errors: \(killed)")
+        errorsBoardLabel.text = String("Errors: \(errors)")
         errorsBoardLabel.color = SKColor.redColor()
         errorsBoardLabel.fontSize = 20
         errorsBoardLabel.position = CGPoint(x: horizontalXAxis * 0.50, y: verticalAxis * 0.8)
         errorsBoardLabel.zPosition = 100
+        
+        highScoreBoardLabel = SKLabelNode(fontNamed:"Chalkduster")
+        highScoreBoardLabel.name = "highscoreBoard"
+        highscores = 0
+        highScoreBoardLabel.text = String("HighScore: \(highscores)")
+        highScoreBoardLabel.color = SKColor.redColor()
+        highScoreBoardLabel.fontSize = 20
+        highScoreBoardLabel.position = CGPoint(x: horizontalXAxis * 1.50, y: verticalAxis * 0.8)
+        highScoreBoardLabel.zPosition = 100
         
         
         let gameName = SKLabelNode(fontNamed:"Chalkduster")
@@ -231,8 +280,6 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         
         self.physicsWorld.contactDelegate = self
         self.physicsWorld.gravity = CGVectorMake(CGFloat(0), CGFloat(0))
-        
-        playGameBackgroundMusic()
         
         rightLight.position = CGPoint(x: 0.5, y: 0.5)
         leftLight.position = CGPoint(x: 0.5, y: 0.5)
@@ -254,14 +301,17 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         createPlayer()
         createBlocks()
         
-        self.addChild(gameName)
-        self.addChild(killBoardLabel)
+        addChild(gameName)
+        addChild(killBoardLabel)
         addChild(backgroundNode)
         addChild(scoreBoardLabel)
         addChild(errorsBoardLabel)
+        addChild(highScoreBoardLabel)
         
         debugDrawPlayableArea()
         createSwipeRecognizers()
+        loadDefaults()
+        playGameBackgroundMusic()
     }
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -293,7 +343,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
                 firstNode.hurt()
                 
                 if firstNode.isDead{
-                    self.upScore(firstNode.scoreValue)
+                    self.upScore(firstNode.sumForScore())
                     self.upKilledEnemy()
                 }
         }
@@ -316,7 +366,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
                 secondNode.hurt()
                 
                 if secondNode.isDead{
-                    self.upScore(secondNode.scoreValue)
+                    self.upScore(secondNode.sumForScore())
                     self.upKilledEnemy()
                 }
                 //                }else{
@@ -348,6 +398,10 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         var swipeLeft = UISwipeGestureRecognizer(target: self, action: "shotDirection:")
         swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
         self.view?.addGestureRecognizer(swipeLeft)
+        
+        var tapped = UITapGestureRecognizer(target: self, action: "paused")
+        tapped.numberOfTapsRequired = 1
+        self.view?.addGestureRecognizer(tapped)
     }
     func debugDrawPlayableArea() {
         let shape = SKShapeNode()
@@ -371,7 +425,9 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
             let location = touch.locationInNode(self)
         }
     }
-    
+    func paused(){
+        !isGamePaused
+    }
     //Enemies Methods
     func moveEnemies(){
         for monstor in monstorsInField{
@@ -382,7 +438,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
             monstorsInField = monstorsInField.filter({!$0.clearedForMorgue})
         }
     }
-    func spawnEnemy() {
+    func spawnEnemy(){
         let randomNum = Int.random(min: 1, max: 5)
         var enemy: Enemy!
         
@@ -409,7 +465,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         
         addChild(enemy)
         
-    }
+}
     func randomEnemy(enemyLocation: CGPoint) -> Enemy{
         let randomNum = Int.random(min: 1, max: 4)
         
