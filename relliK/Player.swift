@@ -172,7 +172,7 @@ class Bullet: Entity{
         getSideForLighting()
         playattackSound()
         
-        let action = SKAction.sequence([move, SKAction.removeFromParent(), SKAction.runBlock({ self.stopped = true})])
+        let action = SKAction.sequence([move, SKAction.runBlock({ self.stopped = true}), SKAction.removeFromParent()])
         runAction(action, withKey: "move")
         
         isShot = true

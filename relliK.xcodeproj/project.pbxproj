@@ -18,6 +18,7 @@
 		C63933F41B78DDE2009FFC3B /* backgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C63933F31B78DDE2009FFC3B /* backgroundMusic.mp3 */; };
 		C63933F61B78E8FA009FFC3B /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63933F51B78E8F9009FFC3B /* Actions.swift */; };
 		C658633E1B6864FA00F89D71 /* engine.sks in Resources */ = {isa = PBXBuildFile; fileRef = C658633D1B6864FA00F89D71 /* engine.sks */; };
+		C6CEF8E81B7D09C400438CD6 /* Andy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CEF8E71B7D09C400438CD6 /* Andy.swift */; };
 		C6D395E41B64579100830790 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D395E31B64579100830790 /* AppDelegate.swift */; };
 		C6D395E61B64579100830790 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = C6D395E51B64579100830790 /* GameScene.sks */; };
 		C6D395E81B64579100830790 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D395E71B64579100830790 /* GameScene.swift */; };
@@ -75,6 +76,7 @@
 		C63933F31B78DDE2009FFC3B /* backgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = backgroundMusic.mp3; sourceTree = "<group>"; };
 		C63933F51B78E8F9009FFC3B /* Actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
 		C658633D1B6864FA00F89D71 /* engine.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = engine.sks; sourceTree = "<group>"; };
+		C6CEF8E71B7D09C400438CD6 /* Andy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Andy.swift; sourceTree = "<group>"; };
 		C6D395E01B64579100830790 /* relliK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = relliK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6D395E31B64579100830790 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C6D395E51B64579100830790 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				C6D3961F1B64594F00830790 /* GlobalsAndConstants.swift */,
 				C6D395E51B64579100830790 /* GameScene.sks */,
 				C6D395E71B64579100830790 /* GameScene.swift */,
+				C6CEF8E71B7D09C400438CD6 /* Andy.swift */,
 				C60D5AD11B6AF57300672EC1 /* Entity.swift */,
 				C63933F51B78E8F9009FFC3B /* Actions.swift */,
 				C60D5AD31B6AF5B000672EC1 /* Player.swift */,
@@ -376,6 +379,7 @@
 			files = (
 				C60D5AD41B6AF5B000672EC1 /* Player.swift in Sources */,
 				C6D396261B64596B00830790 /* Enemy.swift in Sources */,
+				C6CEF8E81B7D09C400438CD6 /* Andy.swift in Sources */,
 				C6D396221B64595B00830790 /* GameOverScene.swift in Sources */,
 				C6D396201B64594F00830790 /* GlobalsAndConstants.swift in Sources */,
 				C6D395E81B64579100830790 /* GameScene.swift in Sources */,

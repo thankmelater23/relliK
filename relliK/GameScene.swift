@@ -134,6 +134,10 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         }
     }
     
+    func paused(){
+        !isGamePaused
+    }
+    
     
     //Update Methods
     override func update(currentTime: NSTimeInterval) {
@@ -425,9 +429,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
             let location = touch.locationInNode(self)
         }
     }
-    func paused(){
-        !isGamePaused
-    }
+    
     //Enemies Methods
     func moveEnemies(){
         for monstor in monstorsInField{
@@ -439,7 +441,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         }
     }
     func spawnEnemy(){
-        let randomNum = Int.random(min: 1, max: 5)
+        let randomNum = Int.random(min: 1, max: 4)
         var enemy: Enemy!
         
         switch randomNum {
@@ -502,7 +504,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
             }
         })
         
-        bulletsInField = bulletsInField.filter({$0.stopped == true && $0.isShot == true})
+        bulletsInField = bulletsInField.filter({$0.stopped == false})
         
     }
     func shotDirection(sender: UISwipeGestureRecognizer){

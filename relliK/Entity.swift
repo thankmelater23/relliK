@@ -48,11 +48,10 @@ class Entity: SKSpriteNode {
         //place starting with enemy start = 5,4,3,4,5
         //gameTotalSpeed * 100
     }
-
     func isBlockPlaceMoreThanRange()->Bool{
         return entityCurrentBlock.rawValue <= entityInRangeBlock.rawValue ? true : false
     }
-    init(position: CGPoint, texture: SKTexture) {
+    init(position: CGPoint, texture: SKTexture){
         
         super.init(texture: texture, color: SKColor.whiteColor(), size: texture.size())
         
@@ -76,7 +75,7 @@ class Entity: SKSpriteNode {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    class func generateTexture() -> SKTexture? {
+    class func generateTexture() -> SKTexture?{
         // Overridden by subclasses
         return nil
     }
@@ -127,7 +126,7 @@ class Entity: SKSpriteNode {
             return
         }
     }
-    func died() {
+    func died(){
         defer{
             playHurtSound()
         }

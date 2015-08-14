@@ -97,8 +97,28 @@ class Enemy: Entity{
         }
         
     }
+    override func died(){
+    super.died()
+    
+    if isDead{
+    let scoreLabel = SKLabelNode(fontNamed: "Chalkduster")
+        scoreLabel.name = "Show Score Points"
+        scoreLabel.color = SKColor.redColor()
+        scoreLabel.fontSize = 20
+        scoreLabel.position = CGPoint(x: CGRectGetMidX(frame), y: CGRectGetMidY(frame))
+        scoreLabel.text = String(sumForScore())
+        scoreLabel.zPosition = 100
+        
+        self.parent?.addChild(scoreLabel)
+        
+        let action = SKAction.sequence([SKAction.scaleTo(0.0, duration: 0.5), SKAction.removeFromParent()])
+        
+        scoreLabel.runAction(action)
+        }
     }
-class Boss:Enemy {
+}
+
+class Boss:Enemy{
     init(entityPosition: CGPoint) {
         let entityTexture = Boss.generateTexture()!
         
@@ -166,7 +186,8 @@ class Boss:Enemy {
         fatalError("init(coder:) has not been implemented")
     }
 }
-class Ghost: Enemy{
+
+class Ghost:Enemy{
     init(entityPosition: CGPoint) {
         let entityTexture = Ghost.generateTexture()!
         
@@ -216,7 +237,7 @@ class Ghost: Enemy{
     }
 }
 
-class Soldier: Enemy{
+class Soldier:Enemy{
     init(entityPosition: CGPoint) {
         
         let entityTexture = Soldier.generateTexture()!
