@@ -25,9 +25,6 @@ class Enemy: Entity{
         setEntityTypeAttribures()
         
     }
-    func setEntityTypeAttribures(){
-        
-    }
     func createHealthBar(){
         
         
@@ -55,6 +52,8 @@ class Enemy: Entity{
         setAngle()
         move.timingMode = SKActionTimingMode.EaseInEaseOut
         runAction(moveAction(), withKey: "move")
+        print(gameSpeed)
+        print(enemyWaitTime)
     }
     override func moveToNextBlock() {
         super.moveToNextBlock()
@@ -69,6 +68,12 @@ class Enemy: Entity{
         let moveToNextBlockAction = SKAction.runBlock({
             node in
             self.moveToNextBlock()
+            
+            //            if self.name == "ghost"{//Fades the ghost to alpha 1
+            //                if self.isBlockPlaceMoreThanRange(){
+            //                    self.runAction(SKAction.fadeInWithDuration(0.0))
+            //                }
+            //            }
         })
         
         let moveSound = SKAction.playSoundFileNamed(moveSoundString, waitForCompletion: false)
@@ -76,19 +81,19 @@ class Enemy: Entity{
         switch (directionOf){
         case entityDirection.left:
             let moveLeftAction = SKAction.moveByX(incrementalSpaceBetweenBlocks, y: 0, duration: gameSpeed)
-            return SKAction.sequence([moveToNextBlockAction, wait, moveSound, moveLeftAction])
+            return SKAction.sequence([wait, moveToNextBlockAction, moveSound, moveLeftAction])
         case entityDirection.right:
             let moveRightAction = SKAction.moveByX(-incrementalSpaceBetweenBlocks, y: 0, duration: gameSpeed)
             
-            return SKAction.sequence([moveToNextBlockAction, wait, moveSound, moveRightAction])
+            return SKAction.sequence([wait, moveToNextBlockAction, moveSound, moveRightAction])
         case entityDirection.down:
             let moveDownAction = SKAction.moveByX(0, y: incrementalSpaceBetweenBlocks, duration: gameSpeed)
             
-            return SKAction.sequence([moveToNextBlockAction, wait, moveSound, moveDownAction])
+            return SKAction.sequence([wait, moveToNextBlockAction, moveSound, moveDownAction])
         case entityDirection.up:
             let moveUpAction = SKAction.moveByX(0, y: -incrementalSpaceBetweenBlocks, duration: gameSpeed)
             
-            return SKAction.sequence([moveToNextBlockAction, wait, moveSound, moveUpAction])
+            return SKAction.sequence([wait, moveToNextBlockAction, moveSound, moveUpAction])
         case entityDirection.unSelected:
             //Dont run
             print("direction unselected")
@@ -98,23 +103,48 @@ class Enemy: Entity{
         
     }
     override func died(){
-    super.died()
-    
-    if isDead{
-    let scoreLabel = SKLabelNode(fontNamed: "Chalkduster")
-        scoreLabel.name = "Show Score Points"
-        scoreLabel.color = SKColor.redColor()
-        scoreLabel.fontSize = 20
-        scoreLabel.position = CGPoint(x: CGRectGetMidX(frame), y: CGRectGetMidY(frame))
-        scoreLabel.text = String(sumForScore())
-        scoreLabel.zPosition = 100
+        super.died()
+        //
+        //        if isDead{
+        //            let scoreLabel = SKLabelNode(fontNamed: "Chalkduster")
+        //            scoreLabel.name = "Show Score Points"
+        //            scoreLabel.color = SKColor.redColor()
+        //            scoreLabel.fontSize = 20
+        //            scoreLabel.position = CGPoint(x: CGRectGetMidX(frame), y: CGRectGetMidY(frame))
+        //            scoreLabel.text = String(sumForScore())
+        //            scoreLabel.zPosition = 100
+        //
+        //            self.parent?.addChild(scoreLabel)
+        //
+        //            let action = SKAction.sequence([SKAction.scaleTo(0.0, duration: 0.5), SKAction.removeFromParent()])
+        //
+        //            scoreLabel.runAction(action)
+        //        }
+    }
+    override func hurt(){
+        super.hurt()
         
-        self.parent?.addChild(scoreLabel)
+        let healthLabel = SKLabelNode(fontNamed: "Chalkduster")
+        healthLabel.name = "Hurt Label"
+        healthLabel.color = SKColor.redColor()
+        healthLabel.fontSize = 20
+        healthLabel.position = CGPoint(x: CGRectGetMidX(frame), y: CGRectGetMidY(frame))
+        healthLabel.text = String(health)
+        healthLabel.zPosition = 100
+        
+        if health <= 0{
+            healthLabel.fontColor = SKColor.redColor()
+        }else if health == 1{
+            healthLabel.fontColor = SKColor.yellowColor()
+        }else{
+            healthLabel.fontColor = SKColor.greenColor()
+        }
+        
+        self.parent?.addChild(healthLabel)
         
         let action = SKAction.sequence([SKAction.scaleTo(0.0, duration: 0.5), SKAction.removeFromParent()])
         
-        scoreLabel.runAction(action)
-        }
+        healthLabel.runAction(action)
     }
 }
 
@@ -196,12 +226,13 @@ class Ghost:Enemy{
         name = "ghost"
         setScale(enemyScale)
         directionOf = entityDirection.unSelected
+        //        alpha = 0.1
     }
     override func setEntityTypeAttribures(){
         maxHealth = 1
         health = maxHealth
         entityCurrentBlock = blockPlace.unSelected
-        entityInRangeBlock = blockPlace.first
+        entityInRangeBlock = blockPlace.third
         scoreValue = 5
         //Sound
         hurtSoundString = "ghostHurt.wav"

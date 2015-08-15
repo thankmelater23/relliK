@@ -69,7 +69,7 @@ class Player:Entity {
         physicsBody?.contactTestBitMask = PhysicsCategory.Enemy
         physicsBody?.collisionBitMask = PhysicsCategory.None
     }
-    func setEntityTypeAttribures(){
+    override func setEntityTypeAttribures(){
         maxHealth = 3
         health = maxHealth
         hurtSoundString = "playerPain1.wav"
@@ -85,9 +85,15 @@ class Player:Entity {
 }
 
 class Bullet: Entity{
+    var outOfBoundsSoundString = "error.wav"
     var light = SKLightNode()
     var isShot = false
-    var stopped = false
+    var stopped = false{
+        willSet{
+            playOutOfBoundsError()
+            
+        }
+    }
     
     
     
@@ -107,13 +113,13 @@ class Bullet: Entity{
         light.position = CGPoint(x: 0.5, y: 0.5)
         light.categoryBitMask = getSideForLighting()
         light.enabled = true
-        light.lightColor = SKColor(red: 0, green: 0, blue: 200, alpha: 0.1)
+        light.lightColor = SKColor(red: 0, green: 0, blue: 200, alpha: 1.0)
         light.shadowColor = SKColor.blackColor()// SKColor(red: 0, green: 0, blue: 0, alpha: 1.0)
         light.ambientColor = SKColor(red: 0, green: 0, blue: 200, alpha: 0.1)
         light.falloff = 1.0
         addChild(light)
     }
-    func setEntityTypeAttribures(){
+    override func setEntityTypeAttribures(){
         maxHealth = 1
         health = maxHealth
         hurtSoundString = "bulletHurt.wav"
@@ -189,7 +195,11 @@ class Bullet: Entity{
         if isDead{//If dead turns sprite red waits for x seconds and then removes the sprite from parent
             physicsBody?.categoryBitMask = PhysicsCategory.dead//Stops all contact and collision detection after death
             runAction(SKAction.removeFromParent())
-            //playHurtSound()
+            //hurtSoundString = "bulletHurt.wav"
+            self.playHurtSound()
         }
+    }
+    func playOutOfBoundsError(){
+        playSoundEffect(outOfBoundsSoundString)
     }
 }

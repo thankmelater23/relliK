@@ -71,8 +71,8 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     var bulletMoveUpAction: SKAction!
     
     func gameOver(){
-        if(player.isDead || errors >= 5){
-            exit(EXIT_SUCCESS)
+        if(player.isDead){//errors >= 5
+            //exit(EXIT_SUCCESS)
         }
     }
     
@@ -88,6 +88,16 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     }
     
     //Game Labels
+    //    var timerBoardLabel = SKLabelNode()
+    //    var gameTimer:Int = 0 {
+    //        willSet{
+    //            NSTimeInterval.
+    //            timerBoardLabel.text = String("\(newValue)")
+    //            timerBoardLabel.runAction(SKAction.sequence([SKAction.scaleTo(1.5, duration: 0.1),
+    //                SKAction.scaleTo(1, duration: 0.1)]))
+    //        }
+    //    }
+    //
     var scoreBoardLabel = SKLabelNode()
     var score:Int = 0 {
         willSet{
@@ -143,70 +153,80 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     override func update(currentTime: NSTimeInterval) {
         
         if !isGamePaused{
-        if incrementCurrentGameSpeedTime > incrementGameSpeedTime {
-            print("Update game speed")
-            
-            if gameSpeed < GAME_MIN_SPEED * 0.75{
+            if incrementCurrentGameSpeedTime > incrementGameSpeedTime {
+                print("Update game speed")
+                
+                //                if gameSpeed < GAME_MIN_SPEED * 0.75{
+                //                    enemyWaitTime -= enemyWaitIncrementalSpeed
+                //                    if enemyWaitTime < enemyWaitMaxSpeed{
+                //                        enemyW aitTime = enemyWaitMaxSpeed
+                //                    }
+                //                    print("decrease wait time")
+                //                }
+                //                if gameSpeed < GAME_MIN_SPEED * 0.25{
+                //                    enemyWaitTime += enemyWaitIncrementalSpeed
+                //                    if enemyWaitTime > enemyWaitMinSpeed{
+                //                        enemyWaitTime = enemyWaitMinSpeed
+                //                    }
+                //                    print("increase wait time")
+                //                }
+                
                 enemyWaitTime -= enemyWaitIncrementalSpeed
-                if enemyWaitTime < enemyWaitMaxSpeed{
-                    enemyWaitTime = enemyWaitMaxSpeed
-                }
-                print("decrease wait time")
-            }
-            if gameSpeed < GAME_MIN_SPEED * 0.25{
-                enemyWaitTime += enemyWaitIncrementalSpeed
+                gameSpeed -= gameIncrementalSpeed
+                
                 if enemyWaitTime > enemyWaitMinSpeed{
                     enemyWaitTime = enemyWaitMinSpeed
                 }
-                print("increase wait time")
+                if enemyWaitTime < enemyWaitMaxSpeed{
+                    enemyWaitTime = enemyWaitMaxSpeed
+                }
+                
+                if gameSpeed < GAME_MAX_SPEED{
+                    print("Current gamespeed under min: \(gameSpeed)")
+                    gameSpeed = GAME_MAX_SPEED
+                    print("Current gameSpeedChanged to: \(gameSpeed)")
+                }
+                if gameSpeed > GAME_MIN_SPEED{
+                    print("Current gameSpeed over max: \(gameSpeed)")
+                    gameSpeed = GAME_MIN_SPEED
+                    print("Current gameSpeedChanged: \(gameSpeed)")
+                }
+                
+                incrementCurrentGameSpeedTime = 0
+                
+                print("Current gameSpeed: \(gameSpeed)")
+            }else{
+                incrementCurrentGameSpeedTime += currentTime - lastUpdateTime
             }
             
-            gameSpeed -= gameIncrementalSpeed
             
-            if gameSpeed < GAME_MAX_SPEED{
-                print("Current gamespeed under min: \(gameSpeed)")
-                gameSpeed = GAME_MAX_SPEED
-                print("Current gameSpeedChanged to: \(gameSpeed)")
-            }
-            if gameSpeed > GAME_MIN_SPEED{
-                print("Current gameSpeed over max: \(gameSpeed)")
-                gameSpeed = GAME_MIN_SPEED
-                print("Current gameSpeedChanged: \(gameSpeed)")
+            if dt >= gameSpeed + enemyWaitTime{
+                print("game total Speed: \(gameSpeed + enemyWaitTime)")
+                dt = 0
+                spawnEnemy()
+                moveEnemies()
+                print("Spawn and move time")
             }
             
-            incrementCurrentGameSpeedTime = 0
+            if lastUpdateTime > 0 {
+                dt += currentTime - lastUpdateTime
+            } else {
+                dt = 0
+            }
             
-            print("Current gameSpeed: \(gameSpeed)")
-        }else{
-            incrementCurrentGameSpeedTime += currentTime - lastUpdateTime
-        }
-        
-        if dt >= gameTotalSpeed{
-            dt = 0
-            spawnEnemy()
-            moveEnemies()
-            print("Spawn and move time")
-        }
-        
-        if lastUpdateTime > 0 {
-            dt += currentTime - lastUpdateTime
-        } else {
-            dt = 0
-        }
-        
-        if bulletCurrentCoolDownTime > bulletCoolDownTime{
-            isShootable = true
-            bulletCurrentCoolDownTime = 0.0
-            lastShot = currentTime
-        }else{
-            bulletCurrentCoolDownTime += (currentTime - lastShot)
-            lastShot = currentTime
-        }
-        
-        
-        moveBullets()
-        gameOver()
-        lastUpdateTime = currentTime
+            if bulletCurrentCoolDownTime > bulletCoolDownTime{
+                isShootable = true
+                bulletCurrentCoolDownTime = 0.0
+                lastShot = currentTime
+            }else{
+                bulletCurrentCoolDownTime += (currentTime - lastShot)
+                lastShot = currentTime
+            }
+            
+            
+            moveBullets()
+            gameOver()
+            lastUpdateTime = currentTime
         }
     }
     
@@ -243,38 +263,44 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         score = 0
         scoreBoardLabel.text = String("Score: \(score)")
         scoreBoardLabel.color = SKColor.redColor()
-        scoreBoardLabel.fontSize = 20
-        scoreBoardLabel.position =  CGPoint(x: horizontalXAxis * 1.50, y: verticalAxis * 1.8)
+        scoreBoardLabel.fontSize = 15
+        scoreBoardLabel.position =  CGPoint(x: horizontalXAxis * 2, y: verticalAxis * 1.8)
         scoreBoardLabel.zPosition = 100
-        
-        
-        killBoardLabel = SKLabelNode(fontNamed:"Chalkduster")
-        killBoardLabel.name = "killBoard"
-        killed = 0
-        killBoardLabel.text = String("Killed: \(killed)")
-        killBoardLabel.color = SKColor.redColor()
-        killBoardLabel.fontSize = 20
-        killBoardLabel.position = CGPoint(x: horizontalXAxis * 0.50, y: verticalAxis * 1.8)
-        killBoardLabel.zPosition = 100
-        
-        errorsBoardLabel = SKLabelNode(fontNamed:"Chalkduster")
-        errorsBoardLabel.name = "errorsBoaard"
-        errors = 0
-        errorsBoardLabel.text = String("Errors: \(errors)")
-        errorsBoardLabel.color = SKColor.redColor()
-        errorsBoardLabel.fontSize = 20
-        errorsBoardLabel.position = CGPoint(x: horizontalXAxis * 0.50, y: verticalAxis * 0.8)
-        errorsBoardLabel.zPosition = 100
+        scoreBoardLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center
+        scoreBoardLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
         
         highScoreBoardLabel = SKLabelNode(fontNamed:"Chalkduster")
         highScoreBoardLabel.name = "highscoreBoard"
         highscores = 0
         highScoreBoardLabel.text = String("HighScore: \(highscores)")
         highScoreBoardLabel.color = SKColor.redColor()
-        highScoreBoardLabel.fontSize = 20
-        highScoreBoardLabel.position = CGPoint(x: horizontalXAxis * 1.50, y: verticalAxis * 0.8)
+        highScoreBoardLabel.fontSize = 15
+        highScoreBoardLabel.position = CGPoint(x: horizontalXAxis * 2, y: verticalAxis * 0.8)
         highScoreBoardLabel.zPosition = 100
+        highScoreBoardLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center
+        highScoreBoardLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
         
+        killBoardLabel = SKLabelNode(fontNamed:"Chalkduster")
+        killBoardLabel.name = "killBoard"
+        killed = 0
+        killBoardLabel.text = String("Killed: \(killed)")
+        killBoardLabel.color = SKColor.redColor()
+        killBoardLabel.fontSize = 15
+        killBoardLabel.position = CGPoint(x: horizontalXAxis * 0.10, y: verticalAxis * 1.8)
+        killBoardLabel.zPosition = 100
+        killBoardLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center
+        killBoardLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
+        
+        errorsBoardLabel = SKLabelNode(fontNamed:"Chalkduster")
+        errorsBoardLabel.name = "errorsBoaard"
+        errors = 0
+        errorsBoardLabel.text = String("Errors: \(errors)")
+        errorsBoardLabel.color = SKColor.redColor()
+        errorsBoardLabel.fontSize = 15
+        errorsBoardLabel.position = CGPoint(x: horizontalXAxis * 0.10, y: verticalAxis * 0.8)
+        errorsBoardLabel.zPosition = 100
+        errorsBoardLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center
+        errorsBoardLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
         
         let gameName = SKLabelNode(fontNamed:"Chalkduster")
         gameName.text = "relliK"
@@ -341,7 +367,10 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         if (contact.bodyA.categoryBitMask == PhysicsCategory.Enemy) &&
             (contact.bodyB.categoryBitMask == PhysicsCategory.Bullet){
                 firstNode as! Enemy
-                //                if(firstNode.isBlockPlaceMoreThanRange()){
+                
+                //                if firstNode.name == "ghost" && !(firstNode.isBlockPlaceMoreThanRange()){
+                //
+                //                }else{
                 secondNode.removeActionForKey("move")
                 secondNode.kill()
                 firstNode.hurt()
@@ -349,22 +378,16 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
                 if firstNode.isDead{
                     self.upScore(firstNode.sumForScore())
                     self.upKilledEnemy()
+                    //                    }
                 }
         }
-        //                }else{
-        //                    if firstNode.name == "boss" || firstNode.name == "soldier"{
-        //                        secondNode.removeActionForKey("move")
-        //                        secondNode.kill()
-        //                        firstNode.playBlockSound()
-        //                    }else{
-        //                        firstNode.playDodgeSound()
-        //                    }
-        //                }
         
         if (contact.bodyB.categoryBitMask == PhysicsCategory.Enemy) &&
             (contact.bodyA.categoryBitMask == PhysicsCategory.Bullet){
-                //                        if(secondNode.isBlockPlaceMoreThanRange()){
                 secondNode as! Enemy
+                //                if secondNode.name == "ghost" && !(secondNode.isBlockPlaceMoreThanRange()){
+                //
+                //                }else{
                 firstNode.removeActionForKey("move")
                 firstNode.kill()
                 secondNode.hurt()
@@ -372,16 +395,8 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
                 if secondNode.isDead{
                     self.upScore(secondNode.sumForScore())
                     self.upKilledEnemy()
+                    //                    }
                 }
-                //                }else{
-                //                    if secondNode.name == "boss" || secondNode.name == "soldier"{
-                //                        firstNode.removeActionForKey("move")
-                //                        firstNode.kill()
-                //                        firstNode.playBlockSound()
-                //                    }else{
-                //                        firstNode.playDodgeSound()
-                //                    }
-                //                }
         }
     }
     
@@ -417,9 +432,9 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         addChild(shape)
     }
     func createActions(){
-        bulletMoveRightAction = SKAction.repeatAction(SKAction.moveByX(CGFloat(incrementalSpaceBetweenBlocks), y: 0, duration: NSTimeInterval(0.3)), count: 6)
+        bulletMoveRightAction = SKAction.repeatAction(SKAction.moveByX(CGFloat(incrementalSpaceBetweenBlocks), y: 0, duration: NSTimeInterval(0.1)), count: 6)
         bulletMoveLeftAction = SKAction.reversedAction(bulletMoveRightAction)()
-        bulletMoveDownAction = SKAction.repeatAction(SKAction.moveByX(0, y: CGFloat(-incrementalSpaceBetweenBlocks), duration: NSTimeInterval(0.3)), count: 6)
+        bulletMoveDownAction = SKAction.repeatAction(SKAction.moveByX(0, y: CGFloat(-incrementalSpaceBetweenBlocks), duration: NSTimeInterval(0.1)), count: 6)
         bulletMoveUpAction = SKAction.reversedAction(bulletMoveDownAction)()
     }
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -467,9 +482,9 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         
         addChild(enemy)
         
-}
+    }
     func randomEnemy(enemyLocation: CGPoint) -> Enemy{
-        let randomNum = Int.random(min: 1, max: 4)
+        let randomNum = Int.random(min: 1, max: 3)
         
         runAction(SKAction.playSoundFileNamed("spawn.wav", waitForCompletion: false))
         switch randomNum {

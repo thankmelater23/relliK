@@ -29,6 +29,7 @@ class Entity: SKSpriteNode {
     var healthLabel:SKLabelNode = SKLabelNode()
     var isDead: Bool{ return health < 1 }
     
+    internal func setEntityTypeAttribures(){}
     func sumForScore()->Int{
         var maximumPoints = 20
         var timeTillFill : NSTimeInterval = 0
@@ -57,6 +58,7 @@ class Entity: SKSpriteNode {
         
         self.position = position
         hurtEffects()
+        setEntityTypeAttribures()
     }
     func getSideForLighting() -> UInt32{
         switch directionOf{
@@ -132,9 +134,14 @@ class Entity: SKSpriteNode {
         }
         if isDead{//If dead turns sprite red waits for x seconds and then removes the sprite from parent
             physicsBody?.categoryBitMask = PhysicsCategory.dead//Stops all contact and collision detection after death
-            runAction(SKAction.sequence([SKAction.colorizeWithColor(SKColor.redColor(), colorBlendFactor: 1.0, duration: 0.0),
+            runAction(SKAction.sequence([
+                SKAction.colorizeWithColor(
+                    SKColor.redColor(),
+                    colorBlendFactor: 1.0,
+                    duration: 0.0),
                 SKAction.waitForDuration(0.3),
                 SKAction.removeFromParent()]))
+            
             removeActionForKey("move")
         }
     }
