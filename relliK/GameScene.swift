@@ -71,8 +71,8 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     var bulletMoveUpAction: SKAction!
     
     func gameOver(){
-        if(player.isDead){//errors >= 5
-            //exit(EXIT_SUCCESS)
+        if(player.isDead || errors >= 5){
+            exit(EXIT_SUCCESS)
         }
     }
     
@@ -88,16 +88,8 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     }
     
     //Game Labels
-    //    var timerBoardLabel = SKLabelNode()
-    //    var gameTimer:Int = 0 {
-    //        willSet{
-    //            NSTimeInterval.
-    //            timerBoardLabel.text = String("\(newValue)")
-    //            timerBoardLabel.runAction(SKAction.sequence([SKAction.scaleTo(1.5, duration: 0.1),
-    //                SKAction.scaleTo(1, duration: 0.1)]))
-    //        }
-    //    }
-    //
+    
+    
     var scoreBoardLabel = SKLabelNode()
     var score:Int = 0 {
         willSet{
@@ -107,11 +99,10 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
             
             if newValue > highscores{
                 
-                var defaults = NSUserDefaults.standardUserDefaults().valueForKey("highscore") as! Int
+                let defaults = NSUserDefaults.standardUserDefaults().valueForKey("highscore") as! Int
                 if(newValue > defaults){
                     NSUserDefaults.standardUserDefaults().setValue(highscores, forKey: "highscore")
                     NSUserDefaults.standardUserDefaults().synchronize()
-                    
                     highscores = newValue
                 }
             }
@@ -144,8 +135,71 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         }
     }
     
+    var timerBoardLabel = SKLabelNode()
+    var gameMiliSecToSec = NSTimeInterval(0.0)
+    var gameTimer:Int = 0 {
+        willSet{
+            timerBoardLabel.text = convertGameTimer(newValue)
+            timerBoardLabel.runAction(SKAction.sequence([SKAction.scaleTo(1.5, duration: 0.1),
+                SKAction.scaleTo(1, duration: 0.1)]))
+        }
+    }
+    
+   
+    var waitTimeBoardLabel = SKLabelNode()
+    var gameSpeedBoardLabel = SKLabelNode()
+    
+    
+    func setGameTimeLabel(){
+        
+        waitTimeBoardLabel.text = String("Game Speed: \(gameSpeed)")
+        //waitTimeBoardLabel.runAction(SKAction.sequence([SKAction.scaleTo(1.5, duration: 0.1),
+          //  SKAction.scaleTo(1, duration: 0.1)]))
+    }
+    
+    func setWaitTimeLabel(){
+        
+        gameSpeedBoardLabel.text = String("Wait Time: \(enemyWaitTime)")
+       // gameSpeedBoardLabel.runAction(SKAction.sequence([SKAction.scaleTo(1.5, duration: 0.1),
+           // SKAction.scaleTo(1, duration: 0.1)]))
+    }
+
+    func convertGameTimer(timeToConvert: Int)-> String{
+        var total = 0
+        var min = 0
+        var sec = 0
+        
+        for _ in 0..<timeToConvert{
+            total++
+            if total == 60{
+                total = 0
+                min++
+            }
+        }
+        sec = total
+        return String("\(min):\(sec)")
+     }
+    
     func paused(){
         !isGamePaused
+    }
+    
+    
+    func setGameLights(){
+        rightLight.position = CGPoint(x: 0.5, y: 0.5)
+        leftLight.position = CGPoint(x: 0.5, y: 0.5)
+        upLight.position = CGPoint(x: 0.5, y: 0.5)
+        downLight.position = CGPoint(x: 0.5, y: 0.5)
+        
+        rightLight.categoryBitMask = BitMaskOfLighting.right
+        leftLight.categoryBitMask = BitMaskOfLighting.left
+        upLight.categoryBitMask = BitMaskOfLighting.up
+        downLight.categoryBitMask = BitMaskOfLighting.down
+        
+        addChild(rightLight)
+        addChild(leftLight)
+        addChild(upLight)
+        addChild(downLight)
     }
     
     
@@ -172,7 +226,6 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
                 //                }
                 
                 enemyWaitTime -= enemyWaitIncrementalSpeed
-                gameSpeed -= gameIncrementalSpeed
                 
                 if enemyWaitTime > enemyWaitMinSpeed{
                     enemyWaitTime = enemyWaitMinSpeed
@@ -181,16 +234,22 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
                     enemyWaitTime = enemyWaitMaxSpeed
                 }
                 
-                if gameSpeed < GAME_MAX_SPEED{
+                if gameSpeed <= GAME_MAX_SPEED{
                     print("Current gamespeed under min: \(gameSpeed)")
                     gameSpeed = GAME_MAX_SPEED
+                    enemyWaitTime == NSTimeInterval(0.4)
                     print("Current gameSpeedChanged to: \(gameSpeed)")
+                }else{//Decrese gameSpeed
+                    gameSpeed -= gameIncrementalSpeed
                 }
-                if gameSpeed > GAME_MIN_SPEED{
-                    print("Current gameSpeed over max: \(gameSpeed)")
-                    gameSpeed = GAME_MIN_SPEED
-                    print("Current gameSpeedChanged: \(gameSpeed)")
-                }
+//                if gameSpeed > GAME_MIN_SPEED{
+//                    print("Current gameSpeed over max: \(gameSpeed)")
+//                    gameSpeed = GAME_MIN_SPEED
+//                    print("Current gameSpeedChanged: \(gameSpeed)")
+//                }
+                
+                self.setWaitTimeLabel()
+                self.setGameTimeLabel()
                 
                 incrementCurrentGameSpeedTime = 0
                 
@@ -224,6 +283,14 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
             }
             
             
+            
+            if gameMiliSecToSec >= NSTimeInterval(1.0){
+                gameTimer++
+                gameMiliSecToSec = 0
+            }else{
+                gameMiliSecToSec += currentTime - lastUpdateTime
+            }
+            
             moveBullets()
             gameOver()
             lastUpdateTime = currentTime
@@ -250,7 +317,81 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         super.init(size: playableRect.size)
     }
     override func didMoveToView(view: SKView) {
-        /* Setup your scene here */
+        setPhysics()
+        setGameLights()
+        setLabels()
+        createActions()
+        particleCreator()
+        createPlayer()
+        createBlocks()
+        debugDrawPlayableArea()
+        createSwipeRecognizers()
+        loadDefaults()
+        playGameBackgroundMusic()
+    }
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    //Contact Methods
+    func setPhysics(){
+        self.physicsWorld.contactDelegate = self
+        self.physicsWorld.gravity = CGVectorMake(CGFloat(0), CGFloat(0))
+    }
+    func didBeginContact(contact: SKPhysicsContact) {
+        let firstNode = contact.bodyA.node as! Entity
+        let secondNode = contact.bodyB.node as! Entity
+        
+        if (contact.bodyA.categoryBitMask == PhysicsCategory.Player) &&
+            (contact.bodyB.categoryBitMask == PhysicsCategory.Enemy){
+                firstNode.hurt()
+                secondNode.kill()
+        }
+        
+        if (contact.bodyB.categoryBitMask == PhysicsCategory.Player) &&
+            (contact.bodyA.categoryBitMask == PhysicsCategory.Enemy){
+                secondNode.hurt()
+                firstNode.kill()
+        }
+        
+        if (contact.bodyA.categoryBitMask == PhysicsCategory.Enemy) &&
+            (contact.bodyB.categoryBitMask == PhysicsCategory.Bullet){
+                firstNode as! Enemy
+                
+                //                if firstNode.name == "ghost" && !(firstNode.isBlockPlaceMoreThanRange()){
+                //
+                //                }else{
+                secondNode.removeActionForKey("move")
+                secondNode.kill()
+                firstNode.hurt()
+                
+                if firstNode.isDead{
+                    self.upScore(firstNode.sumForScore())
+                    self.upKilledEnemy()
+                    //                    }
+                }
+        }
+        
+        if (contact.bodyB.categoryBitMask == PhysicsCategory.Enemy) &&
+            (contact.bodyA.categoryBitMask == PhysicsCategory.Bullet){
+                secondNode as! Enemy
+                //                if secondNode.name == "ghost" && !(secondNode.isBlockPlaceMoreThanRange()){
+                //
+                //                }else{
+                firstNode.removeActionForKey("move")
+                firstNode.kill()
+                secondNode.hurt()
+                
+                if secondNode.isDead{
+                    self.upScore(secondNode.sumForScore())
+                    self.upKilledEnemy()
+                    //                    }
+                }
+        }
+    }
+    
+    //UI Methods
+    func setLabels(){
         backgroundNode = SKSpriteNode(imageNamed: "appleSpaceBackground")
         backgroundNode.size = playableRect.size
         backgroundNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
@@ -308,99 +449,51 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         gameName.fontSize = 20
         gameName.position = CGPoint(x:horizontalXAxis, y:CGRectGetMaxY(playableRect) - gameName.frame.size.height)
         
-        self.physicsWorld.contactDelegate = self
-        self.physicsWorld.gravity = CGVectorMake(CGFloat(0), CGFloat(0))
+        timerBoardLabel = SKLabelNode(fontNamed:"Chalkduster")
+        timerBoardLabel.name = "errorsBoaard"
+        gameTimer = 0
+        timerBoardLabel.text = String("0:0")
+        timerBoardLabel.color = SKColor.redColor()
+        timerBoardLabel.fontSize = 15
+        timerBoardLabel.position = CGPoint(x:horizontalXAxis, y:CGRectGetMaxY(playableRect) - (timerBoardLabel.frame.size.height + gameName.frame.size.height) )
+        timerBoardLabel.zPosition = 100
+        timerBoardLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center
+        timerBoardLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
         
-        rightLight.position = CGPoint(x: 0.5, y: 0.5)
-        leftLight.position = CGPoint(x: 0.5, y: 0.5)
-        upLight.position = CGPoint(x: 0.5, y: 0.5)
-        downLight.position = CGPoint(x: 0.5, y: 0.5)
-        
-        rightLight.categoryBitMask = BitMaskOfLighting.right
-        leftLight.categoryBitMask = BitMaskOfLighting.left
-        upLight.categoryBitMask = BitMaskOfLighting.up
-        downLight.categoryBitMask = BitMaskOfLighting.down
-        
-        addChild(rightLight)
-        addChild(leftLight)
-        addChild(upLight)
-        addChild(downLight)
-        
-        createActions()
-        particleCreator()
-        createPlayer()
-        createBlocks()
-        
+        setDebugLabels()
         addChild(gameName)
         addChild(killBoardLabel)
         addChild(backgroundNode)
         addChild(scoreBoardLabel)
         addChild(errorsBoardLabel)
         addChild(highScoreBoardLabel)
-        
-        debugDrawPlayableArea()
-        createSwipeRecognizers()
-        loadDefaults()
-        playGameBackgroundMusic()
+        addChild(timerBoardLabel)
     }
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    func setDebugLabels(){
+        gameSpeedBoardLabel = SKLabelNode(fontNamed:"Chalkduster")
+        gameSpeedBoardLabel.name = "gameSpeedBoaard"
+        gameSpeedBoardLabel.text = String("Game Speed: 0:0")
+        gameSpeedBoardLabel.color = SKColor.redColor()
+        gameSpeedBoardLabel.fontSize = 15
+        gameSpeedBoardLabel.position = CGPoint(x: horizontalXAxis * 1.75, y: verticalAxis * 1.8 - gameSpeedBoardLabel.frame.height*2)//CGPoint(x:horizontalXAxis * 0.30, y:CGRectGetMidY(playableRect) + (gameSpeedBoardLabel.frame.height * 2) )
+        gameSpeedBoardLabel.zPosition = 100
+        gameSpeedBoardLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center
+        gameSpeedBoardLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Center
+        
+        waitTimeBoardLabel = SKLabelNode(fontNamed:"Chalkduster")
+        waitTimeBoardLabel.name = "waitTimeBoaard"
+        waitTimeBoardLabel.text = String("Wait:0:0")
+        waitTimeBoardLabel.color = SKColor.redColor()
+        waitTimeBoardLabel.fontSize = 15
+        waitTimeBoardLabel.position = CGPoint(x: horizontalXAxis * 0.05, y: verticalAxis * 1.8 - waitTimeBoardLabel.frame.height*2)//CGPoint(x:horizontalXAxis * 1.30, y:CGRectGetMidY(playableRect) + (waitTimeBoardLabel.frame.height * 2) )
+        waitTimeBoardLabel.zPosition = 100
+        waitTimeBoardLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center
+        waitTimeBoardLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Center
+        
+        
+        addChild(gameSpeedBoardLabel)
+        addChild(waitTimeBoardLabel)
     }
-    
-    //Contact Methods
-    func didBeginContact(contact: SKPhysicsContact) {
-        let firstNode = contact.bodyA.node as! Entity
-        let secondNode = contact.bodyB.node as! Entity
-        
-        if (contact.bodyA.categoryBitMask == PhysicsCategory.Player) &&
-            (contact.bodyB.categoryBitMask == PhysicsCategory.Enemy){
-                firstNode.hurt()
-                secondNode.kill()
-        }
-        
-        if (contact.bodyB.categoryBitMask == PhysicsCategory.Player) &&
-            (contact.bodyA.categoryBitMask == PhysicsCategory.Enemy){
-                secondNode.hurt()
-                firstNode.kill()
-        }
-        
-        if (contact.bodyA.categoryBitMask == PhysicsCategory.Enemy) &&
-            (contact.bodyB.categoryBitMask == PhysicsCategory.Bullet){
-                firstNode as! Enemy
-                
-                //                if firstNode.name == "ghost" && !(firstNode.isBlockPlaceMoreThanRange()){
-                //
-                //                }else{
-                secondNode.removeActionForKey("move")
-                secondNode.kill()
-                firstNode.hurt()
-                
-                if firstNode.isDead{
-                    self.upScore(firstNode.sumForScore())
-                    self.upKilledEnemy()
-                    //                    }
-                }
-        }
-        
-        if (contact.bodyB.categoryBitMask == PhysicsCategory.Enemy) &&
-            (contact.bodyA.categoryBitMask == PhysicsCategory.Bullet){
-                secondNode as! Enemy
-                //                if secondNode.name == "ghost" && !(secondNode.isBlockPlaceMoreThanRange()){
-                //
-                //                }else{
-                firstNode.removeActionForKey("move")
-                firstNode.kill()
-                secondNode.hurt()
-                
-                if secondNode.isDead{
-                    self.upScore(secondNode.sumForScore())
-                    self.upKilledEnemy()
-                    //                    }
-                }
-        }
-    }
-    
-    //UI Methods
     func createSwipeRecognizers() {
         var swipeDown = UISwipeGestureRecognizer(target: self, action: "shotDirection:")
         swipeDown.direction = UISwipeGestureRecognizerDirection.Down
@@ -484,18 +577,18 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         
     }
     func randomEnemy(enemyLocation: CGPoint) -> Enemy{
-        let randomNum = Int.random(min: 1, max: 3)
+        let randomNum = Int.random(min: 1, max: 10)
         
         runAction(SKAction.playSoundFileNamed("spawn.wav", waitForCompletion: false))
         switch randomNum {
         case 1:
             return Boss(entityPosition: enemyLocation)
-        case 2:
+        case 2...5:
             return Soldier(entityPosition: enemyLocation)
-        case 3:
+        case 5...10:
             return Minion(entityPosition: enemyLocation)
-        case 4:
-            return Ghost(entityPosition: enemyLocation)
+//        case 4:
+//            return Ghost(entityPosition: enemyLocation)
         default:
             assertionFailure("out of bounds Spawn enemy")
             return Minion(entityPosition: enemyLocation)

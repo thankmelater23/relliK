@@ -11,7 +11,7 @@ import UIKit
 import SpriteKit
 
 class Player:Entity {
-    init(entityPosition: CGPoint) {
+    init(entityPosition: CGPoint){
         let entityTexture = Player.generateTexture()!
         
         super.init(position: entityPosition, texture: entityTexture)
@@ -22,7 +22,7 @@ class Player:Entity {
         updateSpriteAtrributes()
         setEntityTypeAttribures()
     }
-    override class func generateTexture() -> SKTexture? {
+    override class func generateTexture() -> SKTexture?{
         // 1
         struct SharedTexture {
             static var texture = SKTexture()
@@ -42,7 +42,7 @@ class Player:Entity {
         
         return SharedTexture.texture
     }
-    required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder){
         fatalError("init(coder:) has not been implemented")
     }
     override func setAngle(){
@@ -61,7 +61,7 @@ class Player:Entity {
             print("direction unselected")
         }
     }
-    override func updateSpriteAtrributes() {
+    override func updateSpriteAtrributes(){
         super.updateSpriteAtrributes()
         physicsBody = SKPhysicsBody(rectangleOfSize: (frame.size))
         physicsBody?.usesPreciseCollisionDetection = true
@@ -82,6 +82,9 @@ class Player:Entity {
         
         //childNodeWithName("bulletNode")
     }
+    override func hurt(){
+        super.hurt()
+    }
 }
 
 class Bullet: Entity{
@@ -94,6 +97,7 @@ class Bullet: Entity{
             
         }
     }
+    
     
     
     

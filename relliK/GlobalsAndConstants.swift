@@ -54,7 +54,7 @@ import SpriteKit
   }
 
 
-  let GAME_MIN_SPEED:NSTimeInterval = NSTimeInterval(3.0)
+  let GAME_MIN_SPEED:NSTimeInterval = NSTimeInterval(1.0)
   let GAME_MAX_SPEED:NSTimeInterval = NSTimeInterval(0.6)
   let enemyWaitMinSpeed:NSTimeInterval = NSTimeInterval(0.5)
   let enemyWaitMaxSpeed:NSTimeInterval = NSTimeInterval(0.0)
