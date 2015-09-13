@@ -475,7 +475,8 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         gameSpeedBoardLabel.text = String("Game Speed: 0:0")
         gameSpeedBoardLabel.color = SKColor.redColor()
         gameSpeedBoardLabel.fontSize = 15
-        gameSpeedBoardLabel.position = CGPoint(x: horizontalXAxis * 1.75, y: verticalAxis * 1.8 - gameSpeedBoardLabel.frame.height*2)//CGPoint(x:horizontalXAxis * 0.30, y:CGRectGetMidY(playableRect) + (gameSpeedBoardLabel.frame.height * 2) )
+        gameSpeedBoardLabel.fontColor = SKColor.redColor()
+        gameSpeedBoardLabel.position = CGPoint(x: horizontalXAxis * 1.25, y: verticalAxis * 1.8 - gameSpeedBoardLabel.frame.height*2)
         gameSpeedBoardLabel.zPosition = 100
         gameSpeedBoardLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center
         gameSpeedBoardLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Center
@@ -485,7 +486,8 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         waitTimeBoardLabel.text = String("Wait:0:0")
         waitTimeBoardLabel.color = SKColor.redColor()
         waitTimeBoardLabel.fontSize = 15
-        waitTimeBoardLabel.position = CGPoint(x: horizontalXAxis * 0.05, y: verticalAxis * 1.8 - waitTimeBoardLabel.frame.height*2)//CGPoint(x:horizontalXAxis * 1.30, y:CGRectGetMidY(playableRect) + (waitTimeBoardLabel.frame.height * 2) )
+        waitTimeBoardLabel.fontColor = SKColor.redColor()
+        waitTimeBoardLabel.position = CGPoint(x: horizontalXAxis * 0.60, y: verticalAxis * 1.8 - waitTimeBoardLabel.frame.height*2)//CGPoint(x:horizontalXAxis * 1.30, y:CGRectGetMidY(playableRect) + (waitTimeBoardLabel.frame.height * 2) )
         waitTimeBoardLabel.zPosition = 100
         waitTimeBoardLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center
         waitTimeBoardLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Center
