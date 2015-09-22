@@ -24,6 +24,8 @@
 		C63933F41B78DDE2009FFC3B /* backgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C63933F31B78DDE2009FFC3B /* backgroundMusic.mp3 */; };
 		C63933F61B78E8FA009FFC3B /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63933F51B78E8F9009FFC3B /* Actions.swift */; };
 		C658633E1B6864FA00F89D71 /* engine.sks in Resources */ = {isa = PBXBuildFile; fileRef = C658633D1B6864FA00F89D71 /* engine.sks */; };
+		C68B22401BA5B13C00EB732C /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C68B223E1BA5B13C00EB732C /* Fabric.framework */; settings = {ASSET_TAGS = (); }; };
+		C68B22411BA5B13C00EB732C /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C68B223F1BA5B13C00EB732C /* Crashlytics.framework */; settings = {ASSET_TAGS = (); }; };
 		C6CEF8E81B7D09C400438CD6 /* Andy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CEF8E71B7D09C400438CD6 /* Andy.swift */; };
 		C6D395E41B64579100830790 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D395E31B64579100830790 /* AppDelegate.swift */; };
 		C6D395E61B64579100830790 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = C6D395E51B64579100830790 /* GameScene.sks */; };
@@ -87,6 +89,8 @@
 		C63933F31B78DDE2009FFC3B /* backgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = backgroundMusic.mp3; sourceTree = "<group>"; };
 		C63933F51B78E8F9009FFC3B /* Actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
 		C658633D1B6864FA00F89D71 /* engine.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = engine.sks; sourceTree = "<group>"; };
+		C68B223E1BA5B13C00EB732C /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		C68B223F1BA5B13C00EB732C /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		C6CEF8E71B7D09C400438CD6 /* Andy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Andy.swift; sourceTree = "<group>"; };
 		C6D395E01B64579100830790 /* relliK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = relliK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6D395E31B64579100830790 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +130,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C68B22411BA5B13C00EB732C /* Crashlytics.framework in Frameworks */,
+				C68B22401BA5B13C00EB732C /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +155,8 @@
 		C6D395D71B64579100830790 = {
 			isa = PBXGroup;
 			children = (
+				C68B223E1BA5B13C00EB732C /* Fabric.framework */,
+				C68B223F1BA5B13C00EB732C /* Crashlytics.framework */,
 				C6D395E21B64579100830790 /* relliK */,
 				C6D395FB1B64579200830790 /* relliKTests */,
 				C6D396061B64579200830790 /* relliKUITests */,
@@ -251,6 +259,7 @@
 				C6D395DC1B64579100830790 /* Sources */,
 				C6D395DD1B64579100830790 /* Frameworks */,
 				C6D395DE1B64579100830790 /* Resources */,
+				C68B223D1BA5B11800EB732C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -391,6 +400,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C68B223D1BA5B11800EB732C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 4b84b1226e93ac404abf87cdd625fca3f2f67cb7 9174c325d1ac51dcae9ee142e60f7bc1545e4d23a1ce0b5e09574eada9f888d3";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C6D395DC1B64579100830790 /* Sources */ = {
@@ -553,6 +578,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = relliK/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -567,6 +596,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = relliK/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
