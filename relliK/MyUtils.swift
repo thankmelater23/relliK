@@ -16,7 +16,7 @@ func + (left: CGPoint, right: CGPoint) -> CGPoint {
     return CGPoint(x: left.x + right.x, y: left.y + right.y)
 }
 
-func += (inout left: CGPoint, right: CGPoint) {
+func += (left: inout CGPoint, right: CGPoint) {
     left = left + right
 }
 
@@ -24,7 +24,7 @@ func - (left: CGPoint, right: CGPoint) -> CGPoint {
     return CGPoint(x: left.x - right.x, y: left.y - right.y)
 }
 
-func -= (inout left: CGPoint, right: CGPoint) {
+func -= (left: inout CGPoint, right: CGPoint) {
     left = left - right
 }
 
@@ -32,7 +32,7 @@ func * (left: CGPoint, right: CGPoint) -> CGPoint {
     return CGPoint(x: left.x * right.x, y: left.y * right.y)
 }
 
-func *= (inout left: CGPoint, right: CGPoint) {
+func *= (left: inout CGPoint, right: CGPoint) {
     left = left * right
 }
 
@@ -40,7 +40,7 @@ func * (point: CGPoint, scalar: CGFloat) -> CGPoint {
     return CGPoint(x: point.x * scalar, y: point.y * scalar)
 }
 
-func *= (inout point: CGPoint, scalar: CGFloat) {
+func *= (point: inout CGPoint, scalar: CGFloat) {
     point = point * scalar
 }
 
@@ -48,7 +48,7 @@ func / (left: CGPoint, right: CGPoint) -> CGPoint {
     return CGPoint(x: left.x / right.x, y: left.y / right.y)
 }
 
-func /= (inout left: CGPoint, right: CGPoint) {
+func /= (left: inout CGPoint, right: CGPoint) {
     left = left / right
 }
 
@@ -56,7 +56,7 @@ func / (point: CGPoint, scalar: CGFloat) -> CGPoint {
     return CGPoint(x: point.x / scalar, y: point.y / scalar)
 }
 
-func /= (inout point: CGPoint, scalar: CGFloat) {
+func /= (point: inout CGPoint, scalar: CGFloat) {
     point = point / scalar
 }
 
@@ -87,10 +87,10 @@ extension CGPoint {
 
 let π = CGFloat(M_PI)
 
-func shortestAngleBetween(angle1: CGFloat,
+func shortestAngleBetween(_ angle1: CGFloat,
     angle2: CGFloat) -> CGFloat {
         let twoπ = π * 2.0
-        var angle = (angle2 - angle1) % twoπ
+        var angle = (angle2 - angle1).truncatingRemainder(dividingBy: twoπ)
         if (angle >= π) {
             angle = angle - twoπ
         }
@@ -107,14 +107,14 @@ extension CGFloat {
     static func random() -> CGFloat {
         return CGFloat(Float(arc4random()) / Float(UInt32.max)) }
     
-    static func random(min min: CGFloat, max: CGFloat) -> CGFloat {
+    static func random(min: CGFloat, max: CGFloat) -> CGFloat {
             assert(min < max)
         return CGFloat.random() * (max - min) + min
     }
 }
 
-func playBackgroundMusic(fileName: String){
-    let url = NSBundle.mainBundle().URLForResource(fileName, withExtension: nil)
+func playBackgroundMusic(_ fileName: String){
+    let url = Bundle.main.url(forResource: fileName, withExtension: nil)
     
     if(url == nil){
         print("Could not find file: \(fileName)")
@@ -125,7 +125,7 @@ func playBackgroundMusic(fileName: String){
     
     var error: NSError? = nil
     do {
-        backgroundMusicPlayer = try AVAudioPlayer(contentsOfURL: url!)
+        backgroundMusicPlayer = try AVAudioPlayer(contentsOf: url!)
     } catch let error1 as NSError {
         error = error1
         backgroundMusicPlayer = nil

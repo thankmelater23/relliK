@@ -17,20 +17,20 @@ class GameOverScene: SKScene{
         super.init(size: size)
     }
     
-    override func didMoveToView(view: SKView) {
+    override func didMove(to view: SKView) {
         var background: SKSpriteNode
         
         if(won){
             background = SKSpriteNode(imageNamed: "YouWin")
-            runAction(SKAction.sequence([
-                SKAction.waitForDuration(0.1),
+            run(SKAction.sequence([
+                SKAction.wait(forDuration: 0.1),
                 SKAction.playSoundFileNamed("win.wav",
                     waitForCompletion: false)
                 ]))
         }else{
             background = SKSpriteNode(imageNamed: "YouLose")
-            runAction(SKAction.sequence([
-                SKAction.waitForDuration(0.1),
+            run(SKAction.sequence([
+                SKAction.wait(forDuration: 0.1),
                 SKAction.playSoundFileNamed("lose.wave",
                     waitForCompletion: false)
                 ]))
@@ -38,14 +38,14 @@ class GameOverScene: SKScene{
         background.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
         self.addChild(background)
         
-        let wait = SKAction.waitForDuration(3.0)
-        let block = SKAction.runBlock{
+        let wait = SKAction.wait(forDuration: 3.0)
+        let block = SKAction.run{
             let myScene = MainMenuScene(size: self.size)
             myScene.scaleMode = self.scaleMode
-            let reveal = SKTransition.flipHorizontalWithDuration(0.5)
+            let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
             self.view?.presentScene(myScene, transition: reveal)
         }
-        self.runAction(SKAction.sequence([wait,block]))
+        self.run(SKAction.sequence([wait,block]))
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -37,14 +37,14 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     var downLight = SKLightNode()
     
     //Game Time
-    var lastUpdateTime: NSTimeInterval = 0
-    var dt: NSTimeInterval = 0
-    var incrementCurrentGameSpeedTime: NSTimeInterval = 0
-    var incrementGameSpeedTime: NSTimeInterval = GAME_MIN_SPEED * 5
+    var lastUpdateTime: TimeInterval = 0
+    var dt: TimeInterval = 0
+    var incrementCurrentGameSpeedTime: TimeInterval = 0
+    var incrementGameSpeedTime: TimeInterval = GAME_MIN_SPEED * 5
     
     //Position and Moving Values
     let movePointsPerSec: CGFloat = 480.0
-    var velocity = CGPointZero
+    var velocity = CGPoint.zero
     
     //Location and sizes
     let playableRect: CGRect
@@ -77,14 +77,14 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     }
     
     func loadDefaults(){
-        let gameHighScore = NSUserDefaults.standardUserDefaults().valueForKey("highscore") as! Int?
+        let gameHighScore = UserDefaults.standard.value(forKey: "highscore") as! Int?
         guard let defaultHighScore = gameHighScore else {
-            NSUserDefaults.standardUserDefaults().setValue(0, forKeyPath: "highscore")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            UserDefaults.standard.setValue(0, forKeyPath: "highscore")
+            UserDefaults.standard.synchronize()
             return
         }
         
-        highscores = NSUserDefaults.standardUserDefaults().valueForKey("highscore") as! Int!
+        highscores = UserDefaults.standard.value(forKey: "highscore") as! Int!
     }
     
     //Game Labels
@@ -94,15 +94,15 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     var score:Int = 0 {
         willSet{
             scoreBoardLabel.text = String("Score: \(newValue)")
-            scoreBoardLabel.runAction(SKAction.sequence([SKAction.scaleTo(1.5, duration: 0.1),
-                SKAction.scaleTo(1, duration: 0.1)]))
+            scoreBoardLabel.run(SKAction.sequence([SKAction.scale(to: 1.5, duration: 0.1),
+                SKAction.scale(to: 1, duration: 0.1)]))
             
             if newValue > highscores{
                 
-                let defaults = NSUserDefaults.standardUserDefaults().valueForKey("highscore") as! Int
+                let defaults = UserDefaults.standard.value(forKey: "highscore") as! Int
                 if(newValue > defaults){
-                    NSUserDefaults.standardUserDefaults().setValue(highscores, forKey: "highscore")
-                    NSUserDefaults.standardUserDefaults().synchronize()
+                    UserDefaults.standard.setValue(highscores, forKey: "highscore")
+                    UserDefaults.standard.synchronize()
                     highscores = newValue
                 }
             }
@@ -112,8 +112,8 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     var killed:Int = 0 {
         willSet{
             killBoardLabel.text = String("Killed: \(newValue)")
-            killBoardLabel.runAction(SKAction.sequence([SKAction.scaleTo(1.5, duration: 0.1),
-                SKAction.scaleTo(1, duration: 0.1)]))
+            killBoardLabel.run(SKAction.sequence([SKAction.scale(to: 1.5, duration: 0.1),
+                SKAction.scale(to: 1, duration: 0.1)]))
         }
     }
     
@@ -121,8 +121,8 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     var errors:Int = 0 {
         willSet{
             errorsBoardLabel.text = String("Errors: \(newValue)")
-            errorsBoardLabel.runAction(SKAction.sequence([SKAction.scaleTo(1.5, duration: 0.1),
-                SKAction.scaleTo(1, duration: 0.1)]))
+            errorsBoardLabel.run(SKAction.sequence([SKAction.scale(to: 1.5, duration: 0.1),
+                SKAction.scale(to: 1, duration: 0.1)]))
         }
     }
     
@@ -130,18 +130,18 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     var highscores:Int = 0 {
         willSet{
             highScoreBoardLabel.text = String("High Score: \(newValue)")
-            highScoreBoardLabel.runAction(SKAction.sequence([SKAction.scaleTo(1.5, duration: 0.1),
-                SKAction.scaleTo(1, duration: 0.1)]))
+            highScoreBoardLabel.run(SKAction.sequence([SKAction.scale(to: 1.5, duration: 0.1),
+                SKAction.scale(to: 1, duration: 0.1)]))
         }
     }
     
     var timerBoardLabel = SKLabelNode()
-    var gameMiliSecToSec = NSTimeInterval(0.0)
+    var gameMiliSecToSec = TimeInterval(0.0)
     var gameTimer:Int = 0 {
         willSet{
             timerBoardLabel.text = convertGameTimer(newValue)
-            timerBoardLabel.runAction(SKAction.sequence([SKAction.scaleTo(1.5, duration: 0.1),
-                SKAction.scaleTo(1, duration: 0.1)]))
+            timerBoardLabel.run(SKAction.sequence([SKAction.scale(to: 1.5, duration: 0.1),
+                SKAction.scale(to: 1, duration: 0.1)]))
         }
     }
     
@@ -164,16 +164,16 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
            // SKAction.scaleTo(1, duration: 0.1)]))
     }
 
-    func convertGameTimer(timeToConvert: Int)-> String{
+    func convertGameTimer(_ timeToConvert: Int)-> String{
         var total = 0
         var min = 0
         var sec = 0
         
         for _ in 0..<timeToConvert{
-            total++
+            total += 1
             if total == 60{
                 total = 0
-                min++
+                min += 1
             }
         }
         sec = total
@@ -204,7 +204,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     
     
     //Update Methods
-    override func update(currentTime: NSTimeInterval) {
+    override func update(_ currentTime: TimeInterval) {
         
         if !isGamePaused{
             if incrementCurrentGameSpeedTime > incrementGameSpeedTime {
@@ -237,7 +237,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
                 if gameSpeed <= GAME_MAX_SPEED{
                     print("Current gamespeed under min: \(gameSpeed)")
                     gameSpeed = GAME_MAX_SPEED
-                    enemyWaitTime == NSTimeInterval(0.4)
+                    enemyWaitTime == TimeInterval(0.4)
                     print("Current gameSpeedChanged to: \(gameSpeed)")
                 }else{//Decrese gameSpeed
                     gameSpeed -= gameIncrementalSpeed
@@ -284,8 +284,8 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
             
             
             
-            if gameMiliSecToSec >= NSTimeInterval(1.0){
-                gameTimer++
+            if gameMiliSecToSec >= TimeInterval(1.0){
+                gameTimer += 1
                 gameMiliSecToSec = 0
             }else{
                 gameMiliSecToSec += currentTime - lastUpdateTime
@@ -306,17 +306,17 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         let playableMarginWidth = (size.width - maxAspectRationWidth) / 2.0
         playableRect =        CGRect(x: 0, y: playableMargin, width: size.width - playableMarginWidth * 2, height: size.height-playableMargin*2)
         
-        leftSideEnemyStartPosition = CGPoint(x: CGRectGetMidX(playableRect) -  (spaceBetweenEnemyBlock + spaceToLastBox), y: CGRectGetMidY(playableRect))
-        rightSideEnemyStartPosition = CGPoint(x: CGRectGetMidX(playableRect) + (spaceBetweenEnemyBlock + spaceToLastBox), y: CGRectGetMidY(playableRect))
-        upSideEnemyStartPosition = CGPoint(x: CGRectGetMidX(playableRect), y: CGRectGetMidY(playableRect) + (spaceBetweenEnemyBlock + spaceToLastBox))
-        downSideEnemyStartPosition = CGPoint(x: CGRectGetMidX(playableRect), y: CGRectGetMidY(playableRect) - (spaceBetweenEnemyBlock + spaceToLastBox))
+        leftSideEnemyStartPosition = CGPoint(x: playableRect.midX -  (spaceBetweenEnemyBlock + spaceToLastBox), y: playableRect.midY)
+        rightSideEnemyStartPosition = CGPoint(x: playableRect.midX + (spaceBetweenEnemyBlock + spaceToLastBox), y: playableRect.midY)
+        upSideEnemyStartPosition = CGPoint(x: playableRect.midX, y: playableRect.midY + (spaceBetweenEnemyBlock + spaceToLastBox))
+        downSideEnemyStartPosition = CGPoint(x: playableRect.midX, y: playableRect.midY - (spaceBetweenEnemyBlock + spaceToLastBox))
         
-        horizontalXAxis = CGRectGetMidX(playableRect)
-        verticalAxis = CGRectGetMidY(playableRect)
+        horizontalXAxis = playableRect.midX
+        verticalAxis = playableRect.midY
         
         super.init(size: playableRect.size)
     }
-    override func didMoveToView(view: SKView) {
+    override func didMove(to view: SKView) {
         setPhysics()
         setGameLights()
         setLabels()
@@ -336,9 +336,9 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     //Contact Methods
     func setPhysics(){
         self.physicsWorld.contactDelegate = self
-        self.physicsWorld.gravity = CGVectorMake(CGFloat(0), CGFloat(0))
+        self.physicsWorld.gravity = CGVector(dx: CGFloat(0), dy: CGFloat(0))
     }
-    func didBeginContact(contact: SKPhysicsContact) {
+    func didBegin(_ contact: SKPhysicsContact) {
         let firstNode = contact.bodyA.node as! Entity
         let secondNode = contact.bodyB.node as! Entity
         
@@ -361,7 +361,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
                 //                if firstNode.name == "ghost" && !(firstNode.isBlockPlaceMoreThanRange()){
                 //
                 //                }else{
-                secondNode.removeActionForKey("move")
+                secondNode.removeAction(forKey: "move")
                 secondNode.kill()
                 firstNode.hurt()
                 
@@ -378,7 +378,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
                 //                if secondNode.name == "ghost" && !(secondNode.isBlockPlaceMoreThanRange()){
                 //
                 //                }else{
-                firstNode.removeActionForKey("move")
+                firstNode.removeAction(forKey: "move")
                 firstNode.kill()
                 secondNode.hurt()
                 
@@ -403,62 +403,62 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         scoreBoardLabel.name = "scoreBoard"
         score = 0
         scoreBoardLabel.text = String("Score: \(score)")
-        scoreBoardLabel.color = SKColor.redColor()
+        scoreBoardLabel.color = SKColor.red
         scoreBoardLabel.fontSize = 15
         scoreBoardLabel.position =  CGPoint(x: horizontalXAxis * 2, y: verticalAxis * 1.8)
         scoreBoardLabel.zPosition = 100
-        scoreBoardLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center
-        scoreBoardLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
+        scoreBoardLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.center
+        scoreBoardLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.right
         
         highScoreBoardLabel = SKLabelNode(fontNamed:"Chalkduster")
         highScoreBoardLabel.name = "highscoreBoard"
         highscores = 0
         highScoreBoardLabel.text = String("HighScore: \(highscores)")
-        highScoreBoardLabel.color = SKColor.redColor()
+        highScoreBoardLabel.color = SKColor.red
         highScoreBoardLabel.fontSize = 15
         highScoreBoardLabel.position = CGPoint(x: horizontalXAxis * 2, y: verticalAxis * 0.8)
         highScoreBoardLabel.zPosition = 100
-        highScoreBoardLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center
-        highScoreBoardLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
+        highScoreBoardLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.center
+        highScoreBoardLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.right
         
         killBoardLabel = SKLabelNode(fontNamed:"Chalkduster")
         killBoardLabel.name = "killBoard"
         killed = 0
         killBoardLabel.text = String("Killed: \(killed)")
-        killBoardLabel.color = SKColor.redColor()
+        killBoardLabel.color = SKColor.red
         killBoardLabel.fontSize = 15
         killBoardLabel.position = CGPoint(x: horizontalXAxis * 0.10, y: verticalAxis * 1.8)
         killBoardLabel.zPosition = 100
-        killBoardLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center
-        killBoardLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
+        killBoardLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.center
+        killBoardLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         
         errorsBoardLabel = SKLabelNode(fontNamed:"Chalkduster")
         errorsBoardLabel.name = "errorsBoaard"
         errors = 0
         errorsBoardLabel.text = String("Errors: \(errors)")
-        errorsBoardLabel.color = SKColor.redColor()
+        errorsBoardLabel.color = SKColor.red
         errorsBoardLabel.fontSize = 15
         errorsBoardLabel.position = CGPoint(x: horizontalXAxis * 0.10, y: verticalAxis * 0.8)
         errorsBoardLabel.zPosition = 100
-        errorsBoardLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center
-        errorsBoardLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
+        errorsBoardLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.center
+        errorsBoardLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         
         let gameName = SKLabelNode(fontNamed:"Chalkduster")
         gameName.text = "relliK"
-        gameName.color = SKColor.redColor()
+        gameName.color = SKColor.red
         gameName.fontSize = 20
-        gameName.position = CGPoint(x:horizontalXAxis, y:CGRectGetMaxY(playableRect) - gameName.frame.size.height)
+        gameName.position = CGPoint(x:horizontalXAxis, y:playableRect.maxY - gameName.frame.size.height)
         
         timerBoardLabel = SKLabelNode(fontNamed:"Chalkduster")
         timerBoardLabel.name = "errorsBoaard"
         gameTimer = 0
         timerBoardLabel.text = String("0:0")
-        timerBoardLabel.color = SKColor.redColor()
+        timerBoardLabel.color = SKColor.red
         timerBoardLabel.fontSize = 15
-        timerBoardLabel.position = CGPoint(x:horizontalXAxis, y:CGRectGetMaxY(playableRect) - (timerBoardLabel.frame.size.height + gameName.frame.size.height) )
+        timerBoardLabel.position = CGPoint(x:horizontalXAxis, y:playableRect.maxY - (timerBoardLabel.frame.size.height + gameName.frame.size.height) )
         timerBoardLabel.zPosition = 100
-        timerBoardLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center
-        timerBoardLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
+        timerBoardLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.center
+        timerBoardLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         
         setDebugLabels()
         addChild(gameName)
@@ -473,70 +473,71 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         gameSpeedBoardLabel = SKLabelNode(fontNamed:"Chalkduster")
         gameSpeedBoardLabel.name = "gameSpeedBoaard"
         gameSpeedBoardLabel.text = String("Game Speed: 0:0")
-        gameSpeedBoardLabel.color = SKColor.redColor()
+        gameSpeedBoardLabel.color = SKColor.red
         gameSpeedBoardLabel.fontSize = 15
-        gameSpeedBoardLabel.fontColor = SKColor.redColor()
+        gameSpeedBoardLabel.fontColor = SKColor.red
         gameSpeedBoardLabel.position = CGPoint(x: horizontalXAxis * 1.25, y: verticalAxis * 1.8 - gameSpeedBoardLabel.frame.height*2)
         gameSpeedBoardLabel.zPosition = 100
-        gameSpeedBoardLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center
-        gameSpeedBoardLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Center
+        gameSpeedBoardLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.center
+        gameSpeedBoardLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.center
         
         waitTimeBoardLabel = SKLabelNode(fontNamed:"Chalkduster")
         waitTimeBoardLabel.name = "waitTimeBoaard"
         waitTimeBoardLabel.text = String("Wait:0:0")
-        waitTimeBoardLabel.color = SKColor.redColor()
+        waitTimeBoardLabel.color = SKColor.red
         waitTimeBoardLabel.fontSize = 15
-        waitTimeBoardLabel.fontColor = SKColor.redColor()
+        waitTimeBoardLabel.fontColor = SKColor.red
         waitTimeBoardLabel.position = CGPoint(x: horizontalXAxis * 0.60, y: verticalAxis * 1.8 - waitTimeBoardLabel.frame.height*2)//CGPoint(x:horizontalXAxis * 1.30, y:CGRectGetMidY(playableRect) + (waitTimeBoardLabel.frame.height * 2) )
         waitTimeBoardLabel.zPosition = 100
-        waitTimeBoardLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center
-        waitTimeBoardLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Center
+        waitTimeBoardLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.center
+        waitTimeBoardLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.center
         
         
         addChild(gameSpeedBoardLabel)
         addChild(waitTimeBoardLabel)
     }
     func createSwipeRecognizers() {
-        var swipeDown = UISwipeGestureRecognizer(target: self, action: "shotDirection:")
-        swipeDown.direction = UISwipeGestureRecognizerDirection.Down
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.shotDirection(_:)))
+        swipeDown.direction = UISwipeGestureRecognizerDirection.down
         self.view?.addGestureRecognizer(swipeDown)
         
-        var swipeRight = UISwipeGestureRecognizer(target: self, action: "shotDirection:")
-        swipeRight.direction = UISwipeGestureRecognizerDirection.Right
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.shotDirection(_:)))
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
         self.view?.addGestureRecognizer(swipeRight)
         
-        var swipeUp = UISwipeGestureRecognizer(target: self, action: "shotDirection:")
-        swipeUp.direction = UISwipeGestureRecognizerDirection.Up
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.shotDirection(_:)))
+        swipeUp.direction = UISwipeGestureRecognizerDirection.up
         self.view?.addGestureRecognizer(swipeUp)
         
-        var swipeLeft = UISwipeGestureRecognizer(target: self, action: "shotDirection:")
-        swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.shotDirection(_:)))
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
         self.view?.addGestureRecognizer(swipeLeft)
         
-        var tapped = UITapGestureRecognizer(target: self, action: "paused")
+        let tapped = UITapGestureRecognizer(target: self, action: #selector(GameScene.paused as (GameScene) -> () -> ()))
         tapped.numberOfTapsRequired = 1
         self.view?.addGestureRecognizer(tapped)
     }
     func debugDrawPlayableArea() {
         let shape = SKShapeNode()
-        let path = CGPathCreateMutable()
-        CGPathAddRect(path, nil, playableRect)
+        let path = CGMutablePath()
+        
+        path.addRect(playableRect)
         shape.path = path
-        shape.strokeColor = SKColor.redColor()
+        shape.strokeColor = SKColor.red
         shape.lineWidth = 4.0
         addChild(shape)
     }
     func createActions(){
-        bulletMoveRightAction = SKAction.repeatAction(SKAction.moveByX(CGFloat(incrementalSpaceBetweenBlocks), y: 0, duration: NSTimeInterval(0.1)), count: 6)
-        bulletMoveLeftAction = SKAction.reversedAction(bulletMoveRightAction)()
-        bulletMoveDownAction = SKAction.repeatAction(SKAction.moveByX(0, y: CGFloat(-incrementalSpaceBetweenBlocks), duration: NSTimeInterval(0.1)), count: 6)
-        bulletMoveUpAction = SKAction.reversedAction(bulletMoveDownAction)()
+        bulletMoveRightAction = SKAction.repeat(SKAction.moveBy(x: CGFloat(incrementalSpaceBetweenBlocks), y: 0, duration: TimeInterval(0.1)), count: 6)
+        bulletMoveLeftAction = SKAction.reversed(bulletMoveRightAction)()
+        bulletMoveDownAction = SKAction.repeat(SKAction.moveBy(x: 0, y: CGFloat(-incrementalSpaceBetweenBlocks), duration: TimeInterval(0.1)), count: 6)
+        bulletMoveUpAction = SKAction.reversed(bulletMoveDownAction)()
     }
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         /* Called when a touch begins */
         
         for touch in touches {
-            let location = touch.locationInNode(self)
+            let location = touch.location(in: self)
         }
     }
     
@@ -578,10 +579,10 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         addChild(enemy)
         
     }
-    func randomEnemy(enemyLocation: CGPoint) -> Enemy{
+    func randomEnemy(_ enemyLocation: CGPoint) -> Enemy{
         let randomNum = Int.random(min: 1, max: 10)
         
-        runAction(SKAction.playSoundFileNamed("spawn.wav", waitForCompletion: false))
+        run(SKAction.playSoundFileNamed("spawn.wav", waitForCompletion: false))
         switch randomNum {
         case 1:
             return Boss(entityPosition: enemyLocation)
@@ -599,7 +600,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     
     //Player and Bullets Methods
     func createPlayer(){
-        self.player = Player(entityPosition: CGPoint(x: CGRectGetMidX(playableRect), y: CGRectGetMidY(playableRect)))
+        self.player = Player(entityPosition: CGPoint(x: playableRect.midX, y: playableRect.midY))
         addChild(player)
     }
     func moveBullets(){
@@ -617,24 +618,24 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         bulletsInField = bulletsInField.filter({$0.stopped == false})
         
     }
-    func shotDirection(sender: UISwipeGestureRecognizer){
+    func shotDirection(_ sender: UISwipeGestureRecognizer){
         if isShootable{
-            let newBullet = Bullet(entityPosition: CGPoint(x: CGRectGetMidX(playableRect), y: CGRectGetMidY(playableRect)))
+            let newBullet = Bullet(entityPosition: CGPoint(x: playableRect.midX, y: playableRect.midY))
             
             switch sender.direction{
-            case UISwipeGestureRecognizerDirection.Right:
+            case UISwipeGestureRecognizerDirection.right:
                 newBullet.directionOf = entityDirection.right
                 newBullet.move = bulletMoveRightAction
                 player.directionOf = entityDirection.right
-            case UISwipeGestureRecognizerDirection.Left:
+            case UISwipeGestureRecognizerDirection.left:
                 newBullet.directionOf = entityDirection.left
                 newBullet.move = bulletMoveLeftAction
                 player.directionOf = entityDirection.left
-            case UISwipeGestureRecognizerDirection.Up:
+            case UISwipeGestureRecognizerDirection.up:
                 newBullet.directionOf = entityDirection.up
                 newBullet.move = bulletMoveUpAction
                 player.directionOf = entityDirection.up
-            case UISwipeGestureRecognizerDirection.Down:
+            case UISwipeGestureRecognizerDirection.down:
                 newBullet.directionOf = entityDirection.down
                 newBullet.move = bulletMoveDownAction
                 player.directionOf = entityDirection.down
@@ -653,7 +654,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         
         emitterNOde.particleTexture = rainTexture
         emitterNOde.particleBirthRate = 80.0
-        emitterNOde.particleColor = SKColor.whiteColor()
+        emitterNOde.particleColor = SKColor.white
         emitterNOde.particleSpeed = -450
         emitterNOde.particleSpeedRange = 150
         emitterNOde.particleLifetime = 2.0
@@ -664,8 +665,8 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         emitterNOde.particleScale = 0.2
         emitterNOde.particleScaleRange = 0.5
         emitterNOde.position = CGPoint(
-            x: CGRectGetWidth(playableRect)/2, y: CGRectGetHeight(playableRect) + 10)
-        emitterNOde.particlePositionRange = CGVector(dx: CGRectGetWidth(playableRect), dy: CGRectGetHeight(playableRect))
+            x: playableRect.width/2, y: playableRect.height + 10)
+        emitterNOde.particlePositionRange = CGVector(dx: playableRect.width, dy: playableRect.height)
     }
     
     //Block creator Methods
@@ -673,18 +674,18 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         
         self.playerBlock = SKSpriteNode(imageNamed: "stone")
         self.playerBlock.name = "playerBlock"
-        self.playerBlock.color = SKColor.redColor()
+        self.playerBlock.color = SKColor.red
         self.playerBlock.colorBlendFactor = 1.0
         self.playerBlock.position = CGPoint(x: horizontalXAxis, y: verticalAxis)
         self.playerBlock.setScale(playerBlockScale)
-        self.playerBlock.texture?.filteringMode = .Nearest
-        self.playerBlock.texture!.textureByGeneratingNormalMapWithSmoothness(0.5, contrast: 1.0)
+        self.playerBlock.texture?.filteringMode = .nearest
+        self.playerBlock.texture!.generatingNormalMap(withSmoothness: 0.5, contrast: 1.0)
         self.playerBlock.lightingBitMask = BitMaskOfLighting.left | BitMaskOfLighting.right | BitMaskOfLighting.up | BitMaskOfLighting.down
         
         
         let playerBlockLight = SKLightNode()
         playerBlockLight.categoryBitMask = BitMaskOfLighting.left | BitMaskOfLighting.right | BitMaskOfLighting.down | BitMaskOfLighting.up
-        playerBlockLight.enabled = true
+        playerBlockLight.isEnabled = true
         playerBlockLight.position = playerBlock.position
         playerBlockLight.falloff = 1.0
         playerBlockLight.ambientColor = SKColor(red: 0, green: 0, blue: 0, alpha: 1.0)// SKColor.yellowColor()
@@ -710,10 +711,10 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
             downBoxes[i].setScale(enemyBlockScale)
             upBoxes[i].setScale(enemyBlockScale)
             
-            leftBoxes[i].texture!.textureByGeneratingNormalMapWithSmoothness(1.0, contrast: 1.0)
-            rightBoxes[i].texture!.textureByGeneratingNormalMapWithSmoothness(0.0, contrast: 0.0)
-            downBoxes[i].texture!.textureByGeneratingNormalMapWithSmoothness(0.3, contrast: 0.6)
-            upBoxes[i].texture!.textureByGeneratingNormalMapWithSmoothness(1.0, contrast: 0.0)
+            leftBoxes[i].texture!.generatingNormalMap(withSmoothness: 1.0, contrast: 1.0)
+            rightBoxes[i].texture!.generatingNormalMap(withSmoothness: 0.0, contrast: 0.0)
+            downBoxes[i].texture!.generatingNormalMap(withSmoothness: 0.3, contrast: 0.6)
+            upBoxes[i].texture!.generatingNormalMap(withSmoothness: 1.0, contrast: 0.0)
             
             leftBoxes[i].lightingBitMask = BitMaskOfLighting.left
             rightBoxes[i].lightingBitMask = BitMaskOfLighting.right
@@ -732,14 +733,14 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     }
     
     //GamePlay Methods
-    func upScore(enemyScoreValue: Int){
+    func upScore(_ enemyScoreValue: Int){
         score += enemyScoreValue
     }
     func upKilledEnemy(){
-        killed++
+        killed += 1
     }
     func addError(){
-        errors++
+        errors += 1
     }
     
     //Actions
@@ -748,12 +749,12 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     }
     
     //Other Game Scenes Methods
-    func createGameOverScene(won: Bool){
+    func createGameOverScene(_ won: Bool){
         backgroundMusicPlayer.stop()
         let gameOverScene = GameOverScene(size: size, won: won)
         gameOverScene.scaleMode = scaleMode
         
-        let reveal = SKTransition.flipHorizontalWithDuration(0.5)
+        let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
         
         view?.presentScene(gameOverScene, transition: reveal)
     }

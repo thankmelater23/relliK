@@ -54,10 +54,10 @@ import SpriteKit
   }
 
 
-  let GAME_MIN_SPEED:NSTimeInterval = NSTimeInterval(1.0)
-  let GAME_MAX_SPEED:NSTimeInterval = NSTimeInterval(0.6)
-  let enemyWaitMinSpeed:NSTimeInterval = NSTimeInterval(0.5)
-  let enemyWaitMaxSpeed:NSTimeInterval = NSTimeInterval(0.0)
+  let GAME_MIN_SPEED:TimeInterval = TimeInterval(1.0)
+  let GAME_MAX_SPEED:TimeInterval = TimeInterval(0.6)
+  let enemyWaitMinSpeed:TimeInterval = TimeInterval(0.5)
+  let enemyWaitMaxSpeed:TimeInterval = TimeInterval(0.0)
   
   //Scales
   let playerScale: CGFloat  = 0.10
@@ -71,17 +71,17 @@ import SpriteKit
   var incrementalSpaceBetweenBlocks: CGFloat  = 30.00
   var spaceToLastBox: CGFloat = incrementalSpaceBetweenBlocks * 4
 
-  var gameSpeed: NSTimeInterval = GAME_MIN_SPEED
-  let gameIncrementalSpeed: NSTimeInterval = (GAME_MIN_SPEED - GAME_MAX_SPEED) * 0.10 //GAME_MIN_SPEED / NSTimeInterval(4.0)
+  var gameSpeed: TimeInterval = GAME_MIN_SPEED
+  let gameIncrementalSpeed: TimeInterval = (GAME_MIN_SPEED - GAME_MAX_SPEED) * 0.10 //GAME_MIN_SPEED / NSTimeInterval(4.0)
   
   //Time Vars
-  let enemyWaitIncrementalSpeed: NSTimeInterval = (enemyWaitMinSpeed - enemyWaitMaxSpeed) * 0.10 //gameIncrementalSpeed * 2  //enemyWaitMinSpeed / NSTimeInterval(4.0)
-  var enemyWaitTime:NSTimeInterval = enemyWaitMinSpeed
-  var bulletCoolDownTime:NSTimeInterval =  0.1 //GAME_MAX_SPEED
-  var bulletCurrentCoolDownTime: NSTimeInterval = bulletCoolDownTime
-  var lastShot: NSTimeInterval = NSTimeInterval(0.0)
+  let enemyWaitIncrementalSpeed: TimeInterval = (enemyWaitMinSpeed - enemyWaitMaxSpeed) * 0.10 //gameIncrementalSpeed * 2  //enemyWaitMinSpeed / NSTimeInterval(4.0)
+  var enemyWaitTime:TimeInterval = enemyWaitMinSpeed
+  var bulletCoolDownTime:TimeInterval =  0.1 //GAME_MAX_SPEED
+  var bulletCurrentCoolDownTime: TimeInterval = bulletCoolDownTime
+  var lastShot: TimeInterval = TimeInterval(0.0)
   
-  var gameTotalSpeed: NSTimeInterval = gameSpeed + enemyWaitTime
+  var gameTotalSpeed: TimeInterval = gameSpeed + enemyWaitTime
   
   
   

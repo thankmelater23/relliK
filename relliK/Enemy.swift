@@ -35,7 +35,7 @@ class Enemy: Entity{
     }
     override func updateSpriteAtrributes() {
         super.updateSpriteAtrributes()
-        physicsBody = SKPhysicsBody(rectangleOfSize: (frame.size))
+        physicsBody = SKPhysicsBody(rectangleOf: (frame.size))
         physicsBody?.usesPreciseCollisionDetection = true
         physicsBody?.categoryBitMask = PhysicsCategory.Enemy
         physicsBody?.contactTestBitMask = PhysicsCategory.Player | PhysicsCategory.Bullet
@@ -50,8 +50,8 @@ class Enemy: Entity{
     //Action Methods
     func moveFunc(){
         setAngle()
-        move.timingMode = SKActionTimingMode.EaseInEaseOut
-        runAction(moveAction(), withKey: "move")
+        move.timingMode = SKActionTimingMode.easeInEaseOut
+        run(moveAction(), withKey: "move")
         print(gameSpeed)
         print(enemyWaitTime)
     }
@@ -63,9 +63,9 @@ class Enemy: Entity{
             loadedEnemySettings()
         }
         
-        let wait = SKAction.waitForDuration(enemyWaitTime)
+        let wait = SKAction.wait(forDuration: enemyWaitTime)
         
-        let moveToNextBlockAction = SKAction.runBlock({
+        let moveToNextBlockAction = SKAction.run({
             node in
             self.moveToNextBlock()
             
@@ -80,18 +80,18 @@ class Enemy: Entity{
         
         switch (directionOf){
         case entityDirection.left:
-            let moveLeftAction = SKAction.moveByX(incrementalSpaceBetweenBlocks, y: 0, duration: gameSpeed)
+            let moveLeftAction = SKAction.moveBy(x: incrementalSpaceBetweenBlocks, y: 0, duration: gameSpeed)
             return SKAction.sequence([wait, moveToNextBlockAction, moveSound, moveLeftAction])
         case entityDirection.right:
-            let moveRightAction = SKAction.moveByX(-incrementalSpaceBetweenBlocks, y: 0, duration: gameSpeed)
+            let moveRightAction = SKAction.moveBy(x: -incrementalSpaceBetweenBlocks, y: 0, duration: gameSpeed)
             
             return SKAction.sequence([wait, moveToNextBlockAction, moveSound, moveRightAction])
         case entityDirection.down:
-            let moveDownAction = SKAction.moveByX(0, y: incrementalSpaceBetweenBlocks, duration: gameSpeed)
+            let moveDownAction = SKAction.moveBy(x: 0, y: incrementalSpaceBetweenBlocks, duration: gameSpeed)
             
             return SKAction.sequence([wait, moveToNextBlockAction, moveSound, moveDownAction])
         case entityDirection.up:
-            let moveUpAction = SKAction.moveByX(0, y: -incrementalSpaceBetweenBlocks, duration: gameSpeed)
+            let moveUpAction = SKAction.moveBy(x: 0, y: -incrementalSpaceBetweenBlocks, duration: gameSpeed)
             
             return SKAction.sequence([wait, moveToNextBlockAction, moveSound, moveUpAction])
         case entityDirection.unSelected:
@@ -126,29 +126,59 @@ class Enemy: Entity{
         
         let healthLabel = SKLabelNode(fontNamed: "Chalkduster")
         healthLabel.name = "Hurt Label"
-        healthLabel.color = SKColor.redColor()
+        healthLabel.color = SKColor.red
         healthLabel.fontSize = 20
-        healthLabel.position = CGPoint(x: CGRectGetMidX(frame), y: CGRectGetMidY(frame))
+        healthLabel.position = CGPoint(x: frame.midX, y: frame.midY)
         healthLabel.text = String(health)
         healthLabel.zPosition = 100
         
         if health <= 0{
-            healthLabel.fontColor = SKColor.redColor()
+            healthLabel.fontColor = SKColor.red
         }else if health == 1{
-            healthLabel.fontColor = SKColor.yellowColor()
+            healthLabel.fontColor = SKColor.yellow
         }else{
-            healthLabel.fontColor = SKColor.greenColor()
+            healthLabel.fontColor = SKColor.green
         }
         
         self.parent?.addChild(healthLabel)
         
-        let action = SKAction.sequence([SKAction.scaleTo(0.0, duration: 0.5), SKAction.removeFromParent()])
+        let action = SKAction.sequence([SKAction.scale(to: 0.0, duration: 0.5), SKAction.removeFromParent()])
         
-        healthLabel.runAction(action)
+        healthLabel.run(action)
     }
 }
 
 class Boss:Enemy{
+    private static var __once: () = {
+            // 2
+            let enemy = SKSpriteNode(imageNamed: "enemy")
+            
+            //            healthLabel = SKLabelNode(fontNamed: "Chalkduster")
+            //            healthLabel.fontSize = 100
+            //            //healthLabel.alpha = 0.7
+            //            healthLabel.fontColor = SKColor.greenColor()
+            //            healthLabel.name = "healthLabel"
+            //            //
+            //            //healthLabel.zPosition = zPosition + 1
+            //            var healthString: Int!
+            ////            while var i <= healthString{
+            ////                healthString++
+            ////                i++
+            ////            }
+            //            healthLabel.text = String(healthString)
+            //
+            //
+            //            healthLabel.position = CGPoint(x: 0.5, y: (enemy.texture?.size().height)!)// + (healthLabel.frame.size.height / 2))
+            //            enemy.addChild(healthLabel)
+            //            healthLabel.runAction(SKAction.rotateToAngle(π, duration: NSTimeInterval(0.0), shortestUnitArc: true))
+            //
+            
+            // 5
+            let textureView = SKView()
+            SharedTexture.texture = textureView.texture(from: enemy)!
+            SharedTexture.texture.filteringMode = .nearest
+            SharedTexture.texture.generatingNormalMap(withSmoothness: 0.6, contrast: 1.0)
+        }()
     init(entityPosition: CGPoint) {
         let entityTexture = Boss.generateTexture()!
         
@@ -176,39 +206,10 @@ class Boss:Enemy{
         // 1
         struct SharedTexture {
             static var texture = SKTexture()
-            static var onceToken: dispatch_once_t = 0
+            static var onceToken: Int = 0
         }
         
-        dispatch_once(&SharedTexture.onceToken, {
-            // 2
-            let enemy = SKSpriteNode(imageNamed: "enemy")
-            
-            //            healthLabel = SKLabelNode(fontNamed: "Chalkduster")
-            //            healthLabel.fontSize = 100
-            //            //healthLabel.alpha = 0.7
-            //            healthLabel.fontColor = SKColor.greenColor()
-            //            healthLabel.name = "healthLabel"
-            //            //
-            //            //healthLabel.zPosition = zPosition + 1
-            //            var healthString: Int!
-            ////            while var i <= healthString{
-            ////                healthString++
-            ////                i++
-            ////            }
-            //            healthLabel.text = String(healthString)
-            //
-            //
-            //            healthLabel.position = CGPoint(x: 0.5, y: (enemy.texture?.size().height)!)// + (healthLabel.frame.size.height / 2))
-            //            enemy.addChild(healthLabel)
-            //            healthLabel.runAction(SKAction.rotateToAngle(π, duration: NSTimeInterval(0.0), shortestUnitArc: true))
-            //
-            
-            // 5
-            let textureView = SKView()
-            SharedTexture.texture = textureView.textureFromNode(enemy)!
-            SharedTexture.texture.filteringMode = .Nearest
-            SharedTexture.texture.textureByGeneratingNormalMapWithSmoothness(0.6, contrast: 1.0)
-        })
+        _ = Boss.__once
         
         return SharedTexture.texture
     }
@@ -218,6 +219,18 @@ class Boss:Enemy{
 }
 
 class Ghost:Enemy{
+    private static var __once1: () = {
+            // 2
+            let enemy = SKSpriteNode(imageNamed: "cat")
+            enemy.color = SKColor.yellow
+            enemy.colorBlendFactor = 0.8
+            
+            // 5
+            let textureView = SKView()
+            SharedTexture.texture = textureView.texture(from: enemy)!
+            SharedTexture.texture.filteringMode = .nearest
+            SharedTexture.texture.generatingNormalMap(withSmoothness: 0.6, contrast: 1.0)
+        }()
     init(entityPosition: CGPoint) {
         let entityTexture = Ghost.generateTexture()!
         
@@ -245,21 +258,10 @@ class Ghost:Enemy{
         // 1
         struct SharedTexture {
             static var texture = SKTexture()
-            static var onceToken: dispatch_once_t = 0
+            static var onceToken: Int = 0
         }
         
-        dispatch_once(&SharedTexture.onceToken, {
-            // 2
-            let enemy = SKSpriteNode(imageNamed: "cat")
-            enemy.color = SKColor.yellowColor()
-            enemy.colorBlendFactor = 0.8
-            
-            // 5
-            let textureView = SKView()
-            SharedTexture.texture = textureView.textureFromNode(enemy)!
-            SharedTexture.texture.filteringMode = .Nearest
-            SharedTexture.texture.textureByGeneratingNormalMapWithSmoothness(0.6, contrast: 1.0)
-        })
+        _ = Ghost.__once1
         
         return SharedTexture.texture
     }
@@ -269,6 +271,17 @@ class Ghost:Enemy{
 }
 
 class Soldier:Enemy{
+    private static var __once2: () = {
+            // 2
+            let enemy = SKSpriteNode(imageNamed: "zombie1")
+            enemy.name = "soldier"
+            
+            // 5
+            let textureView = SKView()
+            SharedTexture.texture = textureView.texture(from: enemy)!
+            SharedTexture.texture.filteringMode = .nearest
+            SharedTexture.texture.generatingNormalMap(withSmoothness: 0.6, contrast: 1.0)
+        }()
     init(entityPosition: CGPoint) {
         
         let entityTexture = Soldier.generateTexture()!
@@ -297,20 +310,10 @@ class Soldier:Enemy{
         // 1
         struct SharedTexture {
             static var texture = SKTexture()
-            static var onceToken: dispatch_once_t = 0
+            static var onceToken: Int = 0
         }
         
-        dispatch_once(&SharedTexture.onceToken, {
-            // 2
-            let enemy = SKSpriteNode(imageNamed: "zombie1")
-            enemy.name = "soldier"
-            
-            // 5
-            let textureView = SKView()
-            SharedTexture.texture = textureView.textureFromNode(enemy)!
-            SharedTexture.texture.filteringMode = .Nearest
-            SharedTexture.texture.textureByGeneratingNormalMapWithSmoothness(0.6, contrast: 1.0)
-        })
+        _ = Soldier.__once2
         
         return SharedTexture.texture
     }
@@ -320,6 +323,17 @@ class Soldier:Enemy{
 }
 
 class Minion:Enemy{
+    private static var __once3: () = {
+            // 2
+            let enemy = SKSpriteNode(imageNamed: "cat")
+            enemy.name = "minion"
+            
+            // 5
+            let textureView = SKView()
+            SharedTexture.texture = textureView.texture(from: enemy)!
+            SharedTexture.texture.filteringMode = .nearest
+            SharedTexture.texture.generatingNormalMap(withSmoothness: 0.6, contrast: 1.0)
+        }()
     init(entityPosition: CGPoint) {
         
         let entityTexture = Minion.generateTexture()!
@@ -347,20 +361,10 @@ class Minion:Enemy{
         // 1
         struct SharedTexture {
             static var texture = SKTexture()
-            static var onceToken: dispatch_once_t = 0
+            static var onceToken: Int = 0
         }
         
-        dispatch_once(&SharedTexture.onceToken, {
-            // 2
-            let enemy = SKSpriteNode(imageNamed: "cat")
-            enemy.name = "minion"
-            
-            // 5
-            let textureView = SKView()
-            SharedTexture.texture = textureView.textureFromNode(enemy)!
-            SharedTexture.texture.filteringMode = .Nearest
-            SharedTexture.texture.textureByGeneratingNormalMapWithSmoothness(0.6, contrast: 1.0)
-        })
+        _ = Minion.__once3
         
         return SharedTexture.texture
     }

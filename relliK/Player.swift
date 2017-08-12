@@ -11,6 +11,20 @@ import UIKit
 import SpriteKit
 
 class Player:Entity {
+//    struct SharedTexture {
+//        static var texture = SKTexture()
+//        static var onceToken: Int = 0
+//    }
+    private static var __once: () = {
+            // 2
+            let mainPlayer = SKSpriteNode(imageNamed: "Spaceship")
+            mainPlayer.name = "player"
+            
+            // 5
+            let textureView = SKView()
+            SharedTexture.texture = textureView.texture(from: mainPlayer)!
+            SharedTexture.texture.filteringMode = .nearest
+        }()
     init(entityPosition: CGPoint){
         let entityTexture = Player.generateTexture()!
         
@@ -24,21 +38,12 @@ class Player:Entity {
     }
     override class func generateTexture() -> SKTexture?{
         // 1
-        struct SharedTexture {
-            static var texture = SKTexture()
-            static var onceToken: dispatch_once_t = 0
-        }
+//        struct SharedTexture {
+//            static var texture = SKTexture()
+//            static var onceToken: Int = 0
+//        }
         
-        dispatch_once(&SharedTexture.onceToken, {
-            // 2
-            let mainPlayer = SKSpriteNode(imageNamed: "Spaceship")
-            mainPlayer.name = "player"
-            
-            // 5
-            let textureView = SKView()
-            SharedTexture.texture = textureView.textureFromNode(mainPlayer)!
-            SharedTexture.texture.filteringMode = .Nearest
-        })
+        _ = Player.__once
         
         return SharedTexture.texture
     }
@@ -48,13 +53,13 @@ class Player:Entity {
     override func setAngle(){
         switch (directionOf){
         case entityDirection.right:
-            runAction(SKAction.rotateToAngle(2 * π , duration: NSTimeInterval(0.0), shortestUnitArc: true))
+            run(SKAction.rotate(toAngle: 2 * π , duration: TimeInterval(0.0), shortestUnitArc: true))
         case entityDirection.left:
-            runAction(SKAction.rotateToAngle(π, duration: NSTimeInterval(0.0), shortestUnitArc: true))
+            run(SKAction.rotate(toAngle: π, duration: TimeInterval(0.0), shortestUnitArc: true))
         case entityDirection.down:
-            runAction(SKAction.rotateToAngle((3 / 2) + π , duration: NSTimeInterval(0.0), shortestUnitArc: true))
+            run(SKAction.rotate(toAngle: (3 / 2) + π , duration: TimeInterval(0.0), shortestUnitArc: true))
         case entityDirection.up:
-            runAction(SKAction.rotateToAngle(π / 2 , duration: NSTimeInterval(0.0), shortestUnitArc: true))
+            run(SKAction.rotate(toAngle: π / 2 , duration: TimeInterval(0.0), shortestUnitArc: true))
         case entityDirection.unSelected:
             //Dont run
             directionOf = entityDirection.unSelected
@@ -63,7 +68,7 @@ class Player:Entity {
     }
     override func updateSpriteAtrributes(){
         super.updateSpriteAtrributes()
-        physicsBody = SKPhysicsBody(rectangleOfSize: (frame.size))
+        physicsBody = SKPhysicsBody(rectangleOf: (frame.size))
         physicsBody?.usesPreciseCollisionDetection = true
         physicsBody?.categoryBitMask = PhysicsCategory.Player
         physicsBody?.contactTestBitMask = PhysicsCategory.Enemy
@@ -88,6 +93,18 @@ class Player:Entity {
 }
 
 class Bullet: Entity{
+    private static var __once1: () = {
+            // 2
+            let bullet = SKSpriteNode(imageNamed: "rainDrop")
+            bullet.name = "bullet"
+            bullet.alpha = 0.0
+            
+            // 5
+            let textureView = SKView()
+            SharedTexture.texture = textureView.texture(from: bullet)!
+            SharedTexture.texture.filteringMode = .nearest
+            
+        }()
     var outOfBoundsSoundString = "error.wav"
     var light = SKLightNode()
     var isShot = false
@@ -105,7 +122,7 @@ class Bullet: Entity{
         let entityTexture = Bullet.generateTexture()!
         super.init(position: entityPosition, texture: entityTexture)
         
-        color = SKColor.blackColor()
+        color = SKColor.black
         self.zPosition = CGFloat(90.00)
         self.setScale(bulletScale)
         let shot = SKEmitterNode(fileNamed: "engine")
@@ -116,9 +133,9 @@ class Bullet: Entity{
         
         light.position = CGPoint(x: 0.5, y: 0.5)
         light.categoryBitMask = getSideForLighting()
-        light.enabled = true
+        light.isEnabled = true
         light.lightColor = SKColor(red: 0, green: 0, blue: 200, alpha: 1.0)
-        light.shadowColor = SKColor.blackColor()// SKColor(red: 0, green: 0, blue: 0, alpha: 1.0)
+        light.shadowColor = SKColor.black// SKColor(red: 0, green: 0, blue: 0, alpha: 1.0)
         light.ambientColor = SKColor(red: 0, green: 0, blue: 200, alpha: 0.1)
         light.falloff = 1.0
         addChild(light)
@@ -143,34 +160,23 @@ class Bullet: Entity{
         // 1
         struct SharedTexture {
             static var texture = SKTexture()
-            static var onceToken: dispatch_once_t = 0
+            static var onceToken: Int = 0
         }
         
-        dispatch_once(&SharedTexture.onceToken, {
-            // 2
-            let bullet = SKSpriteNode(imageNamed: "rainDrop")
-            bullet.name = "bullet"
-            bullet.alpha = 0.0
-            
-            // 5
-            let textureView = SKView()
-            SharedTexture.texture = textureView.textureFromNode(bullet)!
-            SharedTexture.texture.filteringMode = .Nearest
-            
-        })
+        _ = Bullet.__once1
         
         return SharedTexture.texture
     }
     override func setAngle(){
         switch (directionOf){
         case entityDirection.right:
-            self.runAction(SKAction.rotateToAngle(2 * π , duration: NSTimeInterval(0.0), shortestUnitArc: true))
+            self.run(SKAction.rotate(toAngle: 2 * π , duration: TimeInterval(0.0), shortestUnitArc: true))
         case entityDirection.left:
-            self.runAction(SKAction.rotateToAngle(π, duration: NSTimeInterval(0.0), shortestUnitArc: true))
+            self.run(SKAction.rotate(toAngle: π, duration: TimeInterval(0.0), shortestUnitArc: true))
         case entityDirection.down:
-            self.runAction(SKAction.rotateToAngle((3 / 2) + π , duration: NSTimeInterval(0.0), shortestUnitArc: true))
+            self.run(SKAction.rotate(toAngle: (3 / 2) + π , duration: TimeInterval(0.0), shortestUnitArc: true))
         case entityDirection.up:
-            self.runAction(SKAction.rotateToAngle(π / 2 , duration: NSTimeInterval(0.0), shortestUnitArc: true))
+            self.run(SKAction.rotate(toAngle: π / 2 , duration: TimeInterval(0.0), shortestUnitArc: true))
         case entityDirection.unSelected:
             //Dont run
             directionOf = entityDirection.unSelected
@@ -182,14 +188,14 @@ class Bullet: Entity{
         getSideForLighting()
         playattackSound()
         
-        let action = SKAction.sequence([move, SKAction.runBlock({ self.stopped = true}), SKAction.removeFromParent()])
-        runAction(action, withKey: "move")
+        let action = SKAction.sequence([move, SKAction.run({ self.stopped = true}), SKAction.removeFromParent()])
+        run(action, withKey: "move")
         
         isShot = true
     }
     override func updateSpriteAtrributes() {
         super.updateSpriteAtrributes()
-        physicsBody = SKPhysicsBody(rectangleOfSize: (frame.size))
+        physicsBody = SKPhysicsBody(rectangleOf: (frame.size))
         physicsBody?.usesPreciseCollisionDetection = true
         physicsBody?.categoryBitMask = PhysicsCategory.Bullet
         physicsBody?.contactTestBitMask = PhysicsCategory.Enemy
@@ -198,7 +204,7 @@ class Bullet: Entity{
     override func died() {
         if isDead{//If dead turns sprite red waits for x seconds and then removes the sprite from parent
             physicsBody?.categoryBitMask = PhysicsCategory.dead//Stops all contact and collision detection after death
-            runAction(SKAction.removeFromParent())
+            run(SKAction.removeFromParent())
             //hurtSoundString = "bulletHurt.wav"
             self.playHurtSound()
         }

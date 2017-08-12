@@ -11,6 +11,10 @@ import UIKit
 import SpriteKit
 
 class Entity: SKSpriteNode {
+    struct SharedTexture {
+        static var texture = SKTexture()
+        static var onceToken: Int = 0
+    }
     var health = 0
     var maxHealth = 0
     var scoreValue = 0
@@ -32,10 +36,10 @@ class Entity: SKSpriteNode {
     internal func setEntityTypeAttribures(){}
     func sumForScore()->Int{
         var maximumPoints = 20
-        var timeTillFill : NSTimeInterval = 0
+        var timeTillFill : TimeInterval = 0
         
         while(timeTillFill <= gameTotalSpeed){
-            timeTillFill += NSTimeInterval(0.10)
+            timeTillFill += TimeInterval(0.10)
             maximumPoints -= 2
             if(maximumPoints < 0){
                 maximumPoints = 0
@@ -54,7 +58,7 @@ class Entity: SKSpriteNode {
     }
     init(position: CGPoint, texture: SKTexture){
         
-        super.init(texture: texture, color: SKColor.whiteColor(), size: texture.size())
+        super.init(texture: texture, color: SKColor.white, size: texture.size())
         
         self.position = position
         hurtEffects()
@@ -81,7 +85,7 @@ class Entity: SKSpriteNode {
         // Overridden by subclasses
         return nil
     }
-    func update(delta: NSTimeInterval) {
+    func update(_ delta: TimeInterval) {
         // Overridden by subclasses
     }
     func updateSpriteAtrributes(){
@@ -91,8 +95,8 @@ class Entity: SKSpriteNode {
         died()
     }
     func hurt(){
-        --health
-        runAction(flashRedEffect)
+        health -= 1
+        run(flashRedEffect)
         died()
     }
     func moveToNextBlock(){
@@ -117,13 +121,13 @@ class Entity: SKSpriteNode {
     func setAngle(){
         switch (directionOf){
         case entityDirection.left:
-            runAction(SKAction.rotateToAngle(2 * π , duration: NSTimeInterval(0.0), shortestUnitArc: true))
+            run(SKAction.rotate(toAngle: 2 * π , duration: TimeInterval(0.0), shortestUnitArc: true))
         case entityDirection.right:
-            runAction(SKAction.rotateToAngle(π, duration: NSTimeInterval(0.0), shortestUnitArc: true))
+            run(SKAction.rotate(toAngle: π, duration: TimeInterval(0.0), shortestUnitArc: true))
         case entityDirection.up:
-            runAction(SKAction.rotateToAngle((3 / 2) + π , duration: NSTimeInterval(0.0), shortestUnitArc: true))
+            run(SKAction.rotate(toAngle: (3 / 2) + π , duration: TimeInterval(0.0), shortestUnitArc: true))
         case entityDirection.down:
-            runAction(SKAction.rotateToAngle(π / 2 , duration: NSTimeInterval(0.0), shortestUnitArc: true))
+            run(SKAction.rotate(toAngle: π / 2 , duration: TimeInterval(0.0), shortestUnitArc: true))
         case entityDirection.unSelected:
             return
         }
@@ -134,34 +138,34 @@ class Entity: SKSpriteNode {
         }
         if isDead{//If dead turns sprite red waits for x seconds and then removes the sprite from parent
             physicsBody?.categoryBitMask = PhysicsCategory.dead//Stops all contact and collision detection after death
-            runAction(SKAction.sequence([
-                SKAction.colorizeWithColor(
-                    SKColor.redColor(),
+            run(SKAction.sequence([
+                SKAction.colorize(
+                    with: SKColor.red,
                     colorBlendFactor: 1.0,
                     duration: 0.0),
-                SKAction.waitForDuration(0.3),
+                SKAction.wait(forDuration: 0.3),
                 SKAction.removeFromParent()]))
             
-            removeActionForKey("move")
+            removeAction(forKey: "move")
         }
     }
     func hurtEffects(){
-        let colorizeSpriteToRed = SKAction.colorizeWithColor(SKColor.redColor(), colorBlendFactor: 1.0, duration: 0.5)
-        let colorizeSpriteToNorm = SKAction.colorizeWithColor(SKColor.redColor(), colorBlendFactor: 0.0, duration: 0.5)
+        let colorizeSpriteToRed = SKAction.colorize(with: SKColor.red, colorBlendFactor: 1.0, duration: 0.5)
+        let colorizeSpriteToNorm = SKAction.colorize(with: SKColor.red, colorBlendFactor: 0.0, duration: 0.5)
         let ColorOnOfSprite = SKAction.sequence([colorizeSpriteToRed, colorizeSpriteToNorm])
-        let ColorsGoing = SKAction.repeatAction(ColorOnOfSprite, count: 2)
-        let fadeOut:SKAction = SKAction.fadeOutWithDuration(0.25)
-        let fadeIn:SKAction = SKAction.reversedAction(fadeOut)()
+        let ColorsGoing = SKAction.repeat(ColorOnOfSprite, count: 2)
+        let fadeOut:SKAction = SKAction.fadeOut(withDuration: 0.25)
+        let fadeIn:SKAction = SKAction.reversed(fadeOut)()
         let twinkleTwincle = SKAction.sequence([fadeOut, fadeIn])
-        let flash = SKAction.repeatAction(twinkleTwincle, count: 4)
+        let flash = SKAction.repeat(twinkleTwincle, count: 4)
         
         let groupAction = SKAction.group([flash, ColorsGoing])
         flashRedEffect = groupAction
     }
     
     //Sounds
-    func playSoundEffect(fileName: String){
-        runAction(SKAction.playSoundFileNamed(fileName, waitForCompletion: false))
+    func playSoundEffect(_ fileName: String){
+        run(SKAction.playSoundFileNamed(fileName, waitForCompletion: false))
     }
     func playDeadSound(){
         playSoundEffect(diedSoundString)

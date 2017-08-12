@@ -20,7 +20,7 @@ class MainMenuScene: SKScene{
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func didMoveToView(view: SKView) {
+    override func didMove(to view: SKView) {
         let background: SKSpriteNode = SKSpriteNode(imageNamed: "mainMenue")
 
         addChild(background)
