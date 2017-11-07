@@ -150,6 +150,92 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		418B542F1FB19B8200B92CAE /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				C60D5AD11B6AF57300672EC1 /* Entity.swift */,
+				C60D5AD31B6AF5B000672EC1 /* Player.swift */,
+				C6D396251B64596B00830790 /* Enemy.swift */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		418B54301FB19B9A00B92CAE /* Third Party */ = {
+			isa = PBXGroup;
+			children = (
+				C6D396291B64597D00830790 /* MyUtils.swift */,
+				C6D396231B64596300830790 /* Int+Extensions.swift */,
+			);
+			name = "Third Party";
+			sourceTree = "<group>";
+		};
+		418B54311FB19BAA00B92CAE /* SKS */ = {
+			isa = PBXGroup;
+			children = (
+				C658633D1B6864FA00F89D71 /* engine.sks */,
+				C60D5ACB1B6A11D800672EC1 /* magicBlast.sks */,
+				C60D5ACF1B6A140900672EC1 /* death.sks */,
+				C6DB59C41B6E29900013362E /* light.sks */,
+			);
+			name = SKS;
+			sourceTree = "<group>";
+		};
+		418B54321FB19BC300B92CAE /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				C6D395E51B64579100830790 /* GameScene.sks */,
+				418B54311FB19BAA00B92CAE /* SKS */,
+				C6162A661B7EBC810046B4A1 /* Assets.xcassets */,
+				C60D5ACC1B6A11D800672EC1 /* spark.png */,
+			);
+			name = Media;
+			sourceTree = "<group>";
+		};
+		418B54331FB19BD600B92CAE /* Story Board */ = {
+			isa = PBXGroup;
+			children = (
+				C6D395EB1B64579100830790 /* Main.storyboard */,
+				C6D395F01B64579200830790 /* LaunchScreen.storyboard */,
+			);
+			name = "Story Board";
+			sourceTree = "<group>";
+		};
+		418B54341FB19BE300B92CAE /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				C6D395E31B64579100830790 /* AppDelegate.swift */,
+				C6D395F31B64579200830790 /* Info.plist */,
+			);
+			name = "Support Files";
+			sourceTree = "<group>";
+		};
+		418B54351FB19BEF00B92CAE /* GlobalsAndConstants */ = {
+			isa = PBXGroup;
+			children = (
+				C6D3961F1B64594F00830790 /* GlobalsAndConstants.swift */,
+			);
+			name = GlobalsAndConstants;
+			sourceTree = "<group>";
+		};
+		418B54361FB19C0300B92CAE /* Views and Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				C6D395E71B64579100830790 /* GameScene.swift */,
+				C6D396271B64597400830790 /* MainMenuScene.swift */,
+				C6D395E91B64579100830790 /* GameViewController.swift */,
+				C6D396211B64595B00830790 /* GameOverScene.swift */,
+			);
+			name = "Views and Scenes";
+			sourceTree = "<group>";
+		};
+		418B54371FB19C2700B92CAE /* Global Functions */ = {
+			isa = PBXGroup;
+			children = (
+				C63933F51B78E8F9009FFC3B /* Actions.swift */,
+			);
+			name = "Global Functions";
+			sourceTree = "<group>";
+		};
 		C6D395D71B64579100830790 = {
 			isa = PBXGroup;
 			children = (
@@ -176,28 +262,14 @@
 			isa = PBXGroup;
 			children = (
 				C6E98AFD1B6F5E64005B1B29 /* SFX */,
-				C6D395E31B64579100830790 /* AppDelegate.swift */,
-				C6D3961F1B64594F00830790 /* GlobalsAndConstants.swift */,
-				C6D395E51B64579100830790 /* GameScene.sks */,
-				C6D395E71B64579100830790 /* GameScene.swift */,
-				C60D5AD11B6AF57300672EC1 /* Entity.swift */,
-				C63933F51B78E8F9009FFC3B /* Actions.swift */,
-				C60D5AD31B6AF5B000672EC1 /* Player.swift */,
-				C6D396271B64597400830790 /* MainMenuScene.swift */,
-				C6D395E91B64579100830790 /* GameViewController.swift */,
-				C6D396291B64597D00830790 /* MyUtils.swift */,
-				C658633D1B6864FA00F89D71 /* engine.sks */,
-				C60D5ACB1B6A11D800672EC1 /* magicBlast.sks */,
-				C60D5ACF1B6A140900672EC1 /* death.sks */,
-				C6D396251B64596B00830790 /* Enemy.swift */,
-				C6DB59C41B6E29900013362E /* light.sks */,
-				C6D396231B64596300830790 /* Int+Extensions.swift */,
-				C6162A661B7EBC810046B4A1 /* Assets.xcassets */,
-				C6D396211B64595B00830790 /* GameOverScene.swift */,
-				C60D5ACC1B6A11D800672EC1 /* spark.png */,
-				C6D395EB1B64579100830790 /* Main.storyboard */,
-				C6D395F01B64579200830790 /* LaunchScreen.storyboard */,
-				C6D395F31B64579200830790 /* Info.plist */,
+				418B54341FB19BE300B92CAE /* Support Files */,
+				418B54351FB19BEF00B92CAE /* GlobalsAndConstants */,
+				418B54321FB19BC300B92CAE /* Media */,
+				418B542F1FB19B8200B92CAE /* Classes */,
+				418B54371FB19C2700B92CAE /* Global Functions */,
+				418B54361FB19C0300B92CAE /* Views and Scenes */,
+				418B54301FB19B9A00B92CAE /* Third Party */,
+				418B54331FB19BD600B92CAE /* Story Board */,
 			);
 			path = relliK;
 			sourceTree = "<group>";
