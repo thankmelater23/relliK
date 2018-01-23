@@ -11,10 +11,6 @@ import UIKit
 import SpriteKit
 
 class Player:Entity {
-//    struct SharedTexture {
-//        static var texture = SKTexture()
-//        static var onceToken: Int = 0
-//    }
     private static var __once: () = {
             // 2
             let mainPlayer = SKSpriteNode(imageNamed: "Spaceship")
@@ -37,11 +33,6 @@ class Player:Entity {
         setEntityTypeAttribures()
     }
     override class func generateTexture() -> SKTexture?{
-        // 1
-//        struct SharedTexture {
-//            static var texture = SKTexture()
-//            static var onceToken: Int = 0
-//        }
         
         _ = Player.__once
         
