@@ -1,0 +1,2484 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>GameScene Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/GameScene" class="dashAnchor"></a>
+    <a title="GameScene Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (2% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        GameScene Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/AppDelegate.html">AppDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Boss.html">Boss</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Bullet.html">Bullet</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Enemy.html">Enemy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Entity.html">Entity</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Entity/SharedTexture.html">– SharedTexture</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GameOverScene.html">GameOverScene</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GameScene.html">GameScene</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GameViewController.html">GameViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Ghost.html">Ghost</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MainMenuScene.html">MainMenuScene</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Minion.html">Minion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Player.html">Player</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Soldier.html">Soldier</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Global Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK14GAME_MAX_SPEEDSdv">GAME_MAX_SPEED</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK14GAME_MIN_SPEEDSdv">GAME_MIN_SPEED</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK21backgroundMusicPlayerSQySo07AVAudioD0CGv">backgroundMusicPlayer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK18bulletCoolDownTimeSdv">bulletCoolDownTime</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK25bulletCurrentCoolDownTimeSdv">bulletCurrentCoolDownTime</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK11bulletScale12CoreGraphics7CGFloatVv">bulletScale</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK15enemyBlockScale12CoreGraphics7CGFloatVv">enemyBlockScale</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK10enemyScale12CoreGraphics7CGFloatVv">enemyScale</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK25enemyWaitIncrementalSpeedSdv">enemyWaitIncrementalSpeed</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK17enemyWaitMaxSpeedSdv">enemyWaitMaxSpeed</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK17enemyWaitMinSpeedSdv">enemyWaitMinSpeed</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK13enemyWaitTimeSdv">enemyWaitTime</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK20gameIncrementalSpeedSdv">gameIncrementalSpeed</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK9gameSpeedSdv">gameSpeed</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK14gameTotalSpeedSdv">gameTotalSpeed</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK29incrementalSpaceBetweenBlocks12CoreGraphics7CGFloatVv">incrementalSpaceBetweenBlocks</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK8lastShotSdv">lastShot</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK16playerBlockScale12CoreGraphics7CGFloatVv">playerBlockScale</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK11playerScale12CoreGraphics7CGFloatVv">playerScale</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK22spaceBetweenEnemyBlock12CoreGraphics7CGFloatVv">spaceBetweenEnemyBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK14spaceToLastBox12CoreGraphics7CGFloatVv">spaceToLastBox</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK003Bxa12CoreGraphics7CGFloatVv">π</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/blockLabel.html">blockLabel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/blockPlace.html">blockPlace</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/entityDirection.html">entityDirection</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/CGFloat.html">CGFloat</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/CGPoint.html">CGPoint</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Int.html">Int</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:6relliK1moiSC7CGPointVAD_12CoreGraphics7CGFloatVtF">*(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:6relliK1moiSC7CGPointVAD_ADtF">*(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:6relliK2meoiySC7CGPointVz_12CoreGraphics7CGFloatVtF">*=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:6relliK2meoiySC7CGPointVz_ADtF">*=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:6relliK1poiSC7CGPointVAD_ADtF">+(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:6relliK2peoiySC7CGPointVz_ADtF">+=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:6relliK1soiSC7CGPointVAD_ADtF">-(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:6relliK2seoiySC7CGPointVz_ADtF">-=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:6relliK1doiSC7CGPointVAD_12CoreGraphics7CGFloatVtF">/(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:6relliK1doiSC7CGPointVAD_ADtF">/(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:6relliK2deoiySC7CGPointVz_12CoreGraphics7CGFloatVtF">/=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:6relliK2deoiySC7CGPointVz_ADtF">/=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/atan2(y:x:)">atan2(y:x:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:6relliK19playBackgroundMusicySSF">playBackgroundMusic(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:6relliK20shortestAngleBetween12CoreGraphics7CGFloatVAE_AE6angle2tF">shortestAngleBetween(_:angle2:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/sqrt(a:)">sqrt(a:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/BitMaskOfLighting.html">BitMaskOfLighting</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PhysicsCategory.html">PhysicsCategory</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>GameScene</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">GameScene</span><span class="p">:</span> <span class="kt">SKScene</span> <span class="p">,</span><span class="kt">SKPhysicsContactDelegate</span></code></pre>
+
+                </div>
+              </div>
+            <p>Undocumented</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)isGamePaused"></a>
+                    <a name="//apple_ref/swift/Property/isGamePaused" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)isGamePaused">isGamePaused</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">isGamePaused</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)monstorsInField"></a>
+                    <a name="//apple_ref/swift/Property/monstorsInField" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)monstorsInField">monstorsInField</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">monstorsInField</span> <span class="o">=</span> <span class="p">[</span><span class="kt"><a href="../Classes/Enemy.html">Enemy</a></span><span class="p">]()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)bulletsInField"></a>
+                    <a name="//apple_ref/swift/Property/bulletsInField" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)bulletsInField">bulletsInField</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">bulletsInField</span> <span class="o">=</span> <span class="p">[</span><span class="kt"><a href="../Classes/Bullet.html">Bullet</a></span><span class="p">]()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)player"></a>
+                    <a name="//apple_ref/swift/Property/player" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)player">player</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">player</span><span class="p">:</span> <span class="kt"><a href="../Classes/Player.html">Player</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)isShootable"></a>
+                    <a name="//apple_ref/swift/Property/isShootable" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)isShootable">isShootable</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">isShootable</span><span class="p">:</span><span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)backgroundNode"></a>
+                    <a name="//apple_ref/swift/Property/backgroundNode" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)backgroundNode">backgroundNode</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">backgroundNode</span><span class="p">:</span> <span class="kt">SKSpriteNode</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)playerBlock"></a>
+                    <a name="//apple_ref/swift/Property/playerBlock" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)playerBlock">playerBlock</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">playerBlock</span><span class="p">:</span> <span class="kt">SKSpriteNode</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)leftBoxes"></a>
+                    <a name="//apple_ref/swift/Property/leftBoxes" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)leftBoxes">leftBoxes</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">leftBoxes</span><span class="p">:</span> <span class="p">[</span><span class="kt">SKSpriteNode</span><span class="p">]</span><span class="o">!</span> <span class="o">=</span> <span class="p">[]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)rightBoxes"></a>
+                    <a name="//apple_ref/swift/Property/rightBoxes" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)rightBoxes">rightBoxes</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">rightBoxes</span><span class="p">:</span> <span class="p">[</span><span class="kt">SKSpriteNode</span><span class="p">]</span><span class="o">!</span> <span class="o">=</span> <span class="p">[]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)upBoxes"></a>
+                    <a name="//apple_ref/swift/Property/upBoxes" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)upBoxes">upBoxes</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">upBoxes</span><span class="p">:</span> <span class="p">[</span><span class="kt">SKSpriteNode</span><span class="p">]</span><span class="o">!</span> <span class="o">=</span> <span class="p">[]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)downBoxes"></a>
+                    <a name="//apple_ref/swift/Property/downBoxes" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)downBoxes">downBoxes</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">downBoxes</span><span class="p">:</span> <span class="p">[</span><span class="kt">SKSpriteNode</span><span class="p">]</span><span class="o">!</span> <span class="o">=</span> <span class="p">[]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)leftLight"></a>
+                    <a name="//apple_ref/swift/Property/leftLight" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)leftLight">leftLight</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">leftLight</span> <span class="o">=</span> <span class="kt">SKLightNode</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)rightLight"></a>
+                    <a name="//apple_ref/swift/Property/rightLight" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)rightLight">rightLight</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">rightLight</span> <span class="o">=</span> <span class="kt">SKLightNode</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)upLight"></a>
+                    <a name="//apple_ref/swift/Property/upLight" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)upLight">upLight</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">upLight</span> <span class="o">=</span> <span class="kt">SKLightNode</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)downLight"></a>
+                    <a name="//apple_ref/swift/Property/downLight" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)downLight">downLight</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">downLight</span> <span class="o">=</span> <span class="kt">SKLightNode</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)lastUpdateTime"></a>
+                    <a name="//apple_ref/swift/Property/lastUpdateTime" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)lastUpdateTime">lastUpdateTime</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">lastUpdateTime</span><span class="p">:</span> <span class="kt">TimeInterval</span> <span class="o">=</span> <span class="mi">0</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)dt"></a>
+                    <a name="//apple_ref/swift/Property/dt" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)dt">dt</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">dt</span><span class="p">:</span> <span class="kt">TimeInterval</span> <span class="o">=</span> <span class="mi">0</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)incrementCurrentGameSpeedTime"></a>
+                    <a name="//apple_ref/swift/Property/incrementCurrentGameSpeedTime" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)incrementCurrentGameSpeedTime">incrementCurrentGameSpeedTime</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">incrementCurrentGameSpeedTime</span><span class="p">:</span> <span class="kt">TimeInterval</span> <span class="o">=</span> <span class="mi">0</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)incrementGameSpeedTime"></a>
+                    <a name="//apple_ref/swift/Property/incrementGameSpeedTime" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)incrementGameSpeedTime">incrementGameSpeedTime</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">incrementGameSpeedTime</span><span class="p">:</span> <span class="kt">TimeInterval</span> <span class="o">=</span> <span class="kt"><a href="../Global Variables.html#/s:6relliK14GAME_MIN_SPEEDSdv">GAME_MIN_SPEED</a></span> <span class="o">*</span> <span class="mi">5</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)movePointsPerSec"></a>
+                    <a name="//apple_ref/swift/Property/movePointsPerSec" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)movePointsPerSec">movePointsPerSec</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">movePointsPerSec</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mf">480.0</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)velocity"></a>
+                    <a name="//apple_ref/swift/Property/velocity" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)velocity">velocity</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">velocity</span> <span class="o">=</span> <span class="kt">CGPoint</span><span class="o">.</span><span class="n">zero</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)playableRect"></a>
+                    <a name="//apple_ref/swift/Property/playableRect" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)playableRect">playableRect</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">playableRect</span><span class="p">:</span> <span class="kt">CGRect</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6relliK9GameSceneC17lastTouchLocationSC7CGPointVSgv"></a>
+                    <a name="//apple_ref/swift/Property/lastTouchLocation" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6relliK9GameSceneC17lastTouchLocationSC7CGPointVSgv">lastTouchLocation</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">lastTouchLocation</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)rotateRadiansPerSec"></a>
+                    <a name="//apple_ref/swift/Property/rotateRadiansPerSec" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)rotateRadiansPerSec">rotateRadiansPerSec</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">rotateRadiansPerSec</span><span class="p">:</span><span class="kt">CGFloat</span> <span class="o">=</span> <span class="mf">4.0</span> <span class="o">*</span> <span class="n"><a href="../Global Variables.html#/s:6relliK003Bxa12CoreGraphics7CGFloatVv">π</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)pointBetweenBlocks"></a>
+                    <a name="//apple_ref/swift/Property/pointBetweenBlocks" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)pointBetweenBlocks">pointBetweenBlocks</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">pointBetweenBlocks</span> <span class="o">=</span> <span class="kt">CGFloat</span><span class="p">(</span><span class="n"><a href="../Global Variables.html#/s:6relliK22spaceBetweenEnemyBlock12CoreGraphics7CGFloatVv">spaceBetweenEnemyBlock</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)shotStart"></a>
+                    <a name="//apple_ref/swift/Property/shotStart" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)shotStart">shotStart</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">shotStart</span> <span class="o">=</span> <span class="mi">50</span><span class="c1">//No use right now 9-10-15</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)horizontalXAxis"></a>
+                    <a name="//apple_ref/swift/Property/horizontalXAxis" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)horizontalXAxis">horizontalXAxis</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">horizontalXAxis</span> <span class="p">:</span><span class="kt">CGFloat</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)verticalAxis"></a>
+                    <a name="//apple_ref/swift/Property/verticalAxis" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)verticalAxis">verticalAxis</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">verticalAxis</span> <span class="p">:</span><span class="kt">CGFloat</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)leftSideEnemyStartPosition"></a>
+                    <a name="//apple_ref/swift/Property/leftSideEnemyStartPosition" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)leftSideEnemyStartPosition">leftSideEnemyStartPosition</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">leftSideEnemyStartPosition</span><span class="p">:</span> <span class="kt">CGPoint</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)rightSideEnemyStartPosition"></a>
+                    <a name="//apple_ref/swift/Property/rightSideEnemyStartPosition" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)rightSideEnemyStartPosition">rightSideEnemyStartPosition</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">rightSideEnemyStartPosition</span><span class="p">:</span> <span class="kt">CGPoint</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)upSideEnemyStartPosition"></a>
+                    <a name="//apple_ref/swift/Property/upSideEnemyStartPosition" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)upSideEnemyStartPosition">upSideEnemyStartPosition</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">upSideEnemyStartPosition</span><span class="p">:</span> <span class="kt">CGPoint</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)downSideEnemyStartPosition"></a>
+                    <a name="//apple_ref/swift/Property/downSideEnemyStartPosition" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)downSideEnemyStartPosition">downSideEnemyStartPosition</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">downSideEnemyStartPosition</span><span class="p">:</span> <span class="kt">CGPoint</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)bulletMoveRightAction"></a>
+                    <a name="//apple_ref/swift/Property/bulletMoveRightAction" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)bulletMoveRightAction">bulletMoveRightAction</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">bulletMoveRightAction</span><span class="p">:</span> <span class="kt">SKAction</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)bulletMoveLeftAction"></a>
+                    <a name="//apple_ref/swift/Property/bulletMoveLeftAction" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)bulletMoveLeftAction">bulletMoveLeftAction</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">bulletMoveLeftAction</span><span class="p">:</span> <span class="kt">SKAction</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)bulletMoveDownAction"></a>
+                    <a name="//apple_ref/swift/Property/bulletMoveDownAction" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)bulletMoveDownAction">bulletMoveDownAction</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">bulletMoveDownAction</span><span class="p">:</span> <span class="kt">SKAction</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)bulletMoveUpAction"></a>
+                    <a name="//apple_ref/swift/Property/bulletMoveUpAction" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)bulletMoveUpAction">bulletMoveUpAction</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">bulletMoveUpAction</span><span class="p">:</span> <span class="kt">SKAction</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(im)gameOver"></a>
+                    <a name="//apple_ref/swift/Method/gameOver()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(im)gameOver">gameOver()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">gameOver</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(im)loadDefaults"></a>
+                    <a name="//apple_ref/swift/Method/loadDefaults()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(im)loadDefaults">loadDefaults()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">loadDefaults</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)scoreBoardLabel"></a>
+                    <a name="//apple_ref/swift/Property/scoreBoardLabel" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)scoreBoardLabel">scoreBoardLabel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">scoreBoardLabel</span> <span class="o">=</span> <span class="kt">SKLabelNode</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)score"></a>
+                    <a name="//apple_ref/swift/Property/score" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)score">score</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">score</span><span class="p">:</span><span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)killBoardLabel"></a>
+                    <a name="//apple_ref/swift/Property/killBoardLabel" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)killBoardLabel">killBoardLabel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">killBoardLabel</span> <span class="o">=</span> <span class="kt">SKLabelNode</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)killed"></a>
+                    <a name="//apple_ref/swift/Property/killed" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)killed">killed</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">killed</span><span class="p">:</span><span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)errorsBoardLabel"></a>
+                    <a name="//apple_ref/swift/Property/errorsBoardLabel" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)errorsBoardLabel">errorsBoardLabel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">errorsBoardLabel</span> <span class="o">=</span> <span class="kt">SKLabelNode</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)errors"></a>
+                    <a name="//apple_ref/swift/Property/errors" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)errors">errors</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">errors</span><span class="p">:</span><span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)highScoreBoardLabel"></a>
+                    <a name="//apple_ref/swift/Property/highScoreBoardLabel" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)highScoreBoardLabel">highScoreBoardLabel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">highScoreBoardLabel</span> <span class="o">=</span> <span class="kt">SKLabelNode</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)highscores"></a>
+                    <a name="//apple_ref/swift/Property/highscores" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)highscores">highscores</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">highscores</span><span class="p">:</span><span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)timerBoardLabel"></a>
+                    <a name="//apple_ref/swift/Property/timerBoardLabel" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)timerBoardLabel">timerBoardLabel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">timerBoardLabel</span> <span class="o">=</span> <span class="kt">SKLabelNode</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)gameMiliSecToSec"></a>
+                    <a name="//apple_ref/swift/Property/gameMiliSecToSec" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)gameMiliSecToSec">gameMiliSecToSec</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">gameMiliSecToSec</span> <span class="o">=</span> <span class="kt">TimeInterval</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)gameTimer"></a>
+                    <a name="//apple_ref/swift/Property/gameTimer" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)gameTimer">gameTimer</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">gameTimer</span><span class="p">:</span><span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)waitTimeBoardLabel"></a>
+                    <a name="//apple_ref/swift/Property/waitTimeBoardLabel" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)waitTimeBoardLabel">waitTimeBoardLabel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">waitTimeBoardLabel</span> <span class="o">=</span> <span class="kt">SKLabelNode</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(py)gameSpeedBoardLabel"></a>
+                    <a name="//apple_ref/swift/Property/gameSpeedBoardLabel" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(py)gameSpeedBoardLabel">gameSpeedBoardLabel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">gameSpeedBoardLabel</span> <span class="o">=</span> <span class="kt">SKLabelNode</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(im)setGameTimeLabel"></a>
+                    <a name="//apple_ref/swift/Method/setGameTimeLabel()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(im)setGameTimeLabel">setGameTimeLabel()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setGameTimeLabel</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(im)setWaitTimeLabel"></a>
+                    <a name="//apple_ref/swift/Method/setWaitTimeLabel()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(im)setWaitTimeLabel">setWaitTimeLabel()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setWaitTimeLabel</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(im)convertGameTimer:"></a>
+                    <a name="//apple_ref/swift/Method/convertGameTimer(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(im)convertGameTimer:">convertGameTimer(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">convertGameTimer</span><span class="p">(</span><span class="n">_</span> <span class="nv">timeToConvert</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span><span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(im)paused"></a>
+                    <a name="//apple_ref/swift/Method/paused()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(im)paused">paused()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">paused</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(im)setGameLights"></a>
+                    <a name="//apple_ref/swift/Method/setGameLights()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(im)setGameLights">setGameLights()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setGameLights</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(im)update:"></a>
+                    <a name="//apple_ref/swift/Method/update(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(im)update:">update(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">update</span><span class="p">(</span><span class="n">_</span> <span class="nv">currentTime</span><span class="p">:</span> <span class="kt">TimeInterval</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(im)initWithSize:"></a>
+                    <a name="//apple_ref/swift/Method/init(size:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(im)initWithSize:">init(size:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">override</span> <span class="nf">init</span><span class="p">(</span><span class="nv">size</span><span class="p">:</span> <span class="kt">CGSize</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(im)didMoveToView:"></a>
+                    <a name="//apple_ref/swift/Method/didMove(to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(im)didMoveToView:">didMove(to:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">didMove</span><span class="p">(</span><span class="n">to</span> <span class="nv">view</span><span class="p">:</span> <span class="kt">SKView</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(im)initWithCoder:"></a>
+                    <a name="//apple_ref/swift/Method/init(coder:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(im)initWithCoder:">init(coder:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">required</span> <span class="nf">init</span><span class="p">(</span><span class="n">coder</span> <span class="nv">aDecoder</span><span class="p">:</span> <span class="kt">NSCoder</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(im)setPhysics"></a>
+                    <a name="//apple_ref/swift/Method/setPhysics()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(im)setPhysics">setPhysics()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setPhysics</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(im)didBeginContact:"></a>
+                    <a name="//apple_ref/swift/Method/didBegin(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(im)didBeginContact:">didBegin(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">didBegin</span><span class="p">(</span><span class="n">_</span> <span class="nv">contact</span><span class="p">:</span> <span class="kt">SKPhysicsContact</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(im)setLabels"></a>
+                    <a name="//apple_ref/swift/Method/setLabels()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(im)setLabels">setLabels()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setLabels</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(im)setDebugLabels"></a>
+                    <a name="//apple_ref/swift/Method/setDebugLabels()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(im)setDebugLabels">setDebugLabels()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setDebugLabels</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(im)createSwipeRecognizers"></a>
+                    <a name="//apple_ref/swift/Method/createSwipeRecognizers()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(im)createSwipeRecognizers">createSwipeRecognizers()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">createSwipeRecognizers</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(im)debugDrawPlayableArea"></a>
+                    <a name="//apple_ref/swift/Method/debugDrawPlayableArea()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(im)debugDrawPlayableArea">debugDrawPlayableArea()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">debugDrawPlayableArea</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(im)createActions"></a>
+                    <a name="//apple_ref/swift/Method/createActions()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(im)createActions">createActions()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">createActions</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(im)touchesBegan:withEvent:"></a>
+                    <a name="//apple_ref/swift/Method/touchesBegan(_:with:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(im)touchesBegan:withEvent:">touchesBegan(_:with:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">touchesBegan</span><span class="p">(</span><span class="n">_</span> <span class="nv">touches</span><span class="p">:</span> <span class="kt">Set</span><span class="o">&lt;</span><span class="kt">UITouch</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">with</span> <span class="nv">event</span><span class="p">:</span> <span class="kt">UIEvent</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(im)moveEnemies"></a>
+                    <a name="//apple_ref/swift/Method/moveEnemies()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(im)moveEnemies">moveEnemies()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">moveEnemies</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(im)spawnEnemy"></a>
+                    <a name="//apple_ref/swift/Method/spawnEnemy()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(im)spawnEnemy">spawnEnemy()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">spawnEnemy</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(im)randomEnemy:"></a>
+                    <a name="//apple_ref/swift/Method/randomEnemy(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(im)randomEnemy:">randomEnemy(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">randomEnemy</span><span class="p">(</span><span class="n">_</span> <span class="nv">enemyLocation</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Enemy.html">Enemy</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(im)createPlayer"></a>
+                    <a name="//apple_ref/swift/Method/createPlayer()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(im)createPlayer">createPlayer()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">createPlayer</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(im)moveBullets"></a>
+                    <a name="//apple_ref/swift/Method/moveBullets()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(im)moveBullets">moveBullets()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">moveBullets</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(im)shotDirection:"></a>
+                    <a name="//apple_ref/swift/Method/shotDirection(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(im)shotDirection:">shotDirection(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">shotDirection</span><span class="p">(</span><span class="n">_</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt">UISwipeGestureRecognizer</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(im)particleCreator"></a>
+                    <a name="//apple_ref/swift/Method/particleCreator()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(im)particleCreator">particleCreator()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">particleCreator</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(im)createPlayerBlock"></a>
+                    <a name="//apple_ref/swift/Method/createPlayerBlock()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(im)createPlayerBlock">createPlayerBlock()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">createPlayerBlock</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(im)createBlocks"></a>
+                    <a name="//apple_ref/swift/Method/createBlocks()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(im)createBlocks">createBlocks()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">createBlocks</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(im)upScore:"></a>
+                    <a name="//apple_ref/swift/Method/upScore(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(im)upScore:">upScore(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">upScore</span><span class="p">(</span><span class="n">_</span> <span class="nv">enemyScoreValue</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(im)upKilledEnemy"></a>
+                    <a name="//apple_ref/swift/Method/upKilledEnemy()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(im)upKilledEnemy">upKilledEnemy()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">upKilledEnemy</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(im)addError"></a>
+                    <a name="//apple_ref/swift/Method/addError()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(im)addError">addError()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">addError</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(im)playGameBackgroundMusic"></a>
+                    <a name="//apple_ref/swift/Method/playGameBackgroundMusic()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(im)playGameBackgroundMusic">playGameBackgroundMusic()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">playGameBackgroundMusic</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)GameScene(im)createGameOverScene:"></a>
+                    <a name="//apple_ref/swift/Method/createGameOverScene(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)GameScene(im)createGameOverScene:">createGameOverScene(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">createGameOverScene</span><span class="p">(</span><span class="n">_</span> <span class="nv">won</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2018-01-11)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
