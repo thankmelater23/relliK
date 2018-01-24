@@ -40,6 +40,7 @@ class Enemy: Entity{
     physicsBody?.categoryBitMask = PhysicsCategory.Enemy
     physicsBody?.contactTestBitMask = PhysicsCategory.Player | PhysicsCategory.Bullet
     physicsBody?.collisionBitMask = PhysicsCategory.None
+    
     loadedEnemySettings()
     
   }
@@ -65,8 +66,7 @@ class Enemy: Entity{
     
     let wait = SKAction.wait(forDuration: enemyWaitTime)
     
-    let moveToNextBlockAction = SKAction.run({
-      node in
+    let moveToNextBlockAction = SKAction.run({ //node in
       self.moveToNextBlock()
       
       //            if self.name == "ghost"{//Fades the ghost to alpha 1
@@ -347,6 +347,7 @@ class Minion:Enemy{
     
     let enemy = SKSpriteNode(imageNamed: "cat")
     enemy.name = "minion"
+    enemy.color = UIColor.yellow
     
     let textureView = SKView()
     SharedTexture.texture = textureView.texture(from: enemy)!

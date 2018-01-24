@@ -180,7 +180,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         return String("\(min):\(sec)")
      }
     
-    func paused(){
+    @objc func paused(){
         !isGamePaused
     }
     
@@ -357,10 +357,6 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         if (contact.bodyA.categoryBitMask == PhysicsCategory.Enemy) &&
             (contact.bodyB.categoryBitMask == PhysicsCategory.Bullet){
                 firstNode as! Enemy
-                
-                //                if firstNode.name == "ghost" && !(firstNode.isBlockPlaceMoreThanRange()){
-                //
-                //                }else{
                 secondNode.removeAction(forKey: "move")
                 secondNode.kill()
                 firstNode.hurt()
@@ -368,17 +364,14 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
                 if firstNode.isDead{
                     self.upScore(firstNode.sumForScore())
                     self.upKilledEnemy()
-                    //                    }
                 }
         }
         
         if (contact.bodyB.categoryBitMask == PhysicsCategory.Enemy) &&
             (contact.bodyA.categoryBitMask == PhysicsCategory.Bullet){
                 secondNode as! Enemy
-                //                if secondNode.name == "ghost" && !(secondNode.isBlockPlaceMoreThanRange()){
-                //
-                //                }else{
                 firstNode.removeAction(forKey: "move")
+          
                 firstNode.kill()
                 secondNode.hurt()
                 
@@ -618,7 +611,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
         bulletsInField = bulletsInField.filter({$0.stopped == false})
         
     }
-    func shotDirection(_ sender: UISwipeGestureRecognizer){
+    @objc func shotDirection(_ sender: UISwipeGestureRecognizer){
         if isShootable{
             let newBullet = Bullet(entityPosition: CGPoint(x: playableRect.midX, y: playableRect.midY))
             

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4181564E20194BDF00C20310 /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4181564D20194BDF00C20310 /* Bullet.swift */; };
 		C60D5ACD1B6A11D800672EC1 /* magicBlast.sks in Resources */ = {isa = PBXBuildFile; fileRef = C60D5ACB1B6A11D800672EC1 /* magicBlast.sks */; };
 		C60D5ACE1B6A11D800672EC1 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = C60D5ACC1B6A11D800672EC1 /* spark.png */; };
 		C60D5AD01B6A140900672EC1 /* death.sks in Resources */ = {isa = PBXBuildFile; fileRef = C60D5ACF1B6A140900672EC1 /* death.sks */; };
@@ -71,6 +72,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4181564D20194BDF00C20310 /* Bullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
 		C60D5ACB1B6A11D800672EC1 /* magicBlast.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = magicBlast.sks; sourceTree = "<group>"; };
 		C60D5ACC1B6A11D800672EC1 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		C60D5ACF1B6A140900672EC1 /* death.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = death.sks; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				C60D5AD11B6AF57300672EC1 /* Entity.swift */,
+				4181564D20194BDF00C20310 /* Bullet.swift */,
 				C60D5AD31B6AF5B000672EC1 /* Player.swift */,
 				C6D396251B64596B00830790 /* Enemy.swift */,
 			);
@@ -387,16 +390,16 @@
 					C6D395DF1B64579100830790 = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = ZJWNZ643CG;
-						LastSwiftMigration = 0830;
+						LastSwiftMigration = 0920;
 					};
 					C6D395F71B64579200830790 = {
 						CreatedOnToolsVersion = 7.0;
-						LastSwiftMigration = 0830;
+						LastSwiftMigration = 0920;
 						TestTargetID = C6D395DF1B64579100830790;
 					};
 					C6D396021B64579200830790 = {
 						CreatedOnToolsVersion = 7.0;
-						LastSwiftMigration = 0830;
+						LastSwiftMigration = 0920;
 						TestTargetID = C6D395DF1B64579100830790;
 					};
 				};
@@ -496,6 +499,7 @@
 			files = (
 				C60D5AD41B6AF5B000672EC1 /* Player.swift in Sources */,
 				C6D396261B64596B00830790 /* Enemy.swift in Sources */,
+				4181564E20194BDF00C20310 /* Bullet.swift in Sources */,
 				C6D396221B64595B00830790 /* GameOverScene.swift in Sources */,
 				C6D396201B64594F00830790 /* GlobalsAndConstants.swift in Sources */,
 				C6D395E81B64579100830790 /* GameScene.swift in Sources */,
@@ -596,7 +600,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -635,7 +639,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -654,11 +658,12 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = relliK/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BangBangStudios.relliK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -673,11 +678,12 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = relliK/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BangBangStudios.relliK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -690,7 +696,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BangBangStudios.relliKTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/relliK.app/relliK";
 			};
 			name = Debug;
@@ -703,7 +710,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BangBangStudios.relliKTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/relliK.app/relliK";
 			};
 			name = Release;
@@ -715,7 +723,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BangBangStudios.relliKUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = relliK;
 				USES_XCTRUNNER = YES;
 			};
@@ -728,7 +737,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BangBangStudios.relliKUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = relliK;
 				USES_XCTRUNNER = YES;
 			};
