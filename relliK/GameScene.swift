@@ -78,7 +78,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate {
     
     func loadDefaults(){
         let gameHighScore = UserDefaults.standard.value(forKey: "highscore") as! Int?
-        guard let defaultHighScore = gameHighScore else {
+        guard let ØdefaultHighScore = gameHighScore else {
             UserDefaults.standard.setValue(0, forKeyPath: "highscore")
             UserDefaults.standard.synchronize()
             return

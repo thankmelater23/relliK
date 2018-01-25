@@ -30,6 +30,7 @@
 		2DF702F945CE1915213929116A38694A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		368D0E6FB15188829867058615FC4577 /* Pods-relliKUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-relliKUITests-resources.sh"; sourceTree = "<group>"; };
 		36EE86B56C3946CF6187B338B9EADA82 /* Pods-relliKTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-relliKTests.debug.xcconfig"; sourceTree = "<group>"; };
+		39D0C2E1F22E6FA212FB269500A61293 /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		4980E63A708FA2343CC6F226EB7C33E2 /* Pods-relliK-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-relliK-frameworks.sh"; sourceTree = "<group>"; };
 		49D2637702CC099B1FD34BF7FED56D90 /* Pods-relliKTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-relliKTests.modulemap"; sourceTree = "<group>"; };
 		5DAA127988B6B96ED904572106B25604 /* Pods-relliKUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-relliKUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -39,6 +40,7 @@
 		804172B4A0DC70E6DBF3B7861A9CCE04 /* Pods-relliKTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-relliKTests-dummy.m"; sourceTree = "<group>"; };
 		82DEEA99FAB2611EA913A5235B721FD1 /* Pods-relliK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-relliK.debug.xcconfig"; sourceTree = "<group>"; };
 		88CA0B3D14E39C2B63A8269876D4D885 /* Pods-relliKUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-relliKUITests-dummy.m"; sourceTree = "<group>"; };
+		88D86A17923F124156BEEE0E3F663BCD /* BuddyBuildSDK.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BuddyBuildSDK.h; path = BuddyBuildSDK.framework/Headers/BuddyBuildSDK.h; sourceTree = "<group>"; };
 		893DB365F53CD5CA34CAF40D76B415D5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8CF11F224CC3974874504C6CFEA2628B /* Pods-relliKTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-relliKTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -84,6 +86,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0FB95D1C40466E3CAF287F47D303B307 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				39D0C2E1F22E6FA212FB269500A61293 /* BuddyBuildSDK.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		265FC0CA74FE9F83B803681E3313FEF5 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +122,24 @@
 			path = "Target Support Files/Pods-relliK";
 			sourceTree = "<group>";
 		};
+		502C075760E9014482A73E1CC0A5E1DE /* BuddyBuildSDK */ = {
+			isa = PBXGroup;
+			children = (
+				88D86A17923F124156BEEE0E3F663BCD /* BuddyBuildSDK.h */,
+				0FB95D1C40466E3CAF287F47D303B307 /* Frameworks */,
+			);
+			name = BuddyBuildSDK;
+			path = BuddyBuildSDK;
+			sourceTree = "<group>";
+		};
+		68EB9C99DECFC6502E3CD5E17F2F25DC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				502C075760E9014482A73E1CC0A5E1DE /* BuddyBuildSDK */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		6A80FA77EE9A970ECE9AD8C125CB51A9 /* Pods-relliKTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +163,7 @@
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				68EB9C99DECFC6502E3CD5E17F2F25DC /* Pods */,
 				D71A368F448EA121C08931370D10A542 /* Products */,
 				265FC0CA74FE9F83B803681E3313FEF5 /* Targets Support Files */,
 			);

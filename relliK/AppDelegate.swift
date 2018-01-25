@@ -9,6 +9,7 @@
 import UIKit
 import Fabric
 import Crashlytics
+import BuddyBuildSDK
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,8 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        Fabric.with([Crashlytics.self()])
-        self.printAppInfo()
+        self.setup()
 
         // Override point for customization after application launch.
         return true
@@ -119,8 +119,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+  
+  
+  //MARK: - Setup
+  ///Run initial configuration functions
+  func setup(){
+    self.buddyBuildConfig()
+    self.printAppInfo()
+    self.fabricConfiguration()
+  }
   func buddyBuildConfig(){
     BuddyBuildSDK.setup()
+  }
+  func fabricConfiguration(){
+    Fabric.with([Crashlytics.self()])
   }
 }
 
