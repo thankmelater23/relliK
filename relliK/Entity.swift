@@ -13,7 +13,6 @@ import SpriteKit
 class Entity: SKSpriteNode {
     struct SharedTexture {
         static var texture = SKTexture()
-//        static var onceToken: Int = 0
     }
     var health = 0
     var maxHealth = 0

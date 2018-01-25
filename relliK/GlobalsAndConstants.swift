@@ -85,7 +85,28 @@ import SpriteKit
   
   
   
-  
+  // MARK: - GCD
+  /// First, the system provides you with a special serial queue known as the main queue. Like any serial queue, tasks in this queue execute one at a time. However, it’s guaranteed that all tasks will execute on the main thread, which is the only thread allowed to update your UI. This queue is the one to use for sending messages to UIView objects or posting notifications.
+  let GlobalMainQueue = DispatchQueue.main
+  /// QOS_CLASS_USER_INTERACTIVE: The user interactive class represents tasks that need to be done immediately in order to provide a nice user experience. Use it for UI updates, event handling and small workloads that require low latency. The total amount of work done in this class during the execution of your app should be small.
+  let GlobalUserInteractiveQueue = DispatchQueue(label: "com.userInteractive", qos: .userInteractive, attributes: DispatchQueue.Attributes.concurrent)
+  /// QOS_CLASS_USER_INITIATED: The user initiated class represents tasks that are initiated from the UI and can be performed asynchronously. It should be used when the user is waiting for immediate results, and for tasks required to continue user interaction.
+  let GlobalUserInitiatedQueue = DispatchQueue(label: "com.userInitiated", qos: .userInitiated, attributes: .concurrent)
+  /// QOS_CLASS_UTILITY: The utility class represents long-running tasks, typically with a user-visible progress indicator. Use it for computations, I/O, networking, continous data feeds and similar tasks. This class is designed to be energy efficient.
+  let GlobalUtilityQueue = DispatchQueue(label: "com.Utility", qos: .utility, attributes: .concurrent)
+  /// QOS_CLASS_BACKGROUND: The background class represents tasks that the user is not directly aware of. Use it for prefetching, maintenance, and other tasks that don’t require user interaction and aren’t time-sensitive.
+  let GlobalBackgroundQueue = DispatchQueue(label: "com.background", qos: .background, attributes: .concurrent)
+  /// Custom concurrent Belize Lottery Background Queue
+  let GlobalRellikConcurrent = DispatchQueue(label: "com.Rellik.Concurrent", attributes: .concurrent)
+  /// Custom serial Belize Lottery Background Queue
+  let GlobalRellikSerial = DispatchQueue(label: "com.Rellik.Serial")
+  /// Custom Serial Belize Lottery Background DataTransform Queue
+  let GlobalRellikDataTransformSerial = DispatchQueue(label: "com.Rellik.Serial.DataTransform")
+  /// Custom Serial Belize Lottery Background Database Queue
+  let GlobalRellikDataBaseSerial = DispatchQueue(label: "com.Rellik.Serial.DataBase")
+  /// Custom Serial Belize Lottery Background Network Queue
+  let GlobalRellikNetworkSerial = DispatchQueue(label: "com.Rellik.Serial.Network")
+
   
   
   

@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -59,31 +58,32 @@
                                 <color key="textColor" name="Lava"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bHT-KB-8Jg">
-                                <rect key="frame" x="120" y="281" width="135" height="48"/>
-                                <color key="backgroundColor" red="0.78869128229999996" green="0.46268427369999998" blue="0.021336626260000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <color key="textColor" name="White"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Options" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ks7-2j-vaY">
-                                <rect key="frame" x="120" y="339" width="135" height="48"/>
-                                <color key="backgroundColor" red="0.78869128229999996" green="0.46268427369999998" blue="0.021336626260000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <color key="textColor" name="White"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="KSj-cN-n8l">
+                                <rect key="frame" x="120" y="281" width="135" height="106"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Start" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bHT-KB-8Jg">
+                                        <rect key="frame" x="0.0" y="0.0" width="135" height="48"/>
+                                        <color key="backgroundColor" red="0.78869128229999996" green="0.46268427369999998" blue="0.021336626260000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <color key="textColor" name="White"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Options" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ks7-2j-vaY">
+                                        <rect key="frame" x="0.0" y="58" width="135" height="48"/>
+                                        <color key="backgroundColor" red="0.78869128229999996" green="0.46268427369999998" blue="0.021336626260000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <color key="textColor" name="White"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="UxA-Pg-Lah" firstAttribute="top" secondItem="Ks7-2j-vaY" secondAttribute="bottom" constant="280" id="5Lk-Um-zs2"/>
-                            <constraint firstItem="bHT-KB-8Jg" firstAttribute="trailing" secondItem="Ks7-2j-vaY" secondAttribute="trailing" id="6hm-yb-rap"/>
                             <constraint firstItem="jQn-hX-fnZ" firstAttribute="leading" secondItem="Zs2-9Z-UJh" secondAttribute="leadingMargin" constant="16" id="FkX-7A-ali"/>
                             <constraint firstItem="jQn-hX-fnZ" firstAttribute="top" secondItem="bNl-q9-kiW" secondAttribute="bottom" constant="8" id="Kkt-oK-upv"/>
-                            <constraint firstItem="bHT-KB-8Jg" firstAttribute="leading" secondItem="Ks7-2j-vaY" secondAttribute="leading" id="Tt4-0E-Q6p"/>
-                            <constraint firstItem="Ks7-2j-vaY" firstAttribute="top" secondItem="bHT-KB-8Jg" secondAttribute="bottom" constant="10" id="hDH-5E-bHi"/>
                             <constraint firstAttribute="trailingMargin" secondItem="jQn-hX-fnZ" secondAttribute="trailing" constant="16" id="ky7-9x-xJb"/>
-                            <constraint firstItem="bHT-KB-8Jg" firstAttribute="centerX" secondItem="jQn-hX-fnZ" secondAttribute="centerX" id="vlA-M6-rgr"/>
                         </constraints>
                     </view>
                     <connections>
@@ -168,24 +168,11 @@
         <namedColor name="Lava">
             <color red="0.80784313730000001" green="0.066666666669999999" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="Lava">
-            <color red="0.80784313730000001" green="0.066666666669999999" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="White">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="White">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="White">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="White">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8te-zl-eEi"/>
-        <segue reference="eyp-I6-ro2"/>
+        <segue reference="mEN-vJ-kRz"/>
     </inferredMetricsTieBreakers>
 </document>

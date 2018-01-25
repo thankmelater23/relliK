@@ -16,14 +16,13 @@ class Enemy: Entity{
   //Initializars
   init(texture: SKTexture) {
     super.init(position: CGPoint(), texture: texture)
-    directionOf = entityDirection.unSelected
-    size = texture.size()
-    setScale(enemyScale)
-    zPosition = 90.00
-    updateSpriteAtrributes()
-    createHealthBar()
-    setEntityTypeAttribures()
-    
+    self.directionOf = entityDirection.unSelected
+    self.size = texture.size()
+    self.setScale(enemyScale)
+    self.zPosition = 90.00
+      self.updateSpriteAtrributes()
+      self.createHealthBar()
+    self.setEntityTypeAttribures()
   }
   func createHealthBar(){
     
