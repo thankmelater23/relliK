@@ -1,0 +1,676 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		01F414B903340184F0463D610D083287 /* Pods-relliK-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EE612DA3E5AB53209517772280660904 /* Pods-relliK-dummy.m */; };
+		506297106134256E26D62775727E632C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		6DE87CAB1176A10C29ABD4145A86552C /* Pods-relliKUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 146E310CC3604FF9F7D77E910E51804B /* Pods-relliKUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7A3C236C73A359C1C0ABE154D8B588E2 /* Pods-relliKUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CA0B3D14E39C2B63A8269876D4D885 /* Pods-relliKUITests-dummy.m */; };
+		9FCB97E50DBF1B35EE824151658F47C1 /* Pods-relliK-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B817AA7E6FAA4690869947F7631C1B7E /* Pods-relliK-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C374E88988D762DF4CB8C23B8584B98D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		CB483721B3759D6DC6918ACD2B921A43 /* Pods-relliKTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E88BF5500528E9F6FC948BB91333607 /* Pods-relliKTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D9F8426DCDC71DA178692ABEE4CB12A2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		F59F07695699D2D7852AA514C346D20A /* Pods-relliKTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 804172B4A0DC70E6DBF3B7861A9CCE04 /* Pods-relliKTests-dummy.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		11824B5743B9DF5A7CF3C920A20F7499 /* Pods-relliKUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-relliKUITests-frameworks.sh"; sourceTree = "<group>"; };
+		11EEEDDE5542982CB9281739C36F991E /* Pods-relliKTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-relliKTests-resources.sh"; sourceTree = "<group>"; };
+		146E310CC3604FF9F7D77E910E51804B /* Pods-relliKUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-relliKUITests-umbrella.h"; sourceTree = "<group>"; };
+		172C94E033D4643D16BBA7AA3C10C573 /* Pods_relliKTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_relliKTests.framework; path = "Pods-relliKTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C96E62164B3AA4383930E43400FFEFA /* Pods_relliK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_relliK.framework; path = "Pods-relliK.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		211488243B1579AA624F48D5BFDF17B9 /* Pods-relliKTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-relliKTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		2116E5AD88AB516901ABAC245530B184 /* Pods-relliKUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-relliKUITests.modulemap"; sourceTree = "<group>"; };
+		2B538C6C9AC0D40389DF7A132FF89E1E /* Pods-relliK.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-relliK.modulemap"; sourceTree = "<group>"; };
+		2DF702F945CE1915213929116A38694A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		368D0E6FB15188829867058615FC4577 /* Pods-relliKUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-relliKUITests-resources.sh"; sourceTree = "<group>"; };
+		36EE86B56C3946CF6187B338B9EADA82 /* Pods-relliKTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-relliKTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4980E63A708FA2343CC6F226EB7C33E2 /* Pods-relliK-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-relliK-frameworks.sh"; sourceTree = "<group>"; };
+		49D2637702CC099B1FD34BF7FED56D90 /* Pods-relliKTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-relliKTests.modulemap"; sourceTree = "<group>"; };
+		5DAA127988B6B96ED904572106B25604 /* Pods-relliKUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-relliKUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		5E88BF5500528E9F6FC948BB91333607 /* Pods-relliKTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-relliKTests-umbrella.h"; sourceTree = "<group>"; };
+		6371B03CB52776040AE62BF16C4C3189 /* Pods-relliK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-relliK.release.xcconfig"; sourceTree = "<group>"; };
+		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		804172B4A0DC70E6DBF3B7861A9CCE04 /* Pods-relliKTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-relliKTests-dummy.m"; sourceTree = "<group>"; };
+		82DEEA99FAB2611EA913A5235B721FD1 /* Pods-relliK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-relliK.debug.xcconfig"; sourceTree = "<group>"; };
+		88CA0B3D14E39C2B63A8269876D4D885 /* Pods-relliKUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-relliKUITests-dummy.m"; sourceTree = "<group>"; };
+		893DB365F53CD5CA34CAF40D76B415D5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8CF11F224CC3974874504C6CFEA2628B /* Pods-relliKTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-relliKTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9E48171F556FA805D99C755299396C27 /* Pods-relliKUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-relliKUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		ABEDFD696F10903864E35F3F9793DC9B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B094403ACBC4CE8CB25A0BAE6EF1840C /* Pods_relliKUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_relliKUITests.framework; path = "Pods-relliKUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B817AA7E6FAA4690869947F7631C1B7E /* Pods-relliK-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-relliK-umbrella.h"; sourceTree = "<group>"; };
+		C782E1273519A943EA503DBFD9E0980A /* Pods-relliKTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-relliKTests.release.xcconfig"; sourceTree = "<group>"; };
+		E4439A4D8A135361175B08C7FD7739F3 /* Pods-relliKUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-relliKUITests.release.xcconfig"; sourceTree = "<group>"; };
+		EC87BE0336922F44F3B8D3F2743EE38A /* Pods-relliK-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-relliK-acknowledgements.plist"; sourceTree = "<group>"; };
+		ED59B6347CD55058DF67B5379E568BCB /* Pods-relliK-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-relliK-resources.sh"; sourceTree = "<group>"; };
+		EE227F14F44D00BCBF092203D92DF0C3 /* Pods-relliK-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-relliK-acknowledgements.markdown"; sourceTree = "<group>"; };
+		EE612DA3E5AB53209517772280660904 /* Pods-relliK-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-relliK-dummy.m"; sourceTree = "<group>"; };
+		FF22040856BFD48EAC0ECC95570070AC /* Pods-relliKTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-relliKTests-frameworks.sh"; sourceTree = "<group>"; };
+		FFFEAF244C12E8B50064A316C5A2E92D /* Pods-relliKUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-relliKUITests-acknowledgements.plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		078BE66FFA88795EED77B0133257D991 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9F8426DCDC71DA178692ABEE4CB12A2 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		54E49311EA9DE3C3244924F240D0A1E8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				506297106134256E26D62775727E632C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6AE31376656535D4E254C70301B28B48 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C374E88988D762DF4CB8C23B8584B98D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		265FC0CA74FE9F83B803681E3313FEF5 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				372BBF0B301B7D624B2DADFF8F04C8E9 /* Pods-relliK */,
+				6A80FA77EE9A970ECE9AD8C125CB51A9 /* Pods-relliKTests */,
+				CA2DDC7EC9D8C197C9AFC604D19AA625 /* Pods-relliKUITests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		372BBF0B301B7D624B2DADFF8F04C8E9 /* Pods-relliK */ = {
+			isa = PBXGroup;
+			children = (
+				893DB365F53CD5CA34CAF40D76B415D5 /* Info.plist */,
+				2B538C6C9AC0D40389DF7A132FF89E1E /* Pods-relliK.modulemap */,
+				EE227F14F44D00BCBF092203D92DF0C3 /* Pods-relliK-acknowledgements.markdown */,
+				EC87BE0336922F44F3B8D3F2743EE38A /* Pods-relliK-acknowledgements.plist */,
+				EE612DA3E5AB53209517772280660904 /* Pods-relliK-dummy.m */,
+				4980E63A708FA2343CC6F226EB7C33E2 /* Pods-relliK-frameworks.sh */,
+				ED59B6347CD55058DF67B5379E568BCB /* Pods-relliK-resources.sh */,
+				B817AA7E6FAA4690869947F7631C1B7E /* Pods-relliK-umbrella.h */,
+				82DEEA99FAB2611EA913A5235B721FD1 /* Pods-relliK.debug.xcconfig */,
+				6371B03CB52776040AE62BF16C4C3189 /* Pods-relliK.release.xcconfig */,
+			);
+			name = "Pods-relliK";
+			path = "Target Support Files/Pods-relliK";
+			sourceTree = "<group>";
+		};
+		6A80FA77EE9A970ECE9AD8C125CB51A9 /* Pods-relliKTests */ = {
+			isa = PBXGroup;
+			children = (
+				2DF702F945CE1915213929116A38694A /* Info.plist */,
+				49D2637702CC099B1FD34BF7FED56D90 /* Pods-relliKTests.modulemap */,
+				211488243B1579AA624F48D5BFDF17B9 /* Pods-relliKTests-acknowledgements.markdown */,
+				8CF11F224CC3974874504C6CFEA2628B /* Pods-relliKTests-acknowledgements.plist */,
+				804172B4A0DC70E6DBF3B7861A9CCE04 /* Pods-relliKTests-dummy.m */,
+				FF22040856BFD48EAC0ECC95570070AC /* Pods-relliKTests-frameworks.sh */,
+				11EEEDDE5542982CB9281739C36F991E /* Pods-relliKTests-resources.sh */,
+				5E88BF5500528E9F6FC948BB91333607 /* Pods-relliKTests-umbrella.h */,
+				36EE86B56C3946CF6187B338B9EADA82 /* Pods-relliKTests.debug.xcconfig */,
+				C782E1273519A943EA503DBFD9E0980A /* Pods-relliKTests.release.xcconfig */,
+			);
+			name = "Pods-relliKTests";
+			path = "Target Support Files/Pods-relliKTests";
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				D71A368F448EA121C08931370D10A542 /* Products */,
+				265FC0CA74FE9F83B803681E3313FEF5 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D35AF013A5F0BAD4F32504907A52519E /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CA2DDC7EC9D8C197C9AFC604D19AA625 /* Pods-relliKUITests */ = {
+			isa = PBXGroup;
+			children = (
+				ABEDFD696F10903864E35F3F9793DC9B /* Info.plist */,
+				2116E5AD88AB516901ABAC245530B184 /* Pods-relliKUITests.modulemap */,
+				9E48171F556FA805D99C755299396C27 /* Pods-relliKUITests-acknowledgements.markdown */,
+				FFFEAF244C12E8B50064A316C5A2E92D /* Pods-relliKUITests-acknowledgements.plist */,
+				88CA0B3D14E39C2B63A8269876D4D885 /* Pods-relliKUITests-dummy.m */,
+				11824B5743B9DF5A7CF3C920A20F7499 /* Pods-relliKUITests-frameworks.sh */,
+				368D0E6FB15188829867058615FC4577 /* Pods-relliKUITests-resources.sh */,
+				146E310CC3604FF9F7D77E910E51804B /* Pods-relliKUITests-umbrella.h */,
+				5DAA127988B6B96ED904572106B25604 /* Pods-relliKUITests.debug.xcconfig */,
+				E4439A4D8A135361175B08C7FD7739F3 /* Pods-relliKUITests.release.xcconfig */,
+			);
+			name = "Pods-relliKUITests";
+			path = "Target Support Files/Pods-relliKUITests";
+			sourceTree = "<group>";
+		};
+		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		D71A368F448EA121C08931370D10A542 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1C96E62164B3AA4383930E43400FFEFA /* Pods_relliK.framework */,
+				172C94E033D4643D16BBA7AA3C10C573 /* Pods_relliKTests.framework */,
+				B094403ACBC4CE8CB25A0BAE6EF1840C /* Pods_relliKUITests.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		4FE5F1FFBC234143AF8CA95BC7044B8A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB483721B3759D6DC6918ACD2B921A43 /* Pods-relliKTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F038F015C2510374A53867BC235897BC /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9FCB97E50DBF1B35EE824151658F47C1 /* Pods-relliK-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC23787AD954A82C8C57A93D01758907 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DE87CAB1176A10C29ABD4145A86552C /* Pods-relliKUITests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		3F9744F557AFF18CCDD612AE6380E906 /* Pods-relliKTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 216CF49BDF2ACE06F5E3C1D8FDDC2022 /* Build configuration list for PBXNativeTarget "Pods-relliKTests" */;
+			buildPhases = (
+				650337DCC4A30FF6ADF4CC8C058017E2 /* Sources */,
+				6AE31376656535D4E254C70301B28B48 /* Frameworks */,
+				4FE5F1FFBC234143AF8CA95BC7044B8A /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-relliKTests";
+			productName = "Pods-relliKTests";
+			productReference = 172C94E033D4643D16BBA7AA3C10C573 /* Pods_relliKTests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D846C68646E94E606E63EB0705FEA654 /* Pods-relliKUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DD688F45F1D956DAC16E579278878D6 /* Build configuration list for PBXNativeTarget "Pods-relliKUITests" */;
+			buildPhases = (
+				2A99A13C496E064CB1302E0CEF65C6E2 /* Sources */,
+				54E49311EA9DE3C3244924F240D0A1E8 /* Frameworks */,
+				FC23787AD954A82C8C57A93D01758907 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-relliKUITests";
+			productName = "Pods-relliKUITests";
+			productReference = B094403ACBC4CE8CB25A0BAE6EF1840C /* Pods_relliKUITests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F9DD2BE9459B138323728A58286B1CB0 /* Pods-relliK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 17BBC02A1770F39E857F71B9B5CBC358 /* Build configuration list for PBXNativeTarget "Pods-relliK" */;
+			buildPhases = (
+				EE13FA4EC81FB365EDBDC11BEE75CE38 /* Sources */,
+				078BE66FFA88795EED77B0133257D991 /* Frameworks */,
+				F038F015C2510374A53867BC235897BC /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-relliK";
+			productName = "Pods-relliK";
+			productReference = 1C96E62164B3AA4383930E43400FFEFA /* Pods_relliK.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = D71A368F448EA121C08931370D10A542 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F9DD2BE9459B138323728A58286B1CB0 /* Pods-relliK */,
+				3F9744F557AFF18CCDD612AE6380E906 /* Pods-relliKTests */,
+				D846C68646E94E606E63EB0705FEA654 /* Pods-relliKUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2A99A13C496E064CB1302E0CEF65C6E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A3C236C73A359C1C0ABE154D8B588E2 /* Pods-relliKUITests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		650337DCC4A30FF6ADF4CC8C058017E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F59F07695699D2D7852AA514C346D20A /* Pods-relliKTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EE13FA4EC81FB365EDBDC11BEE75CE38 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01F414B903340184F0463D610D083287 /* Pods-relliK-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		07119429D12652C3FF283E34851E1BAE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 82DEEA99FAB2611EA913A5235B721FD1 /* Pods-relliK.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-relliK/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-relliK/Pods-relliK.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_relliK;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		12C4B864767C59600DBFA238F1E2F8BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		21DAEB16C051E94C1697438375A4FBE8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5DAA127988B6B96ED904572106B25604 /* Pods-relliKUITests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-relliKUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-relliKUITests/Pods-relliKUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_relliKUITests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		3CDCC8861900BB173F65BA5B4493C14B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E4439A4D8A135361175B08C7FD7739F3 /* Pods-relliKUITests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-relliKUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-relliKUITests/Pods-relliKUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_relliKUITests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		3E54A0D2956E9D6B63381F00A4C7EC8B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6371B03CB52776040AE62BF16C4C3189 /* Pods-relliK.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-relliK/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-relliK/Pods-relliK.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_relliK;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		59F0302F2371FCC6B73EF0A418D40734 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		7417E5774C53AE0FB3ABDA7C25855E02 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C782E1273519A943EA503DBFD9E0980A /* Pods-relliKTests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-relliKTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-relliKTests/Pods-relliKTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_relliKTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		8727408A13BE49B8B93CD39CE85DCBFA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 36EE86B56C3946CF6187B338B9EADA82 /* Pods-relliKTests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-relliKTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-relliKTests/Pods-relliKTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_relliKTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		17BBC02A1770F39E857F71B9B5CBC358 /* Build configuration list for PBXNativeTarget "Pods-relliK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07119429D12652C3FF283E34851E1BAE /* Debug */,
+				3E54A0D2956E9D6B63381F00A4C7EC8B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DD688F45F1D956DAC16E579278878D6 /* Build configuration list for PBXNativeTarget "Pods-relliKUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21DAEB16C051E94C1697438375A4FBE8 /* Debug */,
+				3CDCC8861900BB173F65BA5B4493C14B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		216CF49BDF2ACE06F5E3C1D8FDDC2022 /* Build configuration list for PBXNativeTarget "Pods-relliKTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8727408A13BE49B8B93CD39CE85DCBFA /* Debug */,
+				7417E5774C53AE0FB3ABDA7C25855E02 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				59F0302F2371FCC6B73EF0A418D40734 /* Debug */,
+				12C4B864767C59600DBFA238F1E2F8BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4181564E20194BDF00C20310 /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4181564D20194BDF00C20310 /* Bullet.swift */; };
+		948B4C5C2FA43D6476622470 /* Pods_relliKTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8364E34AF9001AD6E737BCE /* Pods_relliKTests.framework */; };
+		ADF411462C66A77268BE1110 /* Pods_relliKUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE19211C682326D69D1AD879 /* Pods_relliKUITests.framework */; };
+		BDC79118D72006F3C1B9D0F2 /* Pods_relliK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB6B19AE7C7C00E60B2D676D /* Pods_relliK.framework */; };
 		C60D5ACD1B6A11D800672EC1 /* magicBlast.sks in Resources */ = {isa = PBXBuildFile; fileRef = C60D5ACB1B6A11D800672EC1 /* magicBlast.sks */; };
 		C60D5ACE1B6A11D800672EC1 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = C60D5ACC1B6A11D800672EC1 /* spark.png */; };
 		C60D5AD01B6A140900672EC1 /* death.sks in Resources */ = {isa = PBXBuildFile; fileRef = C60D5ACF1B6A140900672EC1 /* death.sks */; };
@@ -72,7 +75,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		089F525E17DB391670D11E36 /* Pods-relliKTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-relliKTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-relliKTests/Pods-relliKTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2C1B4A63547FFEFC033E7A1C /* Pods-relliKTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-relliKTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-relliKTests/Pods-relliKTests.release.xcconfig"; sourceTree = "<group>"; };
 		4181564D20194BDF00C20310 /* Bullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
+		62A6AE1A985BEA1EB71E02E5 /* Pods-relliKUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-relliKUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-relliKUITests/Pods-relliKUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		6D14137FDE11D7B8DA1AD293 /* Pods-relliKUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-relliKUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-relliKUITests/Pods-relliKUITests.release.xcconfig"; sourceTree = "<group>"; };
+		C16632CC92591A331588B2DE /* Pods-relliK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-relliK.release.xcconfig"; path = "Pods/Target Support Files/Pods-relliK/Pods-relliK.release.xcconfig"; sourceTree = "<group>"; };
 		C60D5ACB1B6A11D800672EC1 /* magicBlast.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = magicBlast.sks; sourceTree = "<group>"; };
 		C60D5ACC1B6A11D800672EC1 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		C60D5ACF1B6A140900672EC1 /* death.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = death.sks; sourceTree = "<group>"; };
@@ -123,6 +131,10 @@
 		C6E98B051B6F5E75005B1B29 /* bulletAttack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bulletAttack.wav; sourceTree = "<group>"; };
 		C6E98B061B6F5E75005B1B29 /* spawn.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = spawn.wav; sourceTree = "<group>"; };
 		C6E98B101B6F6089005B1B29 /* move.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = move.wav; sourceTree = "<group>"; };
+		CB6B19AE7C7C00E60B2D676D /* Pods_relliK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_relliK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBED98729E85E3E6C9D547FA /* Pods-relliK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-relliK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-relliK/Pods-relliK.debug.xcconfig"; sourceTree = "<group>"; };
+		EE19211C682326D69D1AD879 /* Pods_relliKUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_relliKUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8364E34AF9001AD6E737BCE /* Pods_relliKTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_relliKTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +144,7 @@
 			files = (
 				C68B22411BA5B13C00EB732C /* Crashlytics.framework in Frameworks */,
 				C68B22401BA5B13C00EB732C /* Fabric.framework in Frameworks */,
+				BDC79118D72006F3C1B9D0F2 /* Pods_relliK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +152,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				948B4C5C2FA43D6476622470 /* Pods_relliKTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +160,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADF411462C66A77268BE1110 /* Pods_relliKUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +263,8 @@
 				C6D395FB1B64579200830790 /* relliKTests */,
 				C6D396061B64579200830790 /* relliKUITests */,
 				C6D395E11B64579100830790 /* Products */,
+				E4E254DE3D147F1FE7D45F2B /* Pods */,
+				C9120C0D5BB7778B104EBC13 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -321,6 +338,29 @@
 			name = SFX;
 			sourceTree = "<group>";
 		};
+		C9120C0D5BB7778B104EBC13 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CB6B19AE7C7C00E60B2D676D /* Pods_relliK.framework */,
+				F8364E34AF9001AD6E737BCE /* Pods_relliKTests.framework */,
+				EE19211C682326D69D1AD879 /* Pods_relliKUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E4E254DE3D147F1FE7D45F2B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DBED98729E85E3E6C9D547FA /* Pods-relliK.debug.xcconfig */,
+				C16632CC92591A331588B2DE /* Pods-relliK.release.xcconfig */,
+				089F525E17DB391670D11E36 /* Pods-relliKTests.debug.xcconfig */,
+				2C1B4A63547FFEFC033E7A1C /* Pods-relliKTests.release.xcconfig */,
+				62A6AE1A985BEA1EB71E02E5 /* Pods-relliKUITests.debug.xcconfig */,
+				6D14137FDE11D7B8DA1AD293 /* Pods-relliKUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -328,10 +368,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C6D3960C1B64579200830790 /* Build configuration list for PBXNativeTarget "relliK" */;
 			buildPhases = (
+				7BEB610B72E855B71674DB45 /* [CP] Check Pods Manifest.lock */,
 				C6D395DC1B64579100830790 /* Sources */,
 				C6D395DD1B64579100830790 /* Frameworks */,
 				C6D395DE1B64579100830790 /* Resources */,
 				C68B223D1BA5B11800EB732C /* ShellScript */,
+				8BD0482802C678343312E1FE /* [CP] Embed Pods Frameworks */,
+				251D3442BF5916946C83F27C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -346,9 +389,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C6D3960F1B64579200830790 /* Build configuration list for PBXNativeTarget "relliKTests" */;
 			buildPhases = (
+				3FE7F6D927A930B463514A73 /* [CP] Check Pods Manifest.lock */,
 				C6D395F41B64579200830790 /* Sources */,
 				C6D395F51B64579200830790 /* Frameworks */,
 				C6D395F61B64579200830790 /* Resources */,
+				4E7F70B66937F3F57093CAA1 /* [CP] Embed Pods Frameworks */,
+				C1BE15E05B6D6E2EB5B93822 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -364,9 +410,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C6D396121B64579200830790 /* Build configuration list for PBXNativeTarget "relliKUITests" */;
 			buildPhases = (
+				9AB6E29BAF5B88F833EE7DFC /* [CP] Check Pods Manifest.lock */,
 				C6D395FF1B64579200830790 /* Sources */,
 				C6D396001B64579200830790 /* Frameworks */,
 				C6D396011B64579200830790 /* Resources */,
+				30DFB9CAE689F84E5ACDA713 /* [CP] Embed Pods Frameworks */,
+				250277496687CA62E014BB9F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -477,6 +526,150 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		250277496687CA62E014BB9F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-relliKUITests/Pods-relliKUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		251D3442BF5916946C83F27C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-relliK/Pods-relliK-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		30DFB9CAE689F84E5ACDA713 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-relliKUITests/Pods-relliKUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3FE7F6D927A930B463514A73 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-relliKTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4E7F70B66937F3F57093CAA1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-relliKTests/Pods-relliKTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7BEB610B72E855B71674DB45 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-relliK-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8BD0482802C678343312E1FE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-relliK/Pods-relliK-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9AB6E29BAF5B88F833EE7DFC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-relliKUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C1BE15E05B6D6E2EB5B93822 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-relliKTests/Pods-relliKTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C68B223D1BA5B11800EB732C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -650,6 +843,7 @@
 		};
 		C6D3960D1B64579200830790 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DBED98729E85E3E6C9D547FA /* Pods-relliK.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -670,6 +864,7 @@
 		};
 		C6D3960E1B64579200830790 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C16632CC92591A331588B2DE /* Pods-relliK.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -690,6 +885,7 @@
 		};
 		C6D396101B64579200830790 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 089F525E17DB391670D11E36 /* Pods-relliKTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = relliKTests/Info.plist;
@@ -704,6 +900,7 @@
 		};
 		C6D396111B64579200830790 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2C1B4A63547FFEFC033E7A1C /* Pods-relliKTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = relliKTests/Info.plist;
@@ -718,6 +915,7 @@
 		};
 		C6D396131B64579200830790 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 62A6AE1A985BEA1EB71E02E5 /* Pods-relliKUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = relliKUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -732,6 +930,7 @@
 		};
 		C6D396141B64579200830790 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6D14137FDE11D7B8DA1AD293 /* Pods-relliKUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = relliKUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
