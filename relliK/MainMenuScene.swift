@@ -10,8 +10,8 @@ import Foundation
 import Foundation
 import SpriteKit
 
-class MainMenuScene: SKScene{
-    
+class MainMenuScene: SKScene {
+
     override init(size: CGSize) {
         super.init(size: size)
     }
@@ -19,7 +19,7 @@ class MainMenuScene: SKScene{
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func didMove(to view: SKView) {
         let background: SKSpriteNode = SKSpriteNode(imageNamed: "mainMenue")
 

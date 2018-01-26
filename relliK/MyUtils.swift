@@ -64,28 +64,28 @@ func /= (point: inout CGPoint, scalar: CGFloat) {
     func atan2(y: CGFloat, x: CGFloat) -> CGFloat {
     return CGFloat(atan2f(Float(y), Float(x)))
     }
-    
+
     func sqrt(a: CGFloat) -> CGFloat {
     return CGFloat(sqrtf(Float(a)))
     }
 #endif
 
 extension CGPoint {
-    
+
     func length() -> CGFloat {
         return sqrt(x*x + y*y)
     }
-    
+
     func normalized() -> CGPoint {
         return self / length()
     }
-    
+
     var angle: CGFloat {
         return atan2(y, x)
     }
 }
 
-let π = CGFloat(M_PI)
+let π = CGFloat.pi
 
 func shortestAngleBetween(_ angle1: CGFloat,
     angle2: CGFloat) -> CGFloat {
@@ -106,23 +106,21 @@ extension CGFloat {
     }
     static func random() -> CGFloat {
         return CGFloat(Float(arc4random()) / Float(UInt32.max)) }
-    
+
     static func random(min: CGFloat, max: CGFloat) -> CGFloat {
             assert(min < max)
         return CGFloat.random() * (max - min) + min
     }
 }
 
-func playBackgroundMusic(_ fileName: String){
+func playBackgroundMusic(_ fileName: String) {
     let url = Bundle.main.url(forResource: fileName, withExtension: nil)
-    
-    if(url == nil){
+
+    if(url == nil) {
         print("Could not find file: \(fileName)")
         return
     }
-    
-    
-    
+
     var error: NSError? = nil
     do {
         backgroundMusicPlayer = try AVAudioPlayer(contentsOf: url!)
@@ -149,4 +147,3 @@ func playBackgroundMusic(_ fileName: String){
 //backgroundMusicPlayer.prepareToPlay()
 //backgroundMusicPlayer.play()
 //}
-

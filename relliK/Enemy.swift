@@ -10,9 +10,8 @@ import Foundation
 import UIKit
 import SpriteKit
 
+class Enemy: Entity {
 
-class Enemy: Entity{
-  
   //Initializars
   init(texture: SKTexture) {
     super.init(position: CGPoint(), texture: texture)
@@ -24,9 +23,8 @@ class Enemy: Entity{
       self.createHealthBar()
     self.setEntityTypeAttribures()
   }
-  func createHealthBar(){
-    
-    
+  func createHealthBar() {
+
   }
   func loadedEnemySettings() {//Turns on Lighting and shadowing
     //        lightingBitMask = super.getSideForLighting()
@@ -39,16 +37,16 @@ class Enemy: Entity{
     physicsBody?.categoryBitMask = PhysicsCategory.Enemy
     physicsBody?.contactTestBitMask = PhysicsCategory.Player | PhysicsCategory.Bullet
     physicsBody?.collisionBitMask = PhysicsCategory.None
-    
+
     loadedEnemySettings()
-    
+
   }
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
+
   //Action Methods
-  func moveFunc(){
+  func moveFunc() {
     setAngle()
     move.timingMode = SKActionTimingMode.easeInEaseOut
     run(moveAction(), withKey: "move")
@@ -58,40 +56,40 @@ class Enemy: Entity{
   override func moveToNextBlock() {
     super.moveToNextBlock()
   }
-  func moveAction() ->SKAction{
-    defer{
+  func moveAction() -> SKAction {
+    defer {
       loadedEnemySettings()
     }
-    
+
     let wait = SKAction.wait(forDuration: enemyWaitTime)
-    
+
     let moveToNextBlockAction = SKAction.run({ //node in
       self.moveToNextBlock()
-      
+
       //            if self.name == "ghost"{//Fades the ghost to alpha 1
       //                if self.isBlockPlaceMoreThanRange(){
       //                    self.runAction(SKAction.fadeInWithDuration(0.0))
       //                }
       //            }
     })
-    
+
     let moveSound = SKAction.playSoundFileNamed(moveSoundString, waitForCompletion: false)
-    
-    switch (directionOf){
+
+    switch (directionOf) {
     case entityDirection.left:
       let moveLeftAction = SKAction.moveBy(x: incrementalSpaceBetweenBlocks, y: 0, duration: gameSpeed)
       return SKAction.sequence([wait, moveToNextBlockAction, moveSound, moveLeftAction])
     case entityDirection.right:
       let moveRightAction = SKAction.moveBy(x: -incrementalSpaceBetweenBlocks, y: 0, duration: gameSpeed)
-      
+
       return SKAction.sequence([wait, moveToNextBlockAction, moveSound, moveRightAction])
     case entityDirection.down:
       let moveDownAction = SKAction.moveBy(x: 0, y: incrementalSpaceBetweenBlocks, duration: gameSpeed)
-      
+
       return SKAction.sequence([wait, moveToNextBlockAction, moveSound, moveDownAction])
     case entityDirection.up:
       let moveUpAction = SKAction.moveBy(x: 0, y: -incrementalSpaceBetweenBlocks, duration: gameSpeed)
-      
+
       return SKAction.sequence([wait, moveToNextBlockAction, moveSound, moveUpAction])
     case entityDirection.unSelected:
       //Dont run
@@ -99,9 +97,9 @@ class Enemy: Entity{
       assertionFailure("Entity direction was never sent, this should never happen")
       return SKAction()
     }
-    
+
   }
-  override func died(){
+  override func died() {
     super.died()
     //
     //        if isDead{
@@ -120,9 +118,9 @@ class Enemy: Entity{
     //            scoreLabel.runAction(action)
     //        }
   }
-  override func hurt(){
+  override func hurt() {
     super.hurt()
-    
+
     let healthLabel = SKLabelNode(fontNamed: "Chalkduster")
     healthLabel.name = "Hurt Label"
     healthLabel.color = SKColor.red
@@ -130,28 +128,28 @@ class Enemy: Entity{
     healthLabel.position = CGPoint(x: frame.midX, y: frame.midY)
     healthLabel.text = String(health)
     healthLabel.zPosition = 100
-    
-    if health <= 0{
+
+    if health <= 0 {
       healthLabel.fontColor = SKColor.red
-    }else if health == 1{
+    } else if health == 1 {
       healthLabel.fontColor = SKColor.yellow
-    }else{
+    } else {
       healthLabel.fontColor = SKColor.green
     }
-    
+
     self.parent?.addChild(healthLabel)
-    
+
     let action = SKAction.sequence([SKAction.scale(to: 0.0, duration: 0.5), SKAction.removeFromParent()])
-    
+
     healthLabel.run(action)
   }
 }
 
-class Boss:Enemy{
+class Boss: Enemy {
   private static var __once: () = {
     // 2
     let enemy = SKSpriteNode(imageNamed: "enemy")
-    
+
     //            healthLabel = SKLabelNode(fontNamed: "Chalkduster")
     //            healthLabel.fontSize = 100
     //            //healthLabel.alpha = 0.7
@@ -171,7 +169,7 @@ class Boss:Enemy{
     //            enemy.addChild(healthLabel)
     //            healthLabel.runAction(SKAction.rotateToAngle(π, duration: NSTimeInterval(0.0), shortestUnitArc: true))
     //
-    
+
     // 5
     let textureView = SKView()
     SharedTexture.texture = textureView.texture(from: enemy)!
@@ -180,15 +178,15 @@ class Boss:Enemy{
   }()
   init(entityPosition: CGPoint) {
     let entityTexture = Boss.generateTexture()!
-    
+
     super.init(texture: entityTexture)
     position = entityPosition
     name = "boss"
     setScale(enemyScale)
     directionOf = entityDirection.unSelected
-    
+
   }
-  override func setEntityTypeAttribures(){
+  override func setEntityTypeAttribures() {
     maxHealth = 3
     health = maxHealth
     entityCurrentBlock = blockPlace.unSelected
@@ -202,30 +200,30 @@ class Boss:Enemy{
     //        directionOf = entityDirection.unSelected
   }
   override class func generateTexture() -> SKTexture? {
-    
+
     return onceToken
   }
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
   private static let onceToken = { () -> SKTexture in
-    
+
     let enemy = SKSpriteNode(imageNamed: "enemy")
     enemy.name = "boss"
-    
+
     let textureView = SKView()
     SharedTexture.texture = textureView.texture(from: enemy)!
     SharedTexture.texture.filteringMode = .nearest
     SharedTexture.texture.generatingNormalMap(withSmoothness: 0.6, contrast: 1.0)
-    
+
     return SharedTexture.texture
   }()
 }
 
-class Ghost:Enemy{
+class Ghost: Enemy {
   init(entityPosition: CGPoint) {
     let entityTexture = Ghost.generateTexture()!
-    
+
     super.init(texture: entityTexture)
     position = entityPosition
     name = "ghost"
@@ -233,7 +231,7 @@ class Ghost:Enemy{
     directionOf = entityDirection.unSelected
     //        alpha = 0.1
   }
-  override func setEntityTypeAttribures(){
+  override func setEntityTypeAttribures() {
     maxHealth = 1
     health = maxHealth
     entityCurrentBlock = blockPlace.unSelected
@@ -247,39 +245,39 @@ class Ghost:Enemy{
     directionOf = entityDirection.unSelected
   }
   override class func generateTexture() -> SKTexture? {
-    
+
     return onceToken
   }
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
   private static let onceToken = { () -> SKTexture in
-    
+
     let enemy = SKSpriteNode(imageNamed: "cat")
     enemy.name = "ghost"
-    
+
     let textureView = SKView()
     SharedTexture.texture = textureView.texture(from: enemy)!
     SharedTexture.texture.filteringMode = .nearest
     SharedTexture.texture.generatingNormalMap(withSmoothness: 0.6, contrast: 1.0)
-    
+
     return SharedTexture.texture
   }()
 }
 
-class Soldier:Enemy{
+class Soldier: Enemy {
   init(entityPosition: CGPoint) {
-    
+
     let entityTexture = Soldier.generateTexture()!
-    
+
     super.init(texture: entityTexture)
-    
+
     position = entityPosition
     name = "soldier"
     setScale(enemyScale)
     directionOf = entityDirection.unSelected
   }
-  override func setEntityTypeAttribures(){
+  override func setEntityTypeAttribures() {
     maxHealth = 2
     health = maxHealth
     entityCurrentBlock = blockPlace.unSelected
@@ -290,41 +288,41 @@ class Soldier:Enemy{
     moveSoundString = "move.wav"
     diedSoundString = "died.wav"
     //        directionOf = entityDirection.unSelected
-    
+
   }
   override class func generateTexture() -> SKTexture? {
-    
+
     return onceToken
   }
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
   private static let onceToken = { () -> SKTexture in
-    
+
     let enemy = SKSpriteNode(imageNamed: "zombie1")
     enemy.name = "soldier"
-    
+
     let textureView = SKView()
     SharedTexture.texture = textureView.texture(from: enemy)!
     SharedTexture.texture.filteringMode = .nearest
     SharedTexture.texture.generatingNormalMap(withSmoothness: 0.6, contrast: 1.0)
-    
+
     return SharedTexture.texture
   }()
 }
 
-class Minion:Enemy{
+class Minion: Enemy {
   init(entityPosition: CGPoint) {
-    
+
     let entityTexture = Minion.generateTexture()!
-    
+
     super.init(texture: entityTexture)
     position = entityPosition
     name = "minion"
     setScale(enemyScale)
     directionOf = entityDirection.unSelected
   }
-  override func setEntityTypeAttribures(){
+  override func setEntityTypeAttribures() {
     maxHealth = 1
     health = maxHealth
     entityCurrentBlock = blockPlace.unSelected
@@ -335,28 +333,27 @@ class Minion:Enemy{
     attackSoundString = "attack.wav"
     moveSoundString = "move.wav"
     diedSoundString = "died.wav"
-    
+
   }
   override class func generateTexture() -> SKTexture? {
-    
+
     return onceToken
   }
-  
+
   private static let onceToken = { () -> SKTexture in
-    
+
     let enemy = SKSpriteNode(imageNamed: "cat")
     enemy.name = "minion"
     enemy.color = UIColor.yellow
-    
+
     let textureView = SKView()
     SharedTexture.texture = textureView.texture(from: enemy)!
     SharedTexture.texture.filteringMode = .nearest
     SharedTexture.texture.generatingNormalMap(withSmoothness: 0.6, contrast: 1.0)
-    
+
     return SharedTexture.texture
   }()
-  
-  
+
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }

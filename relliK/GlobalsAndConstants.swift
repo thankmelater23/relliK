@@ -1,4 +1,4 @@
-  //
+//
 //  GlobalsAndConstants.swift
 //  Color Wars
 //
@@ -8,10 +8,8 @@
 
 import Foundation
 import SpriteKit
-  
-  
 
-  enum entityDirection{
+  enum entityDirection {
     case left
     case right
     case up
@@ -29,13 +27,13 @@ import SpriteKit
     case unSelected = 7
   }
 
-  enum blockLabel: Int{
+  enum blockLabel: Int {
     case empty
     case enemy
     case player
     case bullet
   }
-  
+
   struct PhysicsCategory {
     static let All: UInt32 = 0x1 << 0
     static let Player: UInt32 = 0x1 << 1
@@ -44,7 +42,7 @@ import SpriteKit
     static let dead: UInt32 = 0x1 << 30
     static let None: UInt32 = 0x1 << 29
   }
-  
+
   struct BitMaskOfLighting {
     static let None: UInt32 = 0x1 << 0
     static let right: UInt32 = 0x1 << 1
@@ -53,18 +51,17 @@ import SpriteKit
     static let up: UInt32 = 0x1 << 4
   }
 
+  let GAME_MIN_SPEED: TimeInterval = TimeInterval(1.0)
+  let GAME_MAX_SPEED: TimeInterval = TimeInterval(0.6)
+  let enemyWaitMinSpeed: TimeInterval = TimeInterval(0.5)
+  let enemyWaitMaxSpeed: TimeInterval = TimeInterval(0.0)
 
-  let GAME_MIN_SPEED:TimeInterval = TimeInterval(1.0)
-  let GAME_MAX_SPEED:TimeInterval = TimeInterval(0.6)
-  let enemyWaitMinSpeed:TimeInterval = TimeInterval(0.5)
-  let enemyWaitMaxSpeed:TimeInterval = TimeInterval(0.0)
-  
   //Scales
   let playerScale: CGFloat  = 0.10
   let enemyScale: CGFloat  = 0.08
   let playerBlockScale: CGFloat  = 0.20
   let enemyBlockScale: CGFloat = 0.12
-  let bulletScale:CGFloat = 0.15
+  let bulletScale: CGFloat = 0.15
 
   //Sizes
   var spaceBetweenEnemyBlock: CGFloat  = 40.00
@@ -73,18 +70,16 @@ import SpriteKit
 
   var gameSpeed: TimeInterval = GAME_MIN_SPEED
   let gameIncrementalSpeed: TimeInterval = (GAME_MIN_SPEED - GAME_MAX_SPEED) * 0.10 //GAME_MIN_SPEED / NSTimeInterval(4.0)
-  
+
   //Time Vars
   let enemyWaitIncrementalSpeed: TimeInterval = (enemyWaitMinSpeed - enemyWaitMaxSpeed) * 0.10 //gameIncrementalSpeed * 2  //enemyWaitMinSpeed / NSTimeInterval(4.0)
-  var enemyWaitTime:TimeInterval = enemyWaitMinSpeed
-  var bulletCoolDownTime:TimeInterval =  0.1 //GAME_MAX_SPEED
+  var enemyWaitTime: TimeInterval = enemyWaitMinSpeed
+  var bulletCoolDownTime: TimeInterval =  0.1 //GAME_MAX_SPEED
   var bulletCurrentCoolDownTime: TimeInterval = bulletCoolDownTime
   var lastShot: TimeInterval = TimeInterval(0.0)
-  
+
   var gameTotalSpeed: TimeInterval = gameSpeed + enemyWaitTime
-  
-  
-  
+
   // MARK: - GCD
   /// First, the system provides you with a special serial queue known as the main queue. Like any serial queue, tasks in this queue execute one at a time. However, it’s guaranteed that all tasks will execute on the main thread, which is the only thread allowed to update your UI. This queue is the one to use for sending messages to UIView objects or posting notifications.
   let GlobalMainQueue = DispatchQueue.main
@@ -106,8 +101,3 @@ import SpriteKit
   let GlobalRellikDataBaseSerial = DispatchQueue(label: "com.Rellik.Serial.DataBase")
   /// Custom Serial Belize Lottery Background Network Queue
   let GlobalRellikNetworkSerial = DispatchQueue(label: "com.Rellik.Serial.Network")
-
-  
-  
-  
-

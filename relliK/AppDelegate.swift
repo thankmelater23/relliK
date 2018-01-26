@@ -16,7 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         self.setup()
 
@@ -46,19 +45,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-    func printAppInfo(){
+    func printAppInfo() {
 
         //        let CFBundleShortVersionString = Siren. //AppInfo.CFBundleShortVersionString
         //        let Copyright = AppInfo.Copyright
         //        let docs = AppInfo.docs
         //        let ID = AppInfo.ID
         //        let fdr = AppInfo.
-        
-        
-        
-        
 
-        
         if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
             print("Version Running: \(version)")
         }
@@ -92,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let CFBundlePackageType = Bundle.main.infoDictionary?["CFBundlePackageType"] as? String {
             print("Version Running: \(CFBundlePackageType)")
         }
-        
+
         if let CFBundleShortVersionString = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
             print("Version Running: \(CFBundleShortVersionString)")
         }
@@ -119,20 +113,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
-  
-  
-  //MARK: - Setup
+  // MARK: - Setup
   ///Run initial configuration functions
-  func setup(){
+  func setup() {
     self.buddyBuildConfig()
     self.printAppInfo()
     self.fabricConfiguration()
   }
-  func buddyBuildConfig(){
+  func buddyBuildConfig() {
     BuddyBuildSDK.setup()
   }
-  func fabricConfiguration(){
+  func fabricConfiguration() {
     Fabric.with([Crashlytics.self()])
   }
 }
-

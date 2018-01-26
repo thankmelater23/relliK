@@ -9,12 +9,12 @@
 import Foundation
 import UIKit
 
-extension UIImage{
-    
-    enum AssetIdentifier: String{
+extension UIImage {
+
+    enum AssetIdentifier: String {
         case Player, Boss
     }
-    convenience init!(assetIdentifier: AssetIdentifier){
+    convenience init!(assetIdentifier: AssetIdentifier) {
         self.init(named: assetIdentifier.rawValue)
     }
 }

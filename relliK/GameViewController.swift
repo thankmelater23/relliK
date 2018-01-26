@@ -5,7 +5,7 @@
 //  Created by Andre Villanueva on 7/25/15.
 //  Copyright (c) 2015 Bang Bang Studios. All rights reserved.
 //
- 
+
 import UIKit
 import SpriteKit
 
@@ -19,12 +19,12 @@ class GameViewController: UIViewController {
         skView.ignoresSiblingOrder = true
         scene.scaleMode = .aspectFit//.AspectFill
         skView.presentScene(scene)
-        
+
     }
-    override var shouldAutorotate : Bool {
+    override var shouldAutorotate: Bool {
         return true
     }
-    override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         if UIDevice.current.userInterfaceIdiom == .phone {
             return .allButUpsideDown
         } else {
@@ -35,7 +35,7 @@ class GameViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
     }
-    override var prefersStatusBarHidden : Bool {
+    override var prefersStatusBarHidden: Bool {
         return true
     }
 }
