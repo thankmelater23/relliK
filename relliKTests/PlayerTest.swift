@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import relliK
 
 class PlayerTest: XCTestCase {
     
@@ -31,5 +32,11 @@ class PlayerTest: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+  
+  func testGhostPerformanceTest(){
+    self.measure {
+      let ghost = Ghost.init(entityPosition: CGPoint())
+    }
+  }
     
 }

@@ -20,7 +20,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var player: Player!
   var isShootable: Bool = false
   
-  // MARK: Background
+  // MARK: Backgrounds
   var backgroundNode: SKSpriteNode!
   
   // MARK: Blocks

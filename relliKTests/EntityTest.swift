@@ -1,5 +1,5 @@
 //
-//  EnemyTest.swift
+//  EntityTest.swift
 //  relliKTests
 //
 //  Created by Andre on 2/1/18.
@@ -7,12 +7,17 @@
 //
 
 import XCTest
+import SpriteKit
+
 @testable import relliK
 
-class EnemyTest: XCTestCase {
+class EntityTest: XCTestCase {
+  var entity = Boss.init()
   
   override func setUp() {
     super.setUp()
+    entity = Boss.init()
+    entity.directionOf = .down
     // Put setup code here. This method is called before the invocation of each test method in the class.
   }
   
@@ -33,46 +38,62 @@ class EnemyTest: XCTestCase {
     }
   }
   
-  func testEnemyPerformanceTest(){
-    self.measure {
-      let _ = Enemy.init()
-    }
-  }
-  
-  func testGhostPerformanceTest(){
-    self.measure {
-      let _ = Ghost.init()
-    }
-  }
-  
-  func testSoldierPerformanceTest(){
-    self.measure {
-      let _ = Soldier.init()
-    }
-  }
-  
-  func testBossPerformanceTest(){
-    self.measure {
-      let _ = Boss.init()
-    }
-  }
-  
-  func testMinionPerformanceTest(){
-    self.measure {
-      let _ = Minion.init()
-    }
-  }
-  
 }
-
-extension EnemyTest{
-  func testMovePerformance(){
-    let boss = Boss.init()
-    boss.directionOf = .down
-    
+///MARK: -Performance test
+extension EntityTest{
+  func testPerformance() {
+    // This is an example of a performance test case.
     self.measure {
-      boss.moveFunc()
+      // Put the code you want to measure the time of here.
     }
   }
+  
+  func testPerformanceDied() {
+    self.measure {
+      entity.died()
+    }
+  }
+  
+  
+  func testPerformanceGetSideForLighting() {
+    self.measure {
+      let _ = entity.getSideForLighting()
+    }
+  }
+  
+  func testPerformanceDidMoveToNextBlock() {
+    self.measure {
+      entity.moveToNextBlock()
+    }
+  }
+  
+  
+  func testPerformancePlaySoundEffect() {
+    self.measure {
+      entity.playattackSound()
+    }
+  }
+  
+  
+  func testPerformanceSetAngle() {
+    self.measure {
+      entity.setAngle()
+    }
+  }
+  
+  
+  
+  func testPerformanceSetEntityTypeAttributes() {
+    self.measure {
+      entity.setEntityTypeAttribures()
+    }
+  }
+  
+  func testPerformanceHurtEffects() {
+    self.measure {
+      entity.hurtEffects()
+    }
+  }
+  
   
 }
