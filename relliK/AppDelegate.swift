@@ -124,6 +124,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     BuddyBuildSDK.setup()
   }
   func fabricConfiguration() {
-    Fabric.with([Crashlytics.self()])
+    Fabric.with([Crashlytics.self(), Answers.self()])
   }
 }

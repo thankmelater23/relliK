@@ -148,7 +148,7 @@ class Enemy: Entity {
 class Boss: Enemy {
   private static var __once: () = {
     // 2
-    let enemy = SKSpriteNode(imageNamed: "enemy")
+    let enemy = SKSpriteNode(imageNamed: images.Boss)
 
     //            healthLabel = SKLabelNode(fontNamed: "Chalkduster")
     //            healthLabel.fontSize = 100
@@ -208,7 +208,7 @@ class Boss: Enemy {
   }
   private static let onceToken = { () -> SKTexture in
 
-    let enemy = SKSpriteNode(imageNamed: "enemy")
+    let enemy = SKSpriteNode(imageNamed: images.Boss)
     enemy.name = "boss"
 
     let textureView = SKView()
@@ -253,7 +253,7 @@ class Ghost: Enemy {
   }
   private static let onceToken = { () -> SKTexture in
 
-    let enemy = SKSpriteNode(imageNamed: "cat")
+    let enemy = SKSpriteNode(imageNamed: images.enemy3)
     enemy.name = "ghost"
 
     let textureView = SKView()
@@ -299,7 +299,7 @@ class Soldier: Enemy {
   }
   private static let onceToken = { () -> SKTexture in
 
-    let enemy = SKSpriteNode(imageNamed: "zombie1")
+    let enemy = SKSpriteNode(imageNamed: images.enemy2)
     enemy.name = "soldier"
 
     let textureView = SKView()
@@ -342,7 +342,7 @@ class Minion: Enemy {
 
   private static let onceToken = { () -> SKTexture in
 
-    let enemy = SKSpriteNode(imageNamed: "cat")
+    let enemy = SKSpriteNode(imageNamed: images.enemy1)
     enemy.name = "minion"
     enemy.color = UIColor.yellow
 

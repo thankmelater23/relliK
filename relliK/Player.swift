@@ -13,7 +13,7 @@ import SpriteKit
 class Player: Entity {
     private static var __once: () = {
             // 2
-            let mainPlayer = SKSpriteNode(imageNamed: "Spaceship")
+            let mainPlayer = SKSpriteNode(imageNamed: images.player)
             mainPlayer.name = "player"
 
             // 5
