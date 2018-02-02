@@ -29,18 +29,19 @@ class Bullet: Entity {
       self.updateSpriteAtrributes()
       self.addChild(shot!)
       
-      self.light.position = CGPoint(x: 0.5, y: 0.5)
-      self.light.categoryBitMask = self.getSideForLighting()
-      self.light.isEnabled = true
-      self.light.lightColor = SKColor(red: 0, green: 0, blue: 200, alpha: 1.0)
-      self.light.shadowColor = SKColor.black// SKColor(red: 0, green: 0, blue: 0, alpha: 1.0)
-      self.light.ambientColor = SKColor(red: 0, green: 0, blue: 200, alpha: 0.1)
-      self.light.falloff = 1.0
-      self.addChild(self.light)
+//      self.light.position = CGPoint(x: 0.5, y: 0.5)
+//      self.light.categoryBitMask = self.getSideForLighting()
+//      self.light.isEnabled = true
+//      self.light.lightColor = SKColor(red: 0, green: 0, blue: 200, alpha: 1.0)
+//      self.light.shadowColor = SKColor.black// SKColor(red: 0, green: 0, blue: 0, alpha: 1.0)
+//      self.light.ambientColor = SKColor(red: 0, green: 0, blue: 200, alpha: 0.1)
+//      self.light.falloff = 1.0
+//      self.addChild(self.light)
     }
   }
   override func setEntityTypeAttribures() {
-    //    GlobalRellikConcurrent.async {
+    super.setEntityTypeAttribures()
+        GlobalRellikConcurrent.sync {
     self.maxHealth = 1
     self.health = self.maxHealth
     self.hurtSoundString = "bulletHurt.wav"
@@ -52,7 +53,7 @@ class Bullet: Entity {
     self.entityInRangeBlock = blockPlace.fourth
     
     //childNodeWithName("bulletNode")
-    //    }
+        }
   }
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")

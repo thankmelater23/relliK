@@ -57,15 +57,17 @@ import SpriteKit
   let enemyWaitMaxSpeed: TimeInterval = TimeInterval(0.0)
 
   //Scales
-  let playerScale: CGFloat  = 0.10
-  let enemyScale: CGFloat  = 0.08
-  let playerBlockScale: CGFloat  = 0.20
-  let enemyBlockScale: CGFloat = 0.12
-  let bulletScale: CGFloat = 0.15
+  let playerScale: CGFloat  = 0.35
+  let enemyScale: CGFloat  = 0.20
+  let playerBlockScale: CGFloat  = 0.35
+  let enemyBlockScale: CGFloat = 0.25
+  let bulletScale: CGFloat = 0.40
 
   //Sizes
-  var spaceBetweenEnemyBlock: CGFloat  = 40.00
-  var incrementalSpaceBetweenBlocks: CGFloat  = 30.00
+///Space between blocks and character
+  var spaceBetweenEnemyBlock: CGFloat  = 75.00
+///Space between each block
+  var incrementalSpaceBetweenBlocks: CGFloat  = 60.00
   var spaceToLastBox: CGFloat = incrementalSpaceBetweenBlocks * 4
 
   var gameSpeed: TimeInterval = GAME_MIN_SPEED

@@ -70,8 +70,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var bulletMoveUpAction: SKAction!
   
   func gameOver() {
-    if(player.isDead || errors >= 8) {
-      //      exit(EXIT_SUCCESS)
+    if(player.isDead || errors >= 3) {
+//      self.restartGame()
     }
   }
   
@@ -304,17 +304,42 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func setup(){
-    setPhysics()
+    self.setupData()
+    self.setupLevel()
+    self.setupPlayer()
+      self.setupUI()
+  }
+  
+  func restartGame(){
+//    setupPlayer()
+      self.removeAllChildren()
+    self.setup()
+//    self.bulletsInField = []
+//    self.playGameBackgroundMusic()
+//    setupData()
+  }
+  
+  func setupPlayer(){
     createActions()
-    setGameLights()
-    createBlocks()
     createPlayer()
+  }
+  
+  func setupLevel(){
+    setPhysics()
+    createBlocks()
     createSwipeRecognizers()
-    loadDefaults()
-    setLabels()
+//    setGameLights()
     playGameBackgroundMusic()
+    //    particleCreator()
+  }
+  
+  func setupUI(){
+    setLabels()
     debugDrawPlayableArea()
-//    particleCreator()
+  }
+ 
+  func setupData(){
+    loadDefaults()
   }
   required init(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")

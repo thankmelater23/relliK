@@ -12,7 +12,10 @@ import SpriteKit
 class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        let scene = GameScene(size: CGSize(width: 1136, height: 640))
+      let size = CGSize(width: 2208, height: 1242)
+      let scene = GameScene(size: size)
+      let gameOverScene = GameOverScene.init(size: size, won: false)
+//        let scene = GameScene(size: CGSize(width: 1136, height: 640))
         let skView = self.view as! SKView
         skView.showsFPS = true
         skView.showsNodeCount = true
