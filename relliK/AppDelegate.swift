@@ -129,6 +129,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
   }
   func fabricConfiguration() {
+    GlobalMainQueue.async {
     Fabric.with([Crashlytics.self(), Answers.self()])
+    }
   }
 }

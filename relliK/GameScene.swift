@@ -11,10 +11,11 @@ import SpriteKit
 class GameScene: SKScene, SKPhysicsContactDelegate {
   // MARK: Unassigned
   var isGamePaused: Bool = false
-  
+  var cpuEnabled = true
   // MARK: Array of Monstors and Bullets
   var monstorsInField = [Enemy]()
   var bulletsInField = [Bullet]()
+  var shots = [()->()]()
   
   // MARK: Sprite Objects
   var player: Player!
@@ -71,7 +72,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   func gameOver() {
     if(player.isDead || errors >= 3) {
-//      self.restartGame()
+      //      self.restartGame()
     }
   }
   
@@ -206,7 +207,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   // MARK: Update Methods
   override func update(_ currentTime: TimeInterval) {
-    
     if !isGamePaused {
       if incrementCurrentGameSpeedTime > incrementGameSpeedTime {
         print("Update game speed")
@@ -274,6 +274,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gameMiliSecToSec += currentTime - lastUpdateTime
       }
       
+      if isShootable && !shots.isEmpty && cpuEnabled{
+        
+        let shoot = shots.removeFirst()
+        shoot()
+      }
+      
       moveBullets()
       gameOver()
       lastUpdateTime = currentTime
@@ -307,16 +313,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     self.setupData()
     self.setupLevel()
     self.setupPlayer()
-      self.setupUI()
+    self.setupUI()
   }
   
   func restartGame(){
-//    setupPlayer()
-      self.removeAllChildren()
+    //    setupPlayer()
+    self.removeAllChildren()
     self.setup()
-//    self.bulletsInField = []
-//    self.playGameBackgroundMusic()
-//    setupData()
+    //    self.bulletsInField = []
+    //    self.playGameBackgroundMusic()
+    //    setupData()
   }
   
   func setupPlayer(){
@@ -328,7 +334,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     setPhysics()
     createBlocks()
     createSwipeRecognizers()
-//    setGameLights()
+    //    setGameLights()
     playGameBackgroundMusic()
     //    particleCreator()
   }
@@ -337,7 +343,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     setLabels()
     debugDrawPlayableArea()
   }
- 
+  
   func setupData(){
     loadDefaults()
   }
@@ -518,10 +524,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     swipeLeft.direction = UISwipeGestureRecognizerDirection.left
     self.view?.addGestureRecognizer(swipeLeft)
     
-    let tapped = UITapGestureRecognizer(target: self, action: #selector(GameScene.paused as (GameScene) -> () -> Void))
-    tapped.numberOfTapsRequired = 1
-    tapped.numberOfTouchesRequired = 2
-    self.view?.addGestureRecognizer(tapped)
+    let doubleTapped = UITapGestureRecognizer(target: self, action: #selector(GameScene.paused as (GameScene) -> () -> Void))
+    doubleTapped.numberOfTapsRequired = 1
+    doubleTapped.numberOfTouchesRequired = 2
+    self.view?.addGestureRecognizer(doubleTapped)
+    
+    let pressDown = UILongPressGestureRecognizer(target: self, action: #selector(GameScene.enableCPU))
+    pressDown.minimumPressDuration = TimeInterval(1000)
+    pressDown.numberOfTapsRequired = 1
+    pressDown.numberOfTouchesRequired = 1
+    self.view?.addGestureRecognizer(pressDown)
+    
+    let trippleTapped = UITapGestureRecognizer(target: self, action: #selector(GameScene.enableCPU))
+    trippleTapped.numberOfTapsRequired = 1
+    trippleTapped.numberOfTouchesRequired = 3
+    self.view?.addGestureRecognizer(trippleTapped)
   }
   func debugDrawPlayableArea() {
     let shape = SKShapeNode()
@@ -554,17 +571,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     GlobalRellikConcurrent.async {
-    for monstor in self.monstorsInField {
-      if(!monstor.isDead) {
-        group.enter()
+      for monstor in self.monstorsInField {
+        if(!monstor.isDead) {
+          group.enter()
           monstor.moveFunc()
-        group.leave()
-      }
+          group.leave()
+        }
       }
     }
-      group.notify(queue: GlobalRellikConcurrent) {
+    group.notify(queue: GlobalRellikConcurrent) {
       self.monstorsInField = self.monstorsInField.filter({!$0.clearedForMorgue})
-      }
+    }
   }
   
   func spawnEnemy() {
@@ -591,6 +608,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     enemy.entityCurrentBlock = blockPlace.fifth
     self.monstorsInField.append(enemy)
+    self.shots += (shot(enemyDirection: enemy.directionOf, num: enemy.maxHealth))
     
     self.addChild(enemy)
   }
@@ -616,6 +634,70 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
   }
   
+  func shot(enemyDirection: entityDirection, num: Int) -> [() -> ()]{
+    var blocks:[()->()] = []
+    
+    switch enemyDirection {
+    case .down:
+      for _ in 1...num {
+        blocks.append{
+          let newBullet = Bullet(entityPosition: CGPoint(x: self.playableRect.midX, y: self.playableRect.midY))
+          newBullet.directionOf = enemyDirection
+          newBullet.move = self.bulletMoveDownAction
+          self.addChild(newBullet)
+          self.bulletsInField.append(newBullet)
+          self.isShootable = false
+          self.player.directionOf = enemyDirection
+          self.player.setAngle()
+        }
+      }
+    case .left:
+      for _ in 1...num {
+        blocks.append{
+          let newBullet = Bullet(entityPosition: CGPoint(x: self.self.self.playableRect.midX, y: self.playableRect.midY))
+          newBullet.directionOf = enemyDirection
+          newBullet.move = self.bulletMoveLeftAction
+          self.addChild(newBullet)
+          self.bulletsInField.append(newBullet)
+          self.isShootable = false
+          self.player.directionOf = enemyDirection
+          self.player.setAngle()
+        }
+      }
+      
+    case .right:
+      for _ in 1...num {
+        blocks.append{
+          let newBullet = Bullet(entityPosition: CGPoint(x: self.self.playableRect.midX, y: self.playableRect.midY))
+          newBullet.directionOf = enemyDirection
+          newBullet.move = self.bulletMoveRightAction
+          self.addChild(newBullet)
+          self.bulletsInField.append(newBullet)
+          self.isShootable = false
+          self.player.directionOf = enemyDirection
+          self.player.setAngle()
+        }
+      }
+    case .up:
+      for _ in 1...num {
+        blocks.append{
+          let newBullet = Bullet(entityPosition: CGPoint(x: self.playableRect.midX, y: self.playableRect.midY))
+          newBullet.directionOf = enemyDirection
+          newBullet.move = self.bulletMoveUpAction
+          self.addChild(newBullet)
+          self.bulletsInField.append(newBullet)
+          self.isShootable = false
+          self.player.directionOf = enemyDirection
+          self.player.setAngle()
+        }
+      }
+    case .unSelected:
+      assertionFailure()
+    }
+    
+    return blocks
+  }
+  
   // MARK: Player and Bullets Methods
   func createPlayer() {
     self.player = Player(entityPosition: CGPoint(x: playableRect.midX, y: playableRect.midY))
@@ -639,7 +721,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
   }
-  
+  @objc func enableCPU(){
+    cpuEnabled = !cpuEnabled
+  }
   @objc func shotDirection(_ sender: UISwipeGestureRecognizer) {
     if isShootable && !isGamePaused {
       let newBullet = Bullet(entityPosition: CGPoint(x: playableRect.midX, y: playableRect.midY))
@@ -690,7 +774,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       emitterNOde.position = CGPoint(
         x: self.playableRect.width/2, y: self.playableRect.height + 10)
       emitterNOde.particlePositionRange = CGVector(dx: self.playableRect.width, dy: self.playableRect.height)
-    self.addChild(emitterNOde)
+      self.addChild(emitterNOde)
     }
   }
   

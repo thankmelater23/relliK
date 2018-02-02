@@ -163,14 +163,11 @@ class Entity: SKSpriteNode {
         self.flashRedEffect = groupAction
 //    }
   }
-  deinit {
-    print(#function)
-    print(self)
-  }
+  
   //Sounds
   func playSoundEffect(_ fileName: String) {
-    GlobalRellikSFXConcurrent.async {
-      self.run(SKAction.playSoundFileNamed(fileName, waitForCompletion: false))      
+    GlobalRellikSFXConcurrent.async {[weak self] in
+      self?.run(SKAction.playSoundFileNamed(fileName, waitForCompletion: false))      
     }
   }
   func playDeadSound() {

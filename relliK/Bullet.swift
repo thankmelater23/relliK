@@ -62,6 +62,10 @@ class Bullet: Entity {
     
     return onceToken
   }
+  deinit {
+    print(#function)
+    print(self)
+  }
   private static let onceToken = { () ->
     SKTexture in
     

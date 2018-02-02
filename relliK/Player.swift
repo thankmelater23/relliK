@@ -82,4 +82,9 @@ class Player: Entity {
   override func hurt() {
     super.hurt()
   }
+  deinit {
+    print(#function)
+    print(self)
+  }
+  
 }
