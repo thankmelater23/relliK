@@ -76,14 +76,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func loadDefaults() {
-    let gameHighScore = UserDefaults.standard.value(forKey: "highscore") as! Int?
-    guard let defaultHighScore = gameHighScore else {
-      UserDefaults.standard.setValue(0, forKeyPath: "highscore")
-      UserDefaults.standard.synchronize()
-      return
+    GlobalBackgroundQueue.async {
+      let gameHighScore = UserDefaults.standard.value(forKey: "highscore") as! Int?
+      guard let defaultHighScore = gameHighScore else {
+        UserDefaults.standard.setValue(0, forKeyPath: "highscore")
+        UserDefaults.standard.synchronize()
+        return
+      }
+      
+      self.highscores = UserDefaults.standard.value(forKey: "highscore") as! Int!
     }
-    
-    highscores = UserDefaults.standard.value(forKey: "highscore") as! Int!
   }
   
   // MARK: Game Labels
@@ -209,21 +211,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       if incrementCurrentGameSpeedTime > incrementGameSpeedTime {
         print("Update game speed")
         
-        //                if gameSpeed < GAME_MIN_SPEED * 0.75{
-        //                    enemyWaitTime -= enemyWaitIncrementalSpeed
-        //                    if enemyWaitTime < enemyWaitMaxSpeed{
-        //                        enemyW aitTime = enemyWaitMaxSpeed
-        //                    }
-        //                    print("decrease wait time")
-        //                }
-        //                if gameSpeed < GAME_MIN_SPEED * 0.25{
-        //                    enemyWaitTime += enemyWaitIncrementalSpeed
-        //                    if enemyWaitTime > enemyWaitMinSpeed{
-        //                        enemyWaitTime = enemyWaitMinSpeed
-        //                    }
-        //                    print("increase wait time")
-        //                }
-        
         enemyWaitTime -= enemyWaitIncrementalSpeed
         
         if enemyWaitTime > enemyWaitMinSpeed {
@@ -331,8 +318,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   // MARK: Contact Methods
   func setPhysics() {
-    self.physicsWorld.contactDelegate = self
-    self.physicsWorld.gravity = CGVector(dx: CGFloat(0), dy: CGFloat(0))
+    GlobalBackgroundQueue.async {
+      self.physicsWorld.contactDelegate = self
+      self.physicsWorld.gravity = CGVector(dx: CGFloat(0), dy: CGFloat(0))
+    }
   }
   func didBegin(_ contact: SKPhysicsContact) {
     let firstNode = contact.bodyA.node as! Entity
@@ -531,16 +520,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   // MARK: Enemies Methods
   func moveEnemies() {
+    let group = DispatchGroup()
+    
+    
+    
     GlobalRellikConcurrent.async {
-      for monstor in self.monstorsInField {
-        if(!monstor.isDead) {
+    for monstor in self.monstorsInField {
+      if(!monstor.isDead) {
+        group.enter()
           monstor.moveFunc()
-        }
-        
-        self.monstorsInField = self.monstorsInField.filter({!$0.clearedForMorgue})
+        group.leave()
+      }
       }
     }
+      group.notify(queue: GlobalRellikConcurrent) {
+      self.monstorsInField = self.monstorsInField.filter({!$0.clearedForMorgue})
+      }
   }
+  
   func spawnEnemy() {
     let randomNum = Int.random(min: 1, max: 4)
     var enemy: Enemy!
@@ -556,7 +553,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       enemy = self.randomEnemy(self.upSideEnemyStartPosition)
       enemy.directionOf = .up
     case 4:
-      enemy = self.randomEnemy(self.self.downSideEnemyStartPosition)
+      enemy = self.randomEnemy(self.downSideEnemyStartPosition)
       enemy.directionOf = .down
     case 5:
     return//This doesn't send out an enemy
@@ -571,7 +568,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   func randomEnemy(_ enemyLocation: CGPoint) -> Enemy {
     let randomNum = Int.random(min: 1, max: 13)
     
-    run(SKAction.playSoundFileNamed("spawn.wav", waitForCompletion: false))
+    GlobalRellikConcurrent.async {
+      self.run(SKAction.playSoundFileNamed("spawn.wav", waitForCompletion: false))
+    }
+    
     switch randomNum {
     case 1:
       return Boss(entityPosition: enemyLocation)
@@ -593,8 +593,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     addChild(player)
   }
   func moveBullets() {
-    GlobalBackgroundQueue.async {
-      self.bulletsInField.map({
+    GlobalRellikSerial.async {
+      self.bulletsInField.map{
         $0 as Bullet
         if !$0.isShot {
           $0.moveFunc()
@@ -603,9 +603,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.addError()
           }
         }
-      })
-      self.bulletsInField = self.bulletsInField.filter({$0.stopped == false})
+      }
+      GlobalRellikConcurrent.async {
+        self.bulletsInField = self.bulletsInField.filter({$0.stopped == false})
+      }
     }
+    
   }
   
   @objc func shotDirection(_ sender: UISwipeGestureRecognizer) {
@@ -639,7 +642,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
   }
   func particleCreator() {
-    GlobalBackgroundQueue.async {
+    GlobalRellikSerial.async {
       let rainTexture = SKTexture(imageNamed: "rainDrop")
       let emitterNOde = SKEmitterNode()
       
@@ -663,63 +666,74 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   // MARK: Block creator Methods
   func createPlayerBlock() {
-    
-    self.playerBlock = SKSpriteNode(imageNamed: "stone")
-    self.playerBlock.name = "playerBlock"
-    self.playerBlock.color = SKColor.red
-    self.playerBlock.colorBlendFactor = 1.0
-    self.playerBlock.position = CGPoint(x: horizontalXAxis, y: verticalAxis)
-    self.playerBlock.setScale(playerBlockScale)
-    self.playerBlock.texture?.filteringMode = .nearest
-    self.playerBlock.texture!.generatingNormalMap(withSmoothness: 0.5, contrast: 1.0)
-    self.playerBlock.lightingBitMask = BitMaskOfLighting.left | BitMaskOfLighting.right | BitMaskOfLighting.up | BitMaskOfLighting.down
-    
+    let group = DispatchGroup()
     let playerBlockLight = SKLightNode()
-    playerBlockLight.categoryBitMask = BitMaskOfLighting.left | BitMaskOfLighting.right | BitMaskOfLighting.down | BitMaskOfLighting.up
-    playerBlockLight.isEnabled = true
-    playerBlockLight.position = playerBlock.position
-    playerBlockLight.falloff = 1.0
-    playerBlockLight.ambientColor = SKColor(red: 0, green: 0, blue: 0, alpha: 1.0)// SKColor.yellowColor()
-    playerBlockLight.lightColor = SKColor(white: 0.1, alpha: 1.0)
     
-    addChild(playerBlockLight)
-    addChild(playerBlock)
+    group.enter()
+    
+    GlobalBackgroundQueue.async {
+      self.playerBlock = SKSpriteNode(imageNamed: "stone")
+      self.playerBlock.name = "playerBlock"
+      self.playerBlock.color = SKColor.red
+      self.playerBlock.colorBlendFactor = 1.0
+      self.playerBlock.position = CGPoint(x: self.horizontalXAxis, y: self.verticalAxis)
+      self.playerBlock.setScale(playerBlockScale)
+      self.playerBlock.texture?.filteringMode = .nearest
+      self.playerBlock.texture!.generatingNormalMap(withSmoothness: 0.5, contrast: 1.0)
+      self.playerBlock.lightingBitMask = BitMaskOfLighting.left | BitMaskOfLighting.right | BitMaskOfLighting.up | BitMaskOfLighting.down
+      
+      playerBlockLight.categoryBitMask = BitMaskOfLighting.left | BitMaskOfLighting.right | BitMaskOfLighting.down | BitMaskOfLighting.up
+      playerBlockLight.isEnabled = true
+      playerBlockLight.position = self.playerBlock.position
+      playerBlockLight.falloff = 1.0
+      playerBlockLight.ambientColor = SKColor(red: 0, green: 0, blue: 0, alpha: 1.0)// SKColor.yellowColor()
+      playerBlockLight.lightColor = SKColor(white: 0.1, alpha: 1.0)
+      group.leave()
+    }
+    
+    group.notify(queue: .main){
+      self.addChild(playerBlockLight)
+      self.addChild(self.playerBlock)
+    }
   }
+  
   func createBlocks() {
-    for i in 0...4 {
-      leftBoxes.append(SKSpriteNode(imageNamed: "stone"))
-      rightBoxes.append(SKSpriteNode(imageNamed: "stone"))
-      upBoxes.append(SKSpriteNode(imageNamed: "stone"))
-      downBoxes.append(SKSpriteNode(imageNamed: "stone"))
-      
-      leftBoxes[i].position = CGPoint(x: horizontalXAxis - pointBetweenBlocks, y: verticalAxis)
-      rightBoxes[i].position = CGPoint(x: horizontalXAxis + pointBetweenBlocks, y: verticalAxis)
-      upBoxes[i].position = CGPoint(x: horizontalXAxis, y: verticalAxis  + pointBetweenBlocks)
-      downBoxes[i].position = CGPoint(x: horizontalXAxis, y: verticalAxis  - pointBetweenBlocks)
-      
-      leftBoxes[i].setScale(enemyBlockScale)
-      rightBoxes[i].setScale(enemyBlockScale)
-      downBoxes[i].setScale(enemyBlockScale)
-      upBoxes[i].setScale(enemyBlockScale)
-      
-      leftBoxes[i].texture!.generatingNormalMap(withSmoothness: 1.0, contrast: 1.0)
-      rightBoxes[i].texture!.generatingNormalMap(withSmoothness: 0.0, contrast: 0.0)
-      downBoxes[i].texture!.generatingNormalMap(withSmoothness: 0.3, contrast: 0.6)
-      upBoxes[i].texture!.generatingNormalMap(withSmoothness: 1.0, contrast: 0.0)
-      
-      leftBoxes[i].lightingBitMask = BitMaskOfLighting.left
-      rightBoxes[i].lightingBitMask = BitMaskOfLighting.right
-      downBoxes[i].lightingBitMask = BitMaskOfLighting.down
-      upBoxes[i].lightingBitMask = BitMaskOfLighting.up
-      
-      addChild(leftBoxes[i])
-      addChild(rightBoxes[i])
-      addChild(upBoxes[i])
-      addChild(downBoxes[i])
-      
-      pointBetweenBlocks += incrementalSpaceBetweenBlocks
-      
-      createPlayerBlock()
+    GlobalRellikSerial.async {
+      for i in 0...4 {
+        
+        self.leftBoxes.append(SKSpriteNode(imageNamed: "stone"))
+        self.rightBoxes.append(SKSpriteNode(imageNamed: "stone"))
+        self.upBoxes.append(SKSpriteNode(imageNamed: "stone"))
+        self.downBoxes.append(SKSpriteNode(imageNamed: "stone"))
+        
+        self.leftBoxes[i].position = CGPoint(x: self.horizontalXAxis - self.self.pointBetweenBlocks, y: self.verticalAxis)
+        self.rightBoxes[i].position = CGPoint(x: self.self.horizontalXAxis + self.self.pointBetweenBlocks, y: self.verticalAxis)
+        self.upBoxes[i].position = CGPoint(x: self.horizontalXAxis, y: self.verticalAxis  + self.pointBetweenBlocks)
+        self.downBoxes[i].position = CGPoint(x: self.horizontalXAxis, y: self.verticalAxis  - self.pointBetweenBlocks)
+        
+        self.leftBoxes[i].setScale(enemyBlockScale)
+        self.rightBoxes[i].setScale(enemyBlockScale)
+        self.downBoxes[i].setScale(enemyBlockScale)
+        self.upBoxes[i].setScale(enemyBlockScale)
+        
+        self.leftBoxes[i].texture!.generatingNormalMap(withSmoothness: 1.0, contrast: 1.0)
+        self.rightBoxes[i].texture!.generatingNormalMap(withSmoothness: 0.0, contrast: 0.0)
+        self.downBoxes[i].texture!.generatingNormalMap(withSmoothness: 0.3, contrast: 0.6)
+        self.upBoxes[i].texture!.generatingNormalMap(withSmoothness: 1.0, contrast: 0.0)
+        
+        self.leftBoxes[i].lightingBitMask = BitMaskOfLighting.left
+        self.rightBoxes[i].lightingBitMask = BitMaskOfLighting.right
+        self.downBoxes[i].lightingBitMask = BitMaskOfLighting.down
+        self.upBoxes[i].lightingBitMask = BitMaskOfLighting.up
+        
+        self.addChild(self.leftBoxes[i])
+        self.addChild(self.rightBoxes[i])
+        self.addChild(self.upBoxes[i])
+        self.addChild(self.downBoxes[i])
+        
+        self.pointBetweenBlocks += incrementalSpaceBetweenBlocks
+      }
+      self.createPlayerBlock()
     }
   }
   

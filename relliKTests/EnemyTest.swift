@@ -7,12 +7,16 @@
 //
 
 import XCTest
+import SpriteKit
 @testable import relliK
 
 class EnemyTest: XCTestCase {
+  var entity = Boss.init()
   
   override func setUp() {
     super.setUp()
+    entity = Boss.init()
+    entity.directionOf = .down
     // Put setup code here. This method is called before the invocation of each test method in the class.
   }
   
@@ -67,12 +71,26 @@ class EnemyTest: XCTestCase {
 
 extension EnemyTest{
   func testMovePerformance(){
-    let boss = Boss.init()
-    boss.directionOf = .down
+    let entity = Boss.init()
+    entity.directionOf = .down
     
     self.measure {
-      boss.moveFunc()
+      entity.moveFunc()
     }
   }
   
-}
+  func testHurt(){
+    self.measure {
+      entity.hurt()
+    }
+  }
+  func testMoveToNextBlock(){
+    self.measure {
+      entity.moveToNextBlock()
+    }
+  }
+  func testUpdateSpriteAtrributes(){
+    self.measure {
+      entity.updateSpriteAtrributes()
+    }
+  }}

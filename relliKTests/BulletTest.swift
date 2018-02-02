@@ -10,7 +10,8 @@ import XCTest
 @testable import relliK
 
 class BulletTest: XCTestCase {
-    
+    let bullet = Bullet.init(entityPosition: CGPoint())
+  
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -35,7 +36,7 @@ class BulletTest: XCTestCase {
   
   func testGhostPerformanceTest(){
     self.measure {
-      let ghost = Ghost.init(entityPosition: CGPoint())
+      let _ = Bullet.init(entityPosition: CGPoint())
     }
   }
 }

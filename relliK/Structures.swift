@@ -9,10 +9,15 @@
 import Foundation
 
 
-struct images{
+struct imagesString{
   static let player = "player arms-out"
   static let Boss = "marshmello"
   static let enemy1 = "zombie1"
-  static let enemy2 = "solid monstor"
-  static let enemy3 = "super alien ship"
+  static let enemy2 = "enemy"
+  static let enemy3 = "cartoon-zombie"
+  static let engine = "engine"
+}
+
+enum GameState{
+  case mainMenu, loading, playing, gameOver, paused
 }

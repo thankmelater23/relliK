@@ -44,6 +44,7 @@ class Enemy: Entity {
     loadedEnemySettings()
     
   }
+  
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
@@ -150,14 +151,15 @@ class Enemy: Entity {
 
 class Boss: Enemy {
   init(entityPosition: CGPoint) {
-    let entityTexture = Boss.generateTexture()!
-    
-    super.init(texture: entityTexture)
-    position = entityPosition
-    name = "boss"
-    setScale(enemyScale)
-    directionOf = entityDirection.unSelected
-    
+    var entityTexture = SKTexture()
+    GlobalRellikSerial.sync {
+      entityTexture = Boss.generateTexture()!
+    }
+      super.init(texture: entityTexture)
+      self.position = entityPosition
+      self.name = "boss"
+      self.setScale(enemyScale)
+      self.directionOf = entityDirection.unSelected
   }
   convenience init(){
     self.init(entityPosition: CGPoint())
@@ -183,31 +185,29 @@ class Boss: Enemy {
     fatalError("init(coder:) has not been implemented")
   }
   private static let onceToken = { () -> SKTexture in
-    
-    let enemy = SKSpriteNode(imageNamed: images.Boss)
-    enemy.name = "boss"
-    
     let textureView = SKView()
-    SharedTexture.texture = textureView.texture(from: enemy)!
-    SharedTexture.texture.filteringMode = .nearest
-    SharedTexture.texture.generatingNormalMap(withSmoothness: 0.6, contrast: 1.0)
     
+    SharedTexture.texture = SKTexture.init(image: UIImage.init(named: imagesString.Boss)!)
+      SharedTexture.texture.filteringMode = .nearest
+      SharedTexture.texture.generatingNormalMap(withSmoothness: 0.6, contrast: 1.0)
+
     return SharedTexture.texture
   }()
 }
 
 class Ghost: Enemy {
   init(entityPosition: CGPoint) {
-    let entityTexture = Ghost.generateTexture()!
-    
-    super.init(texture: entityTexture)
-    position = entityPosition
-    name = "ghost"
-    setScale(enemyScale)
-    directionOf = entityDirection.unSelected
-    //        alpha = 0.1
+    var entityTexture = SKTexture()
+    GlobalRellikSerial.sync {
+      entityTexture = Ghost.generateTexture()!
+    }
+      super.init(texture: entityTexture)
+      self.position = entityPosition
+      self.name = "ghost"
+      self.setScale(enemyScale)
+      self.directionOf = entityDirection.unSelected
   }
-   convenience init(){
+  convenience init(){
     self.init(entityPosition: CGPoint())
   }
   
@@ -232,33 +232,32 @@ class Ghost: Enemy {
     fatalError("init(coder:) has not been implemented")
   }
   private static let onceToken = { () -> SKTexture in
-    
-    let enemy = SKSpriteNode(imageNamed: images.enemy3)
-    enemy.name = "ghost"
-    
     let textureView = SKView()
-    SharedTexture.texture = textureView.texture(from: enemy)!
-    SharedTexture.texture.filteringMode = .nearest
-    SharedTexture.texture.generatingNormalMap(withSmoothness: 0.6, contrast: 1.0)
+    
+    SharedTexture.texture = SKTexture.init(image: UIImage.init(named: imagesString.enemy3)!)
+      SharedTexture.texture.filteringMode = .nearest
+      SharedTexture.texture.generatingNormalMap(withSmoothness: 0.6, contrast: 1.0)
     
     return SharedTexture.texture
+    
   }()
 }
 
 class Soldier: Enemy {
   init(entityPosition: CGPoint) {
-    
-    let entityTexture = Soldier.generateTexture()!
-    
-    super.init(texture: entityTexture)
-    
-    position = entityPosition
-    name = "soldier"
-    setScale(enemyScale)
-    directionOf = entityDirection.unSelected
+    var entityTexture = SKTexture()
+    GlobalRellikSerial.sync {
+      entityTexture = Soldier.generateTexture()!
+    }
+      super.init(texture: entityTexture)
+      
+      self.position = entityPosition
+      self.name = "soldier"
+      self.setScale(enemyScale)
+      self.directionOf = entityDirection.unSelected
   }
   
-   convenience init(){
+  convenience init(){
     self.init(entityPosition: CGPoint())
   }
   override func setEntityTypeAttribures() {
@@ -282,32 +281,31 @@ class Soldier: Enemy {
     fatalError("init(coder:) has not been implemented")
   }
   private static let onceToken = { () -> SKTexture in
-    
-    let enemy = SKSpriteNode(imageNamed: images.enemy2)
-    enemy.name = "soldier"
-    
     let textureView = SKView()
-    SharedTexture.texture = textureView.texture(from: enemy)!
-    SharedTexture.texture.filteringMode = .nearest
-    SharedTexture.texture.generatingNormalMap(withSmoothness: 0.6, contrast: 1.0)
     
+    SharedTexture.texture = SKTexture.init(image: UIImage.init(named: imagesString.enemy2)!)
+      SharedTexture.texture.filteringMode = .nearest
+      SharedTexture.texture.generatingNormalMap(withSmoothness: 0.6, contrast: 1.0)
+
     return SharedTexture.texture
   }()
 }
 
 class Minion: Enemy {
   init(entityPosition: CGPoint) {
+    var entityTexture = SKTexture()
     
-    let entityTexture = Minion.generateTexture()!
-    
-    super.init(texture: entityTexture)
-    position = entityPosition
-    name = "minion"
-    setScale(enemyScale)
-    directionOf = entityDirection.unSelected
+    GlobalRellikSerial.sync {
+      entityTexture = Minion.generateTexture()!
+    }
+      super.init(texture: entityTexture)
+      self.position = entityPosition
+      self.name = "minion"
+      self.setScale(enemyScale)
+      self.directionOf = entityDirection.unSelected
   }
   
-   convenience init(){
+  convenience init(){
     self.init(entityPosition: CGPoint())
   }
   
@@ -330,15 +328,11 @@ class Minion: Enemy {
   }
   
   private static let onceToken = { () -> SKTexture in
-    
-    let enemy = SKSpriteNode(imageNamed: images.enemy1)
-    enemy.name = "minion"
-    enemy.color = UIColor.yellow
-    
-    let textureView = SKView()
-    SharedTexture.texture = textureView.texture(from: enemy)!
-    SharedTexture.texture.filteringMode = .nearest
-    SharedTexture.texture.generatingNormalMap(withSmoothness: 0.6, contrast: 1.0)
+        let textureView = SKView()
+        
+    SharedTexture.texture = SKTexture.init(image: UIImage.init(named: imagesString.enemy1)!)
+        SharedTexture.texture.filteringMode = .nearest
+        SharedTexture.texture.generatingNormalMap(withSmoothness: 0.6, contrast: 1.0)
     
     return SharedTexture.texture
   }()
