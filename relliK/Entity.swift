@@ -149,7 +149,7 @@ class Entity: SKSpriteNode {
     }
   }
   func hurtEffects() {
-    GlobalRellikSerial.async {
+//    GlobalRellikSerial.async {
       let colorizeSpriteToRed = SKAction.colorize(with: SKColor.red, colorBlendFactor: 1.0, duration: 0.5)
       let colorizeSpriteToNorm = SKAction.colorize(with: SKColor.red, colorBlendFactor: 0.0, duration: 0.5)
       let ColorOnOfSprite = SKAction.sequence([colorizeSpriteToRed, colorizeSpriteToNorm])
@@ -161,7 +161,7 @@ class Entity: SKSpriteNode {
       
         let groupAction = SKAction.group([flash, ColorsGoing])
         self.flashRedEffect = groupAction
-    }
+//    }
   }
   deinit {
     print(#function)
@@ -169,7 +169,7 @@ class Entity: SKSpriteNode {
   }
   //Sounds
   func playSoundEffect(_ fileName: String) {
-    GlobalBackgroundQueue.async {
+    GlobalRellikSFXConcurrent.async {
       self.run(SKAction.playSoundFileNamed(fileName, waitForCompletion: false))      
     }
   }

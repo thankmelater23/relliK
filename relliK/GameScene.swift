@@ -300,17 +300,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     super.init(size: playableRect.size)
   }
   override func didMove(to view: SKView) {
+    self.setup()
+  }
+  
+  func setup(){
     setPhysics()
-    setGameLights()
-    setLabels()
     createActions()
-    particleCreator()
-    createPlayer()
+    setGameLights()
     createBlocks()
-    debugDrawPlayableArea()
+    createPlayer()
     createSwipeRecognizers()
     loadDefaults()
+    setLabels()
     playGameBackgroundMusic()
+    debugDrawPlayableArea()
+//    particleCreator()
   }
   required init(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
@@ -318,7 +322,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   // MARK: Contact Methods
   func setPhysics() {
-    GlobalBackgroundQueue.async {
+    GlobalBackgroundQueue.sync {
       self.physicsWorld.contactDelegate = self
       self.physicsWorld.gravity = CGVector(dx: CGFloat(0), dy: CGFloat(0))
     }
@@ -568,7 +572,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   func randomEnemy(_ enemyLocation: CGPoint) -> Enemy {
     let randomNum = Int.random(min: 1, max: 13)
     
-    GlobalRellikConcurrent.async {
+    GlobalRellikSFXConcurrent.async {
       self.run(SKAction.playSoundFileNamed("spawn.wav", waitForCompletion: false))
     }
     
@@ -661,6 +665,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       emitterNOde.position = CGPoint(
         x: self.playableRect.width/2, y: self.playableRect.height + 10)
       emitterNOde.particlePositionRange = CGVector(dx: self.playableRect.width, dy: self.playableRect.height)
+    self.addChild(emitterNOde)
     }
   }
   

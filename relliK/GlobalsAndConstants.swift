@@ -101,3 +101,5 @@ import SpriteKit
   let GlobalRellikDataBaseSerial = DispatchQueue(label: "com.Rellik.Serial.DataBase")
   /// Custom Serial Belize Lottery Background Network Queue
   let GlobalRellikNetworkSerial = DispatchQueue(label: "com.Rellik.Serial.Network")
+/// Custom Serial Belize Lottery Background Network Queue
+let GlobalRellikSFXConcurrent = DispatchQueue(label: "com.Rellik.Serial.Network", qos: .userInitiated, attributes: .concurrent)
