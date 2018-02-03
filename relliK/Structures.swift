@@ -16,6 +16,7 @@ struct imagesString{
   static let enemy2 = "enemy"
   static let enemy3 = "cartoon-zombie"
   static let engine = "engine"
+  static let rainDrop = "rainDrop"
 }
 
 enum GameState{

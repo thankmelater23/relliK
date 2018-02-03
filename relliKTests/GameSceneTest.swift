@@ -12,12 +12,13 @@ import SpriteKit
 @testable import relliK
 
 class GameSceneTest: XCTestCase {
-  let scene = GameScene(size: CGSize(width: 1136, height: 640))
+  let scene = GameScene(size: CGSize(width: 2208, height: 1242))
   
   override func setUp() {
     super.setUp()
     scene.player = Player.init(entityPosition: CGPoint())
     scene.player.directionOf = .down
+    scene.cpuEnabled = true
     
     // Put setup code here. This method is called before the invocation of each test method in the class.
   }
@@ -30,13 +31,6 @@ class GameSceneTest: XCTestCase {
   func testExample() {
     // This is an example of a functional test case.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
-  }
-  
-  func testPerformanceExample() {
-    // This is an example of a performance test case.
-    self.measure {
-      // Put the code you want to measure the time of here.
-    }
   }
 }
 
@@ -58,31 +52,31 @@ extension GameSceneTest{
       scene.createPlayerBlock()
     }
   }
-  func testPerformanceCreateSwipeRecognizers() {
-    self.measure {
-      scene.createSwipeRecognizers()
-    }
-  }
-  func testPerformanceDebugDrawPlayableArea() {
-    self.measure {
-      scene.debugDrawPlayableArea()
-    }
-  }
+//  func testPerformanceCreateSwipeRecognizers() {
+//    self.measure {
+//      scene.createSwipeRecognizers()
+//    }
+//  }
+//  func testPerformanceDebugDrawPlayableArea() {
+//    self.measure {
+//      scene.debugDrawPlayableArea()
+//    }
+//  }
 //  func testPerformanceDidMove() {
 //    self.measure {
 //      scene.didMove(to: SKView())
 //    }
 //  }
-  func testPerformanceGameOver() {
-    self.measure {
-      scene.gameOver()
-    }
-  }
-  func testPerformanceGameSceneInitializes() {
-    self.measure {
-      GameScene.init(size: CGSize())
-    }
-  }
+//  func testPerformanceGameOver() {
+//    self.measure {
+//      scene.gameOver()
+//    }
+//  }
+//  func testPerformanceGameSceneInitializes() {
+//    self.measure {
+//      let _ = GameScene(size: CGSize(width: 2208, height: 1242))
+//    }
+//  }
   func testPerformanceLoadDefaults() {
     self.measure {
       scene.loadDefaults()

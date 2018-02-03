@@ -116,20 +116,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   // MARK: - Setup
   ///Run initial configuration functions
   func setup() {
-    GlobalBackgroundQueue.async {
-      self.buddyBuildConfig()
-      self.printAppInfo()
-      self.fabricConfiguration()
+    GlobalBackgroundQueue.async {[weak self] in
+      self?.buddyBuildConfig()
+      self?.printAppInfo()
+      self?.fabricConfiguration()
     }
   }
   
   func buddyBuildConfig() {
-    GlobalMainQueue.async {
+    GlobalMainQueue.async {[weak self] in
       BuddyBuildSDK.setup()
     }
   }
   func fabricConfiguration() {
-    GlobalMainQueue.async {
+    GlobalMainQueue.async {[weak self] in
     Fabric.with([Crashlytics.self(), Answers.self()])
     }
   }

@@ -704,19 +704,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     addChild(player)
   }
   func moveBullets() {
-    GlobalRellikSerial.async {
-      self.bulletsInField.map{
+    GlobalRellikSerial.async {[weak self] in
+      self?.bulletsInField.map{
         $0 as Bullet
         if !$0.isShot {
           $0.moveFunc()
         } else {
           if $0.stopped {
-            self.addError()
+            self?.addError()
           }
         }
       }
       GlobalRellikConcurrent.async {
-        self.bulletsInField = self.bulletsInField.filter({$0.stopped == false})
+        self?.bulletsInField = (self?.bulletsInField.filter({$0.stopped == false}))!
       }
     }
     

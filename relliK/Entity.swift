@@ -143,9 +143,12 @@ class Entity: SKSpriteNode {
           colorBlendFactor: 1.0,
           duration: 0.0),
         SKAction.wait(forDuration: 0.3),
-        SKAction.removeFromParent()]))
+        SKAction.removeFromParent()])){
+          
+                self.removeAllActions()
+                self.removeAllChildren()
+      }
       
-      removeAction(forKey: "move")
     }
   }
   func hurtEffects() {

@@ -331,17 +331,16 @@ class Minion: Enemy {
     return onceToken
   }
   
-  private static let onceToken = { () -> SKTexture in
-        let textureView = SKView()
-        
-    SharedTexture.texture = SKTexture.init(image: UIImage.init(named: imagesString.enemy1)!)
-        SharedTexture.texture.filteringMode = .nearest
-        SharedTexture.texture.generatingNormalMap(withSmoothness: 0.6, contrast: 1.0)
-    
-    return SharedTexture.texture
-  }()
-  
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+  private static let onceToken = { () -> SKTexture in
+    let textureView = SKView()
+    
+    SharedTexture.texture = SKTexture.init(image: UIImage.init(named: imagesString.enemy1)!)
+    SharedTexture.texture.filteringMode = .nearest
+    SharedTexture.texture.generatingNormalMap(withSmoothness: 0.6, contrast: 1.0)
+    
+    return SharedTexture.texture
+  }()
 }
