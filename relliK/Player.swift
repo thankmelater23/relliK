@@ -40,7 +40,7 @@ class Player: Entity {
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  override func setAngle() {
+  internal override func setAngle() {
     switch (directionOf) {
     case entityDirection.right:
       run(SKAction.rotate(toAngle: 2 * π, duration: TimeInterval(0.0), shortestUnitArc: true))
@@ -53,13 +53,13 @@ class Player: Entity {
     case entityDirection.unSelected:
       //Dont run
       directionOf = entityDirection.unSelected
-      print("direction unselected")
+      log.verbose("direction unselected")
     }
   }
   override func updateSpriteAtrributes() {
     super.updateSpriteAtrributes()
+    self.physicsBody = SKPhysicsBody(rectangleOf: (self.frame.size))
     GlobalRellikConcurrent.async{
-      self.physicsBody = SKPhysicsBody(rectangleOf: (self.frame.size))
       self.physicsBody?.usesPreciseCollisionDetection = true
       self.physicsBody?.categoryBitMask = PhysicsCategory.Player
       self.physicsBody?.contactTestBitMask = PhysicsCategory.Enemy
@@ -69,10 +69,10 @@ class Player: Entity {
   override func setEntityTypeAttribures() {
     maxHealth = 3
     health = maxHealth
-    hurtSoundString = "playerPain1.wav"
+    hurtSoundString = "player hurt.wav"
     attackSoundString = "attack.wav"
     moveSoundString = "move.wav"
-    diedSoundString = "died.wav"
+    diedSoundString = "player died.wav"
     directionOf = entityDirection.unSelected
     entityCurrentBlock = blockPlace.unSelected
     entityInRangeBlock = blockPlace.fourth
@@ -80,11 +80,29 @@ class Player: Entity {
     //childNodeWithName("bulletNode")
   }
   override func hurt() {
-    super.hurt()
+    run(SKAction.sequence([
+      SKAction.colorize(
+        with: SKColor.red,
+        colorBlendFactor: 1.0,
+        duration: 0.0),
+      SKAction.wait(forDuration: 0.3), SKAction.run {
+        super.hurt()
+      }]))
+  }
+  
+  override func died() {
+    run(SKAction.sequence([
+      SKAction.colorize(
+        with: SKColor.red,
+        colorBlendFactor: 1.0,
+        duration: 0.0),
+      SKAction.wait(forDuration: 0.3), SKAction.run {
+        super.died()
+      }]))
   }
   deinit {
-    print(#function)
-    print(self)
+    log.verbose(#function)
+    log.verbose(self)
   }
   
 }

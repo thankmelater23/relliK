@@ -24,12 +24,18 @@ class Entity: SKSpriteNode {
   var diedSoundString = "died.wav"
   var blockSoundString = "block.wav"
   var dodgeSoundString = "dodge.wav"
-  var directionOf = entityDirection.unSelected
-  var move: SKAction = SKAction()
+  var directionOf = entityDirection.unSelected {
+    didSet{
+      if self.directionOf != .unSelected{
+      self.setAngle()
+      }
+    }
+  }
+  weak var move: SKAction? = SKAction()
   var entityCurrentBlock: blockPlace = blockPlace.unSelected
   var entityInRangeBlock: blockPlace = blockPlace.unSelected
-  var flashRedEffect: SKAction!
-  var healthLabel: SKLabelNode = SKLabelNode()
+  weak var flashRedEffect: SKAction?
+//  var healthLabel: SKLabelNode = SKLabelNode()
   var isDead: Bool { return health < 1 }
   
   internal func setEntityTypeAttribures() {}
@@ -95,7 +101,10 @@ class Entity: SKSpriteNode {
   }
   func hurt() {
     health -= 1
-    run(flashRedEffect)
+    healthLabel()
+    if let flash = flashRedEffect {
+      run(flash)
+    }else{ log.warning("Hurt flash not initialized")}
     died()
   }
   func moveToNextBlock() {
@@ -117,7 +126,7 @@ class Entity: SKSpriteNode {
       return
     }
   }
-  func setAngle() {
+   func setAngle() {
     switch (directionOf) {
     case entityDirection.left:
       run(SKAction.rotate(toAngle: 2 * π, duration: TimeInterval(0.0), shortestUnitArc: true))
@@ -132,23 +141,14 @@ class Entity: SKSpriteNode {
     }
   }
   func died() {
-    defer {
-      playHurtSound()
-    }
     if isDead {//If dead turns sprite red waits for x seconds and then removes the sprite from parent
+      playDeadSound()
       physicsBody?.categoryBitMask = PhysicsCategory.dead//Stops all contact and collision detection after death
-      run(SKAction.sequence([
-        SKAction.colorize(
-          with: SKColor.red,
-          colorBlendFactor: 1.0,
-          duration: 0.0),
-        SKAction.wait(forDuration: 0.3),
-        SKAction.removeFromParent()])){
-          
-                self.removeAllActions()
-                self.removeAllChildren()
-      }
-      
+      self.removeAllActions()
+      self.removeAllChildren()
+      self.removeFromParent()
+      self.removeAllActions()
+//      self.texture = nil
     }
   }
   func hurtEffects() {
@@ -166,12 +166,37 @@ class Entity: SKSpriteNode {
         self.flashRedEffect = groupAction
 //    }
   }
-  
+  func healthLabel(){
+        let healthLabel = SKLabelNode(fontNamed: "Chalkduster")
+        healthLabel.name = "Hurt Label"
+        healthLabel.color = SKColor.red
+        healthLabel.fontSize = 30
+        healthLabel.position = CGPoint(x: frame.midX, y: frame.midY)
+        healthLabel.text = String(health)
+        healthLabel.zPosition = 100
+    
+        if health <= 0 {
+            healthLabel.fontColor = SKColor.red
+          } else if health == 1 {
+            healthLabel.fontColor = SKColor.yellow
+          } else {
+            healthLabel.fontColor = SKColor.green
+          }
+    
+        self.parent?.addChild(healthLabel)
+    
+        let action = SKAction.sequence([SKAction.scale(to: 0.0, duration: 0.5), SKAction.removeFromParent()])
+      
+          healthLabel.run(action)
+  }
+  deinit {
+//    log.verbose(#function)
+  }
   //Sounds
   func playSoundEffect(_ fileName: String) {
-    GlobalRellikSFXConcurrent.async {[weak self] in
-      self?.run(SKAction.playSoundFileNamed(fileName, waitForCompletion: false))      
-    }
+//    GlobalRellikSFXConcurrent.async {[weak self] in
+      self.run(SKAction.playSoundFileNamed(fileName, waitForCompletion: false))
+//    }
   }
   func playDeadSound() {
     playSoundEffect(diedSoundString)

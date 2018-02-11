@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 import SpriteKit
 
-class Enemy: Entity {
+class Enemy: Entity{
+  weak var delegate: SceneUpdateProtocol? = nil
   
   //Initializars
   init(texture: SKTexture) {
@@ -23,6 +24,19 @@ class Enemy: Entity {
     self.createHealthBar()
     self.setEntityTypeAttribures()
   }
+  
+  init(texture: SKTexture, delegate: SceneUpdateProtocol) {
+    super.init(position: CGPoint(), texture: texture)
+    self.directionOf = entityDirection.unSelected
+    self.size = texture.size()
+    self.setScale(enemyScale)
+    self.zPosition = 90.00
+    self.updateSpriteAtrributes()
+    self.createHealthBar()
+    self.setEntityTypeAttribures()
+        self.delegate = delegate
+  }
+  
   convenience init(){
     self.init(texture: SKTexture())
   }
@@ -49,17 +63,21 @@ class Enemy: Entity {
     fatalError("init(coder:) has not been implemented")
   }
   deinit {
-    print(#function)
-    print(self)
+//    log.verbose(#function)
+//    log.verbose(self)
+    delegate?.killCountUpdate!()
+    delegate?.pointCountUpdate!(points: self.sumForScore())
+    
   }
   
   //Action Methods
   func moveFunc() {
-    setAngle()
-    move.timingMode = SKActionTimingMode.easeInEaseOut
+//    setAngle()
+    move?.timingMode = SKActionTimingMode.easeInEaseOut
+    
     run(moveAction(), withKey: "move")
-    print(gameSpeed)
-    print(enemyWaitTime)
+//    log.verbose(gameSpeed)
+//    log.verbose(enemyWaitTime)
   }
   override func moveToNextBlock() {
     super.moveToNextBlock()
@@ -101,59 +119,45 @@ class Enemy: Entity {
       return SKAction.sequence([wait, moveToNextBlockAction, moveSound, moveUpAction])
     case entityDirection.unSelected:
       //Dont run
-      print("direction unselected")
+      log.verbose("direction unselected")
       assertionFailure("Entity direction was never sent, this should never happen")
       return SKAction()
     }
     
   }
   override func died() {
-    super.died()
-    //
-    //        if isDead{
-    //            let scoreLabel = SKLabelNode(fontNamed: "Chalkduster")
-    //            scoreLabel.name = "Show Score Points"
-    //            scoreLabel.color = SKColor.redColor()
-    //            scoreLabel.fontSize = 20
-    //            scoreLabel.position = CGPoint(x: CGRectGetMidX(frame), y: CGRectGetMidY(frame))
-    //            scoreLabel.text = String(sumForScore())
-    //            scoreLabel.zPosition = 100
-    //
-    //            self.parent?.addChild(scoreLabel)
-    //
-    //            let action = SKAction.sequence([SKAction.scaleTo(0.0, duration: 0.5), SKAction.removeFromParent()])
-    //
-    //            scoreLabel.runAction(action)
-    //        }
+    if self.isDead{
+        super.died()
+        self.clearedForMorgue = true
+      
+    }
   }
   override func hurt() {
+    run(SKAction.sequence([
+      SKAction.colorize(
+        with: SKColor.red,
+        colorBlendFactor: 1.0,
+        duration: 0.0),
+      SKAction.wait(forDuration: 0.3), SKAction.run {
     super.hurt()
-    
-    let healthLabel = SKLabelNode(fontNamed: "Chalkduster")
-    healthLabel.name = "Hurt Label"
-    healthLabel.color = SKColor.red
-    healthLabel.fontSize = 20
-    healthLabel.position = CGPoint(x: frame.midX, y: frame.midY)
-    healthLabel.text = String(health)
-    healthLabel.zPosition = 100
-    
-    if health <= 0 {
-      healthLabel.fontColor = SKColor.red
-    } else if health == 1 {
-      healthLabel.fontColor = SKColor.yellow
-    } else {
-      healthLabel.fontColor = SKColor.green
-    }
-    
-    self.parent?.addChild(healthLabel)
-    
-    let action = SKAction.sequence([SKAction.scale(to: 0.0, duration: 0.5), SKAction.removeFromParent()])
-    
-    healthLabel.run(action)
+    }]))
   }
 }
 
 class Boss: Enemy {
+  init(entityPosition: CGPoint, delegate: SceneUpdateProtocol) {
+    var entityTexture = SKTexture()
+    GlobalRellikSerial.sync {
+      entityTexture = Boss.generateTexture()!
+    }
+    super.init(texture: entityTexture)
+    self.position = entityPosition
+    self.name = "boss"
+    self.setScale(enemyScale)
+    self.directionOf = entityDirection.unSelected
+    self.delegate = delegate
+  }
+  
   init(entityPosition: CGPoint) {
     var entityTexture = SKTexture()
     GlobalRellikSerial.sync {
@@ -178,7 +182,7 @@ class Boss: Enemy {
     hurtSoundString = "bossHurt.wav"
     attackSoundString = "attack.wav"
     moveSoundString = "move.wav"
-    diedSoundString = "died.wav"
+    diedSoundString = "boss died.wav"
     //        directionOf = entityDirection.unSelected
   }
   override class func generateTexture() -> SKTexture? {
@@ -200,6 +204,18 @@ class Boss: Enemy {
 }
 
 class Ghost: Enemy {
+  init(entityPosition: CGPoint, delegate: SceneUpdateProtocol) {
+    var entityTexture = SKTexture()
+    GlobalRellikSerial.sync {
+      entityTexture = Ghost.generateTexture()!
+    }
+    super.init(texture: entityTexture)
+    self.position = entityPosition
+    self.name = "ghost"
+    self.setScale(enemyScale)
+    self.directionOf = entityDirection.unSelected
+    self.delegate = delegate
+  }
   init(entityPosition: CGPoint) {
     var entityTexture = SKTexture()
     GlobalRellikSerial.sync {
@@ -222,10 +238,10 @@ class Ghost: Enemy {
     entityInRangeBlock = blockPlace.third
     scoreValue = 5
     //Sound
-    hurtSoundString = "ghostHurt.wav"
+    hurtSoundString = "zombie pain.wav"
     attackSoundString = "attack.wav"
     moveSoundString = "move.wav"
-    diedSoundString = "ghostHurt.wav"
+    diedSoundString = "zombie dying.wav"
     directionOf = entityDirection.unSelected
   }
   override class func generateTexture() -> SKTexture? {
@@ -248,6 +264,20 @@ class Ghost: Enemy {
 }
 
 class Soldier: Enemy {
+  init(entityPosition: CGPoint, delegate: SceneUpdateProtocol) {
+    var entityTexture = SKTexture()
+    GlobalRellikSerial.sync {
+      entityTexture = Soldier.generateTexture()!
+    }
+    super.init(texture: entityTexture)
+    
+    self.position = entityPosition
+    self.name = "soldier"
+    self.setScale(enemyScale)
+    self.directionOf = entityDirection.unSelected
+    self.delegate = delegate
+  }
+  
   init(entityPosition: CGPoint) {
     var entityTexture = SKTexture()
     GlobalRellikSerial.sync {
@@ -270,10 +300,10 @@ class Soldier: Enemy {
     entityCurrentBlock = blockPlace.unSelected
     entityInRangeBlock = blockPlace.second
     scoreValue = 10        //Sound
-    hurtSoundString = "soldierHurt.wav"
+    hurtSoundString = "zombie pain"
     attackSoundString = "attack.wav"
     moveSoundString = "move.wav"
-    diedSoundString = "died.wav"
+    diedSoundString = "zombie dying.wav"
     //        directionOf = entityDirection.unSelected
     
   }
@@ -296,6 +326,20 @@ class Soldier: Enemy {
 }
 
 class Minion: Enemy {
+  init(entityPosition: CGPoint, delegate: SceneUpdateProtocol) {
+    var entityTexture = SKTexture()
+    
+    GlobalRellikSerial.sync {
+      entityTexture = Minion.generateTexture()!
+    }
+    super.init(texture: entityTexture)
+    self.position = entityPosition
+    self.name = "minion"
+    self.setScale(enemyScale)
+    self.directionOf = entityDirection.unSelected
+    self.delegate = delegate
+  }
+  
   init(entityPosition: CGPoint) {
     var entityTexture = SKTexture()
     
@@ -320,10 +364,10 @@ class Minion: Enemy {
     entityInRangeBlock = blockPlace.fifth
     scoreValue = 5
     //Sound
-    hurtSoundString = "minionHurt.wav"
+    hurtSoundString = "zombie pain"
     attackSoundString = "attack.wav"
     moveSoundString = "move.wav"
-    diedSoundString = "died.wav"
+    diedSoundString = "zombie dying.wav"
     
   }
   override class func generateTexture() -> SKTexture? {

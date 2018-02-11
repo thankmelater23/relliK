@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		41022E882030920C00DB7000 /* SceneUpdateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41022E872030920C00DB7000 /* SceneUpdateProtocol.swift */; };
+		4143E207202581E4008492C8 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4143E206202581E4008492C8 /* GlobalVariables.swift */; };
 		416F934E2023011800D11EA7 /* EntityTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416F934D2023011800D11EA7 /* EntityTest.swift */; };
 		416F935020230B4500D11EA7 /* GameSceneTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416F934F20230B4500D11EA7 /* GameSceneTest.swift */; };
 		4181564E20194BDF00C20310 /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4181564D20194BDF00C20310 /* Bullet.swift */; };
@@ -14,6 +16,11 @@
 		41BBB0222022F61F00FD03BC /* EnemyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BBB0212022F61F00FD03BC /* EnemyTest.swift */; };
 		41BBB0242022F7EF00FD03BC /* PlayerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BBB0232022F7EF00FD03BC /* PlayerTest.swift */; };
 		41BBB0262022F82100FD03BC /* BulletTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BBB0252022F82100FD03BC /* BulletTest.swift */; };
+		41E9234F202E55E400AFE284 /* player hurt.wav in Resources */ = {isa = PBXBuildFile; fileRef = 41E9234E202E55E400AFE284 /* player hurt.wav */; };
+		41E92351202E560000AFE284 /* player died.wav in Resources */ = {isa = PBXBuildFile; fileRef = 41E92350202E560000AFE284 /* player died.wav */; };
+		41E92353202E57C300AFE284 /* zombie pain.wav in Resources */ = {isa = PBXBuildFile; fileRef = 41E92352202E57C300AFE284 /* zombie pain.wav */; };
+		41E92355202E57F200AFE284 /* zombie dying.wav in Resources */ = {isa = PBXBuildFile; fileRef = 41E92354202E57F100AFE284 /* zombie dying.wav */; };
+		41E92357202E58DB00AFE284 /* boss died.wav in Resources */ = {isa = PBXBuildFile; fileRef = 41E92356202E58DB00AFE284 /* boss died.wav */; };
 		948B4C5C2FA43D6476622470 /* Pods_relliKTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8364E34AF9001AD6E737BCE /* Pods_relliKTests.framework */; };
 		ADF411462C66A77268BE1110 /* Pods_relliKUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE19211C682326D69D1AD879 /* Pods_relliKUITests.framework */; };
 		BDC79118D72006F3C1B9D0F2 /* Pods_relliK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB6B19AE7C7C00E60B2D676D /* Pods_relliK.framework */; };
@@ -83,6 +90,8 @@
 /* Begin PBXFileReference section */
 		089F525E17DB391670D11E36 /* Pods-relliKTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-relliKTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-relliKTests/Pods-relliKTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2C1B4A63547FFEFC033E7A1C /* Pods-relliKTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-relliKTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-relliKTests/Pods-relliKTests.release.xcconfig"; sourceTree = "<group>"; };
+		41022E872030920C00DB7000 /* SceneUpdateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneUpdateProtocol.swift; sourceTree = "<group>"; };
+		4143E206202581E4008492C8 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		416F934D2023011800D11EA7 /* EntityTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityTest.swift; sourceTree = "<group>"; };
 		416F934F20230B4500D11EA7 /* GameSceneTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneTest.swift; sourceTree = "<group>"; };
 		4181564D20194BDF00C20310 /* Bullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
@@ -90,6 +99,11 @@
 		41BBB0212022F61F00FD03BC /* EnemyTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyTest.swift; sourceTree = "<group>"; };
 		41BBB0232022F7EF00FD03BC /* PlayerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTest.swift; sourceTree = "<group>"; };
 		41BBB0252022F82100FD03BC /* BulletTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletTest.swift; sourceTree = "<group>"; };
+		41E9234E202E55E400AFE284 /* player hurt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "player hurt.wav"; sourceTree = "<group>"; };
+		41E92350202E560000AFE284 /* player died.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "player died.wav"; sourceTree = "<group>"; };
+		41E92352202E57C300AFE284 /* zombie pain.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "zombie pain.wav"; sourceTree = "<group>"; };
+		41E92354202E57F100AFE284 /* zombie dying.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "zombie dying.wav"; sourceTree = "<group>"; };
+		41E92356202E58DB00AFE284 /* boss died.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "boss died.wav"; sourceTree = "<group>"; };
 		62A6AE1A985BEA1EB71E02E5 /* Pods-relliKUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-relliKUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-relliKUITests/Pods-relliKUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6D14137FDE11D7B8DA1AD293 /* Pods-relliKUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-relliKUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-relliKUITests/Pods-relliKUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C16632CC92591A331588B2DE /* Pods-relliK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-relliK.release.xcconfig"; path = "Pods/Target Support Files/Pods-relliK/Pods-relliK.release.xcconfig"; sourceTree = "<group>"; };
@@ -179,6 +193,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		41022E86203091BE00DB7000 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				41022E872030920C00DB7000 /* SceneUpdateProtocol.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		418B542F1FB19B8200B92CAE /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				C6D3961F1B64594F00830790 /* GlobalsAndConstants.swift */,
+				4143E206202581E4008492C8 /* GlobalVariables.swift */,
 				41984302201BD22D00C6829F /* Structures.swift */,
 			);
 			name = GlobalsAndConstants;
@@ -294,6 +317,7 @@
 		C6D395E21B64579100830790 /* relliK */ = {
 			isa = PBXGroup;
 			children = (
+				41022E86203091BE00DB7000 /* Protocols */,
 				C6E98AFD1B6F5E64005B1B29 /* SFX */,
 				418B54341FB19BE300B92CAE /* Support Files */,
 				418B54351FB19BEF00B92CAE /* GlobalsAndConstants */,
@@ -346,8 +370,13 @@
 				C63933EB1B775ECC009FFC3B /* error.wav */,
 				C6162A5E1B7EBA3F0046B4A1 /* teleport.wav */,
 				C6E98B011B6F5E75005B1B29 /* minionHurt.wav */,
+				41E92350202E560000AFE284 /* player died.wav */,
 				C6E98B021B6F5E75005B1B29 /* playerPain2.wav */,
 				C6E98B031B6F5E75005B1B29 /* playerPain1.wav */,
+				41E92354202E57F100AFE284 /* zombie dying.wav */,
+				41E92356202E58DB00AFE284 /* boss died.wav */,
+				41E92352202E57C300AFE284 /* zombie pain.wav */,
+				41E9234E202E55E400AFE284 /* player hurt.wav */,
 				C63933F31B78DDE2009FFC3B /* backgroundMusic.mp3 */,
 				C6E98B041B6F5E75005B1B29 /* playerPain4.wav */,
 				C6E98B051B6F5E75005B1B29 /* bulletAttack.wav */,
@@ -500,6 +529,7 @@
 				C63933ED1B775ECC009FFC3B /* error.wav in Resources */,
 				C6E98B0C1B6F5E75005B1B29 /* playerPain1.wav in Resources */,
 				C6162A651B7EBADE0046B4A1 /* soundscalpel_monster_scream.mp3 in Resources */,
+				41E92351202E560000AFE284 /* player died.wav in Resources */,
 				C658633E1B6864FA00F89D71 /* engine.sks in Resources */,
 				C63933F41B78DDE2009FFC3B /* backgroundMusic.mp3 in Resources */,
 				C6DB59C51B6E29900013362E /* light.sks in Resources */,
@@ -508,12 +538,15 @@
 				C63933F21B78DBF8009FFC3B /* soldierHurt.wav in Resources */,
 				C6E98B0B1B6F5E75005B1B29 /* playerPain2.wav in Resources */,
 				C6162A611B7EBA840046B4A1 /* soundscalpel_drone1.mp3 in Resources */,
+				41E92355202E57F200AFE284 /* zombie dying.wav in Resources */,
 				C60D5ACD1B6A11D800672EC1 /* magicBlast.sks in Resources */,
+				41E9234F202E55E400AFE284 /* player hurt.wav in Resources */,
 				C6E98B0E1B6F5E75005B1B29 /* bulletAttack.wav in Resources */,
 				C6E98B0A1B6F5E75005B1B29 /* minionHurt.wav in Resources */,
 				C6162A631B7EBA900046B4A1 /* soundscalpel_drone2.mp3 in Resources */,
 				C6162A5F1B7EBA3F0046B4A1 /* teleport.wav in Resources */,
 				C6E98B0F1B6F5E75005B1B29 /* spawn.wav in Resources */,
+				41E92357202E58DB00AFE284 /* boss died.wav in Resources */,
 				C6162A671B7EBC810046B4A1 /* Assets.xcassets in Resources */,
 				C60D5ACE1B6A11D800672EC1 /* spark.png in Resources */,
 				C6E98B111B6F6089005B1B29 /* move.wav in Resources */,
@@ -524,6 +557,7 @@
 				C6E98B071B6F5E75005B1B29 /* attack.wav in Resources */,
 				C6D395ED1B64579100830790 /* Main.storyboard in Resources */,
 				C63933F11B78DBF8009FFC3B /* ghostHurt.wav in Resources */,
+				41E92353202E57C300AFE284 /* zombie pain.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -646,9 +680,24 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-relliK/Pods-relliK-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Amplitude-iOS/Amplitude_iOS.framework",
+				"${BUILT_PRODUCTS_DIR}/Flurry-iOS-SDK/Flurry_iOS_SDK.framework",
+				"${BUILT_PRODUCTS_DIR}/Onboard/Onboard.framework",
+				"${BUILT_PRODUCTS_DIR}/SAConfettiView/SAConfettiView.framework",
+				"${BUILT_PRODUCTS_DIR}/Siren/Siren.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
+				"${BUILT_PRODUCTS_DIR}/iRate/iRate.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Amplitude_iOS.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Flurry_iOS_SDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Onboard.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAConfettiView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Siren.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iRate.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -715,8 +764,10 @@
 				C6D396221B64595B00830790 /* GameOverScene.swift in Sources */,
 				C6D396201B64594F00830790 /* GlobalsAndConstants.swift in Sources */,
 				C6D395E81B64579100830790 /* GameScene.swift in Sources */,
+				41022E882030920C00DB7000 /* SceneUpdateProtocol.swift in Sources */,
 				C6D3962A1B64597D00830790 /* MyUtils.swift in Sources */,
 				C6D396241B64596300830790 /* Int+Extensions.swift in Sources */,
+				4143E207202581E4008492C8 /* GlobalVariables.swift in Sources */,
 				C60D5AD21B6AF57300672EC1 /* Entity.swift in Sources */,
 				C6D395EA1B64579100830790 /* GameViewController.swift in Sources */,
 				C63933F61B78E8FA009FFC3B /* Actions.swift in Sources */,

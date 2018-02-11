@@ -14,7 +14,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var cpuEnabled = true
   // MARK: Array of Monstors and Bullets
   var monstorsInField = [Enemy]()
-  var bulletsInField = [Bullet]()
+  var bulletsInField = [Bullet?]()
   var shots = [()->()]()
   
   // MARK: Sprite Objects
@@ -147,47 +147,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   var waitTimeBoardLabel = SKLabelNode()
   var gameSpeedBoardLabel = SKLabelNode()
-  
-  func setGameTimeLabel() {
-    
-    waitTimeBoardLabel.text = String("Game Speed: \(gameSpeed)")
-    //waitTimeBoardLabel.runAction(SKAction.sequence([SKAction.scaleTo(1.5, duration: 0.1),
-    //  SKAction.scaleTo(1, duration: 0.1)]))
-  }
-  
-  func setWaitTimeLabel() {
-    
-    gameSpeedBoardLabel.text = String("Wait Time: \(enemyWaitTime)")
-    // gameSpeedBoardLabel.runAction(SKAction.sequence([SKAction.scaleTo(1.5, duration: 0.1),
-    // SKAction.scaleTo(1, duration: 0.1)]))
-  }
-  
-  func convertGameTimer(_ timeToConvert: Int) -> String {
-    var total = 0
-    var min = 0
-    var sec = 0
-    
-    for _ in 0..<timeToConvert {
-      total += 1
-      if total == 60 {
-        total = 0
-        min += 1
-      }
-    }
-    sec = total
-    return String("\(min):\(sec)")
-  }
-  
-  @objc func paused() {
-    isGamePaused = !isGamePaused
-    
-    //    if isGamePaused{
-    //      while !isGamePaused{
-    //        sleep(10)
-    //      }
-    //    }
-  }
-  
+ 
   func setGameLights() {
     rightLight.position = CGPoint(x: 0.5, y: 0.5)
     leftLight.position = CGPoint(x: 0.5, y: 0.5)
@@ -209,7 +169,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   override func update(_ currentTime: TimeInterval) {
     if !isGamePaused {
       if incrementCurrentGameSpeedTime > incrementGameSpeedTime {
-        print("Update game speed")
+//        log.verbose("Update game speed")
         
         enemyWaitTime -= enemyWaitIncrementalSpeed
         
@@ -221,17 +181,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if gameSpeed <= GAME_MAX_SPEED {
-          print("Current gamespeed under min: \(gameSpeed)")
+//          log.verbose("Current gamespeed under min: \(gameSpeed)")
           gameSpeed = GAME_MAX_SPEED
           enemyWaitTime == TimeInterval(0.4)
-          print("Current gameSpeedChanged to: \(gameSpeed)")
+//          log.verbose("Current gameSpeedChanged to: \(gameSpeed)")
         } else {//Decrese gameSpeed
           gameSpeed -= gameIncrementalSpeed
         }
         //                if gameSpeed > GAME_MIN_SPEED{
-        //                    print("Current gameSpeed over max: \(gameSpeed)")
+        //                    log.verbose("Current gameSpeed over max: \(gameSpeed)")
         //                    gameSpeed = GAME_MIN_SPEED
-        //                    print("Current gameSpeedChanged: \(gameSpeed)")
+        //                    log.verbose("Current gameSpeedChanged: \(gameSpeed)")
         //                }
         
         self.setWaitTimeLabel()
@@ -239,17 +199,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         incrementCurrentGameSpeedTime = 0
         
-        print("Current gameSpeed: \(gameSpeed)")
+//        log.verbose("Current gameSpeed: \(gameSpeed)")
       } else {
         incrementCurrentGameSpeedTime += currentTime - lastUpdateTime
       }
       
       if dt >= gameSpeed + enemyWaitTime {
-        print("game total Speed: \(gameSpeed + enemyWaitTime)")
+//        log.verbose("game total Speed: \(gameSpeed + enemyWaitTime)")
         dt = 0
         spawnEnemy()
         moveEnemies()
-        print("Spawn and move time")
+//        log.verbose("Spawn and move time")
       }
       
       if lastUpdateTime > 0 {
@@ -377,33 +337,412 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     if (contact.bodyA.categoryBitMask == PhysicsCategory.Enemy) &&
       (contact.bodyB.categoryBitMask == PhysicsCategory.Bullet) {
       firstNode as! Enemy
-      secondNode.removeAction(forKey: "move")
+//      secondNode.removeAction(forKey: "move")
       secondNode.kill()
       firstNode.hurt()
-      
-      if firstNode.isDead {
-        self.upScore(firstNode.sumForScore())
-        self.upKilledEnemy()
-      }
     }
     
     if (contact.bodyB.categoryBitMask == PhysicsCategory.Enemy) &&
       (contact.bodyA.categoryBitMask == PhysicsCategory.Bullet) {
       secondNode as! Enemy
-      firstNode.removeAction(forKey: "move")
+//      firstNode.removeAction(forKey: "move")
       
       firstNode.kill()
       secondNode.hurt()
-      
-      if secondNode.isDead {
-        self.upScore(secondNode.sumForScore())
-        self.upKilledEnemy()
-        //                    }
-      }
     }
   }
   
-  // MARK: UI Methods
+  
+  // MARK: Player and Bullets Methods
+  func createPlayer() {
+    self.player = Player(entityPosition: CGPoint(x: playableRect.midX, y: playableRect.midY))
+    addChild(player)
+  }
+  func moveBullets() {
+    GlobalRellikSerial.async {[weak self] in
+      self?.bulletsInField.map{
+        $0 as Bullet?
+        if !($0?.isShot)! {
+          $0?.moveFunc()
+        } else {
+          if ($0?.stopped)! && !(($0?.isDead)!) {
+            self?.errorCountUpdate()
+          }
+        }
+      }
+      GlobalRellikConcurrent.async {
+        let nilOutBullets = (self?.bulletsInField.filter({$0?.stopped == true}))!
+        for var bullet in nilOutBullets{
+          bullet = nil
+        }
+        self?.bulletsInField = (self?.bulletsInField.filter({$0?.stopped == false}))!
+      }
+    }
+    
+  }
+  @objc func enableCPU(){
+    cpuEnabled = !cpuEnabled
+  }
+  @objc func shotDirection(_ sender: UISwipeGestureRecognizer) {
+    if isShootable && !isGamePaused {
+      let newBullet = Bullet(entityPosition: CGPoint(x: playableRect.midX, y: playableRect.midY))
+      
+      switch sender.direction {
+      case UISwipeGestureRecognizerDirection.right:
+        newBullet.directionOf = entityDirection.right
+//        newBullet.setAngle()
+        newBullet.move = bulletMoveRightAction
+        player.directionOf = entityDirection.right
+      case UISwipeGestureRecognizerDirection.left:
+        newBullet.directionOf = entityDirection.left
+        newBullet.move = bulletMoveLeftAction
+        player.directionOf = entityDirection.left
+      case UISwipeGestureRecognizerDirection.up:
+        newBullet.directionOf = entityDirection.up
+        newBullet.move = bulletMoveUpAction
+        player.directionOf = entityDirection.up
+      case UISwipeGestureRecognizerDirection.down:
+        newBullet.directionOf = entityDirection.down
+        newBullet.move = bulletMoveDownAction
+        player.directionOf = entityDirection.down
+      default:
+        assertionFailure("Out of bounds")
+      }
+      addChild(newBullet)
+      bulletsInField.append(newBullet)
+      isShootable = false
+//      player.setAngle()
+    }
+  }
+  func particleCreator() {
+    GlobalRellikSerial.async {
+      let rainTexture = SKTexture(imageNamed: "rainDrop")
+      let emitterNOde = SKEmitterNode()
+      
+      emitterNOde.particleTexture = rainTexture
+      emitterNOde.particleBirthRate = 80.0
+      emitterNOde.particleColor = SKColor.white
+      emitterNOde.particleSpeed = -450
+      emitterNOde.particleSpeedRange = 150
+      emitterNOde.particleLifetime = 2.0
+      emitterNOde.particleScale = 0.2
+      emitterNOde.particleAlpha = 0.75
+      emitterNOde.particleAlphaRange = 0.5
+      emitterNOde.particleColorBlendFactor = 1
+      emitterNOde.particleScale = 0.2
+      emitterNOde.particleScaleRange = 0.5
+      emitterNOde.position = CGPoint(
+        x: self.playableRect.width/2, y: self.playableRect.height + 10)
+      emitterNOde.particlePositionRange = CGVector(dx: self.playableRect.width, dy: self.playableRect.height)
+      self.addChild(emitterNOde)
+    }
+  }
+  
+  // MARK: Block creator Methods
+  func createPlayerBlock() {
+    let group = DispatchGroup()
+    let playerBlockLight = SKLightNode()
+    
+    group.enter()
+    
+    GlobalBackgroundQueue.async {
+      self.playerBlock = SKSpriteNode(imageNamed: "stone")
+      self.playerBlock.name = "playerBlock"
+      self.playerBlock.color = SKColor.red
+      self.playerBlock.colorBlendFactor = 1.0
+      self.playerBlock.position = CGPoint(x: self.horizontalXAxis, y: self.verticalAxis)
+      self.playerBlock.setScale(playerBlockScale)
+      self.playerBlock.texture?.filteringMode = .nearest
+      self.playerBlock.texture!.generatingNormalMap(withSmoothness: 0.5, contrast: 1.0)
+      self.playerBlock.lightingBitMask = BitMaskOfLighting.left | BitMaskOfLighting.right | BitMaskOfLighting.up | BitMaskOfLighting.down
+      
+//      playerBlockLight.categoryBitMask = BitMaskOfLighting.left | BitMaskOfLighting.right | BitMaskOfLighting.down | BitMaskOfLighting.up
+//      playerBlockLight.isEnabled = true
+//      playerBlockLight.position = self.playerBlock.position
+//      playerBlockLight.falloff = 1.0
+//      playerBlockLight.ambientColor = SKColor(red: 0, green: 0, blue: 0, alpha: 1.0)// SKColor.yellowColor()
+//      playerBlockLight.lightColor = SKColor(white: 0.1, alpha: 1.0)
+      group.leave()
+    }
+    
+    group.notify(queue: .main){
+      self.addChild(playerBlockLight)
+      self.addChild(self.playerBlock)
+    }
+  }
+  
+  func createBlocks() {
+    GlobalRellikSerial.async {
+      for i in 0...4 {
+        
+        self.leftBoxes.append(SKSpriteNode(imageNamed: "stone"))
+        self.rightBoxes.append(SKSpriteNode(imageNamed: "stone"))
+        self.upBoxes.append(SKSpriteNode(imageNamed: "stone"))
+        self.downBoxes.append(SKSpriteNode(imageNamed: "stone"))
+        
+        self.leftBoxes[i].position = CGPoint(x: self.horizontalXAxis - self.self.pointBetweenBlocks, y: self.verticalAxis)
+        self.rightBoxes[i].position = CGPoint(x: self.self.horizontalXAxis + self.self.pointBetweenBlocks, y: self.verticalAxis)
+        self.upBoxes[i].position = CGPoint(x: self.horizontalXAxis, y: self.verticalAxis  + self.pointBetweenBlocks)
+        self.downBoxes[i].position = CGPoint(x: self.horizontalXAxis, y: self.verticalAxis  - self.pointBetweenBlocks)
+        
+        self.leftBoxes[i].setScale(enemyBlockScale)
+        self.rightBoxes[i].setScale(enemyBlockScale)
+        self.downBoxes[i].setScale(enemyBlockScale)
+        self.upBoxes[i].setScale(enemyBlockScale)
+        
+        self.leftBoxes[i].texture!.generatingNormalMap(withSmoothness: 1.0, contrast: 1.0)
+        self.rightBoxes[i].texture!.generatingNormalMap(withSmoothness: 0.0, contrast: 0.0)
+        self.downBoxes[i].texture!.generatingNormalMap(withSmoothness: 0.3, contrast: 0.6)
+        self.upBoxes[i].texture!.generatingNormalMap(withSmoothness: 1.0, contrast: 0.0)
+        
+//        self.leftBoxes[i].lightingBitMask = BitMaskOfLighting.left
+//        self.rightBoxes[i].lightingBitMask = BitMaskOfLighting.right
+//        self.downBoxes[i].lightingBitMask = BitMaskOfLighting.down
+//        self.upBoxes[i].lightingBitMask = BitMaskOfLighting.up
+        
+        self.addChild(self.leftBoxes[i])
+        self.addChild(self.rightBoxes[i])
+        self.addChild(self.upBoxes[i])
+        self.addChild(self.downBoxes[i])
+        
+        self.pointBetweenBlocks += incrementalSpaceBetweenBlocks
+      }
+      self.createPlayerBlock()
+    }
+  }
+  
+  // MARK: Actions
+  func playGameBackgroundMusic() {
+    GlobalRellikConcurrent.async {
+      playBackgroundMusic("backgroundMusic.mp3")
+    }
+  }
+  
+  // MARK: Other Game Scenes Methods
+  func createGameOverScene(_ won: Bool) {
+    backgroundMusicPlayer.stop()
+    let gameOverScene = GameOverScene(size: size, won: won)
+    gameOverScene.scaleMode = scaleMode
+    
+    let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
+    
+    view?.presentScene(gameOverScene, transition: reveal)
+  }
+}
+
+
+//MARK: - SceneUpdateProtocol
+extension GameScene:SceneUpdateProtocol{
+  func killCountUpdate() {
+    GlobalRellikConcurrent.async {
+    self.killed += 1
+    }
+  }
+  
+  func pointCountUpdate(points: Int) {
+    GlobalRellikConcurrent.async {
+    self.score += points
+    }
+  }
+  
+  func errorCountUpdate() {
+   GlobalRellikConcurrent.async {
+    self.errors += 1
+  }
+  }
+}
+
+//MARK: - Enemies
+extension GameScene{
+  // MARK: Enemies Methods
+  func moveEnemies() {
+    let group = DispatchGroup()
+    
+    
+    
+    GlobalRellikConcurrent.async {
+      for monstor in self.monstorsInField {
+        if(!monstor.isDead) {
+          group.enter()
+          monstor.moveFunc()
+          group.leave()
+        }
+      }
+    }
+    group.notify(queue: GlobalRellikConcurrent) {
+      self.monstorsInField = self.monstorsInField.filter({!$0.clearedForMorgue})
+    }
+  }
+  
+  func spawnEnemy() {
+    let randomNum = Int.random(min: 1, max: 4)
+    var enemy: Enemy!
+    
+    switch randomNum {
+    case 1:
+      enemy = self.randomEnemy(self.rightSideEnemyStartPosition, delegate: self)
+      enemy.directionOf = .right
+    case 2:
+      enemy = self.randomEnemy(self.leftSideEnemyStartPosition, delegate: self)
+      enemy.directionOf = .left
+    case 3:
+      enemy = self.randomEnemy(self.upSideEnemyStartPosition, delegate: self)
+      enemy.directionOf = .up
+    case 4:
+      enemy = self.randomEnemy(self.downSideEnemyStartPosition, delegate: self)
+      enemy.directionOf = .down
+    case 5:
+    return//This doesn't send out an enemy
+    default:
+      assertionFailure("out of bounds Spawn enemy")
+    }
+    enemy.entityCurrentBlock = blockPlace.fifth
+    self.monstorsInField.append(enemy)
+    self.shots += (shot(enemyDirection: enemy.directionOf, num: enemy.maxHealth))
+    
+    self.addChild(enemy)
+  }
+  func randomEnemy(_ enemyLocation: CGPoint, delegate: SceneUpdateProtocol) -> Enemy {
+    let randomNum = Int.random(min: 1, max: 13)
+    
+    GlobalRellikSFXConcurrent.async {
+      self.run(SKAction.playSoundFileNamed("spawn.wav", waitForCompletion: false))
+    }
+    
+    switch randomNum {
+    case 1:
+      return Boss(entityPosition: enemyLocation, delegate: self)
+    case 2...5:
+      return Soldier(entityPosition: enemyLocation, delegate: self)
+    case 5...12:
+      return Minion(entityPosition: enemyLocation, delegate: self)
+    case 13:
+      return Ghost(entityPosition: enemyLocation, delegate: self)
+    default:
+      assertionFailure("out of bounds Spawn enemy")
+      return Minion(entityPosition: enemyLocation, delegate: self)
+    }
+  }
+  
+  func shot(enemyDirection: entityDirection, num: Int) -> [() -> ()]{
+    var blocks:[()->()] = []
+    
+    switch enemyDirection {
+    case .down:
+      for _ in 1...num {
+        blocks.append{
+          let newBullet = Bullet(entityPosition: CGPoint(x: self.playableRect.midX, y: self.playableRect.midY))
+          newBullet.directionOf = enemyDirection
+          newBullet.move = self.bulletMoveDownAction
+          self.addChild(newBullet)
+          self.bulletsInField.append(newBullet)
+          self.isShootable = false
+          self.player.directionOf = enemyDirection
+          //          self.player.setAngle()
+        }
+      }
+    case .left:
+      for _ in 1...num {
+        blocks.append{
+          let newBullet = Bullet(entityPosition: CGPoint(x: self.self.self.playableRect.midX, y: self.playableRect.midY))
+          newBullet.directionOf = enemyDirection
+          newBullet.move = self.bulletMoveLeftAction
+          self.addChild(newBullet)
+          self.bulletsInField.append(newBullet)
+          self.isShootable = false
+          self.player.directionOf = enemyDirection
+          //          self.player.setAngle()
+        }
+      }
+      
+    case .right:
+      for _ in 1...num {
+        blocks.append{
+          let newBullet = Bullet(entityPosition: CGPoint(x: self.self.playableRect.midX, y: self.playableRect.midY))
+          newBullet.directionOf = enemyDirection
+          newBullet.move = self.bulletMoveRightAction
+          self.addChild(newBullet)
+          self.bulletsInField.append(newBullet)
+          self.isShootable = false
+          self.player.directionOf = enemyDirection
+          //          self.player.setAngle()
+        }
+      }
+    case .up:
+      for _ in 1...num {
+        blocks.append{
+          let newBullet = Bullet(entityPosition: CGPoint(x: self.playableRect.midX, y: self.playableRect.midY))
+          newBullet.directionOf = enemyDirection
+          newBullet.move = self.bulletMoveUpAction
+          self.addChild(newBullet)
+          self.bulletsInField.append(newBullet)
+          self.isShootable = false
+          self.player.directionOf = enemyDirection
+          //          self.player.setAngle()
+        }
+      }
+    case .unSelected:
+      assertionFailure()
+    }
+    
+    return blocks
+  }
+  
+}
+
+//MARK: - bullets
+extension GameScene{
+  
+}
+
+
+//MARK: - timer
+extension GameScene{
+  
+  func setGameTimeLabel() {
+    
+    waitTimeBoardLabel.text = String("Game Speed: \(gameSpeed)")
+    //waitTimeBoardLabel.runAction(SKAction.sequence([SKAction.scaleTo(1.5, duration: 0.1),
+    //  SKAction.scaleTo(1, duration: 0.1)]))
+  }
+  
+  func setWaitTimeLabel() {
+    
+    gameSpeedBoardLabel.text = String("Wait Time: \(enemyWaitTime)")
+    // gameSpeedBoardLabel.runAction(SKAction.sequence([SKAction.scaleTo(1.5, duration: 0.1),
+    // SKAction.scaleTo(1, duration: 0.1)]))
+  }
+  
+  func convertGameTimer(_ timeToConvert: Int) -> String {
+    var total = 0
+    var min = 0
+    var sec = 0
+    
+    for _ in 0..<timeToConvert {
+      total += 1
+      if total == 60 {
+        total = 0
+        min += 1
+      }
+    }
+    sec = total
+    return String("\(min):\(sec)")
+  }
+  
+  @objc func paused() {
+    isGamePaused = !isGamePaused
+    
+    //    if isGamePaused{
+    //      while !isGamePaused{
+    //        sleep(10)
+    //      }
+    //    }
+  }
+  
+}
+
+//MARK: - Labels
+extension GameScene{
   func setLabels() {
     backgroundNode = SKSpriteNode(imageNamed: "appleSpaceBackground")
     backgroundNode.size = playableRect.size
@@ -507,39 +846,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     addChild(gameSpeedBoardLabel)
     addChild(waitTimeBoardLabel)
   }
-  func createSwipeRecognizers() {
-    let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.shotDirection(_:)))
-    swipeDown.direction = UISwipeGestureRecognizerDirection.down
-    self.view?.addGestureRecognizer(swipeDown)
-    
-    let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.shotDirection(_:)))
-    swipeRight.direction = UISwipeGestureRecognizerDirection.right
-    self.view?.addGestureRecognizer(swipeRight)
-    
-    let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.shotDirection(_:)))
-    swipeUp.direction = UISwipeGestureRecognizerDirection.up
-    self.view?.addGestureRecognizer(swipeUp)
-    
-    let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.shotDirection(_:)))
-    swipeLeft.direction = UISwipeGestureRecognizerDirection.left
-    self.view?.addGestureRecognizer(swipeLeft)
-    
-    let doubleTapped = UITapGestureRecognizer(target: self, action: #selector(GameScene.paused as (GameScene) -> () -> Void))
-    doubleTapped.numberOfTapsRequired = 1
-    doubleTapped.numberOfTouchesRequired = 2
-    self.view?.addGestureRecognizer(doubleTapped)
-    
-    let pressDown = UILongPressGestureRecognizer(target: self, action: #selector(GameScene.enableCPU))
-    pressDown.minimumPressDuration = TimeInterval(1000)
-    pressDown.numberOfTapsRequired = 1
-    pressDown.numberOfTouchesRequired = 1
-    self.view?.addGestureRecognizer(pressDown)
-    
-    let trippleTapped = UITapGestureRecognizer(target: self, action: #selector(GameScene.enableCPU))
-    trippleTapped.numberOfTapsRequired = 1
-    trippleTapped.numberOfTouchesRequired = 3
-    self.view?.addGestureRecognizer(trippleTapped)
-  }
   func debugDrawPlayableArea() {
     let shape = SKShapeNode()
     let path = CGMutablePath()
@@ -550,339 +856,56 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     shape.lineWidth = 4.0
     addChild(shape)
   }
-  func createActions() {
-    bulletMoveRightAction = SKAction.repeat(SKAction.moveBy(x: CGFloat(incrementalSpaceBetweenBlocks), y: 0, duration: TimeInterval(0.1)), count: 6)
-    bulletMoveLeftAction = SKAction.reversed(bulletMoveRightAction)()
-    bulletMoveDownAction = SKAction.repeat(SKAction.moveBy(x: 0, y: CGFloat(-incrementalSpaceBetweenBlocks), duration: TimeInterval(0.1)), count: 6)
-    bulletMoveUpAction = SKAction.reversed(bulletMoveDownAction)()
-  }
-  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    /* Called when a touch begins */
-    
-    for touch in touches {
-      let location = touch.location(in: self)
-    }
-  }
+}
+
+
+//MARK: - Controls
+extension GameScene{
+func createActions() {
+  bulletMoveRightAction = SKAction.repeat(SKAction.moveBy(x: CGFloat(incrementalSpaceBetweenBlocks), y: 0, duration: TimeInterval(0.1)), count: 6)
+  bulletMoveLeftAction = SKAction.reversed(bulletMoveRightAction)()
+  bulletMoveDownAction = SKAction.repeat(SKAction.moveBy(x: 0, y: CGFloat(-incrementalSpaceBetweenBlocks), duration: TimeInterval(0.1)), count: 6)
+  bulletMoveUpAction = SKAction.reversed(bulletMoveDownAction)()
+}
+override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+  /* Called when a touch begins */
   
-  // MARK: Enemies Methods
-  func moveEnemies() {
-    let group = DispatchGroup()
-    
-    
-    
-    GlobalRellikConcurrent.async {
-      for monstor in self.monstorsInField {
-        if(!monstor.isDead) {
-          group.enter()
-          monstor.moveFunc()
-          group.leave()
-        }
-      }
-    }
-    group.notify(queue: GlobalRellikConcurrent) {
-      self.monstorsInField = self.monstorsInField.filter({!$0.clearedForMorgue})
-    }
-  }
-  
-  func spawnEnemy() {
-    let randomNum = Int.random(min: 1, max: 4)
-    var enemy: Enemy!
-    
-    switch randomNum {
-    case 1:
-      enemy = self.randomEnemy(self.rightSideEnemyStartPosition)
-      enemy.directionOf = .right
-    case 2:
-      enemy = self.randomEnemy(self.leftSideEnemyStartPosition)
-      enemy.directionOf = .left
-    case 3:
-      enemy = self.randomEnemy(self.upSideEnemyStartPosition)
-      enemy.directionOf = .up
-    case 4:
-      enemy = self.randomEnemy(self.downSideEnemyStartPosition)
-      enemy.directionOf = .down
-    case 5:
-    return//This doesn't send out an enemy
-    default:
-      assertionFailure("out of bounds Spawn enemy")
-    }
-    enemy.entityCurrentBlock = blockPlace.fifth
-    self.monstorsInField.append(enemy)
-    self.shots += (shot(enemyDirection: enemy.directionOf, num: enemy.maxHealth))
-    
-    self.addChild(enemy)
-  }
-  func randomEnemy(_ enemyLocation: CGPoint) -> Enemy {
-    let randomNum = Int.random(min: 1, max: 13)
-    
-    GlobalRellikSFXConcurrent.async {
-      self.run(SKAction.playSoundFileNamed("spawn.wav", waitForCompletion: false))
-    }
-    
-    switch randomNum {
-    case 1:
-      return Boss(entityPosition: enemyLocation)
-    case 2...5:
-      return Soldier(entityPosition: enemyLocation)
-    case 5...12:
-      return Minion(entityPosition: enemyLocation)
-    case 13:
-      return Ghost(entityPosition: enemyLocation)
-    default:
-      assertionFailure("out of bounds Spawn enemy")
-      return Minion(entityPosition: enemyLocation)
-    }
-  }
-  
-  func shot(enemyDirection: entityDirection, num: Int) -> [() -> ()]{
-    var blocks:[()->()] = []
-    
-    switch enemyDirection {
-    case .down:
-      for _ in 1...num {
-        blocks.append{
-          let newBullet = Bullet(entityPosition: CGPoint(x: self.playableRect.midX, y: self.playableRect.midY))
-          newBullet.directionOf = enemyDirection
-          newBullet.move = self.bulletMoveDownAction
-          self.addChild(newBullet)
-          self.bulletsInField.append(newBullet)
-          self.isShootable = false
-          self.player.directionOf = enemyDirection
-          self.player.setAngle()
-        }
-      }
-    case .left:
-      for _ in 1...num {
-        blocks.append{
-          let newBullet = Bullet(entityPosition: CGPoint(x: self.self.self.playableRect.midX, y: self.playableRect.midY))
-          newBullet.directionOf = enemyDirection
-          newBullet.move = self.bulletMoveLeftAction
-          self.addChild(newBullet)
-          self.bulletsInField.append(newBullet)
-          self.isShootable = false
-          self.player.directionOf = enemyDirection
-          self.player.setAngle()
-        }
-      }
-      
-    case .right:
-      for _ in 1...num {
-        blocks.append{
-          let newBullet = Bullet(entityPosition: CGPoint(x: self.self.playableRect.midX, y: self.playableRect.midY))
-          newBullet.directionOf = enemyDirection
-          newBullet.move = self.bulletMoveRightAction
-          self.addChild(newBullet)
-          self.bulletsInField.append(newBullet)
-          self.isShootable = false
-          self.player.directionOf = enemyDirection
-          self.player.setAngle()
-        }
-      }
-    case .up:
-      for _ in 1...num {
-        blocks.append{
-          let newBullet = Bullet(entityPosition: CGPoint(x: self.playableRect.midX, y: self.playableRect.midY))
-          newBullet.directionOf = enemyDirection
-          newBullet.move = self.bulletMoveUpAction
-          self.addChild(newBullet)
-          self.bulletsInField.append(newBullet)
-          self.isShootable = false
-          self.player.directionOf = enemyDirection
-          self.player.setAngle()
-        }
-      }
-    case .unSelected:
-      assertionFailure()
-    }
-    
-    return blocks
-  }
-  
-  // MARK: Player and Bullets Methods
-  func createPlayer() {
-    self.player = Player(entityPosition: CGPoint(x: playableRect.midX, y: playableRect.midY))
-    addChild(player)
-  }
-  func moveBullets() {
-    GlobalRellikSerial.async {[weak self] in
-      self?.bulletsInField.map{
-        $0 as Bullet
-        if !$0.isShot {
-          $0.moveFunc()
-        } else {
-          if $0.stopped {
-            self?.addError()
-          }
-        }
-      }
-      GlobalRellikConcurrent.async {
-        self?.bulletsInField = (self?.bulletsInField.filter({$0.stopped == false}))!
-      }
-    }
-    
-  }
-  @objc func enableCPU(){
-    cpuEnabled = !cpuEnabled
-  }
-  @objc func shotDirection(_ sender: UISwipeGestureRecognizer) {
-    if isShootable && !isGamePaused {
-      let newBullet = Bullet(entityPosition: CGPoint(x: playableRect.midX, y: playableRect.midY))
-      
-      switch sender.direction {
-      case UISwipeGestureRecognizerDirection.right:
-        newBullet.directionOf = entityDirection.right
-        newBullet.move = bulletMoveRightAction
-        player.directionOf = entityDirection.right
-      case UISwipeGestureRecognizerDirection.left:
-        newBullet.directionOf = entityDirection.left
-        newBullet.move = bulletMoveLeftAction
-        player.directionOf = entityDirection.left
-      case UISwipeGestureRecognizerDirection.up:
-        newBullet.directionOf = entityDirection.up
-        newBullet.move = bulletMoveUpAction
-        player.directionOf = entityDirection.up
-      case UISwipeGestureRecognizerDirection.down:
-        newBullet.directionOf = entityDirection.down
-        newBullet.move = bulletMoveDownAction
-        player.directionOf = entityDirection.down
-      default:
-        assertionFailure("Out of bounds")
-      }
-      addChild(newBullet)
-      bulletsInField.append(newBullet)
-      isShootable = false
-      player.setAngle()
-    }
-  }
-  func particleCreator() {
-    GlobalRellikSerial.async {
-      let rainTexture = SKTexture(imageNamed: "rainDrop")
-      let emitterNOde = SKEmitterNode()
-      
-      emitterNOde.particleTexture = rainTexture
-      emitterNOde.particleBirthRate = 80.0
-      emitterNOde.particleColor = SKColor.white
-      emitterNOde.particleSpeed = -450
-      emitterNOde.particleSpeedRange = 150
-      emitterNOde.particleLifetime = 2.0
-      emitterNOde.particleScale = 0.2
-      emitterNOde.particleAlpha = 0.75
-      emitterNOde.particleAlphaRange = 0.5
-      emitterNOde.particleColorBlendFactor = 1
-      emitterNOde.particleScale = 0.2
-      emitterNOde.particleScaleRange = 0.5
-      emitterNOde.position = CGPoint(
-        x: self.playableRect.width/2, y: self.playableRect.height + 10)
-      emitterNOde.particlePositionRange = CGVector(dx: self.playableRect.width, dy: self.playableRect.height)
-      self.addChild(emitterNOde)
-    }
-  }
-  
-  // MARK: Block creator Methods
-  func createPlayerBlock() {
-    let group = DispatchGroup()
-    let playerBlockLight = SKLightNode()
-    
-    group.enter()
-    
-    GlobalBackgroundQueue.async {
-      self.playerBlock = SKSpriteNode(imageNamed: "stone")
-      self.playerBlock.name = "playerBlock"
-      self.playerBlock.color = SKColor.red
-      self.playerBlock.colorBlendFactor = 1.0
-      self.playerBlock.position = CGPoint(x: self.horizontalXAxis, y: self.verticalAxis)
-      self.playerBlock.setScale(playerBlockScale)
-      self.playerBlock.texture?.filteringMode = .nearest
-      self.playerBlock.texture!.generatingNormalMap(withSmoothness: 0.5, contrast: 1.0)
-      self.playerBlock.lightingBitMask = BitMaskOfLighting.left | BitMaskOfLighting.right | BitMaskOfLighting.up | BitMaskOfLighting.down
-      
-      playerBlockLight.categoryBitMask = BitMaskOfLighting.left | BitMaskOfLighting.right | BitMaskOfLighting.down | BitMaskOfLighting.up
-      playerBlockLight.isEnabled = true
-      playerBlockLight.position = self.playerBlock.position
-      playerBlockLight.falloff = 1.0
-      playerBlockLight.ambientColor = SKColor(red: 0, green: 0, blue: 0, alpha: 1.0)// SKColor.yellowColor()
-      playerBlockLight.lightColor = SKColor(white: 0.1, alpha: 1.0)
-      group.leave()
-    }
-    
-    group.notify(queue: .main){
-      self.addChild(playerBlockLight)
-      self.addChild(self.playerBlock)
-    }
-  }
-  
-  func createBlocks() {
-    GlobalRellikSerial.async {
-      for i in 0...4 {
-        
-        self.leftBoxes.append(SKSpriteNode(imageNamed: "stone"))
-        self.rightBoxes.append(SKSpriteNode(imageNamed: "stone"))
-        self.upBoxes.append(SKSpriteNode(imageNamed: "stone"))
-        self.downBoxes.append(SKSpriteNode(imageNamed: "stone"))
-        
-        self.leftBoxes[i].position = CGPoint(x: self.horizontalXAxis - self.self.pointBetweenBlocks, y: self.verticalAxis)
-        self.rightBoxes[i].position = CGPoint(x: self.self.horizontalXAxis + self.self.pointBetweenBlocks, y: self.verticalAxis)
-        self.upBoxes[i].position = CGPoint(x: self.horizontalXAxis, y: self.verticalAxis  + self.pointBetweenBlocks)
-        self.downBoxes[i].position = CGPoint(x: self.horizontalXAxis, y: self.verticalAxis  - self.pointBetweenBlocks)
-        
-        self.leftBoxes[i].setScale(enemyBlockScale)
-        self.rightBoxes[i].setScale(enemyBlockScale)
-        self.downBoxes[i].setScale(enemyBlockScale)
-        self.upBoxes[i].setScale(enemyBlockScale)
-        
-        self.leftBoxes[i].texture!.generatingNormalMap(withSmoothness: 1.0, contrast: 1.0)
-        self.rightBoxes[i].texture!.generatingNormalMap(withSmoothness: 0.0, contrast: 0.0)
-        self.downBoxes[i].texture!.generatingNormalMap(withSmoothness: 0.3, contrast: 0.6)
-        self.upBoxes[i].texture!.generatingNormalMap(withSmoothness: 1.0, contrast: 0.0)
-        
-        self.leftBoxes[i].lightingBitMask = BitMaskOfLighting.left
-        self.rightBoxes[i].lightingBitMask = BitMaskOfLighting.right
-        self.downBoxes[i].lightingBitMask = BitMaskOfLighting.down
-        self.upBoxes[i].lightingBitMask = BitMaskOfLighting.up
-        
-        self.addChild(self.leftBoxes[i])
-        self.addChild(self.rightBoxes[i])
-        self.addChild(self.upBoxes[i])
-        self.addChild(self.downBoxes[i])
-        
-        self.pointBetweenBlocks += incrementalSpaceBetweenBlocks
-      }
-      self.createPlayerBlock()
-    }
-  }
-  
-  // MARK: GamePlay Methods
-  func upScore(_ enemyScoreValue: Int) {
-    GlobalRellikConcurrent.async {
-      self.score += enemyScoreValue
-    }
-  }
-  func upKilledEnemy() {
-    GlobalRellikConcurrent.async {
-      self.killed += 1
-    }
-  }
-  func addError() {
-    GlobalRellikConcurrent.async {
-      self.errors += 1
-    }
-  }
-  
-  // MARK: Actions
-  func playGameBackgroundMusic() {
-    GlobalRellikConcurrent.async {
-      playBackgroundMusic("backgroundMusic.mp3")
-    }
-  }
-  
-  // MARK: Other Game Scenes Methods
-  func createGameOverScene(_ won: Bool) {
-    backgroundMusicPlayer.stop()
-    let gameOverScene = GameOverScene(size: size, won: won)
-    gameOverScene.scaleMode = scaleMode
-    
-    let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
-    
-    view?.presentScene(gameOverScene, transition: reveal)
+  for touch in touches {
+    let location = touch.location(in: self)
   }
 }
+func createSwipeRecognizers() {
+  let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.shotDirection(_:)))
+  swipeDown.direction = UISwipeGestureRecognizerDirection.down
+  self.view?.addGestureRecognizer(swipeDown)
+  
+  let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.shotDirection(_:)))
+  swipeRight.direction = UISwipeGestureRecognizerDirection.right
+  self.view?.addGestureRecognizer(swipeRight)
+  
+  let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.shotDirection(_:)))
+  swipeUp.direction = UISwipeGestureRecognizerDirection.up
+  self.view?.addGestureRecognizer(swipeUp)
+  
+  let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.shotDirection(_:)))
+  swipeLeft.direction = UISwipeGestureRecognizerDirection.left
+  self.view?.addGestureRecognizer(swipeLeft)
+  
+  let doubleTapped = UITapGestureRecognizer(target: self, action: #selector(GameScene.paused as (GameScene) -> () -> Void))
+  doubleTapped.numberOfTapsRequired = 1
+  doubleTapped.numberOfTouchesRequired = 2
+  self.view?.addGestureRecognizer(doubleTapped)
+  
+  let pressDown = UILongPressGestureRecognizer(target: self, action: #selector(GameScene.enableCPU))
+  pressDown.minimumPressDuration = TimeInterval(1000)
+  pressDown.numberOfTapsRequired = 1
+  pressDown.numberOfTouchesRequired = 1
+  self.view?.addGestureRecognizer(pressDown)
+  
+  let trippleTapped = UITapGestureRecognizer(target: self, action: #selector(GameScene.enableCPU))
+  trippleTapped.numberOfTapsRequired = 1
+  trippleTapped.numberOfTouchesRequired = 3
+  self.view?.addGestureRecognizer(trippleTapped)
+  }
+}
+

@@ -40,31 +40,31 @@ class Bullet: Entity {
       self?.updateSpriteAtrributes()
       self?.addChild(shot!)
       
-//      self.light.position = CGPoint(x: 0.5, y: 0.5)
-//      self.light.categoryBitMask = self.getSideForLighting()
-//      self.light.isEnabled = true
-//      self.light.lightColor = SKColor(red: 0, green: 0, blue: 200, alpha: 1.0)
-//      self.light.shadowColor = SKColor.black// SKColor(red: 0, green: 0, blue: 0, alpha: 1.0)
-//      self.light.ambientColor = SKColor(red: 0, green: 0, blue: 200, alpha: 0.1)
-//      self.light.falloff = 1.0
-//      self.addChild(self.light)
+      //      self.light.position = CGPoint(x: 0.5, y: 0.5)
+      //      self.light.categoryBitMask = self.getSideForLighting()
+      //      self.light.isEnabled = true
+      //      self.light.lightColor = SKColor(red: 0, green: 0, blue: 200, alpha: 1.0)
+      //      self.light.shadowColor = SKColor.black// SKColor(red: 0, green: 0, blue: 0, alpha: 1.0)
+      //      self.light.ambientColor = SKColor(red: 0, green: 0, blue: 200, alpha: 0.1)
+      //      self.light.falloff = 1.0
+      //      self.addChild(self.light)
     }
   }
   override func setEntityTypeAttribures() {
     super.setEntityTypeAttribures()
-        GlobalRellikConcurrent.sync {[weak self] in
-          self?.maxHealth = 1
-          self?.health = (self?.maxHealth)!
-    self?.hurtSoundString = "bulletHurt.wav"
-    self?.attackSoundString = "bulletAttack.wav"
-    self?.moveSoundString = "move.wav"
-    self?.diedSoundString = "died.wav"
-    self?.directionOf = entityDirection.unSelected
-    self?.entityCurrentBlock = blockPlace.unSelected
-    self?.entityInRangeBlock = blockPlace.fourth
-    
-    //childNodeWithName("bulletNode")
-        }
+    GlobalRellikConcurrent.sync {[weak self] in
+      self?.maxHealth = 1
+      self?.health = (self?.maxHealth)!
+      self?.hurtSoundString = "bulletHurt.wav"
+      self?.attackSoundString = "bulletAttack.wav"
+      self?.moveSoundString = "move.wav"
+      self?.diedSoundString = "bulletHurt.wav"
+      self?.directionOf = entityDirection.unSelected
+      self?.entityCurrentBlock = blockPlace.unSelected
+      self?.entityInRangeBlock = blockPlace.fourth
+      
+      //childNodeWithName("bulletNode")
+    }
   }
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
@@ -74,10 +74,10 @@ class Bullet: Entity {
     return onceToken
   }
   deinit {
-    print(#function)
-    print(self)
+//    log.verbose(#function)
+//    log.verbose(self)
   }
-  override func setAngle() {
+  internal override func setAngle() {
     switch (directionOf) {
     case entityDirection.right:
       self.run(SKAction.rotate(toAngle: 2 * π, duration: TimeInterval(0.0), shortestUnitArc: true))
@@ -90,26 +90,16 @@ class Bullet: Entity {
     case entityDirection.unSelected:
       //Dont run
       directionOf = entityDirection.unSelected
-      print("direction unselected")
+      log.verbose("direction unselected")
     }
   }
   func moveFunc() {//Sets Angle, moves sprite an then removesSpriteFromParent
-    let group = DispatchGroup()
-    
     GlobalRellikConcurrent.async {[weak self] in
-      group.enter()
-      self?.setAngle()
       //    self.getSideForLighting()
       self?.playattackSound()
-      
-      let action = SKAction.sequence([(self?.move)!, SKAction.run({ self?.stopped = true}), SKAction.removeFromParent()])
-      group.leave()
-      
-      group.notify(queue: GlobalRellikConcurrent){[weak self] in
-        self?.run(action, withKey: "move")
+        self?.run((self?.move)!)//, withKey: "move")
         self?.isShot = true
       }
-    }
   }
   override func updateSpriteAtrributes() {
     super.updateSpriteAtrributes()
@@ -122,27 +112,24 @@ class Bullet: Entity {
     }
   }
   override func died() {
-    if isDead {//If dead turns sprite red waits for x seconds and then removes the sprite from parent
-      physicsBody?.categoryBitMask = PhysicsCategory.dead//Stops all contact and collision detection after death
-      run(SKAction.removeFromParent(), completion: {[weak self] in
-        self?.removeAllActions()
-        self?.removeAllActions()
-        self = nil
-      })
-      
-      self.playHurtSound()
+    if isDead {
+      super.died()
+    
+    self.stopped = true
+    self.playHurtSound()
     }
   }
+  
   func playOutOfBoundsError() {
     playSoundEffect(outOfBoundsSoundString)
   }
   private static let onceToken = { () ->
     SKTexture in
     
-//    //      GlobalRellikSerial.async {
-//    let bullet = SKSpriteNode(imageNamed: "rainDrop")
-//    bullet.name = "bullet"
-//    bullet.alpha = 0.0
+    //    //      GlobalRellikSerial.async {
+    //    let bullet = SKSpriteNode(imageNamed: "rainDrop")
+    //    bullet.name = "bullet"
+    //    bullet.alpha = 0.0
     
     let textureView = SKView()
     SharedTexture.texture = SKTexture.init(image: UIImage.init(named: imagesString.rainDrop)!)
@@ -150,5 +137,5 @@ class Bullet: Entity {
     //      }
     return SharedTexture.texture
   }()
-
+  
 }

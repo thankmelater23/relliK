@@ -132,6 +132,25 @@ strip_invalid_archs() {
   STRIP_BINARY_RETVAL=1
 }
 
+
+if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/Amplitude-iOS/Amplitude_iOS.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Flurry-iOS-SDK/Flurry_iOS_SDK.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Onboard/Onboard.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SAConfettiView/SAConfettiView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Siren/Siren.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/iRate/iRate.framework"
+fi
+if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/Amplitude-iOS/Amplitude_iOS.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Flurry-iOS-SDK/Flurry_iOS_SDK.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Onboard/Onboard.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SAConfettiView/SAConfettiView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Siren/Siren.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/iRate/iRate.framework"
+fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait
 fi

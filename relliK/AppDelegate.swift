@@ -10,6 +10,15 @@ import UIKit
 import Fabric
 import Crashlytics
 import BuddyBuildSDK
+import SwiftyBeaver
+import CoreData
+//import Fabric
+//import Crashlytics
+import Siren
+//import GoogleMobileAds
+//import Flurry_iOS_SDK
+//import Amplitude_iOS
+//import FacebookCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -54,75 +63,116 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //        let fdr = AppInfo.
     
     if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
-      print("Version Running: \(version)")
+      log.verbose("Version Running: \(version)")
     }
     if let CFBundleDevelopmentRegion = Bundle.main.infoDictionary?["CFBundleDevelopmentRegion"] as? String {
-      print("Version Running: \(CFBundleDevelopmentRegion)")
+      log.verbose("Version Running: \(CFBundleDevelopmentRegion)")
     }
     if let CFBundleDisplayName = Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String {
-      print("Version Running: \(CFBundleDisplayName)")
+      log.verbose("Version Running: \(CFBundleDisplayName)")
     }
     if let CFBundleDocumentTypes = Bundle.main.infoDictionary?["CFBundleDocumentTypes"] as? String {
-      print("Version Running: \(CFBundleDocumentTypes)")
+      log.verbose("Version Running: \(CFBundleDocumentTypes)")
     }
     if let CFBundleExecutable = Bundle.main.infoDictionary?["CFBundleDeCFBundleExecutablevelopmentRegion"] as? String {
-      print("Version Running: \(CFBundleExecutable)")
+      log.verbose("Version Running: \(CFBundleExecutable)")
     }
     if let CFBundleIconFile = Bundle.main.infoDictionary?["CFBundleIconFile"] as? String {
-      print("Version Running: \(CFBundleIconFile)")
+      log.verbose("Version Running: \(CFBundleIconFile)")
     }
     if let CFBundleIcons = Bundle.main.infoDictionary?["CFBundleIcons"] as? String {
-      print("Version Running: \(CFBundleIcons)")
+      log.verbose("Version Running: \(CFBundleIcons)")
     }
     if let CFBundleIdentifier = Bundle.main.infoDictionary?["CFBundleIdentifier"] as? String {
-      print("Version Running: \(CFBundleIdentifier)")
+      log.verbose("Version Running: \(CFBundleIdentifier)")
     }
     if let CFBundleLocalizations = Bundle.main.infoDictionary?["CFBundleLocalizations"] as? String {
-      print("Version Running: \(CFBundleLocalizations)")
+      log.verbose("Version Running: \(CFBundleLocalizations)")
     }
     if let CFBundleName = Bundle.main.infoDictionary?["CFBundleName"] as? String {
-      print("Version Running: \(CFBundleName)")
+      log.verbose("Version Running: \(CFBundleName)")
     }
     if let CFBundlePackageType = Bundle.main.infoDictionary?["CFBundlePackageType"] as? String {
-      print("Version Running: \(CFBundlePackageType)")
+      log.verbose("Version Running: \(CFBundlePackageType)")
     }
-    
     if let CFBundleShortVersionString = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
-      print("Version Running: \(CFBundleShortVersionString)")
+      log.verbose("Version Running: \(CFBundleShortVersionString)")
     }
     if let CFBundleSignature = Bundle.main.infoDictionary?["CFBundleSignature"] as? String {
-      print("Version Running: \(CFBundleSignature)")
+      log.verbose("Version Running: \(CFBundleSignature)")
     }
     if let CFBundleSpokenName = Bundle.main.infoDictionary?["CFBundleSpokenName"] as? String {
-      print("Version Running: \(CFBundleSpokenName)")
+      log.verbose("Version Running: \(CFBundleSpokenName)")
     }
     if let CFBundleURLTypes = Bundle.main.infoDictionary?["CFBundleURLTypes"] as? String {
-      print("Version Running: \(CFBundleURLTypes)")
+      log.verbose("Version Running: \(CFBundleURLTypes)")
     }
     if let CFBundleVersion = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
-      print("Version Running: \(CFBundleVersion)")
+      log.verbose("Version Running: \(CFBundleVersion)")
     }
     if let CFBundleTypeName = Bundle.main.infoDictionary?["CFBundleTypeName"] as? String {
-      print("Version Running: \(CFBundleTypeName)")
+      log.verbose("Version Running: \(CFBundleTypeName)")
     }
     if let LSHandlerRank = Bundle.main.infoDictionary?["LSHandlerRank"] as? String {
-      print("Version Running: \(LSHandlerRank)")
+      log.verbose("Version Running: \(LSHandlerRank)")
     }
     if let CFBundlePackageType = Bundle.main.infoDictionary?["CFBundlePackageType"] as? String {
-      print("Version Running: \(CFBundlePackageType)")
+      log.verbose("Version Running: \(CFBundlePackageType)")
     }
   }
   
   // MARK: - Setup
   ///Run initial configuration functions
+  // MARK: - Configuration
+  /// Where all developer sysem setup happens
   func setup() {
     GlobalBackgroundQueue.async {[weak self] in
-      self?.buddyBuildConfig()
+      //  self.removeConstraintFromLogger()
+      self?.swiftBeaverSetUp()
+      self?.sirenConfiguration()
       self?.printAppInfo()
-      self?.fabricConfiguration()
+      self?.buddyBuildConfig()
+      //  self.googleAdConfig()
+      //  self.fireBaseConfig()
+      //  self.firebaseDatabaseConfig()
+      //  self.furryAnalyticsConfig()
+      //  self.amplitudeAnalyticsConfig()
+      //  self.facebookAnalyticsConfig()
+      self?.fabricSetUp()
     }
   }
-  
+  // MARK: - 3rd Party Integration
+  /** Swifty Beaver logger configuration
+   
+   -  Note: Logger
+   */
+  func swiftBeaverSetUp() {
+    log.verbose(#function)
+    let console = ConsoleDestination()
+    log.addDestination(console)
+    let file = FileDestination()
+    log.addDestination(file)
+    log.verbose("Verbose Test") // prio 1, VERBOSE in silver
+    log.debug("Debug Test") // prio 2, DEBUG in blue
+    log.info("Info Test") // prio 3, INFO in green
+    log.warning("Warning Test") // prio 4, WARNING in yellow
+    log.error("Error Test") // prio 5, ERROR in red
+    let platform = SBPlatformDestination(appID: PrivateKeys.swiftBeaverAppid, appSecret: PrivateKeys.swiftBeaverSecret, encryptionKey: PrivateKeys.swiftBeaverEncryptionKey)
+    log.addDestination(platform)
+  }
+  // MARK: - Analytics
+  /** Fabric Configuration
+   
+   -  Note: Fabric Services: Analytics, Crash Reporting, Fastlane, and more
+   */
+  func fabricSetUp() {
+    log.verbose(#function)
+    GlobalMainQueue.async {
+      Fabric.with([Crashlytics.self, Answers.self]) // Appsee.self
+    }
+    Fabric.sharedSDK().debug = true
+    Answers.logContentView(withName: "Fabric Setup", contentType: "Activation", contentId: "relliK", customAttributes: nil)
+  }
   func buddyBuildConfig() {
     GlobalMainQueue.async {[weak self] in
       BuddyBuildSDK.setup()
@@ -130,7 +180,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   func fabricConfiguration() {
     GlobalMainQueue.async {[weak self] in
-    Fabric.with([Crashlytics.self(), Answers.self()])
+      Fabric.with([Crashlytics.self(), Answers.self()])
     }
+  }
+  func sirenConfiguration() {
+    log.verbose(#function)
+    /* Siren code should go below window?.makeKeyAndVisible() */
+    
+    // Siren is a singleton
+    let siren = Siren.shared
+    
+    // Required: Your app's iTunes App Store ID
+    //        siren.appID = "1300481560"
+    
+    // Optional: Defaults to .Option
+    
+    /*
+     Replace .Immediately with .Daily or .Weekly to specify a maximum daily or weekly frequency for version
+     checks.
+     */
+    siren.checkVersion(checkType: .daily)
+    
+    siren.alertType = .skip // SirenAlertType.option
+    
+    siren.showAlertAfterCurrentVersionHasBeenReleasedForDays = 1
   }
 }

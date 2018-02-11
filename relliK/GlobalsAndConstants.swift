@@ -9,6 +9,9 @@
 import Foundation
 import SpriteKit
 
+/// Amount of seconds in a day 86,400
+let SecondsInADay = 86400
+
   enum entityDirection {
     case left
     case right
@@ -52,9 +55,9 @@ import SpriteKit
   }
 
   let GAME_MIN_SPEED: TimeInterval = TimeInterval(1.0)
-  let GAME_MAX_SPEED: TimeInterval = TimeInterval(0.6)
-  let enemyWaitMinSpeed: TimeInterval = TimeInterval(0.5)
-  let enemyWaitMaxSpeed: TimeInterval = TimeInterval(0.0)
+  let GAME_MAX_SPEED: TimeInterval = TimeInterval(0.5)
+  let enemyWaitMinSpeed: TimeInterval = TimeInterval(1.0)
+  let enemyWaitMaxSpeed: TimeInterval = TimeInterval(0.1)
 
   //Scales
   let playerScale: CGFloat  = 0.35
@@ -81,6 +84,16 @@ import SpriteKit
   var lastShot: TimeInterval = TimeInterval(0.0)
 
   var gameTotalSpeed: TimeInterval = gameSpeed + enemyWaitTime
+
+/// String thats used for sharing feature
+let ShareLink = """
+**************************************
+Check out relliK #App for your Apple Device. Download it #FREE today!***CLICK THE LINK***
+**************************************
+#2DGame #Shooter #Arcade #2018 #IOSApp #BangBangStudios #relliK
+**************************************
+http://BangBangStudios.com/relliK
+"""
 
   // MARK: - GCD
   /// First, the system provides you with a special serial queue known as the main queue. Like any serial queue, tasks in this queue execute one at a time. However, it’s guaranteed that all tasks will execute on the main thread, which is the only thread allowed to update your UI. This queue is the one to use for sending messages to UIView objects or posting notifications.
