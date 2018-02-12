@@ -323,8 +323,8 @@
 				418B54351FB19BEF00B92CAE /* GlobalsAndConstants */,
 				418B54321FB19BC300B92CAE /* Media */,
 				418B542F1FB19B8200B92CAE /* Classes */,
-				418B54371FB19C2700B92CAE /* Global Functions */,
 				418B54361FB19C0300B92CAE /* Views and Scenes */,
+				418B54371FB19C2700B92CAE /* Global Functions */,
 				418B54301FB19B9A00B92CAE /* Third Party */,
 				418B54331FB19BD600B92CAE /* Story Board */,
 			);

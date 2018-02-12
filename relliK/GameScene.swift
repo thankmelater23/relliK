@@ -165,6 +165,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     addChild(downLight)
   }
   
+  
   // MARK: Update Methods
   override func update(_ currentTime: TimeInterval) {
     if !isGamePaused {
@@ -246,6 +247,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
   }
   
+  
   // MARK: Initialization methods
   override init(size: CGSize) {
     let maxAspectRatio: CGFloat = 71.0/40.0 // iPhone 5"
@@ -310,6 +312,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   required init(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+  
   
   // MARK: Contact Methods
   func setPhysics() {
@@ -438,6 +441,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
   }
   
+  
   // MARK: Block creator Methods
   func createPlayerBlock() {
     let group = DispatchGroup()
@@ -511,12 +515,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
   }
   
+  
   // MARK: Actions
   func playGameBackgroundMusic() {
     GlobalRellikConcurrent.async {
       playBackgroundMusic("backgroundMusic.mp3")
     }
   }
+  
   
   // MARK: Other Game Scenes Methods
   func createGameOverScene(_ won: Bool) {
@@ -551,6 +557,7 @@ extension GameScene:SceneUpdateProtocol{
   }
   }
 }
+
 
 //MARK: - Enemies
 extension GameScene{
@@ -606,7 +613,7 @@ extension GameScene{
     let randomNum = Int.random(min: 1, max: 13)
     
     GlobalRellikSFXConcurrent.async {
-      self.run(SKAction.playSoundFileNamed("spawn.wav", waitForCompletion: false))
+//      self.run(SKAction.playSoundFileNamed("spawn.wav", waitForCompletion: false))
     }
     
     switch randomNum {
@@ -630,55 +637,51 @@ extension GameScene{
     switch enemyDirection {
     case .down:
       for _ in 1...num {
-        blocks.append{
-          let newBullet = Bullet(entityPosition: CGPoint(x: self.playableRect.midX, y: self.playableRect.midY))
+        blocks.append{[weak self] in
+          let newBullet = Bullet(entityPosition: CGPoint(x: (self?.playableRect.midX)!, y: (self?.playableRect.midY)!))
           newBullet.directionOf = enemyDirection
-          newBullet.move = self.bulletMoveDownAction
-          self.addChild(newBullet)
-          self.bulletsInField.append(newBullet)
-          self.isShootable = false
-          self.player.directionOf = enemyDirection
-          //          self.player.setAngle()
+          newBullet.move = self?.bulletMoveDownAction
+          self?.addChild(newBullet)
+          self?.bulletsInField.append(newBullet)
+          self?.isShootable = false
+          self?.player.directionOf = enemyDirection
         }
       }
     case .left:
       for _ in 1...num {
-        blocks.append{
-          let newBullet = Bullet(entityPosition: CGPoint(x: self.self.self.playableRect.midX, y: self.playableRect.midY))
+        blocks.append{[weak self] in
+          let newBullet = Bullet(entityPosition: CGPoint(x: (self?.playableRect.midX)!, y: (self?.playableRect.midY)!))
           newBullet.directionOf = enemyDirection
-          newBullet.move = self.bulletMoveLeftAction
-          self.addChild(newBullet)
-          self.bulletsInField.append(newBullet)
-          self.isShootable = false
-          self.player.directionOf = enemyDirection
-          //          self.player.setAngle()
+          newBullet.move = self?.bulletMoveLeftAction
+          self?.addChild(newBullet)
+          self?.bulletsInField.append(newBullet)
+          self?.isShootable = false
+          self?.player.directionOf = enemyDirection
         }
       }
       
     case .right:
       for _ in 1...num {
-        blocks.append{
-          let newBullet = Bullet(entityPosition: CGPoint(x: self.self.playableRect.midX, y: self.playableRect.midY))
+        blocks.append{[weak self] in
+          let newBullet = Bullet(entityPosition: CGPoint(x: (self?.playableRect.midX)!, y: (self?.playableRect.midY)!))
           newBullet.directionOf = enemyDirection
-          newBullet.move = self.bulletMoveRightAction
-          self.addChild(newBullet)
-          self.bulletsInField.append(newBullet)
-          self.isShootable = false
-          self.player.directionOf = enemyDirection
-          //          self.player.setAngle()
+          newBullet.move = self?.bulletMoveRightAction
+          self?.addChild(newBullet)
+          self?.bulletsInField.append(newBullet)
+          self?.isShootable = false
+          self?.player.directionOf = enemyDirection
         }
       }
     case .up:
       for _ in 1...num {
-        blocks.append{
-          let newBullet = Bullet(entityPosition: CGPoint(x: self.playableRect.midX, y: self.playableRect.midY))
+        blocks.append{[weak self] in
+          let newBullet = Bullet(entityPosition: CGPoint(x: (self?.playableRect.midX)!, y: (self?.playableRect.midY)!))
           newBullet.directionOf = enemyDirection
-          newBullet.move = self.bulletMoveUpAction
-          self.addChild(newBullet)
-          self.bulletsInField.append(newBullet)
-          self.isShootable = false
-          self.player.directionOf = enemyDirection
-          //          self.player.setAngle()
+          newBullet.move = self?.bulletMoveUpAction
+          self?.addChild(newBullet)
+          self?.bulletsInField.append(newBullet)
+          self?.isShootable = false
+          self?.player.directionOf = enemyDirection
         }
       }
     case .unSelected:
@@ -687,8 +690,8 @@ extension GameScene{
     
     return blocks
   }
-  
-}
+  }
+
 
 //MARK: - bullets
 extension GameScene{
@@ -698,7 +701,6 @@ extension GameScene{
 
 //MARK: - timer
 extension GameScene{
-  
   func setGameTimeLabel() {
     
     waitTimeBoardLabel.text = String("Game Speed: \(gameSpeed)")
@@ -740,6 +742,7 @@ extension GameScene{
   }
   
 }
+
 
 //MARK: - Labels
 extension GameScene{

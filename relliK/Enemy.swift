@@ -99,24 +99,20 @@ class Enemy: Entity{
       //            }
     })
     
-    let moveSound = SKAction.playSoundFileNamed(moveSoundString, waitForCompletion: false)
     
     switch (directionOf) {
     case entityDirection.left:
       let moveLeftAction = SKAction.moveBy(x: incrementalSpaceBetweenBlocks, y: 0, duration: gameSpeed)
-      return SKAction.sequence([wait, moveToNextBlockAction, moveSound, moveLeftAction])
+      return SKAction.sequence([wait, moveToNextBlockAction, moveLeftAction])
     case entityDirection.right:
       let moveRightAction = SKAction.moveBy(x: -incrementalSpaceBetweenBlocks, y: 0, duration: gameSpeed)
-      
-      return SKAction.sequence([wait, moveToNextBlockAction, moveSound, moveRightAction])
+      return SKAction.sequence([wait, moveToNextBlockAction, moveRightAction])
     case entityDirection.down:
       let moveDownAction = SKAction.moveBy(x: 0, y: incrementalSpaceBetweenBlocks, duration: gameSpeed)
-      
-      return SKAction.sequence([wait, moveToNextBlockAction, moveSound, moveDownAction])
+      return SKAction.sequence([wait, moveToNextBlockAction, moveDownAction])
     case entityDirection.up:
       let moveUpAction = SKAction.moveBy(x: 0, y: -incrementalSpaceBetweenBlocks, duration: gameSpeed)
-      
-      return SKAction.sequence([wait, moveToNextBlockAction, moveSound, moveUpAction])
+      return SKAction.sequence([wait, moveToNextBlockAction, moveUpAction])
     case entityDirection.unSelected:
       //Dont run
       log.verbose("direction unselected")
@@ -197,7 +193,7 @@ class Boss: Enemy {
     
     SharedTexture.texture = SKTexture.init(image: UIImage.init(named: imagesString.Boss)!)
       SharedTexture.texture.filteringMode = .nearest
-      SharedTexture.texture.generatingNormalMap(withSmoothness: 0.6, contrast: 1.0)
+      //SharedTexture.texture.generatingNormalMap(withSmoothness: 0.6, contrast: 1.0)
 
     return SharedTexture.texture
   }()
@@ -256,7 +252,7 @@ class Ghost: Enemy {
     
     SharedTexture.texture = SKTexture.init(image: UIImage.init(named: imagesString.enemy3)!)
       SharedTexture.texture.filteringMode = .nearest
-      SharedTexture.texture.generatingNormalMap(withSmoothness: 0.6, contrast: 1.0)
+      //SharedTexture.texture.generatingNormalMap(withSmoothness: 0.6, contrast: 1.0)
     
     return SharedTexture.texture
     
@@ -319,7 +315,7 @@ class Soldier: Enemy {
     
     SharedTexture.texture = SKTexture.init(image: UIImage.init(named: imagesString.enemy2)!)
       SharedTexture.texture.filteringMode = .nearest
-      SharedTexture.texture.generatingNormalMap(withSmoothness: 0.6, contrast: 1.0)
+      //SharedTexture.texture.generatingNormalMap(withSmoothness: 0.6, contrast: 1.0)
 
     return SharedTexture.texture
   }()
@@ -383,7 +379,7 @@ class Minion: Enemy {
     
     SharedTexture.texture = SKTexture.init(image: UIImage.init(named: imagesString.enemy1)!)
     SharedTexture.texture.filteringMode = .nearest
-    SharedTexture.texture.generatingNormalMap(withSmoothness: 0.6, contrast: 1.0)
+    //SharedTexture.texture.generatingNormalMap(withSmoothness: 0.6, contrast: 1.0)
     
     return SharedTexture.texture
   }()

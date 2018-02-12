@@ -195,7 +195,7 @@ class Entity: SKSpriteNode {
   //Sounds
   func playSoundEffect(_ fileName: String) {
 //    GlobalRellikSFXConcurrent.async {[weak self] in
-      self.run(SKAction.playSoundFileNamed(fileName, waitForCompletion: false))
+//      self.run(SKAction.playSoundFileNamed(fileName, waitForCompletion: false))
 //    }
   }
   func playDeadSound() {
