@@ -98,7 +98,9 @@ class Bullet: Entity {
       //    self.getSideForLighting()
       self?.playattackSound()
         self?.run((self?.move)!)//, withKey: "move")
+      GlobalRellikSerial.sync {[weak self] in
         self?.isShot = true
+      }
       }
   }
   override func updateSpriteAtrributes() {
@@ -118,6 +120,11 @@ class Bullet: Entity {
     self.stopped = true
     self.playHurtSound()
     }
+  }
+  
+  ///Don't want this effect on a bullet
+  override func hurtEffects()->SKAction{
+    return SKAction()
   }
   
   func playOutOfBoundsError() {

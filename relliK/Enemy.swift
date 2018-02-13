@@ -179,7 +179,8 @@ class Boss: Enemy {
     attackSoundString = "attack.wav"
     moveSoundString = "move.wav"
     diedSoundString = "boss died.wav"
-    //        directionOf = entityDirection.unSelected
+    
+    hurtEffects()
   }
   override class func generateTexture() -> SKTexture? {
     

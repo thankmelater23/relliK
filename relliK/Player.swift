@@ -76,6 +76,7 @@ class Player: Entity {
     directionOf = entityDirection.unSelected
     entityCurrentBlock = blockPlace.unSelected
     entityInRangeBlock = blockPlace.fourth
+    self.flashRedEffect = hurtEffects()
     
     //childNodeWithName("bulletNode")
   }
@@ -98,6 +99,7 @@ class Player: Entity {
         duration: 0.0),
       SKAction.wait(forDuration: 0.3), SKAction.run {
         super.died()
+        fatalError()
       }]))
   }
   deinit {

@@ -66,7 +66,6 @@ class Entity: SKSpriteNode {
     super.init(texture: texture, color: SKColor.white, size: texture.size())
     
     self.position = position
-    hurtEffects()
     setEntityTypeAttribures()
   }
   func getSideForLighting() -> UInt32 {
@@ -100,12 +99,14 @@ class Entity: SKSpriteNode {
     died()
   }
   func hurt() {
+    GlobalRellikSerial.sync {
     health -= 1
     healthLabel()
     if let flash = flashRedEffect {
       run(flash)
     }else{ log.warning("Hurt flash not initialized")}
     died()
+    }
   }
   func moveToNextBlock() {
     
@@ -151,7 +152,7 @@ class Entity: SKSpriteNode {
 //      self.texture = nil
     }
   }
-  func hurtEffects() {
+  func hurtEffects()->SKAction{
 //    GlobalRellikSerial.async {
       let colorizeSpriteToRed = SKAction.colorize(with: SKColor.red, colorBlendFactor: 1.0, duration: 0.5)
       let colorizeSpriteToNorm = SKAction.colorize(with: SKColor.red, colorBlendFactor: 0.0, duration: 0.5)
@@ -163,7 +164,8 @@ class Entity: SKSpriteNode {
       let flash = SKAction.repeat(twinkleTwincle, count: 4)
       
         let groupAction = SKAction.group([flash, ColorsGoing])
-        self.flashRedEffect = groupAction
+    
+      return groupAction
 //    }
   }
   func healthLabel(){
@@ -194,9 +196,9 @@ class Entity: SKSpriteNode {
   }
   //Sounds
   func playSoundEffect(_ fileName: String) {
-//    GlobalRellikSFXConcurrent.async {[weak self] in
-//      self.run(SKAction.playSoundFileNamed(fileName, waitForCompletion: false))
-//    }
+//    GlobalRellikSFXConcurrent.sync {[weak self] in
+      self.run(SKAction.playSoundFileNamed(fileName, waitForCompletion: false))
+//    }
   }
   func playDeadSound() {
     playSoundEffect(diedSoundString)
@@ -215,5 +217,13 @@ class Entity: SKSpriteNode {
   }
   func playBlockSound() {
     playSoundEffect(blockSoundString)
+  }
+  
+  func xplaySoundEffect(_ fileName: String) {
+    let audioNode = SKAudioNode(fileNamed: fileName)
+    audioNode.autoplayLooped = false
+    self.addChild(audioNode)
+    let playAction = SKAction.play()
+    audioNode.run(playAction)
   }
 }
