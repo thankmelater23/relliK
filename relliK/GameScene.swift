@@ -11,7 +11,7 @@ import SpriteKit
 class GameScene: SKScene, SKPhysicsContactDelegate {
   // MARK: Unassigned
   var isGamePaused: Bool = false
-  var cpuEnabled = false
+  var cpuEnabled = true
   // MARK: Array of Monstors and Bullets
   var monstorsInField = [Enemy]()
   var bulletsInField = [Bullet?]()
@@ -294,11 +294,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   func setupLevel(){
     setPhysics()
+    setBackground()
     createBlocks()
     createSwipeRecognizers()
     //    setGameLights()
-    playGameBackgroundMusic()
     //    particleCreator()
+    
+    loadLevelToView()
+    playGameBackgroundMusic()
+  }
+  ///Adds all child nodes to view
+  func loadLevelToView(){
+    
   }
   
   func setupUI(){
@@ -358,7 +365,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   // MARK: Player and Bullets Methods
   func createPlayer() {
-    self.player = Player(entityPosition: CGPoint(x: playableRect.midX, y: playableRect.midY))
+    self.player = Player(entityPosition: CGPoint(x: playableRect.midX, y: playableRect.midY + 20))
     addChild(player)
   }
   
@@ -459,15 +466,22 @@ func createBlocks() {
   GlobalRellikSerial.async {
     for i in 0...4 {
       
-      self.leftBoxes.append(SKSpriteNode(imageNamed: "stone"))
-      self.rightBoxes.append(SKSpriteNode(imageNamed: "stone"))
-      self.upBoxes.append(SKSpriteNode(imageNamed: "stone"))
-      self.downBoxes.append(SKSpriteNode(imageNamed: "stone"))
-      
+      self.leftBoxes.append(SKSpriteNode(imageNamed: "horizontal-block"))
+      self.rightBoxes.append(SKSpriteNode(imageNamed: "horizontal-block"))
+      self.upBoxes.append(SKSpriteNode(imageNamed: "center-block"))
+      if i == 4{
+      self.downBoxes.append(SKSpriteNode(imageNamed: "horizontal-block"))
+      }else{
+      self.downBoxes.append(SKSpriteNode(imageNamed: "center-block"))
+      }
       self.leftBoxes[i].position = CGPoint(x: self.horizontalXAxis - self.self.pointBetweenBlocks, y: self.verticalAxis)
       self.rightBoxes[i].position = CGPoint(x: self.self.horizontalXAxis + self.self.pointBetweenBlocks, y: self.verticalAxis)
       self.upBoxes[i].position = CGPoint(x: self.horizontalXAxis, y: self.verticalAxis  + self.pointBetweenBlocks)
-      self.downBoxes[i].position = CGPoint(x: self.horizontalXAxis, y: self.verticalAxis  - self.pointBetweenBlocks)
+      if i == 4{
+        self.downBoxes[i].position = CGPoint(x: self.horizontalXAxis, y: self.verticalAxis  - self.pointBetweenBlocks * 1.05)
+      }else{
+        self.downBoxes[i].position = CGPoint(x: self.horizontalXAxis, y: self.verticalAxis  - self.pointBetweenBlocks)
+      }
       
       self.leftBoxes[i].setScale(enemyBlockScale)
       self.rightBoxes[i].setScale(enemyBlockScale)
@@ -589,7 +603,7 @@ extension GameScene{
     self.addChild(enemy)
   }
   func randomEnemy(_ enemyLocation: CGPoint, delegate: SceneUpdateProtocol) -> Enemy {
-    let randomNum = Int.random(min: 1, max: 13)
+    let randomNum = Int.random(min: 1, max: 10)
     
     GlobalRellikSFXConcurrent.async {
       //      self.run(SKAction.playSoundFileNamed("spawn.wav", waitForCompletion: false))
@@ -600,9 +614,9 @@ extension GameScene{
       return Boss(entityPosition: enemyLocation, delegate: self)
     case 2...5:
       return Soldier(entityPosition: enemyLocation, delegate: self)
-    case 5...12:
+    case 5...10:
       return Minion(entityPosition: enemyLocation, delegate: self)
-    case 13:
+    case 11:
       return Ghost(entityPosition: enemyLocation, delegate: self)
     default:
       assertionFailure("out of bounds Spawn enemy")
@@ -753,20 +767,28 @@ extension GameScene{
 
 //MARK: - Labels
 extension GameScene{
-  func setLabels() {
-    backgroundNode = SKSpriteNode(imageNamed: "appleSpaceBackground")
+  fileprivate func setBackground() {
+    var imageString = "blueAndRedGalaxy"
+    backgroundNode = SKSpriteNode(imageNamed: imageString)
     backgroundNode.size = playableRect.size
     backgroundNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
     backgroundNode.position = CGPoint(x: playableRect.width/2, y: playableRect.height/2)
     backgroundNode.zPosition = -1
+    
+    self.backgroundNode.texture?.generatingNormalMap(withSmoothness: 1.0, contrast: 0.0)
+    addChild(backgroundNode)
+  }
+  
+  func setLabels() {
+    
     
     scoreBoardLabel = SKLabelNode(fontNamed:"Chalkduster")
     scoreBoardLabel.name = "scoreBoard"
     score = 0
     scoreBoardLabel.text = String("Score: \(score)")
     scoreBoardLabel.color = SKColor.red
-    scoreBoardLabel.fontSize = 15
-    scoreBoardLabel.position =  CGPoint(x: horizontalXAxis * 2, y: verticalAxis * 1.8)
+    scoreBoardLabel.fontSize = 30
+    scoreBoardLabel.position =  CGPoint(x: horizontalXAxis * 1.8, y: verticalAxis * 1.8)
     scoreBoardLabel.zPosition = 100
     scoreBoardLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.center
     scoreBoardLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.right
@@ -776,8 +798,8 @@ extension GameScene{
     highscores = 0
     highScoreBoardLabel.text = String("HighScore: \(highscores)")
     highScoreBoardLabel.color = SKColor.red
-    highScoreBoardLabel.fontSize = 15
-    highScoreBoardLabel.position = CGPoint(x: horizontalXAxis * 2, y: verticalAxis * 0.8)
+    highScoreBoardLabel.fontSize = 30
+    highScoreBoardLabel.position = CGPoint(x: horizontalXAxis * 1.8, y: verticalAxis * 0.8)
     highScoreBoardLabel.zPosition = 100
     highScoreBoardLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.center
     highScoreBoardLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.right
@@ -787,7 +809,7 @@ extension GameScene{
     killed = 0
     killBoardLabel.text = String("Killed: \(killed)")
     killBoardLabel.color = SKColor.red
-    killBoardLabel.fontSize = 15
+    killBoardLabel.fontSize = 30
     killBoardLabel.position = CGPoint(x: horizontalXAxis * 0.10, y: verticalAxis * 1.8)
     killBoardLabel.zPosition = 100
     killBoardLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.center
@@ -798,7 +820,7 @@ extension GameScene{
     errors = 0
     errorsBoardLabel.text = String("Errors: \(errors)")
     errorsBoardLabel.color = SKColor.red
-    errorsBoardLabel.fontSize = 15
+    errorsBoardLabel.fontSize = 30
     errorsBoardLabel.position = CGPoint(x: horizontalXAxis * 0.10, y: verticalAxis * 0.8)
     errorsBoardLabel.zPosition = 100
     errorsBoardLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.center
@@ -807,7 +829,7 @@ extension GameScene{
     let gameName = SKLabelNode(fontNamed:"Chalkduster")
     gameName.text = "relliK"
     gameName.color = SKColor.red
-    gameName.fontSize = 20
+    gameName.fontSize = 75
     gameName.position = CGPoint(x:horizontalXAxis, y:playableRect.maxY - gameName.frame.size.height)
     
     timerBoardLabel = SKLabelNode(fontNamed:"Chalkduster")
@@ -815,7 +837,7 @@ extension GameScene{
     gameTimer = 0
     timerBoardLabel.text = String("0:0")
     timerBoardLabel.color = SKColor.red
-    timerBoardLabel.fontSize = 15
+    timerBoardLabel.fontSize = 30
     timerBoardLabel.position = CGPoint(x:horizontalXAxis, y:playableRect.maxY - (timerBoardLabel.frame.size.height + gameName.frame.size.height) )
     timerBoardLabel.zPosition = 100
     timerBoardLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.center
@@ -824,7 +846,6 @@ extension GameScene{
     setDebugLabels()
     addChild(gameName)
     addChild(killBoardLabel)
-    addChild(backgroundNode)
     addChild(scoreBoardLabel)
     addChild(errorsBoardLabel)
     addChild(highScoreBoardLabel)
@@ -835,7 +856,7 @@ extension GameScene{
     gameSpeedBoardLabel.name = "gameSpeedBoaard"
     gameSpeedBoardLabel.text = String("Game Speed: 0:0")
     gameSpeedBoardLabel.color = SKColor.red
-    gameSpeedBoardLabel.fontSize = 15
+    gameSpeedBoardLabel.fontSize = 20
     gameSpeedBoardLabel.fontColor = SKColor.red
     gameSpeedBoardLabel.position = CGPoint(x: horizontalXAxis * 1.25, y: verticalAxis * 1.8 - gameSpeedBoardLabel.frame.height*2)
     gameSpeedBoardLabel.zPosition = 100
@@ -846,7 +867,7 @@ extension GameScene{
     waitTimeBoardLabel.name = "waitTimeBoaard"
     waitTimeBoardLabel.text = String("Wait:0:0")
     waitTimeBoardLabel.color = SKColor.red
-    waitTimeBoardLabel.fontSize = 15
+    waitTimeBoardLabel.fontSize = 20
     waitTimeBoardLabel.fontColor = SKColor.red
     waitTimeBoardLabel.position = CGPoint(x: horizontalXAxis * 0.60, y: verticalAxis * 1.8 - waitTimeBoardLabel.frame.height*2)//CGPoint(x:horizontalXAxis * 1.30, y:CGRectGetMidY(playableRect) + (waitTimeBoardLabel.frame.height * 2) )
     waitTimeBoardLabel.zPosition = 100

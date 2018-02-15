@@ -68,9 +68,9 @@ let SecondsInADay = 86400
 
   //Sizes
 ///Space between blocks and character
-  var spaceBetweenEnemyBlock: CGFloat  = 75.00
+  var spaceBetweenEnemyBlock: CGFloat  = 85.00
 ///Space between each block
-  var incrementalSpaceBetweenBlocks: CGFloat  = 60.00
+  var incrementalSpaceBetweenBlocks: CGFloat  = 55.00
   var spaceToLastBox: CGFloat = incrementalSpaceBetweenBlocks * 4
 
   var gameSpeed: TimeInterval = GAME_MIN_SPEED

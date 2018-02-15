@@ -117,7 +117,7 @@ class Bullet: Entity {
     if isDead {
       super.died()
     
-    self.stopped = true
+//    self.stopped = true
     self.playHurtSound()
     }
   }

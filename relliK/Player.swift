@@ -99,7 +99,7 @@ class Player: Entity {
         duration: 0.0),
       SKAction.wait(forDuration: 0.3), SKAction.run {
         super.died()
-        fatalError()
+        if self.isDead{fatalError()}
       }]))
   }
   deinit {

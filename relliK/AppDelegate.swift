@@ -126,7 +126,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   // MARK: - Configuration
   /// Where all developer sysem setup happens
   func setup() {
-    GlobalBackgroundQueue.async {[weak self] in
+    GlobalUtilityQueue.async {[weak self] in
       //  self.removeConstraintFromLogger()
       self?.swiftBeaverSetUp()
       self?.sirenConfiguration()

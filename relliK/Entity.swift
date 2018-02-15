@@ -99,13 +99,15 @@ class Entity: SKSpriteNode {
     died()
   }
   func hurt() {
-    GlobalRellikSerial.sync {
-    health -= 1
-    healthLabel()
-    if let flash = flashRedEffect {
-      run(flash)
+    GlobalRellikSerial.async {[weak self] in
+      self?.health -= 1
+      GlobalMainQueue.async {
+        self?.healthLabel()
+      if let flash = self?.flashRedEffect {
+      self?.run(flash)
     }else{ log.warning("Hurt flash not initialized")}
-    died()
+      self?.died()
+      }
     }
   }
   func moveToNextBlock() {
@@ -148,8 +150,7 @@ class Entity: SKSpriteNode {
       self.removeAllActions()
       self.removeAllChildren()
       self.removeFromParent()
-      self.removeAllActions()
-//      self.texture = nil
+//      self.texture = nil 
     }
   }
   func hurtEffects()->SKAction{
@@ -172,7 +173,7 @@ class Entity: SKSpriteNode {
         let healthLabel = SKLabelNode(fontNamed: "Chalkduster")
         healthLabel.name = "Hurt Label"
         healthLabel.color = SKColor.red
-        healthLabel.fontSize = 30
+        healthLabel.fontSize = 50
         healthLabel.position = CGPoint(x: frame.midX, y: frame.midY)
         healthLabel.text = String(health)
         healthLabel.zPosition = 100
@@ -187,7 +188,7 @@ class Entity: SKSpriteNode {
     
         self.parent?.addChild(healthLabel)
     
-        let action = SKAction.sequence([SKAction.scale(to: 0.0, duration: 0.5), SKAction.removeFromParent()])
+        let action = SKAction.sequence([SKAction.scale(to: 0.0, duration: 0.8), SKAction.removeFromParent()])
       
           healthLabel.run(action)
   }
@@ -197,7 +198,7 @@ class Entity: SKSpriteNode {
   //Sounds
   func playSoundEffect(_ fileName: String) {
 //    GlobalRellikSFXConcurrent.sync {[weak self] in
-      self.run(SKAction.playSoundFileNamed(fileName, waitForCompletion: false))
+//      self.run(SKAction.playSoundFileNamed(fileName, waitForCompletion: false))
 //    }
   }
   func playDeadSound() {
