@@ -143,27 +143,30 @@ class Enemy: Entity{
 class Boss: Enemy {
   init(entityPosition: CGPoint, delegate: SceneUpdateProtocol) {
     var entityTexture = SKTexture()
-    GlobalRellikSerial.sync {
       entityTexture = Boss.generateTexture()!
-    }
     super.init(texture: entityTexture)
+    
+//        GlobalRellikEnemyConcurrent.async(group: nil, qos: .userInteractive, flags: .barrier, execute: {[weak self] in
     self.position = entityPosition
     self.name = "boss"
     self.setScale(enemyScale)
     self.directionOf = entityDirection.unSelected
     self.delegate = delegate
+//  })
   }
   
   init(entityPosition: CGPoint) {
     var entityTexture = SKTexture()
-    GlobalRellikSerial.sync {
       entityTexture = Boss.generateTexture()!
-    }
+
       super.init(texture: entityTexture)
+    //        GlobalRellikEnemyConcurrent.async(group: nil, qos: .userInteractive, flags: .barrier, execute: {[weak self] in
+
       self.position = entityPosition
       self.name = "boss"
       self.setScale(enemyScale)
       self.directionOf = entityDirection.unSelected
+//  })
   }
   convenience init(){
     self.init(entityPosition: CGPoint())
@@ -203,26 +206,30 @@ class Boss: Enemy {
 class Ghost: Enemy {
   init(entityPosition: CGPoint, delegate: SceneUpdateProtocol) {
     var entityTexture = SKTexture()
-    GlobalRellikSerial.sync {
       entityTexture = Ghost.generateTexture()!
-    }
+    
     super.init(texture: entityTexture)
+    //        GlobalRellikEnemyConcurrent.async(group: nil, qos: .userInteractive, flags: .barrier, execute: {[weak self] in
+
     self.position = entityPosition
     self.name = "ghost"
     self.setScale(enemyScale)
     self.directionOf = entityDirection.unSelected
     self.delegate = delegate
+//  })
   }
   init(entityPosition: CGPoint) {
     var entityTexture = SKTexture()
-    GlobalRellikSerial.sync {
       entityTexture = Ghost.generateTexture()!
-    }
+    
       super.init(texture: entityTexture)
+    //        GlobalRellikEnemyConcurrent.async(group: nil, qos: .userInteractive, flags: .barrier, execute: {[weak self] in
+
       self.position = entityPosition
       self.name = "ghost"
       self.setScale(enemyScale)
       self.directionOf = entityDirection.unSelected
+//  })
   }
   convenience init(){
     self.init(entityPosition: CGPoint())
@@ -263,29 +270,32 @@ class Ghost: Enemy {
 class Soldier: Enemy {
   init(entityPosition: CGPoint, delegate: SceneUpdateProtocol) {
     var entityTexture = SKTexture()
-    GlobalRellikSerial.sync {
       entityTexture = Soldier.generateTexture()!
-    }
-    super.init(texture: entityTexture)
     
+    super.init(texture: entityTexture)
+    //        GlobalRellikEnemyConcurrent.async(group: nil, qos: .userInteractive, flags: .barrier, execute: {[weak self] in
+
     self.position = entityPosition
     self.name = "soldier"
     self.setScale(enemyScale)
     self.directionOf = entityDirection.unSelected
     self.delegate = delegate
+//  })
   }
   
   init(entityPosition: CGPoint) {
     var entityTexture = SKTexture()
-    GlobalRellikSerial.sync {
       entityTexture = Soldier.generateTexture()!
-    }
+    
       super.init(texture: entityTexture)
-      
+    
+    //        GlobalRellikEnemyConcurrent.async(group: nil, qos: .userInteractive, flags: .barrier, execute: {[weak self] in
+
       self.position = entityPosition
       self.name = "soldier"
       self.setScale(enemyScale)
       self.directionOf = entityDirection.unSelected
+//  })
   }
   
   convenience init(){
@@ -325,29 +335,32 @@ class Soldier: Enemy {
 class Minion: Enemy {
   init(entityPosition: CGPoint, delegate: SceneUpdateProtocol) {
     var entityTexture = SKTexture()
-    
-    GlobalRellikSerial.sync {
       entityTexture = Minion.generateTexture()!
-    }
+
     super.init(texture: entityTexture)
+    
+    //        GlobalRellikEnemyConcurrent.async(group: nil, qos: .userInteractive, flags: .barrier, execute: {[weak self] in
+
     self.position = entityPosition
     self.name = "minion"
     self.setScale(enemyScale)
     self.directionOf = entityDirection.unSelected
     self.delegate = delegate
+//  })
   }
   
   init(entityPosition: CGPoint) {
     var entityTexture = SKTexture()
-    
-    GlobalRellikSerial.sync {
       entityTexture = Minion.generateTexture()!
-    }
+  
       super.init(texture: entityTexture)
+    
+    //        GlobalRellikEnemyConcurrent.async(group: nil, qos: .userInteractive, flags: .barrier, execute: {[weak self] in
       self.position = entityPosition
       self.name = "minion"
       self.setScale(enemyScale)
       self.directionOf = entityDirection.unSelected
+//  })
   }
   
   convenience init(){

@@ -23,9 +23,9 @@ class Bullet: Entity {
   
   init(entityPosition: CGPoint) {
     var entityTexture = SKTexture()
-    GlobalRellikSerial.sync {
+//    GlobalRellikBulletSerial.sync {
       entityTexture = Bullet.generateTexture()!
-    }
+//    }
     
     
     super.init(position: entityPosition, texture: entityTexture)
@@ -34,11 +34,11 @@ class Bullet: Entity {
     self.zPosition = CGFloat(90.00)
     self.setScale(bulletScale)
     
-    GlobalRellikSerial.async {[weak self] in
+//    GlobalRellikBulletSerial.async {[weak self] in
       let shot = SKEmitterNode(fileNamed: imagesString.engine)
-      shot?.position = CGPoint(x: 0.5, y: 1.0)
-      self?.updateSpriteAtrributes()
-      self?.addChild(shot!)
+    shot?.position = CGPoint(x: 0.5, y: 1.0)
+      self.updateSpriteAtrributes()
+      self.addChild(shot!)
       
       //      self.light.position = CGPoint(x: 0.5, y: 0.5)
       //      self.light.categoryBitMask = self.getSideForLighting()
@@ -48,23 +48,21 @@ class Bullet: Entity {
       //      self.light.ambientColor = SKColor(red: 0, green: 0, blue: 200, alpha: 0.1)
       //      self.light.falloff = 1.0
       //      self.addChild(self.light)
-    }
+//    }
   }
   override func setEntityTypeAttribures() {
     super.setEntityTypeAttribures()
-    GlobalRellikConcurrent.sync {[weak self] in
-      self?.maxHealth = 1
-      self?.health = (self?.maxHealth)!
-      self?.hurtSoundString = "bulletHurt.wav"
-      self?.attackSoundString = "bulletAttack.wav"
-      self?.moveSoundString = "move.wav"
-      self?.diedSoundString = "bulletHurt.wav"
-      self?.directionOf = entityDirection.unSelected
-      self?.entityCurrentBlock = blockPlace.unSelected
-      self?.entityInRangeBlock = blockPlace.fourth
-      
-      //childNodeWithName("bulletNode")
-    }
+//    GlobalRellikBulletConcurrent.async(group: nil, qos: .userInteractive, flags: .barrier, execute: {[weak self] in
+      self.maxHealth = 1
+      self.health = (self.maxHealth)
+      self.hurtSoundString = "bulletHurt.wav"
+      self.attackSoundString = "bulletAttack.wav"
+      self.moveSoundString = "move.wav"
+      self.diedSoundString = "bulletHurt.wav"
+      self.directionOf = entityDirection.unSelected
+      self.entityCurrentBlock = blockPlace.unSelected
+      self.entityInRangeBlock = blockPlace.fourth
+//    })
   }
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
@@ -93,25 +91,24 @@ class Bullet: Entity {
       log.verbose("direction unselected")
     }
   }
-  func moveFunc() {//Sets Angle, moves sprite an then removesSpriteFromParent
-    GlobalRellikConcurrent.async {[weak self] in
+  
+  func moveFunc() {
+//    GlobalRellikGameLoopConcurrent.async {[weak self] in
       //    self.getSideForLighting()
-      self?.playattackSound()
-        self?.run((self?.move)!)//, withKey: "move")
-      GlobalRellikSerial.sync {[weak self] in
-        self?.isShot = true
-      }
-      }
+      self.playattackSound()
+      self.run((self.move)!, withKey: "move")
+        self.isShot = true
+//      }
   }
   override func updateSpriteAtrributes() {
     super.updateSpriteAtrributes()
-    GlobalUserInitiatedQueue.sync{[weak self] in
-      self?.physicsBody = SKPhysicsBody(rectangleOf: (self?.frame.size)!)
-      self?.physicsBody?.usesPreciseCollisionDetection = true
-      self?.physicsBody?.categoryBitMask = PhysicsCategory.Bullet
-      self?.physicsBody?.contactTestBitMask = PhysicsCategory.Enemy
-      self?.physicsBody?.collisionBitMask = PhysicsCategory.None
-    }
+//    GlobalRellikBulletConcurrent.async(group: nil, qos: .userInteractive, flags: .barrier, execute: {[weak self] in
+      self.physicsBody = SKPhysicsBody(rectangleOf: (self.frame.size))
+      self.physicsBody?.usesPreciseCollisionDetection = true
+      self.physicsBody?.categoryBitMask = PhysicsCategory.Bullet
+      self.physicsBody?.contactTestBitMask = PhysicsCategory.Enemy
+      self.physicsBody?.collisionBitMask = PhysicsCategory.None
+//    })
   }
   override func died() {
     if isDead {
@@ -150,17 +147,17 @@ class Bullet: Entity {
 class SuperBullet: Bullet{
   override func setEntityTypeAttribures() {
    super.setEntityTypeAttribures()
-    GlobalRellikConcurrent.sync {[weak self] in
-      self?.maxHealth = 2
-      self?.health = (self?.maxHealth)!
-      self?.hurtSoundString = "bulletHurt.wav"
-      self?.attackSoundString = "bulletAttack.wav"
-      self?.moveSoundString = "move.wav"
-      self?.diedSoundString = "bulletHurt.wav"
+//     GlobalRellikBulletConcurrent.async(group: nil, qos: .userInteractive, flags: .barrier, execute: {[weak self] in
+      self.maxHealth = 2
+      self.health = (self.maxHealth)
+      self.hurtSoundString = "bulletHurt.wav"
+      self.attackSoundString = "bulletAttack.wav"
+      self.moveSoundString = "move.wav"
+      self.diedSoundString = "bulletHurt.wav"
       
-      self?.color = .red
+      self.color = .red
       
       //childNodeWithName("bulletNode")
-    }
+//    })
   }
 }

@@ -116,5 +116,16 @@ http://BangBangStudios.com/relliK
   let GlobalRellikDataBaseSerial = DispatchQueue(label: "com.Rellik.Serial.DataBase")
   /// Custom Serial Belize Lottery Background Network Queue
   let GlobalRellikNetworkSerial = DispatchQueue(label: "com.Rellik.Serial.Network")
-/// Custom Serial Belize Lottery Background Network Queue
-let GlobalRellikSFXConcurrent = DispatchQueue(label: "com.Rellik.Serial.Network", qos: .userInitiated, attributes: .concurrent)
+  /// Custom Serial Belize Lottery Background Network Queue
+  let GlobalRellikSFXConcurrent      = DispatchQueue(label: "com.Rellik.Concurrent.Network", qos: .userInitiated, attributes: .concurrent)
+  let GlobalRellikGameLoopConcurrent = DispatchQueue(label: "com.Rellik.Concurrent.GameLoop", qos: .userInitiated, attributes: .concurrent)
+  let GlobalRellikGameLoopSerial     = DispatchQueue(label: "com.Rellik.Serial.GameLoop", qos: .userInitiated)
+  let GlobalRellikBulletConcurrent   = DispatchQueue(label: "com.Rellik.Concurrent.Bullet", qos: .userInitiated, attributes: .concurrent)
+  let GlobalRellikBulletSerial       = DispatchQueue(label: "com.Rellik.Serial.Bullet", qos: .userInitiated)
+  let GlobalRellikEnemyConcurrent    = DispatchQueue(label: "com.Rellik.Concurrent.Enemy", qos: .userInitiated, attributes: .concurrent)
+  let GlobalRellikEnemySerial        = DispatchQueue(label: "com.Rellik.Serial.Enemy", qos: .userInitiated)
+  let GlobalRellikPlayerConcurrent   = DispatchQueue(label: "com.Rellik.Concurrent.Player", qos: .userInitiated, attributes: .concurrent)
+  let GlobalRellikPlayerSerial       = DispatchQueue(label: "com.Rellik.Serial.Player", qos: .userInitiated)
+///MARK: - Dispatch Groups
+let GameLoadGroup = DispatchGroup()
+

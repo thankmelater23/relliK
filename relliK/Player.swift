@@ -19,10 +19,9 @@ class Player: Entity {
   }()
   init(entityPosition: CGPoint) {
     var entityTexture = SKTexture()
-//    GlobalRellikSerial.sync {
       entityTexture = Player.generateTexture()!
-//    }
     
+//    GlobalRellikPlayerConcurrent.async(group: nil, qos: .userInteractive, flags: .barrier, execute: {[weak self] in
     super.init(position: entityPosition, texture: entityTexture)
     name = "player"
     setScale(playerScale)
@@ -30,6 +29,7 @@ class Player: Entity {
     zPosition = 100.00
     updateSpriteAtrributes()
     setEntityTypeAttribures()
+//  })
   }
   override class func generateTexture() -> SKTexture? {
     
@@ -59,12 +59,12 @@ class Player: Entity {
   override func updateSpriteAtrributes() {
     super.updateSpriteAtrributes()
     self.physicsBody = SKPhysicsBody(rectangleOf: (self.frame.size))
-    GlobalRellikConcurrent.async{
+//    GlobalRellikPlayerConcurrent.async(group: nil, qos: .userInteractive, flags: .barrier, execute: {[weak self] in
       self.physicsBody?.usesPreciseCollisionDetection = true
       self.physicsBody?.categoryBitMask = PhysicsCategory.Player
       self.physicsBody?.contactTestBitMask = PhysicsCategory.Enemy
       self.physicsBody?.collisionBitMask = PhysicsCategory.None
-    }
+//    })
   }
   override func setEntityTypeAttribures() {
     maxHealth = 3

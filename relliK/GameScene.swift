@@ -77,7 +77,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func loadDefaults() {
-    GlobalBackgroundQueue.async {
+//    GlobalUserInitiatedQueue.async {
       let gameHighScore = UserDefaults.standard.value(forKey: "highscore") as! Int?
       guard let defaultHighScore = gameHighScore else {
         UserDefaults.standard.setValue(0, forKeyPath: "highscore")
@@ -86,7 +86,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       }
       
       self.highscores = UserDefaults.standard.value(forKey: "highscore") as! Int!
-    }
+//    }
   }
   
   // MARK: Game Labels
@@ -323,10 +323,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   // MARK: Contact Methods
   func setPhysics() {
-    GlobalBackgroundQueue.sync {
+//    GlobalBackgroundQueue.sync {
       self.physicsWorld.contactDelegate = self
       self.physicsWorld.gravity = CGVector(dx: CGFloat(0), dy: CGFloat(0))
-    }
+//    }
   }
   func didBegin(_ contact: SKPhysicsContact) {
     let firstNode = contact.bodyA.node as! Entity
@@ -435,7 +435,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
   }
 func particleCreator() {
-  GlobalRellikSerial.async {
+//  GlobalRellikSerial.async {
     let rainTexture = SKTexture(imageNamed: "rainDrop")
     let emitterNOde = SKEmitterNode()
     
@@ -455,18 +455,18 @@ func particleCreator() {
       x: self.playableRect.width/2, y: self.playableRect.height + 10)
     emitterNOde.particlePositionRange = CGVector(dx: self.playableRect.width, dy: self.playableRect.height)
     self.addChild(emitterNOde)
-  }
+//  }
 }
 
 
 // MARK: Block creator Methods
 func createPlayerBlock() {
-  let group = DispatchGroup()
+//  let group = DispatchGroup()
   let playerBlockLight = SKLightNode()
   
-  group.enter()
+//  group.enter()
   
-  GlobalBackgroundQueue.async {
+//  GlobalRellikConcurrent.async {
     self.playerBlock = SKSpriteNode(imageNamed: "stone")
     self.playerBlock.name = "playerBlock"
     self.playerBlock.color = SKColor.red
@@ -483,17 +483,17 @@ func createPlayerBlock() {
     //      playerBlockLight.falloff = 1.0
     //      playerBlockLight.ambientColor = SKColor(red: 0, green: 0, blue: 0, alpha: 1.0)// SKColor.yellowColor()
     //      playerBlockLight.lightColor = SKColor(white: 0.1, alpha: 1.0)
-    group.leave()
-  }
+//    group.leave()
+//  }
   
-  group.notify(queue: .main){
+//  group.notify(queue: .main){
     self.addChild(playerBlockLight)
     self.addChild(self.playerBlock)
-  }
+//  }
 }
 
 func createBlocks() {
-  GlobalRellikSerial.async {
+//  GlobalRellikSerial.async {
     for i in 0...4 {
       
       self.leftBoxes.append(SKSpriteNode(imageNamed: "horizontal-block"))
@@ -537,14 +537,14 @@ func createBlocks() {
     }
     self.createPlayerBlock()
   }
-}
+
 
 
 // MARK: Actions
 func playGameBackgroundMusic() {
-  GlobalMainQueue.async {
+//  GlobalMainQueue.async {
     playBackgroundMusic("backgroundMusic.mp3")
-  }
+//  }
 }
 
 
@@ -557,7 +557,8 @@ func createGameOverScene(_ won: Bool) {
   let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
   
   view?.presentScene(gameOverScene, transition: reveal)
-}
+
+  }
 }
 
 
@@ -635,9 +636,8 @@ extension GameScene{
   func randomEnemy(_ enemyLocation: CGPoint, delegate: SceneUpdateProtocol) -> Enemy {
     let randomNum = Int.random(min: 1, max: 10)
     
-    GlobalRellikSFXConcurrent.async {
+//    GlobalRellikGameLoopConcurrent.async {
       //      self.run(SKAction.playSoundFileNamed("spawn.wav", waitForCompletion: false))
-    }
     
     switch randomNum {
     case 1:
@@ -651,6 +651,7 @@ extension GameScene{
     default:
       assertionFailure("out of bounds Spawn enemy")
       return Minion(entityPosition: enemyLocation, delegate: self)
+//    }
     }
   }
   
@@ -721,10 +722,10 @@ extension GameScene{
   func moveBullets() {
 //    let group = DispatchGroup()
     
-//    GlobalBackgroundQueue.async(group: group, execute:{[weak self] in
-//      group.enter()
-    GlobalRellikSerial.sync {
+
     self.bulletsInField.map{
+//          GlobalBackgroundQueue.async(group: group, execute:{[weak self] in
+      //      group.enter()
         $0 as Bullet?
         if !($0?.isShot)! {
           $0?.moveFunc()
@@ -734,7 +735,6 @@ extension GameScene{
           if ($0?.stopped)! && !(($0?.isDead)!) { self.errorCountUpdate() }
 //          group.leave()
         }
-      }
 //    })
     
 //    group.notify(queue: GlobalMainQueue, execute: {[weak self] in

@@ -17,15 +17,14 @@ class Entity: SKSpriteNode {
   private var _health: Int = 0
   var health: Int {
     set {
-      GlobalRellikConcurrent.sync {
+//      GlobalRellikPlayerConcurrent.sync {
       _health = newValue
-      }
+//      }
     }
     get {
-      GlobalRellikConcurrent.sync {
+//      return GlobalRellikPlayerConcurrent.sync {
         return self._health
-      }
-      return Int()
+//      }
     }
   }
   
@@ -113,14 +112,14 @@ class Entity: SKSpriteNode {
     died()
   }
   func hurt() {
-    GlobalRellikSerial.async {[weak self] in
-      self?.health -= 1
-        self?.healthLabel()
-      if let flash = self?.flashRedEffect {
-      self?.run(flash)
+//    GlobalRellikPlayerSerial.async(group: nil, qos: .userInteractive, flags: .barrier, execute: {[weak self] in
+      self.health -= 1
+        self.healthLabel()
+      if let flash = self.flashRedEffect {
+      self.run(flash)
     }else{ log.warning("Hurt flash not initialized")}
-      self?.died()
-    }
+      self.died()
+//    })
   }
   func moveToNextBlock() {
     
