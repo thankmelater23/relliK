@@ -12,3 +12,5 @@ import SwiftyBeaver
 // MARK: - Global Variables
 /// Swifty Beaver logger
 let log = SwiftyBeaver.self
+///Games Gamestate
+var gameState = GameState.loading

@@ -79,7 +79,7 @@ extension GameSceneTest{
 //  }
   func testPerformanceLoadDefaults() {
     self.measure {
-      scene.loadDefaults()
+      scene.highScoreSetup()
     }
   }
   func testPerformanceMoveBullets() {

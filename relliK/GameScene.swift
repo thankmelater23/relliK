@@ -52,7 +52,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var lastTouchLocation: CGPoint?
   let rotateRadiansPerSec: CGFloat = 4.0 * π
   var pointBetweenBlocks = CGFloat(spaceBetweenEnemyBlock)
-  var shotStart = 50//No use right now 9-10-15
   let horizontalXAxis: CGFloat
   let verticalAxis: CGFloat
   
@@ -76,7 +75,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
   }
   
-  func loadDefaults() {
+  func highScoreSetup() {
 //    GlobalUserInitiatedQueue.async {
       let gameHighScore = UserDefaults.standard.value(forKey: "highscore") as! Int?
       guard let defaultHighScore = gameHighScore else {
@@ -144,7 +143,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                                              SKAction.scale(to: 1, duration: 0.1)]))
     }
   }
-  
+  var gameName = SKLabelNode(fontNamed:"Chalkduster")
   var waitTimeBoardLabel = SKLabelNode()
   var gameSpeedBoardLabel = SKLabelNode()
   
@@ -168,7 +167,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   // MARK: Update Methods
   override func update(_ currentTime: TimeInterval) {
-    if !isGamePaused {
+    if !isGamePaused && gameState == .playing {
       if incrementCurrentGameSpeedTime > incrementGameSpeedTime {
         //        log.verbose("Update game speed")
         
@@ -272,10 +271,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func setup(){
+    gameState = GameState.loading
     self.setupData()
     self.setupLevel()
     self.setupPlayer()
     self.setupUI()
+    self.loadLevelToView()
   }
   
   func restartGame(){
@@ -293,28 +294,57 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func setupLevel(){
-    setPhysics()
-    setBackground()
-    createBlocks()
-    createSwipeRecognizers()
+    self.setPhysics()
+    self.setBackground()
+    self.createBlocks()
+    self.createPlayerBlock()
+    self.createSwipeRecognizers()
     //    setGameLights()
     //    particleCreator()
     
-    loadLevelToView()
-    playGameBackgroundMusic()
   }
   ///Adds all child nodes to view
   func loadLevelToView(){
+    //Loads background
+    self.addChild(backgroundNode)
     
+    //Loads enemy blocks
+    for i in 0...4 {
+    self.addChild(self.leftBoxes[i])
+    self.addChild(self.rightBoxes[i])
+    self.addChild(self.upBoxes[i])
+    self.addChild(self.downBoxes[i])
+    }
+    //Set player block
+    self.addChild(self.playerBlock)
+
+    //Sets up player
+    addChild(player)
+    self.playGameBackgroundMusic()
+    
+    //Sets labels
+    addChild(gameName)
+    addChild(killBoardLabel)
+    addChild(scoreBoardLabel)
+    addChild(errorsBoardLabel)
+    addChild(highScoreBoardLabel)
+    addChild(timerBoardLabel)
+    //Sets debug levels
+    addChild(gameSpeedBoardLabel)
+    addChild(waitTimeBoardLabel)
+    
+    //After everything is loaded
+    gameState = GameState.playing
   }
   
   func setupUI(){
     setLabels()
     debugDrawPlayableArea()
+    setDebugLabels()
   }
   
   func setupData(){
-    loadDefaults()
+    highScoreSetup()
   }
   required init(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
@@ -366,7 +396,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   // MARK: Player and Bullets Methods
   func createPlayer() {
     self.player = Player(entityPosition: CGPoint(x: playableRect.midX, y: playableRect.midY + 20))
-    addChild(player)
   }
   
   
@@ -462,7 +491,7 @@ func particleCreator() {
 // MARK: Block creator Methods
 func createPlayerBlock() {
 //  let group = DispatchGroup()
-  let playerBlockLight = SKLightNode()
+//  let playerBlockLight = SKLightNode()
   
 //  group.enter()
   
@@ -475,8 +504,8 @@ func createPlayerBlock() {
     self.playerBlock.setScale(playerBlockScale)
     self.playerBlock.texture?.filteringMode = .nearest
     self.playerBlock.texture!.generatingNormalMap(withSmoothness: 0.5, contrast: 1.0)
-    self.playerBlock.lightingBitMask = BitMaskOfLighting.left | BitMaskOfLighting.right | BitMaskOfLighting.up | BitMaskOfLighting.down
-    
+//    self.playerBlock.lightingBitMask = BitMaskOfLighting.left | BitMaskOfLighting.right | BitMaskOfLighting.up | BitMaskOfLighting.down
+  
     //      playerBlockLight.categoryBitMask = BitMaskOfLighting.left | BitMaskOfLighting.right | BitMaskOfLighting.down | BitMaskOfLighting.up
     //      playerBlockLight.isEnabled = true
     //      playerBlockLight.position = self.playerBlock.position
@@ -487,8 +516,7 @@ func createPlayerBlock() {
 //  }
   
 //  group.notify(queue: .main){
-    self.addChild(playerBlockLight)
-    self.addChild(self.playerBlock)
+  
 //  }
 }
 
@@ -528,14 +556,8 @@ func createBlocks() {
       //        self.downBoxes[i].lightingBitMask = BitMaskOfLighting.down
       //        self.upBoxes[i].lightingBitMask = BitMaskOfLighting.up
       
-      self.addChild(self.leftBoxes[i])
-      self.addChild(self.rightBoxes[i])
-      self.addChild(self.upBoxes[i])
-      self.addChild(self.downBoxes[i])
-      
       self.pointBetweenBlocks += incrementalSpaceBetweenBlocks
     }
-    self.createPlayerBlock()
   }
 
 
@@ -806,7 +828,6 @@ extension GameScene{
     backgroundNode.zPosition = -1
     
     self.backgroundNode.texture?.generatingNormalMap(withSmoothness: 1.0, contrast: 0.0)
-    addChild(backgroundNode)
   }
   
   func setLabels() {
@@ -856,7 +877,7 @@ extension GameScene{
     errorsBoardLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.center
     errorsBoardLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
     
-    let gameName = SKLabelNode(fontNamed:"Chalkduster")
+    gameName = SKLabelNode(fontNamed:"Chalkduster")
     gameName.text = "relliK"
     gameName.color = SKColor.red
     gameName.fontSize = 75
@@ -872,14 +893,6 @@ extension GameScene{
     timerBoardLabel.zPosition = 100
     timerBoardLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.center
     timerBoardLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
-    
-    setDebugLabels()
-    addChild(gameName)
-    addChild(killBoardLabel)
-    addChild(scoreBoardLabel)
-    addChild(errorsBoardLabel)
-    addChild(highScoreBoardLabel)
-    addChild(timerBoardLabel)
   }
   func setDebugLabels() {
     gameSpeedBoardLabel = SKLabelNode(fontNamed:"Chalkduster")
@@ -903,9 +916,6 @@ extension GameScene{
     waitTimeBoardLabel.zPosition = 100
     waitTimeBoardLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.center
     waitTimeBoardLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.center
-    
-    addChild(gameSpeedBoardLabel)
-    addChild(waitTimeBoardLabel)
   }
   func debugDrawPlayableArea() {
     let shape = SKShapeNode()
