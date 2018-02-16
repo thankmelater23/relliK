@@ -730,19 +730,19 @@ extension GameScene{
         if !($0?.isShot)! {
           $0?.moveFunc()
 //          group.leave()
-        } else {
-          //TODO: - Fix this
-          if ($0?.stopped)! && !(($0?.isDead)!) { self.errorCountUpdate() }
-//          group.leave()
         }
+          //TODO: - Fix this
+          if (($0?.stopped)! == true)
+          { self.errorCountUpdate() }
+//          group.leave()
 //    })
     
 //    group.notify(queue: GlobalMainQueue, execute: {[weak self] in
       //TODO: - Maybe can delete this
-      let nilOutBullets = (self.bulletsInField.filter({$0?.stopped == true}))
-      for var bullet in nilOutBullets{
-        bullet = nil
-      }
+//      let nilOutBullets = (self.bulletsInField.filter({$0?.stopped == true}))
+//      for var bullet in nilOutBullets{
+//        bullet = nil
+//      }
       self.bulletsInField = (self.bulletsInField.filter({$0?.stopped == false}))
 //    })
     }
@@ -927,6 +927,7 @@ extension GameScene{
     bulletMoveLeftAction = SKAction.reversed(bulletMoveRightAction)()
     bulletMoveDownAction = SKAction.repeat(SKAction.moveBy(x: 0, y: CGFloat(-incrementalSpaceBetweenBlocks), duration: TimeInterval(0.1)), count: 6)
     bulletMoveUpAction = SKAction.reversed(bulletMoveDownAction)()
+    
   }
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     /* Called when a touch begins */

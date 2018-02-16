@@ -96,7 +96,10 @@ class Bullet: Entity {
 //    GlobalRellikGameLoopConcurrent.async {[weak self] in
       //    self.getSideForLighting()
       self.playattackSound()
-      self.run((self.move)!, withKey: "move")
+    
+    let action = SKAction.sequence([(self.move)!, SKAction.run({ self.stopped = true}), SKAction.removeFromParent()])
+    run(action, withKey: "move")
+    
         self.isShot = true
 //      }
   }

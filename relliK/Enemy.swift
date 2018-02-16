@@ -183,7 +183,7 @@ class Boss: Enemy {
     moveSoundString = "move.wav"
     diedSoundString = "boss died.wav"
     
-    hurtEffects()
+    self.flashRedEffect = hurtEffects()
   }
   override class func generateTexture() -> SKTexture? {
     
