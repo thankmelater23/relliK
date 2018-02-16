@@ -404,6 +404,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //      player.setAngle()
   }
 }
+  
+  @objc func shotDirectionSuper(_ sender: UISwipeGestureRecognizer) {
+    if isShootable && !isGamePaused {
+      let newBullet = SuperBullet(entityPosition: CGPoint(x: playableRect.midX, y: playableRect.midY))
+      
+      switch sender.direction {
+      case UISwipeGestureRecognizerDirection.right:
+        newBullet.directionOf = entityDirection.right
+        newBullet.move = bulletMoveRightAction
+        player.directionOf = entityDirection.right
+      case UISwipeGestureRecognizerDirection.left:
+        newBullet.directionOf = entityDirection.left
+        newBullet.move = bulletMoveLeftAction
+        player.directionOf = entityDirection.left
+      case UISwipeGestureRecognizerDirection.up:
+        newBullet.directionOf = entityDirection.up
+        newBullet.move = bulletMoveUpAction
+        player.directionOf = entityDirection.up
+      case UISwipeGestureRecognizerDirection.down:
+        newBullet.directionOf = entityDirection.down
+        newBullet.move = bulletMoveDownAction
+        player.directionOf = entityDirection.down
+      default:
+        assertionFailure("Out of bounds")
+      }
+      addChild(newBullet)
+      bulletsInField.append(newBullet)
+      isShootable = false
+    }
+  }
 func particleCreator() {
   GlobalRellikSerial.async {
     let rainTexture = SKTexture(imageNamed: "rainDrop")
@@ -906,6 +936,7 @@ extension GameScene{
     }
   }
   func createSwipeRecognizers() {
+    //1 finger swipe
     let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.shotDirection(_:)))
     swipeDown.direction = UISwipeGestureRecognizerDirection.down
     self.view?.addGestureRecognizer(swipeDown)
@@ -922,9 +953,32 @@ extension GameScene{
     swipeLeft.direction = UISwipeGestureRecognizerDirection.left
     self.view?.addGestureRecognizer(swipeLeft)
     
+    //2 finger swipe
+    let swipeDownTwoFinger = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.shotDirectionSuper(_:)))
+    swipeDown.direction = UISwipeGestureRecognizerDirection.down
+    swipeDown.numberOfTouchesRequired = 2
+    self.view?.addGestureRecognizer(swipeDownTwoFinger)
+    
+    let swipeRightTwoFinger = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.shotDirectionSuper(_:)))
+    swipeRight.direction = UISwipeGestureRecognizerDirection.right
+    swipeRight.numberOfTouchesRequired = 2
+    self.view?.addGestureRecognizer(swipeRightTwoFinger)
+    
+    let swipeUpTwoFinger = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.shotDirectionSuper(_:)))
+    swipeUp.direction = UISwipeGestureRecognizerDirection.up
+    swipeUp.numberOfTouchesRequired = 2
+    
+    self.view?.addGestureRecognizer(swipeUpTwoFinger)
+    
+    let swipeLeftTwoFinger = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.shotDirectionSuper(_:)))
+    swipeLeft.direction = UISwipeGestureRecognizerDirection.left
+    swipeLeft.numberOfTouchesRequired = 2
+    self.view?.addGestureRecognizer(swipeLeftTwoFinger)
+    
+    //Taps
     let doubleTapped = UITapGestureRecognizer(target: self, action: #selector(GameScene.paused as (GameScene) -> () -> Void))
     doubleTapped.numberOfTapsRequired = 1
-    doubleTapped.numberOfTouchesRequired = 2
+    doubleTapped.numberOfTouchesRequired = 3
     self.view?.addGestureRecognizer(doubleTapped)
     
     let pressDown = UILongPressGestureRecognizer(target: self, action: #selector(GameScene.enableCPU))
@@ -935,7 +989,7 @@ extension GameScene{
     
     let trippleTapped = UITapGestureRecognizer(target: self, action: #selector(GameScene.enableCPU))
     trippleTapped.numberOfTapsRequired = 1
-    trippleTapped.numberOfTouchesRequired = 3
+    trippleTapped.numberOfTouchesRequired = 4
     self.view?.addGestureRecognizer(trippleTapped)
   }
 }

@@ -146,3 +146,21 @@ class Bullet: Entity {
   }()
   
 }
+
+class SuperBullet: Bullet{
+  override func setEntityTypeAttribures() {
+   super.setEntityTypeAttribures()
+    GlobalRellikConcurrent.sync {[weak self] in
+      self?.maxHealth = 2
+      self?.health = (self?.maxHealth)!
+      self?.hurtSoundString = "bulletHurt.wav"
+      self?.attackSoundString = "bulletAttack.wav"
+      self?.moveSoundString = "move.wav"
+      self?.diedSoundString = "bulletHurt.wav"
+      
+      self?.color = .red
+      
+      //childNodeWithName("bulletNode")
+    }
+  }
+}

@@ -14,7 +14,21 @@ class Entity: SKSpriteNode {
   struct SharedTexture {
     static var texture = SKTexture()
   }
-  var health = 0
+  private var _health: Int = 0
+  var health: Int {
+    set {
+      GlobalRellikConcurrent.sync {
+      _health = newValue
+      }
+    }
+    get {
+      GlobalRellikConcurrent.sync {
+        return self._health
+      }
+      return Int()
+    }
+  }
+  
   var maxHealth = 0
   var scoreValue = 0
   var clearedForMorgue = false
@@ -101,13 +115,11 @@ class Entity: SKSpriteNode {
   func hurt() {
     GlobalRellikSerial.async {[weak self] in
       self?.health -= 1
-      GlobalMainQueue.async {
         self?.healthLabel()
       if let flash = self?.flashRedEffect {
       self?.run(flash)
     }else{ log.warning("Hurt flash not initialized")}
       self?.died()
-      }
     }
   }
   func moveToNextBlock() {
