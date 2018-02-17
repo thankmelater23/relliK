@@ -271,12 +271,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func setup(){
+    let group = DispatchGroup()
     gameState = GameState.loading
+    
+    GlobalRellikConcurrent.async(group: group, execute:{
+    group.enter()
     self.setupData()
     self.setupLevel()
     self.setupPlayer()
     self.setupUI()
+    group.leave()
+    })
+    group.notify(queue: GlobalRellikSerial, execute:{
     self.loadLevelToView()
+    })
   }
   
   func restartGame(){
@@ -305,8 +313,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   ///Adds all child nodes to view
   func loadLevelToView(){
+    GlobalMainQueue.async {
     //Loads background
-    self.addChild(backgroundNode)
+    self.addChild(self.backgroundNode)
     
     //Loads enemy blocks
     for i in 0...4 {
@@ -319,22 +328,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     self.addChild(self.playerBlock)
 
     //Sets up player
-    addChild(player)
+    self.addChild(self.player)
     self.playGameBackgroundMusic()
     
     //Sets labels
-    addChild(gameName)
-    addChild(killBoardLabel)
-    addChild(scoreBoardLabel)
-    addChild(errorsBoardLabel)
-    addChild(highScoreBoardLabel)
-    addChild(timerBoardLabel)
+    self.addChild(self.gameName)
+    self.addChild(self.killBoardLabel)
+    self.addChild(self.scoreBoardLabel)
+    self.addChild(self.errorsBoardLabel)
+    self.addChild(self.highScoreBoardLabel)
+    self.addChild(self.timerBoardLabel)
     //Sets debug levels
-    addChild(gameSpeedBoardLabel)
-    addChild(waitTimeBoardLabel)
+    self.addChild(self.gameSpeedBoardLabel)
+    self.addChild(self.waitTimeBoardLabel)
     
     //After everything is loaded
     gameState = GameState.playing
+    }
   }
   
   func setupUI(){
@@ -521,7 +531,6 @@ func createPlayerBlock() {
 }
 
 func createBlocks() {
-//  GlobalRellikSerial.async {
     for i in 0...4 {
       
       self.leftBoxes.append(SKSpriteNode(imageNamed: "horizontal-block"))
@@ -564,9 +573,9 @@ func createBlocks() {
 
 // MARK: Actions
 func playGameBackgroundMusic() {
-//  GlobalMainQueue.async {
+  GlobalRellikSFXConcurrent.async {
     playBackgroundMusic("backgroundMusic.mp3")
-//  }
+  }
 }
 
 
@@ -820,14 +829,16 @@ extension GameScene{
 //MARK: - Labels
 extension GameScene{
   fileprivate func setBackground() {
+    GlobalRellikSerial.async {
     var imageString = "blueAndRedGalaxy"
-    backgroundNode = SKSpriteNode(imageNamed: imageString)
-    backgroundNode.size = playableRect.size
-    backgroundNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-    backgroundNode.position = CGPoint(x: playableRect.width/2, y: playableRect.height/2)
-    backgroundNode.zPosition = -1
+    self.backgroundNode = SKSpriteNode(imageNamed: imageString)
+    self.backgroundNode.size = self.playableRect.size
+    self.backgroundNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+    self.backgroundNode.position = CGPoint(x: self.playableRect.width/2, y: self.playableRect.height/2)
+      self.backgroundNode.zPosition = -1
     
     self.backgroundNode.texture?.generatingNormalMap(withSmoothness: 1.0, contrast: 0.0)
+  }
   }
   
   func setLabels() {
@@ -950,58 +961,70 @@ extension GameScene{
     //1 finger swipe
     let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.shotDirection(_:)))
     swipeDown.direction = UISwipeGestureRecognizerDirection.down
-    self.view?.addGestureRecognizer(swipeDown)
+    
     
     let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.shotDirection(_:)))
     swipeRight.direction = UISwipeGestureRecognizerDirection.right
-    self.view?.addGestureRecognizer(swipeRight)
+    
     
     let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.shotDirection(_:)))
     swipeUp.direction = UISwipeGestureRecognizerDirection.up
-    self.view?.addGestureRecognizer(swipeUp)
+    
     
     let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.shotDirection(_:)))
     swipeLeft.direction = UISwipeGestureRecognizerDirection.left
-    self.view?.addGestureRecognizer(swipeLeft)
+    
     
     //2 finger swipe
     let swipeDownTwoFinger = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.shotDirectionSuper(_:)))
     swipeDown.direction = UISwipeGestureRecognizerDirection.down
     swipeDown.numberOfTouchesRequired = 2
-    self.view?.addGestureRecognizer(swipeDownTwoFinger)
+    
     
     let swipeRightTwoFinger = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.shotDirectionSuper(_:)))
     swipeRight.direction = UISwipeGestureRecognizerDirection.right
     swipeRight.numberOfTouchesRequired = 2
-    self.view?.addGestureRecognizer(swipeRightTwoFinger)
+    
     
     let swipeUpTwoFinger = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.shotDirectionSuper(_:)))
     swipeUp.direction = UISwipeGestureRecognizerDirection.up
     swipeUp.numberOfTouchesRequired = 2
     
-    self.view?.addGestureRecognizer(swipeUpTwoFinger)
     
     let swipeLeftTwoFinger = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.shotDirectionSuper(_:)))
     swipeLeft.direction = UISwipeGestureRecognizerDirection.left
     swipeLeft.numberOfTouchesRequired = 2
-    self.view?.addGestureRecognizer(swipeLeftTwoFinger)
+    
     
     //Taps
     let doubleTapped = UITapGestureRecognizer(target: self, action: #selector(GameScene.paused as (GameScene) -> () -> Void))
     doubleTapped.numberOfTapsRequired = 1
     doubleTapped.numberOfTouchesRequired = 3
-    self.view?.addGestureRecognizer(doubleTapped)
     
     let pressDown = UILongPressGestureRecognizer(target: self, action: #selector(GameScene.enableCPU))
     pressDown.minimumPressDuration = TimeInterval(1000)
     pressDown.numberOfTapsRequired = 1
     pressDown.numberOfTouchesRequired = 1
-    self.view?.addGestureRecognizer(pressDown)
+    
     
     let trippleTapped = UITapGestureRecognizer(target: self, action: #selector(GameScene.enableCPU))
     trippleTapped.numberOfTapsRequired = 1
     trippleTapped.numberOfTouchesRequired = 4
+    
+    //Adds gesture recognizer to view
+    GlobalMainQueue.async {
+    self.view?.addGestureRecognizer(swipeDown)
+    self.view?.addGestureRecognizer(swipeRight)
+    self.view?.addGestureRecognizer(swipeUp)
+    self.view?.addGestureRecognizer(swipeLeft)
+    self.view?.addGestureRecognizer(swipeDownTwoFinger)
+    self.view?.addGestureRecognizer(swipeRightTwoFinger)
+    self.view?.addGestureRecognizer(swipeUpTwoFinger)
+    self.view?.addGestureRecognizer(swipeLeftTwoFinger)
+    self.view?.addGestureRecognizer(doubleTapped)
+    self.view?.addGestureRecognizer(pressDown)
     self.view?.addGestureRecognizer(trippleTapped)
+    }
   }
 }
 

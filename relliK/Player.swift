@@ -12,7 +12,9 @@ import SpriteKit
 
 class Player: Entity {
   private static var __once: () = {
-    let textureView = SKView()
+    GlobalMainQueue.async {
+      let textureView = SKView()
+    }
     
     SharedTexture.texture = SKTexture.init(image: UIImage.init(named: imagesString.player)!)
       SharedTexture.texture.filteringMode = .nearest
