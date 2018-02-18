@@ -34,11 +34,11 @@ class Bullet: Entity {
     self.zPosition = CGFloat(90.00)
     self.setScale(bulletScale)
     
-//    GlobalRellikBulletSerial.async {[weak self] in
+    GlobalRellikBulletSerial.async {[weak self] in
       let shot = SKEmitterNode(fileNamed: imagesString.engine)
     shot?.position = CGPoint(x: 0.5, y: 1.0)
-      self.updateSpriteAtrributes()
-      self.addChild(shot!)
+      self?.updateSpriteAtrributes()
+      self?.addChild(shot!)
       
       //      self.light.position = CGPoint(x: 0.5, y: 0.5)
       //      self.light.categoryBitMask = self.getSideForLighting()
@@ -48,7 +48,7 @@ class Bullet: Entity {
       //      self.light.ambientColor = SKColor(red: 0, green: 0, blue: 200, alpha: 0.1)
       //      self.light.falloff = 1.0
       //      self.addChild(self.light)
-//    }
+    }
   }
   override func setEntityTypeAttribures() {
     super.setEntityTypeAttribures()
@@ -116,9 +116,6 @@ class Bullet: Entity {
   override func died() {
     if isDead {
       super.died()
-    
-//    self.stopped = true
-    self.playHurtSound()
     }
   }
   

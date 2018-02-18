@@ -9,45 +9,49 @@
 import SpriteKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
-  // MARK: Unassigned
+  // MARK: - Unassigned
   var isGamePaused: Bool = false
   var cpuEnabled = true
-  // MARK: Array of Monstors and Bullets
+  // MARK: - Array of Monstors and Bullets
   var monstorsInField = [Enemy]()
   var bulletsInField = [Bullet?]()
   var shots = [()->()]()
   
-  // MARK: Sprite Objects
+  // MARK: - Sprite Objects
   var player: Player!
   var isShootable: Bool = false
   
-  // MARK: Backgrounds
+  // MARK: - Backgrounds
   var backgroundNode: SKSpriteNode!
   
-  // MARK: Blocks
+  // MARK: - Blocks
   var playerBlock: SKSpriteNode!
   var leftBoxes: [SKSpriteNode]! = []
   var rightBoxes: [SKSpriteNode]! = []
   var upBoxes: [SKSpriteNode]! = []
   var downBoxes: [SKSpriteNode]! = []
   
-  // MARK: Light Nodes
+  //MARK: - Loading Views
+  var loadingViewNode = SKNode()
+  var textLabel = SKLabelNode()
+  
+  // MARK: - Light Nodes
   var leftLight = SKLightNode()
   var rightLight = SKLightNode()
   var upLight = SKLightNode()
   var downLight = SKLightNode()
   
-  // MARK: Game Time
+  // MARK: - Game Time
   var lastUpdateTime: TimeInterval = 0
   var dt: TimeInterval = 0
   var incrementCurrentGameSpeedTime: TimeInterval = 0
   var incrementGameSpeedTime: TimeInterval = GAME_MIN_SPEED * 5
   
-  // MARK: Position and Moving Values
+  // MARK: - Position and Moving Values
   let movePointsPerSec: CGFloat = 480.0
   var velocity = CGPoint.zero
   
-  // MARK: Location and sizes
+  // MARK: - Location and sizes
   let playableRect: CGRect
   var lastTouchLocation: CGPoint?
   let rotateRadiansPerSec: CGFloat = 4.0 * π
@@ -55,13 +59,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   let horizontalXAxis: CGFloat
   let verticalAxis: CGFloat
   
-  // MARK: Enemy Spawn positions
+  // MARK: - Enemy Spawn positions
   var leftSideEnemyStartPosition: CGPoint
   var rightSideEnemyStartPosition: CGPoint
   var upSideEnemyStartPosition: CGPoint
   var downSideEnemyStartPosition: CGPoint
   
-  // MARK: Action vars
+  // MARK: - Action vars
   //var moveUp : SKAction!
   //Move bullets actions to bullet
   var bulletMoveRightAction: SKAction!
@@ -70,8 +74,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var bulletMoveUpAction: SKAction!
   
   func gameOver() {
-    if(player.isDead || errors >= 3) {
+    if(player.isDead || errors >= 5) {
       //      self.restartGame()
+      fatalError()
     }
   }
   
@@ -84,26 +89,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         return
       }
       
-      self.highscores = UserDefaults.standard.value(forKey: "highscore") as! Int!
+      self.highscores = defaultHighScore
 //    }
   }
   
-  // MARK: Game Labels
+  // MARK: - Game Labels
   var scoreBoardLabel = SKLabelNode()
   var score: Int = 0 {
     willSet {
       scoreBoardLabel.text = String("Score: \(newValue)")
       scoreBoardLabel.run(SKAction.sequence([SKAction.scale(to: 1.5, duration: 0.1),
                                              SKAction.scale(to: 1, duration: 0.1)]))
-      
+      //Makes current score new high score if current score is greater than the high score
       if newValue > highscores {
-        
-        let defaults = UserDefaults.standard.value(forKey: "highscore") as! Int
-        if(newValue > defaults) {
-          UserDefaults.standard.setValue(highscores, forKey: "highscore")
-          UserDefaults.standard.synchronize()
           highscores = newValue
-        }
       }
     }
   }
@@ -247,7 +246,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   
-  // MARK: Initialization methods
+  // MARK: - Initialization methods
   override init(size: CGSize) {
     let maxAspectRatio: CGFloat = 71.0/40.0 // iPhone 5"
     let maxAspectRatioHeight = size.width / maxAspectRatio
@@ -273,6 +272,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   func setup(){
     let group = DispatchGroup()
     gameState = GameState.loading
+    self.loadingScreen()
     
     GlobalRellikConcurrent.async(group: group, execute:{
     group.enter()
@@ -284,6 +284,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     })
     group.notify(queue: GlobalRellikSerial, execute:{
     self.loadLevelToView()
+      self.removeLoadingScreen()
     })
   }
   
@@ -316,7 +317,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     GlobalMainQueue.async {
     //Loads background
     self.addChild(self.backgroundNode)
-    
+    //sleep(10)(10)
     //Loads enemy blocks
     for i in 0...4 {
     self.addChild(self.leftBoxes[i])
@@ -324,13 +325,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     self.addChild(self.upBoxes[i])
     self.addChild(self.downBoxes[i])
     }
+      //sleep(10)(10)
     //Set player block
     self.addChild(self.playerBlock)
 
+      //sleep(10)(10)
     //Sets up player
     self.addChild(self.player)
     self.playGameBackgroundMusic()
     
+      //sleep(10)(10)
     //Sets labels
     self.addChild(self.gameName)
     self.addChild(self.killBoardLabel)
@@ -338,13 +342,43 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     self.addChild(self.errorsBoardLabel)
     self.addChild(self.highScoreBoardLabel)
     self.addChild(self.timerBoardLabel)
+      
+      //sleep(10)(10)
     //Sets debug levels
     self.addChild(self.gameSpeedBoardLabel)
     self.addChild(self.waitTimeBoardLabel)
     
+      //sleep(10)(10)
     //After everything is loaded
     gameState = GameState.playing
     }
+  }
+  func loadingScreen(){
+    //Create view
+//    loadingViewNode = SKNode.init()
+    self.backgroundColor = UIColor.white
+    //Create label
+    textLabel = SKLabelNode(fontNamed:"Chalkduster")
+    textLabel.text = "Loading..."
+    textLabel.name = "loading label"
+    textLabel.color = SKColor.gray
+    textLabel.fontSize = 50
+    textLabel.position =  CGPoint(x: (self.playableRect.width) / 2 + (textLabel.frame.size.width / 2), y: (self.playableRect.height) / 2)
+    textLabel.zPosition = 100
+    textLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.center
+    textLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.right
+    
+    //Add label to view
+    loadingViewNode.addChild(textLabel)
+    
+    self.addChild(loadingViewNode)
+    
+    
+  }
+  
+  func removeLoadingScreen(){
+    loadingViewNode.removeAllChildren()
+    removeChildren(in: [loadingViewNode])
   }
   
   func setupUI(){
@@ -361,7 +395,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   
-  // MARK: Contact Methods
+  // MARK: - Contact Methods
   func setPhysics() {
 //    GlobalBackgroundQueue.sync {
       self.physicsWorld.contactDelegate = self
@@ -403,7 +437,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   
-  // MARK: Player and Bullets Methods
+  // MARK: - Player and Bullets Methods
   func createPlayer() {
     self.player = Player(entityPosition: CGPoint(x: playableRect.midX, y: playableRect.midY + 20))
   }
@@ -498,7 +532,7 @@ func particleCreator() {
 }
 
 
-// MARK: Block creator Methods
+// MARK: - Block creator Methods
 func createPlayerBlock() {
 //  let group = DispatchGroup()
 //  let playerBlockLight = SKLightNode()
@@ -571,7 +605,7 @@ func createBlocks() {
 
 
 
-// MARK: Actions
+// MARK: - Actions
 func playGameBackgroundMusic() {
   GlobalRellikSFXConcurrent.async {
     playBackgroundMusic("backgroundMusic.mp3")
@@ -579,7 +613,7 @@ func playGameBackgroundMusic() {
 }
 
 
-// MARK: Other Game Scenes Methods
+// MARK: - Other Game Scenes Methods
 func createGameOverScene(_ won: Bool) {
   backgroundMusicPlayer.stop()
   let gameOverScene = GameOverScene(size: size, won: won)
@@ -617,22 +651,22 @@ extension GameScene:SceneUpdateProtocol{
 
 //MARK: - Enemies
 extension GameScene{
-  // MARK: Enemies Methods
+  // MARK: - MARK: Enemies Methods
   func moveEnemies() {
-//    let group = DispatchGroup()
-//    group.enter()
+    let group = DispatchGroup()
     
     
-    GlobalBackgroundQueue.sync{
       for monstor in self.monstorsInField {
-        if(!monstor.isDead) {
+        GlobalRellikEnemyConcurrent.async(group: group, execute:{ [weak self] in         group.enter()
+          if(!monstor.isDead) {
           monstor.moveFunc()
         }
-      }
-//      group.leave()
-//    })
-//    group.notify(queue: GlobalRellikSerial) {
-      self.monstorsInField = self.monstorsInField.filter({!$0.clearedForMorgue})
+      group.leave()
+    })
+    }
+        
+    group.notify(queue: GlobalRellikEnemyConcurrent){
+      self.monstorsInField = self.monstorsInField.filter({!$0.isDead})
     }
   }
   
@@ -751,31 +785,25 @@ extension GameScene{
 //MARK: - bullets
 extension GameScene{
   func moveBullets() {
-//    let group = DispatchGroup()
+    let group = DispatchGroup()
     
 
-    self.bulletsInField.map{
-//          GlobalBackgroundQueue.async(group: group, execute:{[weak self] in
-      //      group.enter()
-        $0 as Bullet?
-        if !($0?.isShot)! {
-          $0?.moveFunc()
-//          group.leave()
+    self.bulletsInField.map{bullet in
+          GlobalRellikBulletConcurrent.async(group: group, execute:{[weak self] in
+            group.enter()
+        bullet as Bullet?
+        if !(bullet?.isShot)! {
+          bullet?.moveFunc()
         }
-          //TODO: - Fix this
-          if (($0?.stopped)! == true)
-          { self.errorCountUpdate() }
-//          group.leave()
-//    })
+          if ((bullet?.stopped)! == true)
+          { self?.errorCountUpdate() }
+          group.leave()
+    })
     
-//    group.notify(queue: GlobalMainQueue, execute: {[weak self] in
-      //TODO: - Maybe can delete this
-//      let nilOutBullets = (self.bulletsInField.filter({$0?.stopped == true}))
-//      for var bullet in nilOutBullets{
-//        bullet = nil
-//      }
-      self.bulletsInField = (self.bulletsInField.filter({$0?.stopped == false}))
-//    })
+    group.notify(queue: GlobalRellikBulletConcurrent, execute: {[weak self] in
+      
+      self?.bulletsInField = (self?.bulletsInField.filter({$0?.isDead == false}))!
+    })
     }
   }
 }
@@ -815,12 +843,6 @@ extension GameScene{
   
   @objc func paused() {
     isGamePaused = !isGamePaused
-    
-    //    if isGamePaused{
-    //      while !isGamePaused{
-    //        sleep(10)
-    //      }
-    //    }
   }
   
 }

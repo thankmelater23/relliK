@@ -124,7 +124,6 @@ class Enemy: Entity{
   override func died() {
     if self.isDead{
         super.died()
-        self.clearedForMorgue = true
       
     }
   }

@@ -30,7 +30,6 @@ class Entity: SKSpriteNode {
   
   var maxHealth = 0
   var scoreValue = 0
-  var clearedForMorgue = false
   var hurtSoundString = "hurt.wav"
   var attackSoundString = "attack.wav"
   var moveSoundString = "move.wav"
@@ -204,14 +203,14 @@ class Entity: SKSpriteNode {
           healthLabel.run(action)
   }
   deinit {
-//    log.verbose(#function)
+    log.verbose(#function)
   }
   //Sounds
   func playSoundEffect(_ fileName: String) {
-//    GlobalRellikSFXConcurrent.sync {[weak self] in
+    GlobalRellikSFXConcurrent.sync {[weak self] in
      let fn = fileName
-      self.run(SKAction.playSoundFileNamed(fn, waitForCompletion: false))
-//    }
+      self?.run(SKAction.playSoundFileNamed(fn, waitForCompletion: false))
+    }  
   }
   func playDeadSound() {
     playSoundEffect(diedSoundString)
