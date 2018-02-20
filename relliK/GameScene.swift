@@ -11,7 +11,7 @@ import SpriteKit
 class GameScene: SKScene, SKPhysicsContactDelegate {
   // MARK: - Unassigned
   var isGamePaused: Bool = false
-  var cpuEnabled = true
+  var cpuEnabled = false
   // MARK: - Array of Monstors and Bullets
   var _monstorsInField = [Enemy]()
   var monstorsInField: [Enemy]{
