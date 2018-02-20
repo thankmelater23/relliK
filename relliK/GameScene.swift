@@ -16,14 +16,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var _monstorsInField = [Enemy]()
   var monstorsInField: [Enemy]{
     get{
-//      return GlobalRellikEnemyConcurrent.sync {
+      return GlobalRellikEnemyConcurrent.sync {
         return _monstorsInField
-//      }
+      }
     }
     set{
-//      GlobalRellikEnemyConcurrent.sync {
+      GlobalRellikEnemyConcurrent.sync {
         _monstorsInField = newValue
-//      }
+      }
     }
   }
   var _bulletsInField = [Bullet?]()
@@ -42,14 +42,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var _shots = [()->()]()
   var shots: [()->()]{
     get{
-//      return GlobalRellikSerial.sync {
+      return GlobalRellikSerial.sync {
         return _shots
-//      }
+      }
     }
     set{
-//      GlobalRellikSerial.sync {
+      GlobalRellikSerial.sync {
       _shots = newValue
-//    }
+    }
     }
   }
   
@@ -319,7 +319,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   func setup(){
     let group = DispatchGroup()
     gameState = GameState.loading
-//    self.loadingScreen()
+    self.loadingScreen()
     
     GlobalRellikConcurrent.async(group: group, execute:{
     self.setupData()
@@ -329,7 +329,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     })
     group.notify(queue: GlobalRellikSerial, execute:{
     self.loadLevelToView()
-//      self.removeLoadingScreen()
+      self.removeLoadingScreen()
     })
   }
   
@@ -769,6 +769,7 @@ extension GameScene{
   
   func shot(enemyDirection: entityDirection, num: Int) -> [() -> ()]{
     var blocks:[()->()] = []
+//    GlobalRellikConcurrent.async {
     
     switch enemyDirection {
     case .down:
