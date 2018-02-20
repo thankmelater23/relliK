@@ -91,12 +91,6 @@ class Enemy: Entity{
     
     let moveToNextBlockAction = SKAction.run({ //node in
       self.moveToNextBlock()
-      
-      //            if self.name == "ghost"{//Fades the ghost to alpha 1
-      //                if self.isBlockPlaceMoreThanRange(){
-      //                    self.runAction(SKAction.fadeInWithDuration(0.0))
-      //                }
-      //            }
     })
     
     

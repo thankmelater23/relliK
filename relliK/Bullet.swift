@@ -72,7 +72,7 @@ class Bullet: Entity {
   }
   override func setEntityTypeAttribures() {
     super.setEntityTypeAttribures()
-    //    GlobalRellikBulletConcurrent.async(group: nil, qos: .userInteractive, flags: .barrier, execute: {[weak self] in
+//    GlobalRellikBulletSerial.async{
     self.maxHealth = 1
     self.health = (self.maxHealth)
     self.hurtSoundString = "bulletHurt.wav"
@@ -82,7 +82,7 @@ class Bullet: Entity {
     self.directionOf = entityDirection.unSelected
     self.entityCurrentBlock = blockPlace.unSelected
     self.entityInRangeBlock = blockPlace.fourth
-    //    })
+//        }
   }
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
@@ -113,15 +113,21 @@ class Bullet: Entity {
   }
   
   func moveFunc() {
-    //    GlobalRellikGameLoopConcurrent.async {[weak self] in
+    let group = DispatchGroup()
+    var action = SKAction()
+    
+    GlobalRellikBulletConcurrent.async(group: group) {
     //    self.getSideForLighting()
     self.playattackSound()
     
-    let action = SKAction.sequence([(self.move)!, SKAction.run({ self.stopped = true}), SKAction.removeFromParent()])
-    run(action, withKey: "move")
+    action = SKAction.sequence([(self.move)!, SKAction.run({ self.stopped = true}), SKAction.removeFromParent()])
+          }
+    
+    group.notify(queue: .main){
+    self.run(action, withKey: "move")
     
     self.isShot = true
-    //      }
+    }
   }
   override func updateSpriteAtrributes() {
     super.updateSpriteAtrributes()

@@ -423,7 +423,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   func removeLoadingScreen(){
     loadingViewNode.removeAllChildren()
-    removeChildren(in: [loadingViewNode])
+//    removeChildren(in: [loadingViewNode])
   }
   
   func setupUI(){
