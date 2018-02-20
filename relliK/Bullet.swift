@@ -13,19 +13,39 @@ import SpriteKit
 class Bullet: Entity {
   var outOfBoundsSoundString = "error.wav"
   var light = SKLightNode()
-  var isShot = false
-  var stopped = false {
-    willSet {
-      playOutOfBoundsError()
-      
+  var _isShot = false
+  var isShot:Bool {
+    get{
+//      return GlobalRellikBulletConcurrent.sync {
+        return self._isShot
+//      }
+    }
+    set{
+//      GlobalRellikBulletConcurrent.sync {
+        self._isShot = newValue
+//      }
+    }
+  }
+  var _stopped = false
+  var stopped:Bool {
+    get{
+//      return GlobalRellikBulletConcurrent.sync {
+        return self._stopped
+//      }
+    }
+    set{
+//      GlobalRellikBulletConcurrent.sync {
+      self._stopped = newValue
+      self.playOutOfBoundsError()
+//      }
     }
   }
   
   init(entityPosition: CGPoint) {
     var entityTexture = SKTexture()
-//    GlobalRellikBulletSerial.sync {
-      entityTexture = Bullet.generateTexture()!
-//    }
+    //    GlobalRellikBulletSerial.sync {
+    entityTexture = Bullet.generateTexture()!
+    //    }
     
     
     super.init(position: entityPosition, texture: entityTexture)
@@ -34,11 +54,11 @@ class Bullet: Entity {
     self.zPosition = CGFloat(90.00)
     self.setScale(bulletScale)
     
-    GlobalRellikBulletSerial.async {[weak self] in
+//    GlobalRellikBulletSerial.async {[weak self] in
       let shot = SKEmitterNode(fileNamed: imagesString.engine)
     shot?.position = CGPoint(x: 0.5, y: 1.0)
-      self?.updateSpriteAtrributes()
-      self?.addChild(shot!)
+      self.updateSpriteAtrributes()
+      self.addChild(shot!)
       
       //      self.light.position = CGPoint(x: 0.5, y: 0.5)
       //      self.light.categoryBitMask = self.getSideForLighting()
@@ -48,21 +68,21 @@ class Bullet: Entity {
       //      self.light.ambientColor = SKColor(red: 0, green: 0, blue: 200, alpha: 0.1)
       //      self.light.falloff = 1.0
       //      self.addChild(self.light)
-    }
+//    }
   }
   override func setEntityTypeAttribures() {
     super.setEntityTypeAttribures()
-//    GlobalRellikBulletConcurrent.async(group: nil, qos: .userInteractive, flags: .barrier, execute: {[weak self] in
-      self.maxHealth = 1
-      self.health = (self.maxHealth)
-      self.hurtSoundString = "bulletHurt.wav"
-      self.attackSoundString = "bulletAttack.wav"
-      self.moveSoundString = "move.wav"
-      self.diedSoundString = "bulletHurt.wav"
-      self.directionOf = entityDirection.unSelected
-      self.entityCurrentBlock = blockPlace.unSelected
-      self.entityInRangeBlock = blockPlace.fourth
-//    })
+    //    GlobalRellikBulletConcurrent.async(group: nil, qos: .userInteractive, flags: .barrier, execute: {[weak self] in
+    self.maxHealth = 1
+    self.health = (self.maxHealth)
+    self.hurtSoundString = "bulletHurt.wav"
+    self.attackSoundString = "bulletAttack.wav"
+    self.moveSoundString = "move.wav"
+    self.diedSoundString = "bulletHurt.wav"
+    self.directionOf = entityDirection.unSelected
+    self.entityCurrentBlock = blockPlace.unSelected
+    self.entityInRangeBlock = blockPlace.fourth
+    //    })
   }
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
@@ -72,8 +92,8 @@ class Bullet: Entity {
     return onceToken
   }
   deinit {
-//    log.verbose(#function)
-//    log.verbose(self)
+    //    log.verbose(#function)
+    //    log.verbose(self)
   }
   internal override func setAngle() {
     switch (directionOf) {
@@ -93,25 +113,25 @@ class Bullet: Entity {
   }
   
   func moveFunc() {
-//    GlobalRellikGameLoopConcurrent.async {[weak self] in
-      //    self.getSideForLighting()
-      self.playattackSound()
+    //    GlobalRellikGameLoopConcurrent.async {[weak self] in
+    //    self.getSideForLighting()
+    self.playattackSound()
     
     let action = SKAction.sequence([(self.move)!, SKAction.run({ self.stopped = true}), SKAction.removeFromParent()])
     run(action, withKey: "move")
     
-        self.isShot = true
-//      }
+    self.isShot = true
+    //      }
   }
   override func updateSpriteAtrributes() {
     super.updateSpriteAtrributes()
-//    GlobalRellikBulletConcurrent.async(group: nil, qos: .userInteractive, flags: .barrier, execute: {[weak self] in
-      self.physicsBody = SKPhysicsBody(rectangleOf: (self.frame.size))
-      self.physicsBody?.usesPreciseCollisionDetection = true
-      self.physicsBody?.categoryBitMask = PhysicsCategory.Bullet
-      self.physicsBody?.contactTestBitMask = PhysicsCategory.Enemy
-      self.physicsBody?.collisionBitMask = PhysicsCategory.None
-//    })
+    //    GlobalRellikBulletConcurrent.async(group: nil, qos: .userInteractive, flags: .barrier, execute: {[weak self] in
+    self.physicsBody = SKPhysicsBody(rectangleOf: (self.frame.size))
+    self.physicsBody?.usesPreciseCollisionDetection = true
+    self.physicsBody?.categoryBitMask = PhysicsCategory.Bullet
+    self.physicsBody?.contactTestBitMask = PhysicsCategory.Enemy
+    self.physicsBody?.collisionBitMask = PhysicsCategory.None
+    //    })
   }
   override func died() {
     if isDead {
@@ -146,18 +166,18 @@ class Bullet: Entity {
 
 class SuperBullet: Bullet{
   override func setEntityTypeAttribures() {
-   super.setEntityTypeAttribures()
-//     GlobalRellikBulletConcurrent.async(group: nil, qos: .userInteractive, flags: .barrier, execute: {[weak self] in
-      self.maxHealth = 2
-      self.health = (self.maxHealth)
-      self.hurtSoundString = "bulletHurt.wav"
-      self.attackSoundString = "bulletAttack.wav"
-      self.moveSoundString = "move.wav"
-      self.diedSoundString = "bulletHurt.wav"
-      
-      self.color = .red
-      
-      //childNodeWithName("bulletNode")
-//    })
+    super.setEntityTypeAttribures()
+    //     GlobalRellikBulletConcurrent.async(group: nil, qos: .userInteractive, flags: .barrier, execute: {[weak self] in
+    self.maxHealth = 2
+    self.health = (self.maxHealth)
+    self.hurtSoundString = "bulletHurt.wav"
+    self.attackSoundString = "bulletAttack.wav"
+    self.moveSoundString = "move.wav"
+    self.diedSoundString = "bulletHurt.wav"
+    
+    self.color = .red
+    
+    //childNodeWithName("bulletNode")
+    //    })
   }
 }

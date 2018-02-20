@@ -13,9 +13,45 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var isGamePaused: Bool = false
   var cpuEnabled = true
   // MARK: - Array of Monstors and Bullets
-  var monstorsInField = [Enemy]()
-  var bulletsInField = [Bullet?]()
-  var shots = [()->()]()
+  var _monstorsInField = [Enemy]()
+  var monstorsInField: [Enemy]{
+    get{
+//      return GlobalRellikEnemyConcurrent.sync {
+        return _monstorsInField
+//      }
+    }
+    set{
+//      GlobalRellikEnemyConcurrent.sync {
+        _monstorsInField = newValue
+//      }
+    }
+  }
+  var _bulletsInField = [Bullet?]()
+  var bulletsInField: [Bullet?]{
+    get{
+      return GlobalRellikBulletSerial.sync {
+        return _bulletsInField
+      }
+    }
+    set{
+      GlobalRellikBulletSerial.sync {
+        _bulletsInField = newValue
+      }
+    }
+  }
+  var _shots = [()->()]()
+  var shots: [()->()]{
+    get{
+//      return GlobalRellikSerial.sync {
+        return _shots
+//      }
+    }
+    set{
+//      GlobalRellikSerial.sync {
+      _shots = newValue
+//    }
+    }
+  }
   
   // MARK: - Sprite Objects
   var player: Player!
@@ -74,9 +110,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var bulletMoveUpAction: SKAction!
   
   func gameOver() {
-    if(player.isDead || errors >= 5) {
+//    GlobalBackgroundQueue.async{
+      if(self.player.isDead || self.errors >= 15) {
       //      self.restartGame()
       fatalError()
+//      }
     }
   }
   
@@ -272,19 +310,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   func setup(){
     let group = DispatchGroup()
     gameState = GameState.loading
-    self.loadingScreen()
+//    self.loadingScreen()
     
     GlobalRellikConcurrent.async(group: group, execute:{
-    group.enter()
     self.setupData()
     self.setupLevel()
     self.setupPlayer()
     self.setupUI()
-    group.leave()
     })
     group.notify(queue: GlobalRellikSerial, execute:{
     self.loadLevelToView()
-      self.removeLoadingScreen()
+//      self.removeLoadingScreen()
     })
   }
   
@@ -630,13 +666,13 @@ func createGameOverScene(_ won: Bool) {
 //MARK: - SceneUpdateProtocol
 extension GameScene:SceneUpdateProtocol{
   func killCountUpdate() {
-    GlobalMainQueue.async {
+    GlobalRellikConcurrent.async {
       self.killed += 1
     }
   }
   
   func pointCountUpdate(points: Int) {
-    GlobalMainQueue.async {
+    GlobalRellikConcurrent.async {
       self.score += points
     }
   }
@@ -653,24 +689,24 @@ extension GameScene:SceneUpdateProtocol{
 extension GameScene{
   // MARK: - MARK: Enemies Methods
   func moveEnemies() {
-    let group = DispatchGroup()
+//    let group = DispatchGroup()
     
     
       for monstor in self.monstorsInField {
-        GlobalRellikEnemyConcurrent.async(group: group, execute:{ [weak self] in         group.enter()
+//        GlobalRellikEnemyConcurrent.async(group: group, flags:.barrier){ [weak self] in
+//          group.enter()
           if(!monstor.isDead) {
           monstor.moveFunc()
         }
-      group.leave()
-    })
+//      group.leave()
     }
         
-    group.notify(queue: GlobalRellikEnemyConcurrent){
+//    group.notify(queue: GlobalRellikEnemyConcurrent){
       self.monstorsInField = self.monstorsInField.filter({!$0.isDead})
-    }
   }
   
   func spawnEnemy() {
+//    GlobalRellikEnemySerial.async(flags: .barrier) {
     let randomNum = Int.random(min: 1, max: 4)
     var enemy: Enemy!
     
@@ -694,14 +730,15 @@ extension GameScene{
     }
     enemy.entityCurrentBlock = blockPlace.fifth
     self.monstorsInField.append(enemy)
-    self.shots += (shot(enemyDirection: enemy.directionOf, num: enemy.maxHealth))
+      self.shots += (self.shot(enemyDirection: enemy.directionOf, num: enemy.maxHealth))
     
     self.addChild(enemy)
+//    }
   }
   func randomEnemy(_ enemyLocation: CGPoint, delegate: SceneUpdateProtocol) -> Enemy {
     let randomNum = Int.random(min: 1, max: 10)
     
-//    GlobalRellikGameLoopConcurrent.async {
+//    GlobalRellikEnemySerial.async {
       //      self.run(SKAction.playSoundFileNamed("spawn.wav", waitForCompletion: false))
     
     switch randomNum {
@@ -787,24 +824,25 @@ extension GameScene{
   func moveBullets() {
     let group = DispatchGroup()
     
-
+//    GlobalRellikBulletConcurrent.async {
     self.bulletsInField.map{bullet in
-          GlobalRellikBulletConcurrent.async(group: group, execute:{[weak self] in
-            group.enter()
+//      GlobalRellikBulletConcurrent.async(group: group, flags: .barrier){[weak self] in
+//            group.enter()
         bullet as Bullet?
         if !(bullet?.isShot)! {
           bullet?.moveFunc()
         }
           if ((bullet?.stopped)! == true)
-          { self?.errorCountUpdate() }
-          group.leave()
-    })
+          { self.errorCountUpdate() }
+//          group.leave()
+//    }
     
-    group.notify(queue: GlobalRellikBulletConcurrent, execute: {[weak self] in
+//    group.notify(queue: GlobalRellikBulletConcurrent){[weak self] in
       
-      self?.bulletsInField = (self?.bulletsInField.filter({$0?.isDead == false}))!
-    })
-    }
+      self.bulletsInField = (self.bulletsInField.filter({$0?.isDead == false}))
+//    }
+//    }
+  }
   }
 }
 

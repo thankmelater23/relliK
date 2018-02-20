@@ -99,7 +99,7 @@ extension GameSceneTest{
   }
   func testPerformanceRandomEnemy() {
     self.measure {
-      let enemy = scene.randomEnemy(CGPoint())
+      let enemy = scene.randomEnemy(CGPoint(), delegate: scene)
     }
   }
   func testPerformanceSetDebugLabels() {

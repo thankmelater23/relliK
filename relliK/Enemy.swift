@@ -192,7 +192,9 @@ class Boss: Enemy {
     fatalError("init(coder:) has not been implemented")
   }
   private static let onceToken = { () -> SKTexture in
-    let textureView = SKView()
+    GlobalMainQueue.async {
+      let textureView = SKView()
+    }
     
     SharedTexture.texture = SKTexture.init(image: UIImage.init(named: imagesString.Boss)!)
       SharedTexture.texture.filteringMode = .nearest
@@ -321,7 +323,9 @@ class Soldier: Enemy {
     fatalError("init(coder:) has not been implemented")
   }
   private static let onceToken = { () -> SKTexture in
-    let textureView = SKView()
+    GlobalMainQueue.async {
+      let textureView = SKView()      
+    }
     
     SharedTexture.texture = SKTexture.init(image: UIImage.init(named: imagesString.enemy2)!)
       SharedTexture.texture.filteringMode = .nearest
@@ -388,7 +392,9 @@ class Minion: Enemy {
     fatalError("init(coder:) has not been implemented")
   }
   private static let onceToken = { () -> SKTexture in
-    let textureView = SKView()
+    GlobalMainQueue.async {
+      let textureView = SKView()      
+    }
     
     SharedTexture.texture = SKTexture.init(image: UIImage.init(named: imagesString.enemy1)!)
     SharedTexture.texture.filteringMode = .nearest

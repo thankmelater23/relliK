@@ -17,14 +17,14 @@ class Entity: SKSpriteNode {
   private var _health: Int = 0
   var health: Int {
     set {
-//      GlobalRellikPlayerConcurrent.sync {
+      GlobalRellikPlayerConcurrent.sync {
       _health = newValue
-//      }
+      }
     }
     get {
-//      return GlobalRellikPlayerConcurrent.sync {
+      return GlobalRellikPlayerConcurrent.sync {
         return self._health
-//      }
+      }
     }
   }
   
@@ -48,7 +48,13 @@ class Entity: SKSpriteNode {
   var entityInRangeBlock: blockPlace = blockPlace.unSelected
   weak var flashRedEffect: SKAction?
 //  var healthLabel: SKLabelNode = SKLabelNode()
-  var isDead: Bool { return health < 1 }
+  var isDead: Bool {
+    get{
+    return GlobalRellikPlayerConcurrent.sync{
+      return (self.health < 1)
+      }
+    }
+  }
   
   internal func setEntityTypeAttribures() {}
   func sumForScore() -> Int {
@@ -207,10 +213,10 @@ class Entity: SKSpriteNode {
   }
   //Sounds
   func playSoundEffect(_ fileName: String) {
-    GlobalRellikSFXConcurrent.sync {[weak self] in
+    GlobalRellikSFXConcurrent.async {[weak self] in
      let fn = fileName
-      self?.run(SKAction.playSoundFileNamed(fn, waitForCompletion: false))
-    }  
+//      self?.run(SKAction.playSoundFileNamed(fn, waitForCompletion: false))
+    }
   }
   func playDeadSound() {
     playSoundEffect(diedSoundString)
