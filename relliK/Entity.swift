@@ -18,7 +18,7 @@ class Entity: SKSpriteNode {
   var health: Int {
     set {
       GlobalRellikPlayerConcurrent.sync {
-      _health = newValue
+        self._health = newValue
       }
     }
     get {

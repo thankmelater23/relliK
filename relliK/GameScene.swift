@@ -110,16 +110,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var bulletMoveUpAction: SKAction!
   
   func gameOver() {
-//    GlobalBackgroundQueue.async{
+    GlobalRellikConcurrent.sync{
       if(self.player.isDead || self.errors >= 15) {
       //      self.restartGame()
       fatalError()
-//      }
+      }
     }
   }
   
   func highScoreSetup() {
-//    GlobalUserInitiatedQueue.async {
+    GlobalRellikConcurrent.async {
       let gameHighScore = UserDefaults.standard.value(forKey: "highscore") as! Int?
       guard let defaultHighScore = gameHighScore else {
         UserDefaults.standard.setValue(0, forKeyPath: "highscore")
@@ -128,7 +128,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       }
       
       self.highscores = defaultHighScore
-//    }
+    }
   }
   
   // MARK: - Game Labels
@@ -154,11 +154,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   var errorsBoardLabel = SKLabelNode()
-  var errors: Int = 0 {
-    willSet {
-      errorsBoardLabel.text = String("Errors: \(newValue)")
-      errorsBoardLabel.run(SKAction.sequence([SKAction.scale(to: 1.5, duration: 0.1),
-                                              SKAction.scale(to: 1, duration: 0.1)]))
+  var _errors: Int = 0
+  var errors: Int{
+    get{
+      return GlobalRellikConcurrent.sync {
+        return _errors
+      }
+    }
+    set{
+      GlobalRellikConcurrent.sync {
+    self._errors = newValue
+    errorsBoardLabel.text = String("Errors: \(newValue)")
+    errorsBoardLabel.run(SKAction.sequence([SKAction.scale(to: 1.5, duration: 0.1),
+    SKAction.scale(to: 1, duration: 0.1)]))
+    }
     }
   }
   
@@ -666,19 +675,19 @@ func createGameOverScene(_ won: Bool) {
 //MARK: - SceneUpdateProtocol
 extension GameScene:SceneUpdateProtocol{
   func killCountUpdate() {
-    GlobalRellikConcurrent.async {
+    GlobalRellikConcurrent.sync {
       self.killed += 1
     }
   }
   
   func pointCountUpdate(points: Int) {
-    GlobalRellikConcurrent.async {
+    GlobalRellikConcurrent.sync {
       self.score += points
     }
   }
   
   func errorCountUpdate() {
-    GlobalMainQueue.async {
+    GlobalRellikConcurrent.sync {
       self.errors += 1
     }
   }
@@ -699,10 +708,11 @@ extension GameScene{
           monstor.moveFunc()
         }
 //      group.leave()
+//        }
     }
-        
 //    group.notify(queue: GlobalRellikEnemyConcurrent){
       self.monstorsInField = self.monstorsInField.filter({!$0.isDead})
+//    }
   }
   
   func spawnEnemy() {
@@ -822,7 +832,7 @@ extension GameScene{
 //MARK: - bullets
 extension GameScene{
   func moveBullets() {
-    let group = DispatchGroup()
+//    let group = DispatchGroup()
     
 //    GlobalRellikBulletConcurrent.async {
     self.bulletsInField.map{bullet in
@@ -835,14 +845,14 @@ extension GameScene{
           if ((bullet?.stopped)! == true)
           { self.errorCountUpdate() }
 //          group.leave()
-//    }
+//      }
+    }
     
 //    group.notify(queue: GlobalRellikBulletConcurrent){[weak self] in
-      
+    
       self.bulletsInField = (self.bulletsInField.filter({$0?.isDead == false}))
 //    }
 //    }
-  }
   }
 }
 

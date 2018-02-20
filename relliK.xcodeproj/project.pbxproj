@@ -422,7 +422,7 @@
 				C6D395DC1B64579100830790 /* Sources */,
 				C6D395DD1B64579100830790 /* Frameworks */,
 				C6D395DE1B64579100830790 /* Resources */,
-				C68B223D1BA5B11800EB732C /* ShellScript */,
+				C68B223D1BA5B11800EB732C /* Fabric */,
 				8BD0482802C678343312E1FE /* [CP] Embed Pods Frameworks */,
 				251D3442BF5916946C83F27C /* [CP] Copy Pods Resources */,
 			);
@@ -740,13 +740,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-relliKTests/Pods-relliKTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C68B223D1BA5B11800EB732C /* ShellScript */ = {
+		C68B223D1BA5B11800EB732C /* Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = Fabric;
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
