@@ -1,0 +1,1087 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		41022E882030920C00DB7000 /* SceneUpdateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41022E872030920C00DB7000 /* SceneUpdateProtocol.swift */; };
+		4143E207202581E4008492C8 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4143E206202581E4008492C8 /* GlobalVariables.swift */; };
+		416F934E2023011800D11EA7 /* EntityTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416F934D2023011800D11EA7 /* EntityTest.swift */; };
+		416F935020230B4500D11EA7 /* GameSceneTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416F934F20230B4500D11EA7 /* GameSceneTest.swift */; };
+		417F216220337DD70075ED26 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417F216120337DD70075ED26 /* MenuScene.swift */; };
+		4181564E20194BDF00C20310 /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4181564D20194BDF00C20310 /* Bullet.swift */; };
+		41984303201BD22D00C6829F /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41984302201BD22D00C6829F /* Structures.swift */; };
+		41BBB0222022F61F00FD03BC /* EnemyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BBB0212022F61F00FD03BC /* EnemyTest.swift */; };
+		41BBB0242022F7EF00FD03BC /* PlayerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BBB0232022F7EF00FD03BC /* PlayerTest.swift */; };
+		41BBB0262022F82100FD03BC /* BulletTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BBB0252022F82100FD03BC /* BulletTest.swift */; };
+		41E9234F202E55E400AFE284 /* player hurt.wav in Resources */ = {isa = PBXBuildFile; fileRef = 41E9234E202E55E400AFE284 /* player hurt.wav */; };
+		41E92351202E560000AFE284 /* player died.wav in Resources */ = {isa = PBXBuildFile; fileRef = 41E92350202E560000AFE284 /* player died.wav */; };
+		41E92353202E57C300AFE284 /* zombie pain.wav in Resources */ = {isa = PBXBuildFile; fileRef = 41E92352202E57C300AFE284 /* zombie pain.wav */; };
+		41E92355202E57F200AFE284 /* zombie dying.wav in Resources */ = {isa = PBXBuildFile; fileRef = 41E92354202E57F100AFE284 /* zombie dying.wav */; };
+		41E92357202E58DB00AFE284 /* boss died.wav in Resources */ = {isa = PBXBuildFile; fileRef = 41E92356202E58DB00AFE284 /* boss died.wav */; };
+		948B4C5C2FA43D6476622470 /* Pods_relliKTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8364E34AF9001AD6E737BCE /* Pods_relliKTests.framework */; };
+		ADF411462C66A77268BE1110 /* Pods_relliKUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE19211C682326D69D1AD879 /* Pods_relliKUITests.framework */; };
+		BDC79118D72006F3C1B9D0F2 /* Pods_relliK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB6B19AE7C7C00E60B2D676D /* Pods_relliK.framework */; };
+		C60D5ACD1B6A11D800672EC1 /* magicBlast.sks in Resources */ = {isa = PBXBuildFile; fileRef = C60D5ACB1B6A11D800672EC1 /* magicBlast.sks */; };
+		C60D5ACE1B6A11D800672EC1 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = C60D5ACC1B6A11D800672EC1 /* spark.png */; };
+		C60D5AD01B6A140900672EC1 /* death.sks in Resources */ = {isa = PBXBuildFile; fileRef = C60D5ACF1B6A140900672EC1 /* death.sks */; };
+		C60D5AD21B6AF57300672EC1 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60D5AD11B6AF57300672EC1 /* Entity.swift */; };
+		C60D5AD41B6AF5B000672EC1 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60D5AD31B6AF5B000672EC1 /* Player.swift */; };
+		C6162A5D1B7EBA290046B4A1 /* success.wav in Resources */ = {isa = PBXBuildFile; fileRef = C6162A5C1B7EBA290046B4A1 /* success.wav */; };
+		C6162A5F1B7EBA3F0046B4A1 /* teleport.wav in Resources */ = {isa = PBXBuildFile; fileRef = C6162A5E1B7EBA3F0046B4A1 /* teleport.wav */; };
+		C6162A611B7EBA840046B4A1 /* soundscalpel_drone1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C6162A601B7EBA830046B4A1 /* soundscalpel_drone1.mp3 */; };
+		C6162A631B7EBA900046B4A1 /* soundscalpel_drone2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C6162A621B7EBA900046B4A1 /* soundscalpel_drone2.mp3 */; };
+		C6162A651B7EBADE0046B4A1 /* soundscalpel_monster_scream.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C6162A641B7EBADE0046B4A1 /* soundscalpel_monster_scream.mp3 */; };
+		C6162A671B7EBC810046B4A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6162A661B7EBC810046B4A1 /* Assets.xcassets */; };
+		C63933ED1B775ECC009FFC3B /* error.wav in Resources */ = {isa = PBXBuildFile; fileRef = C63933EB1B775ECC009FFC3B /* error.wav */; };
+		C63933F11B78DBF8009FFC3B /* ghostHurt.wav in Resources */ = {isa = PBXBuildFile; fileRef = C63933EF1B78DBF8009FFC3B /* ghostHurt.wav */; };
+		C63933F21B78DBF8009FFC3B /* soldierHurt.wav in Resources */ = {isa = PBXBuildFile; fileRef = C63933F01B78DBF8009FFC3B /* soldierHurt.wav */; };
+		C63933F41B78DDE2009FFC3B /* backgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C63933F31B78DDE2009FFC3B /* backgroundMusic.mp3 */; };
+		C63933F61B78E8FA009FFC3B /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63933F51B78E8F9009FFC3B /* Actions.swift */; };
+		C658633E1B6864FA00F89D71 /* engine.sks in Resources */ = {isa = PBXBuildFile; fileRef = C658633D1B6864FA00F89D71 /* engine.sks */; };
+		C68B22401BA5B13C00EB732C /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C68B223E1BA5B13C00EB732C /* Fabric.framework */; };
+		C68B22411BA5B13C00EB732C /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C68B223F1BA5B13C00EB732C /* Crashlytics.framework */; };
+		C6D395E41B64579100830790 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D395E31B64579100830790 /* AppDelegate.swift */; };
+		C6D395E61B64579100830790 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = C6D395E51B64579100830790 /* GameScene.sks */; };
+		C6D395E81B64579100830790 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D395E71B64579100830790 /* GameScene.swift */; };
+		C6D395EA1B64579100830790 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D395E91B64579100830790 /* GameViewController.swift */; };
+		C6D395ED1B64579100830790 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6D395EB1B64579100830790 /* Main.storyboard */; };
+		C6D395F21B64579200830790 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6D395F01B64579200830790 /* LaunchScreen.storyboard */; };
+		C6D395FD1B64579200830790 /* relliKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D395FC1B64579200830790 /* relliKTests.swift */; };
+		C6D396081B64579200830790 /* relliKUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D396071B64579200830790 /* relliKUITests.swift */; };
+		C6D396201B64594F00830790 /* GlobalsAndConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D3961F1B64594F00830790 /* GlobalsAndConstants.swift */; };
+		C6D396221B64595B00830790 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D396211B64595B00830790 /* GameOverScene.swift */; };
+		C6D396241B64596300830790 /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D396231B64596300830790 /* Int+Extensions.swift */; };
+		C6D396261B64596B00830790 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D396251B64596B00830790 /* Enemy.swift */; };
+		C6D396281B64597400830790 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D396271B64597400830790 /* MainMenuScene.swift */; };
+		C6D3962A1B64597D00830790 /* MyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D396291B64597D00830790 /* MyUtils.swift */; };
+		C6DB59C51B6E29900013362E /* light.sks in Resources */ = {isa = PBXBuildFile; fileRef = C6DB59C41B6E29900013362E /* light.sks */; };
+		C6E98B071B6F5E75005B1B29 /* attack.wav in Resources */ = {isa = PBXBuildFile; fileRef = C6E98AFE1B6F5E75005B1B29 /* attack.wav */; };
+		C6E98B081B6F5E75005B1B29 /* bossHurt.wav in Resources */ = {isa = PBXBuildFile; fileRef = C6E98AFF1B6F5E75005B1B29 /* bossHurt.wav */; };
+		C6E98B091B6F5E75005B1B29 /* bulletHurt.wav in Resources */ = {isa = PBXBuildFile; fileRef = C6E98B001B6F5E75005B1B29 /* bulletHurt.wav */; };
+		C6E98B0A1B6F5E75005B1B29 /* minionHurt.wav in Resources */ = {isa = PBXBuildFile; fileRef = C6E98B011B6F5E75005B1B29 /* minionHurt.wav */; };
+		C6E98B0B1B6F5E75005B1B29 /* playerPain2.wav in Resources */ = {isa = PBXBuildFile; fileRef = C6E98B021B6F5E75005B1B29 /* playerPain2.wav */; };
+		C6E98B0C1B6F5E75005B1B29 /* playerPain1.wav in Resources */ = {isa = PBXBuildFile; fileRef = C6E98B031B6F5E75005B1B29 /* playerPain1.wav */; };
+		C6E98B0D1B6F5E75005B1B29 /* playerPain4.wav in Resources */ = {isa = PBXBuildFile; fileRef = C6E98B041B6F5E75005B1B29 /* playerPain4.wav */; };
+		C6E98B0E1B6F5E75005B1B29 /* bulletAttack.wav in Resources */ = {isa = PBXBuildFile; fileRef = C6E98B051B6F5E75005B1B29 /* bulletAttack.wav */; };
+		C6E98B0F1B6F5E75005B1B29 /* spawn.wav in Resources */ = {isa = PBXBuildFile; fileRef = C6E98B061B6F5E75005B1B29 /* spawn.wav */; };
+		C6E98B111B6F6089005B1B29 /* move.wav in Resources */ = {isa = PBXBuildFile; fileRef = C6E98B101B6F6089005B1B29 /* move.wav */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C6D395F91B64579200830790 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C6D395D81B64579100830790 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C6D395DF1B64579100830790;
+			remoteInfo = relliK;
+		};
+		C6D396041B64579200830790 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C6D395D81B64579100830790 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C6D395DF1B64579100830790;
+			remoteInfo = relliK;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		089F525E17DB391670D11E36 /* Pods-relliKTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-relliKTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-relliKTests/Pods-relliKTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2C1B4A63547FFEFC033E7A1C /* Pods-relliKTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-relliKTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-relliKTests/Pods-relliKTests.release.xcconfig"; sourceTree = "<group>"; };
+		41022E872030920C00DB7000 /* SceneUpdateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneUpdateProtocol.swift; sourceTree = "<group>"; };
+		4143E206202581E4008492C8 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
+		416F934D2023011800D11EA7 /* EntityTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityTest.swift; sourceTree = "<group>"; };
+		416F934F20230B4500D11EA7 /* GameSceneTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneTest.swift; sourceTree = "<group>"; };
+		417F216120337DD70075ED26 /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MenuScene.swift; path = ../Pods/MenuScene.swift; sourceTree = "<group>"; };
+		4181564D20194BDF00C20310 /* Bullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
+		41984302201BD22D00C6829F /* Structures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
+		41BBB0212022F61F00FD03BC /* EnemyTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyTest.swift; sourceTree = "<group>"; };
+		41BBB0232022F7EF00FD03BC /* PlayerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTest.swift; sourceTree = "<group>"; };
+		41BBB0252022F82100FD03BC /* BulletTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletTest.swift; sourceTree = "<group>"; };
+		41E9234E202E55E400AFE284 /* player hurt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "player hurt.wav"; sourceTree = "<group>"; };
+		41E92350202E560000AFE284 /* player died.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "player died.wav"; sourceTree = "<group>"; };
+		41E92352202E57C300AFE284 /* zombie pain.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "zombie pain.wav"; sourceTree = "<group>"; };
+		41E92354202E57F100AFE284 /* zombie dying.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "zombie dying.wav"; sourceTree = "<group>"; };
+		41E92356202E58DB00AFE284 /* boss died.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "boss died.wav"; sourceTree = "<group>"; };
+		62A6AE1A985BEA1EB71E02E5 /* Pods-relliKUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-relliKUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-relliKUITests/Pods-relliKUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		6D14137FDE11D7B8DA1AD293 /* Pods-relliKUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-relliKUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-relliKUITests/Pods-relliKUITests.release.xcconfig"; sourceTree = "<group>"; };
+		C16632CC92591A331588B2DE /* Pods-relliK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-relliK.release.xcconfig"; path = "Pods/Target Support Files/Pods-relliK/Pods-relliK.release.xcconfig"; sourceTree = "<group>"; };
+		C60D5ACB1B6A11D800672EC1 /* magicBlast.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = magicBlast.sks; sourceTree = "<group>"; };
+		C60D5ACC1B6A11D800672EC1 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		C60D5ACF1B6A140900672EC1 /* death.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = death.sks; sourceTree = "<group>"; };
+		C60D5AD11B6AF57300672EC1 /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
+		C60D5AD31B6AF5B000672EC1 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		C6162A5C1B7EBA290046B4A1 /* success.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = success.wav; sourceTree = "<group>"; };
+		C6162A5E1B7EBA3F0046B4A1 /* teleport.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = teleport.wav; sourceTree = "<group>"; };
+		C6162A601B7EBA830046B4A1 /* soundscalpel_drone1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = soundscalpel_drone1.mp3; sourceTree = "<group>"; };
+		C6162A621B7EBA900046B4A1 /* soundscalpel_drone2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = soundscalpel_drone2.mp3; sourceTree = "<group>"; };
+		C6162A641B7EBADE0046B4A1 /* soundscalpel_monster_scream.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = soundscalpel_monster_scream.mp3; sourceTree = "<group>"; };
+		C6162A661B7EBC810046B4A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C63933EB1B775ECC009FFC3B /* error.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = error.wav; sourceTree = "<group>"; };
+		C63933EF1B78DBF8009FFC3B /* ghostHurt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ghostHurt.wav; sourceTree = "<group>"; };
+		C63933F01B78DBF8009FFC3B /* soldierHurt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = soldierHurt.wav; sourceTree = "<group>"; };
+		C63933F31B78DDE2009FFC3B /* backgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = backgroundMusic.mp3; sourceTree = "<group>"; };
+		C63933F51B78E8F9009FFC3B /* Actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
+		C658633D1B6864FA00F89D71 /* engine.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = engine.sks; sourceTree = "<group>"; };
+		C68B223E1BA5B13C00EB732C /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		C68B223F1BA5B13C00EB732C /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		C6D395E01B64579100830790 /* relliK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = relliK.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6D395E31B64579100830790 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C6D395E51B64579100830790 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		C6D395E71B64579100830790 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		C6D395E91B64579100830790 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		C6D395EC1B64579100830790 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C6D395F11B64579200830790 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C6D395F31B64579200830790 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C6D395F81B64579200830790 /* relliKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = relliKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6D395FC1B64579200830790 /* relliKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = relliKTests.swift; sourceTree = "<group>"; };
+		C6D395FE1B64579200830790 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C6D396031B64579200830790 /* relliKUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = relliKUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6D396071B64579200830790 /* relliKUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = relliKUITests.swift; sourceTree = "<group>"; };
+		C6D396091B64579200830790 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C6D3961F1B64594F00830790 /* GlobalsAndConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalsAndConstants.swift; sourceTree = "<group>"; };
+		C6D396211B64595B00830790 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
+		C6D396231B64596300830790 /* Int+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
+		C6D396251B64596B00830790 /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
+		C6D396271B64597400830790 /* MainMenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
+		C6D396291B64597D00830790 /* MyUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUtils.swift; sourceTree = "<group>"; };
+		C6DB59C41B6E29900013362E /* light.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = light.sks; sourceTree = "<group>"; };
+		C6E98AFE1B6F5E75005B1B29 /* attack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = attack.wav; sourceTree = "<group>"; };
+		C6E98AFF1B6F5E75005B1B29 /* bossHurt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bossHurt.wav; sourceTree = "<group>"; };
+		C6E98B001B6F5E75005B1B29 /* bulletHurt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bulletHurt.wav; sourceTree = "<group>"; };
+		C6E98B011B6F5E75005B1B29 /* minionHurt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = minionHurt.wav; sourceTree = "<group>"; };
+		C6E98B021B6F5E75005B1B29 /* playerPain2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = playerPain2.wav; sourceTree = "<group>"; };
+		C6E98B031B6F5E75005B1B29 /* playerPain1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = playerPain1.wav; sourceTree = "<group>"; };
+		C6E98B041B6F5E75005B1B29 /* playerPain4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = playerPain4.wav; sourceTree = "<group>"; };
+		C6E98B051B6F5E75005B1B29 /* bulletAttack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bulletAttack.wav; sourceTree = "<group>"; };
+		C6E98B061B6F5E75005B1B29 /* spawn.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = spawn.wav; sourceTree = "<group>"; };
+		C6E98B101B6F6089005B1B29 /* move.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = move.wav; sourceTree = "<group>"; };
+		CB6B19AE7C7C00E60B2D676D /* Pods_relliK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_relliK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBED98729E85E3E6C9D547FA /* Pods-relliK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-relliK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-relliK/Pods-relliK.debug.xcconfig"; sourceTree = "<group>"; };
+		EE19211C682326D69D1AD879 /* Pods_relliKUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_relliKUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8364E34AF9001AD6E737BCE /* Pods_relliKTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_relliKTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C6D395DD1B64579100830790 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C68B22411BA5B13C00EB732C /* Crashlytics.framework in Frameworks */,
+				C68B22401BA5B13C00EB732C /* Fabric.framework in Frameworks */,
+				BDC79118D72006F3C1B9D0F2 /* Pods_relliK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C6D395F51B64579200830790 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				948B4C5C2FA43D6476622470 /* Pods_relliKTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C6D396001B64579200830790 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ADF411462C66A77268BE1110 /* Pods_relliKUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		41022E86203091BE00DB7000 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				41022E872030920C00DB7000 /* SceneUpdateProtocol.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		418B542F1FB19B8200B92CAE /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				C60D5AD11B6AF57300672EC1 /* Entity.swift */,
+				4181564D20194BDF00C20310 /* Bullet.swift */,
+				C60D5AD31B6AF5B000672EC1 /* Player.swift */,
+				C6D396251B64596B00830790 /* Enemy.swift */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		418B54301FB19B9A00B92CAE /* Third Party */ = {
+			isa = PBXGroup;
+			children = (
+				C6D396291B64597D00830790 /* MyUtils.swift */,
+				C6D396231B64596300830790 /* Int+Extensions.swift */,
+			);
+			name = "Third Party";
+			sourceTree = "<group>";
+		};
+		418B54311FB19BAA00B92CAE /* SKS */ = {
+			isa = PBXGroup;
+			children = (
+				C658633D1B6864FA00F89D71 /* engine.sks */,
+				C60D5ACB1B6A11D800672EC1 /* magicBlast.sks */,
+				C60D5ACF1B6A140900672EC1 /* death.sks */,
+				C6DB59C41B6E29900013362E /* light.sks */,
+			);
+			name = SKS;
+			sourceTree = "<group>";
+		};
+		418B54321FB19BC300B92CAE /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				C6D395E51B64579100830790 /* GameScene.sks */,
+				418B54311FB19BAA00B92CAE /* SKS */,
+				C6162A661B7EBC810046B4A1 /* Assets.xcassets */,
+				C60D5ACC1B6A11D800672EC1 /* spark.png */,
+			);
+			name = Media;
+			sourceTree = "<group>";
+		};
+		418B54331FB19BD600B92CAE /* Story Board */ = {
+			isa = PBXGroup;
+			children = (
+				C6D395EB1B64579100830790 /* Main.storyboard */,
+				C6D395F01B64579200830790 /* LaunchScreen.storyboard */,
+			);
+			name = "Story Board";
+			sourceTree = "<group>";
+		};
+		418B54341FB19BE300B92CAE /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				C6D395E31B64579100830790 /* AppDelegate.swift */,
+				C6D395F31B64579200830790 /* Info.plist */,
+			);
+			name = "Support Files";
+			sourceTree = "<group>";
+		};
+		418B54351FB19BEF00B92CAE /* GlobalsAndConstants */ = {
+			isa = PBXGroup;
+			children = (
+				C6D3961F1B64594F00830790 /* GlobalsAndConstants.swift */,
+				4143E206202581E4008492C8 /* GlobalVariables.swift */,
+				41984302201BD22D00C6829F /* Structures.swift */,
+			);
+			name = GlobalsAndConstants;
+			sourceTree = "<group>";
+		};
+		418B54361FB19C0300B92CAE /* Views and Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				417F216120337DD70075ED26 /* MenuScene.swift */,
+				C6D395E71B64579100830790 /* GameScene.swift */,
+				C6D396271B64597400830790 /* MainMenuScene.swift */,
+				C6D395E91B64579100830790 /* GameViewController.swift */,
+				C6D396211B64595B00830790 /* GameOverScene.swift */,
+			);
+			name = "Views and Scenes";
+			sourceTree = "<group>";
+		};
+		418B54371FB19C2700B92CAE /* Global Functions */ = {
+			isa = PBXGroup;
+			children = (
+				C63933F51B78E8F9009FFC3B /* Actions.swift */,
+			);
+			name = "Global Functions";
+			sourceTree = "<group>";
+		};
+		C6D395D71B64579100830790 = {
+			isa = PBXGroup;
+			children = (
+				C68B223E1BA5B13C00EB732C /* Fabric.framework */,
+				C68B223F1BA5B13C00EB732C /* Crashlytics.framework */,
+				C6D395E21B64579100830790 /* relliK */,
+				C6D395FB1B64579200830790 /* relliKTests */,
+				C6D396061B64579200830790 /* relliKUITests */,
+				C6D395E11B64579100830790 /* Products */,
+				E4E254DE3D147F1FE7D45F2B /* Pods */,
+				C9120C0D5BB7778B104EBC13 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		C6D395E11B64579100830790 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C6D395E01B64579100830790 /* relliK.app */,
+				C6D395F81B64579200830790 /* relliKTests.xctest */,
+				C6D396031B64579200830790 /* relliKUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C6D395E21B64579100830790 /* relliK */ = {
+			isa = PBXGroup;
+			children = (
+				41022E86203091BE00DB7000 /* Protocols */,
+				C6E98AFD1B6F5E64005B1B29 /* SFX */,
+				418B54341FB19BE300B92CAE /* Support Files */,
+				418B54351FB19BEF00B92CAE /* GlobalsAndConstants */,
+				418B54321FB19BC300B92CAE /* Media */,
+				418B542F1FB19B8200B92CAE /* Classes */,
+				418B54361FB19C0300B92CAE /* Views and Scenes */,
+				418B54371FB19C2700B92CAE /* Global Functions */,
+				418B54301FB19B9A00B92CAE /* Third Party */,
+				418B54331FB19BD600B92CAE /* Story Board */,
+			);
+			path = relliK;
+			sourceTree = "<group>";
+		};
+		C6D395FB1B64579200830790 /* relliKTests */ = {
+			isa = PBXGroup;
+			children = (
+				41BBB0232022F7EF00FD03BC /* PlayerTest.swift */,
+				416F934D2023011800D11EA7 /* EntityTest.swift */,
+				41BBB0252022F82100FD03BC /* BulletTest.swift */,
+				C6D395FC1B64579200830790 /* relliKTests.swift */,
+				C6D395FE1B64579200830790 /* Info.plist */,
+				41BBB0212022F61F00FD03BC /* EnemyTest.swift */,
+				416F934F20230B4500D11EA7 /* GameSceneTest.swift */,
+			);
+			path = relliKTests;
+			sourceTree = "<group>";
+		};
+		C6D396061B64579200830790 /* relliKUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C6D396071B64579200830790 /* relliKUITests.swift */,
+				C6D396091B64579200830790 /* Info.plist */,
+			);
+			path = relliKUITests;
+			sourceTree = "<group>";
+		};
+		C6E98AFD1B6F5E64005B1B29 /* SFX */ = {
+			isa = PBXGroup;
+			children = (
+				C6E98AFE1B6F5E75005B1B29 /* attack.wav */,
+				C6E98AFF1B6F5E75005B1B29 /* bossHurt.wav */,
+				C6162A5C1B7EBA290046B4A1 /* success.wav */,
+				C63933EF1B78DBF8009FFC3B /* ghostHurt.wav */,
+				C6162A621B7EBA900046B4A1 /* soundscalpel_drone2.mp3 */,
+				C63933F01B78DBF8009FFC3B /* soldierHurt.wav */,
+				C6162A641B7EBADE0046B4A1 /* soundscalpel_monster_scream.mp3 */,
+				C6E98B001B6F5E75005B1B29 /* bulletHurt.wav */,
+				C6E98B101B6F6089005B1B29 /* move.wav */,
+				C6162A601B7EBA830046B4A1 /* soundscalpel_drone1.mp3 */,
+				C63933EB1B775ECC009FFC3B /* error.wav */,
+				C6162A5E1B7EBA3F0046B4A1 /* teleport.wav */,
+				C6E98B011B6F5E75005B1B29 /* minionHurt.wav */,
+				41E92350202E560000AFE284 /* player died.wav */,
+				C6E98B021B6F5E75005B1B29 /* playerPain2.wav */,
+				C6E98B031B6F5E75005B1B29 /* playerPain1.wav */,
+				41E92354202E57F100AFE284 /* zombie dying.wav */,
+				41E92356202E58DB00AFE284 /* boss died.wav */,
+				41E92352202E57C300AFE284 /* zombie pain.wav */,
+				41E9234E202E55E400AFE284 /* player hurt.wav */,
+				C63933F31B78DDE2009FFC3B /* backgroundMusic.mp3 */,
+				C6E98B041B6F5E75005B1B29 /* playerPain4.wav */,
+				C6E98B051B6F5E75005B1B29 /* bulletAttack.wav */,
+				C6E98B061B6F5E75005B1B29 /* spawn.wav */,
+			);
+			name = SFX;
+			sourceTree = "<group>";
+		};
+		C9120C0D5BB7778B104EBC13 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CB6B19AE7C7C00E60B2D676D /* Pods_relliK.framework */,
+				F8364E34AF9001AD6E737BCE /* Pods_relliKTests.framework */,
+				EE19211C682326D69D1AD879 /* Pods_relliKUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E4E254DE3D147F1FE7D45F2B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DBED98729E85E3E6C9D547FA /* Pods-relliK.debug.xcconfig */,
+				C16632CC92591A331588B2DE /* Pods-relliK.release.xcconfig */,
+				089F525E17DB391670D11E36 /* Pods-relliKTests.debug.xcconfig */,
+				2C1B4A63547FFEFC033E7A1C /* Pods-relliKTests.release.xcconfig */,
+				62A6AE1A985BEA1EB71E02E5 /* Pods-relliKUITests.debug.xcconfig */,
+				6D14137FDE11D7B8DA1AD293 /* Pods-relliKUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C6D395DF1B64579100830790 /* relliK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C6D3960C1B64579200830790 /* Build configuration list for PBXNativeTarget "relliK" */;
+			buildPhases = (
+				7BEB610B72E855B71674DB45 /* [CP] Check Pods Manifest.lock */,
+				C6D395DC1B64579100830790 /* Sources */,
+				C6D395DD1B64579100830790 /* Frameworks */,
+				C6D395DE1B64579100830790 /* Resources */,
+				C68B223D1BA5B11800EB732C /* Fabric */,
+				8BD0482802C678343312E1FE /* [CP] Embed Pods Frameworks */,
+				251D3442BF5916946C83F27C /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = relliK;
+			productName = relliK;
+			productReference = C6D395E01B64579100830790 /* relliK.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C6D395F71B64579200830790 /* relliKTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C6D3960F1B64579200830790 /* Build configuration list for PBXNativeTarget "relliKTests" */;
+			buildPhases = (
+				3FE7F6D927A930B463514A73 /* [CP] Check Pods Manifest.lock */,
+				C6D395F41B64579200830790 /* Sources */,
+				C6D395F51B64579200830790 /* Frameworks */,
+				C6D395F61B64579200830790 /* Resources */,
+				4E7F70B66937F3F57093CAA1 /* [CP] Embed Pods Frameworks */,
+				C1BE15E05B6D6E2EB5B93822 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C6D395FA1B64579200830790 /* PBXTargetDependency */,
+			);
+			name = relliKTests;
+			productName = relliKTests;
+			productReference = C6D395F81B64579200830790 /* relliKTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C6D396021B64579200830790 /* relliKUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C6D396121B64579200830790 /* Build configuration list for PBXNativeTarget "relliKUITests" */;
+			buildPhases = (
+				9AB6E29BAF5B88F833EE7DFC /* [CP] Check Pods Manifest.lock */,
+				C6D395FF1B64579200830790 /* Sources */,
+				C6D396001B64579200830790 /* Frameworks */,
+				C6D396011B64579200830790 /* Resources */,
+				30DFB9CAE689F84E5ACDA713 /* [CP] Embed Pods Frameworks */,
+				250277496687CA62E014BB9F /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C6D396051B64579200830790 /* PBXTargetDependency */,
+			);
+			name = relliKUITests;
+			productName = relliKUITests;
+			productReference = C6D396031B64579200830790 /* relliKUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C6D395D81B64579100830790 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "Bang Bang Studios";
+				TargetAttributes = {
+					C6D395DF1B64579100830790 = {
+						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = ZJWNZ643CG;
+						LastSwiftMigration = 0920;
+					};
+					C6D395F71B64579200830790 = {
+						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0920;
+						TestTargetID = C6D395DF1B64579100830790;
+					};
+					C6D396021B64579200830790 = {
+						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0920;
+						TestTargetID = C6D395DF1B64579100830790;
+					};
+				};
+			};
+			buildConfigurationList = C6D395DB1B64579100830790 /* Build configuration list for PBXProject "relliK" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C6D395D71B64579100830790;
+			productRefGroup = C6D395E11B64579100830790 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C6D395DF1B64579100830790 /* relliK */,
+				C6D395F71B64579200830790 /* relliKTests */,
+				C6D396021B64579200830790 /* relliKUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C6D395DE1B64579100830790 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6D395E61B64579100830790 /* GameScene.sks in Resources */,
+				C63933ED1B775ECC009FFC3B /* error.wav in Resources */,
+				C6E98B0C1B6F5E75005B1B29 /* playerPain1.wav in Resources */,
+				C6162A651B7EBADE0046B4A1 /* soundscalpel_monster_scream.mp3 in Resources */,
+				41E92351202E560000AFE284 /* player died.wav in Resources */,
+				C658633E1B6864FA00F89D71 /* engine.sks in Resources */,
+				C63933F41B78DDE2009FFC3B /* backgroundMusic.mp3 in Resources */,
+				C6DB59C51B6E29900013362E /* light.sks in Resources */,
+				C6E98B0D1B6F5E75005B1B29 /* playerPain4.wav in Resources */,
+				C6E98B091B6F5E75005B1B29 /* bulletHurt.wav in Resources */,
+				C63933F21B78DBF8009FFC3B /* soldierHurt.wav in Resources */,
+				C6E98B0B1B6F5E75005B1B29 /* playerPain2.wav in Resources */,
+				C6162A611B7EBA840046B4A1 /* soundscalpel_drone1.mp3 in Resources */,
+				41E92355202E57F200AFE284 /* zombie dying.wav in Resources */,
+				C60D5ACD1B6A11D800672EC1 /* magicBlast.sks in Resources */,
+				41E9234F202E55E400AFE284 /* player hurt.wav in Resources */,
+				C6E98B0E1B6F5E75005B1B29 /* bulletAttack.wav in Resources */,
+				C6E98B0A1B6F5E75005B1B29 /* minionHurt.wav in Resources */,
+				C6162A631B7EBA900046B4A1 /* soundscalpel_drone2.mp3 in Resources */,
+				C6162A5F1B7EBA3F0046B4A1 /* teleport.wav in Resources */,
+				C6E98B0F1B6F5E75005B1B29 /* spawn.wav in Resources */,
+				41E92357202E58DB00AFE284 /* boss died.wav in Resources */,
+				C6162A671B7EBC810046B4A1 /* Assets.xcassets in Resources */,
+				C60D5ACE1B6A11D800672EC1 /* spark.png in Resources */,
+				C6E98B111B6F6089005B1B29 /* move.wav in Resources */,
+				C6162A5D1B7EBA290046B4A1 /* success.wav in Resources */,
+				C6D395F21B64579200830790 /* LaunchScreen.storyboard in Resources */,
+				C6E98B081B6F5E75005B1B29 /* bossHurt.wav in Resources */,
+				C60D5AD01B6A140900672EC1 /* death.sks in Resources */,
+				C6E98B071B6F5E75005B1B29 /* attack.wav in Resources */,
+				C6D395ED1B64579100830790 /* Main.storyboard in Resources */,
+				C63933F11B78DBF8009FFC3B /* ghostHurt.wav in Resources */,
+				41E92353202E57C300AFE284 /* zombie pain.wav in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C6D395F61B64579200830790 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C6D396011B64579200830790 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		250277496687CA62E014BB9F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-relliKUITests/Pods-relliKUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		251D3442BF5916946C83F27C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-relliK/Pods-relliK-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		30DFB9CAE689F84E5ACDA713 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-relliKUITests/Pods-relliKUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3FE7F6D927A930B463514A73 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-relliKTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4E7F70B66937F3F57093CAA1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-relliKTests/Pods-relliKTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7BEB610B72E855B71674DB45 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-relliK-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8BD0482802C678343312E1FE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-relliK/Pods-relliK-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Amplitude-iOS/Amplitude_iOS.framework",
+				"${BUILT_PRODUCTS_DIR}/Flurry-iOS-SDK/Flurry_iOS_SDK.framework",
+				"${BUILT_PRODUCTS_DIR}/Onboard/Onboard.framework",
+				"${BUILT_PRODUCTS_DIR}/SAConfettiView/SAConfettiView.framework",
+				"${BUILT_PRODUCTS_DIR}/Siren/Siren.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
+				"${BUILT_PRODUCTS_DIR}/iRate/iRate.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Amplitude_iOS.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Flurry_iOS_SDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Onboard.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAConfettiView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Siren.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iRate.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-relliK/Pods-relliK-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9AB6E29BAF5B88F833EE7DFC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-relliKUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C1BE15E05B6D6E2EB5B93822 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-relliKTests/Pods-relliKTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C68B223D1BA5B11800EB732C /* Fabric */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Fabric;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 4b84b1226e93ac404abf87cdd625fca3f2f67cb7 9174c325d1ac51dcae9ee142e60f7bc1545e4d23a1ce0b5e09574eada9f888d3";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C6D395DC1B64579100830790 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				417F216220337DD70075ED26 /* MenuScene.swift in Sources */,
+				C60D5AD41B6AF5B000672EC1 /* Player.swift in Sources */,
+				C6D396261B64596B00830790 /* Enemy.swift in Sources */,
+				4181564E20194BDF00C20310 /* Bullet.swift in Sources */,
+				41984303201BD22D00C6829F /* Structures.swift in Sources */,
+				C6D396221B64595B00830790 /* GameOverScene.swift in Sources */,
+				C6D396201B64594F00830790 /* GlobalsAndConstants.swift in Sources */,
+				C6D395E81B64579100830790 /* GameScene.swift in Sources */,
+				41022E882030920C00DB7000 /* SceneUpdateProtocol.swift in Sources */,
+				C6D3962A1B64597D00830790 /* MyUtils.swift in Sources */,
+				C6D396241B64596300830790 /* Int+Extensions.swift in Sources */,
+				4143E207202581E4008492C8 /* GlobalVariables.swift in Sources */,
+				C60D5AD21B6AF57300672EC1 /* Entity.swift in Sources */,
+				C6D395EA1B64579100830790 /* GameViewController.swift in Sources */,
+				C63933F61B78E8FA009FFC3B /* Actions.swift in Sources */,
+				C6D396281B64597400830790 /* MainMenuScene.swift in Sources */,
+				C6D395E41B64579100830790 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C6D395F41B64579200830790 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				416F935020230B4500D11EA7 /* GameSceneTest.swift in Sources */,
+				41BBB0222022F61F00FD03BC /* EnemyTest.swift in Sources */,
+				416F934E2023011800D11EA7 /* EntityTest.swift in Sources */,
+				41BBB0242022F7EF00FD03BC /* PlayerTest.swift in Sources */,
+				C6D395FD1B64579200830790 /* relliKTests.swift in Sources */,
+				41BBB0262022F82100FD03BC /* BulletTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C6D395FF1B64579200830790 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6D396081B64579200830790 /* relliKUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C6D395FA1B64579200830790 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C6D395DF1B64579100830790 /* relliK */;
+			targetProxy = C6D395F91B64579200830790 /* PBXContainerItemProxy */;
+		};
+		C6D396051B64579200830790 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C6D395DF1B64579100830790 /* relliK */;
+			targetProxy = C6D396041B64579200830790 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C6D395EB1B64579100830790 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C6D395EC1B64579100830790 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C6D395F01B64579200830790 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C6D395F11B64579200830790 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C6D3960A1B64579200830790 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C6D3960B1B64579200830790 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C6D3960D1B64579200830790 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DBED98729E85E3E6C9D547FA /* Pods-relliK.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = relliK/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.BangBangStudios.relliK;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_SWIFT_SYMBOLS = YES;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C6D3960E1B64579200830790 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C16632CC92591A331588B2DE /* Pods-relliK.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = relliK/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.BangBangStudios.relliK;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_SWIFT_SYMBOLS = YES;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C6D396101B64579200830790 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 089F525E17DB391670D11E36 /* Pods-relliKTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = relliKTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.BangBangStudios.relliKTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/relliK.app/relliK";
+			};
+			name = Debug;
+		};
+		C6D396111B64579200830790 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2C1B4A63547FFEFC033E7A1C /* Pods-relliKTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = relliKTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.BangBangStudios.relliKTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/relliK.app/relliK";
+			};
+			name = Release;
+		};
+		C6D396131B64579200830790 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 62A6AE1A985BEA1EB71E02E5 /* Pods-relliKUITests.debug.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = relliKUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.BangBangStudios.relliKUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = relliK;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		C6D396141B64579200830790 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6D14137FDE11D7B8DA1AD293 /* Pods-relliKUITests.release.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = relliKUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.BangBangStudios.relliKUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = relliK;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C6D395DB1B64579100830790 /* Build configuration list for PBXProject "relliK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C6D3960A1B64579200830790 /* Debug */,
+				C6D3960B1B64579200830790 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C6D3960C1B64579200830790 /* Build configuration list for PBXNativeTarget "relliK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C6D3960D1B64579200830790 /* Debug */,
+				C6D3960E1B64579200830790 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C6D3960F1B64579200830790 /* Build configuration list for PBXNativeTarget "relliKTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C6D396101B64579200830790 /* Debug */,
+				C6D396111B64579200830790 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C6D396121B64579200830790 /* Build configuration list for PBXNativeTarget "relliKUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C6D396131B64579200830790 /* Debug */,
+				C6D396141B64579200830790 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C6D395D81B64579100830790 /* Project object */;
+}

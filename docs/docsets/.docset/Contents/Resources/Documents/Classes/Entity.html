@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Entity Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/Entity" class="dashAnchor"></a>
+    <a title="Entity Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (2% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        Entity Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/AppDelegate.html">AppDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Boss.html">Boss</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Bullet.html">Bullet</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Enemy.html">Enemy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Entity.html">Entity</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Entity/SharedTexture.html">– SharedTexture</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GameOverScene.html">GameOverScene</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GameScene.html">GameScene</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GameViewController.html">GameViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Ghost.html">Ghost</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MainMenuScene.html">MainMenuScene</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Minion.html">Minion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Player.html">Player</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Soldier.html">Soldier</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Global Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK14GAME_MAX_SPEEDSdv">GAME_MAX_SPEED</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK14GAME_MIN_SPEEDSdv">GAME_MIN_SPEED</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK21backgroundMusicPlayerSQySo07AVAudioD0CGv">backgroundMusicPlayer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK18bulletCoolDownTimeSdv">bulletCoolDownTime</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK25bulletCurrentCoolDownTimeSdv">bulletCurrentCoolDownTime</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK11bulletScale12CoreGraphics7CGFloatVv">bulletScale</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK15enemyBlockScale12CoreGraphics7CGFloatVv">enemyBlockScale</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK10enemyScale12CoreGraphics7CGFloatVv">enemyScale</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK25enemyWaitIncrementalSpeedSdv">enemyWaitIncrementalSpeed</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK17enemyWaitMaxSpeedSdv">enemyWaitMaxSpeed</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK17enemyWaitMinSpeedSdv">enemyWaitMinSpeed</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK13enemyWaitTimeSdv">enemyWaitTime</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK20gameIncrementalSpeedSdv">gameIncrementalSpeed</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK9gameSpeedSdv">gameSpeed</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK14gameTotalSpeedSdv">gameTotalSpeed</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK29incrementalSpaceBetweenBlocks12CoreGraphics7CGFloatVv">incrementalSpaceBetweenBlocks</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK8lastShotSdv">lastShot</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK16playerBlockScale12CoreGraphics7CGFloatVv">playerBlockScale</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK11playerScale12CoreGraphics7CGFloatVv">playerScale</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK22spaceBetweenEnemyBlock12CoreGraphics7CGFloatVv">spaceBetweenEnemyBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK14spaceToLastBox12CoreGraphics7CGFloatVv">spaceToLastBox</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:6relliK003Bxa12CoreGraphics7CGFloatVv">π</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/blockLabel.html">blockLabel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/blockPlace.html">blockPlace</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/entityDirection.html">entityDirection</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/CGFloat.html">CGFloat</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/CGPoint.html">CGPoint</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Int.html">Int</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:6relliK1moiSC7CGPointVAD_12CoreGraphics7CGFloatVtF">*(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:6relliK1moiSC7CGPointVAD_ADtF">*(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:6relliK2meoiySC7CGPointVz_12CoreGraphics7CGFloatVtF">*=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:6relliK2meoiySC7CGPointVz_ADtF">*=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:6relliK1poiSC7CGPointVAD_ADtF">+(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:6relliK2peoiySC7CGPointVz_ADtF">+=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:6relliK1soiSC7CGPointVAD_ADtF">-(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:6relliK2seoiySC7CGPointVz_ADtF">-=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:6relliK1doiSC7CGPointVAD_12CoreGraphics7CGFloatVtF">/(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:6relliK1doiSC7CGPointVAD_ADtF">/(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:6relliK2deoiySC7CGPointVz_12CoreGraphics7CGFloatVtF">/=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:6relliK2deoiySC7CGPointVz_ADtF">/=(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/atan2(y:x:)">atan2(y:x:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:6relliK19playBackgroundMusicySSF">playBackgroundMusic(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:6relliK20shortestAngleBetween12CoreGraphics7CGFloatVAE_AE6angle2tF">shortestAngleBetween(_:angle2:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/sqrt(a:)">sqrt(a:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/BitMaskOfLighting.html">BitMaskOfLighting</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PhysicsCategory.html">PhysicsCategory</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Entity</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">Entity</span><span class="p">:</span> <span class="kt">SKSpriteNode</span></code></pre>
+
+                </div>
+              </div>
+            <p>Undocumented</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6relliK6EntityC13SharedTextureV"></a>
+                    <a name="//apple_ref/swift/Struct/SharedTexture" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6relliK6EntityC13SharedTextureV">SharedTexture</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="../Classes/Entity/SharedTexture.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">SharedTexture</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(py)health"></a>
+                    <a name="//apple_ref/swift/Property/health" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(py)health">health</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">health</span> <span class="o">=</span> <span class="mi">0</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(py)maxHealth"></a>
+                    <a name="//apple_ref/swift/Property/maxHealth" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(py)maxHealth">maxHealth</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">maxHealth</span> <span class="o">=</span> <span class="mi">0</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(py)scoreValue"></a>
+                    <a name="//apple_ref/swift/Property/scoreValue" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(py)scoreValue">scoreValue</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">scoreValue</span> <span class="o">=</span> <span class="mi">0</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(py)clearedForMorgue"></a>
+                    <a name="//apple_ref/swift/Property/clearedForMorgue" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(py)clearedForMorgue">clearedForMorgue</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">clearedForMorgue</span> <span class="o">=</span> <span class="kc">false</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(py)hurtSoundString"></a>
+                    <a name="//apple_ref/swift/Property/hurtSoundString" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(py)hurtSoundString">hurtSoundString</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">hurtSoundString</span> <span class="o">=</span> <span class="s">"hurt.wav"</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(py)attackSoundString"></a>
+                    <a name="//apple_ref/swift/Property/attackSoundString" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(py)attackSoundString">attackSoundString</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">attackSoundString</span> <span class="o">=</span> <span class="s">"attack.wav"</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(py)moveSoundString"></a>
+                    <a name="//apple_ref/swift/Property/moveSoundString" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(py)moveSoundString">moveSoundString</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">moveSoundString</span> <span class="o">=</span> <span class="s">"move.wav"</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(py)diedSoundString"></a>
+                    <a name="//apple_ref/swift/Property/diedSoundString" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(py)diedSoundString">diedSoundString</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">diedSoundString</span> <span class="o">=</span> <span class="s">"died.wav"</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(py)blockSoundString"></a>
+                    <a name="//apple_ref/swift/Property/blockSoundString" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(py)blockSoundString">blockSoundString</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">blockSoundString</span> <span class="o">=</span> <span class="s">"block.wav"</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(py)dodgeSoundString"></a>
+                    <a name="//apple_ref/swift/Property/dodgeSoundString" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(py)dodgeSoundString">dodgeSoundString</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">dodgeSoundString</span> <span class="o">=</span> <span class="s">"dodge.wav"</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6relliK6EntityC11directionOfAA15entityDirectionOv"></a>
+                    <a name="//apple_ref/swift/Property/directionOf" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6relliK6EntityC11directionOfAA15entityDirectionOv">directionOf</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">directionOf</span> <span class="o">=</span> <span class="n"><a href="../Enums/entityDirection.html">entityDirection</a></span><span class="o">.</span><span class="n">unSelected</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(py)move"></a>
+                    <a name="//apple_ref/swift/Property/move" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(py)move">move</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">move</span><span class="p">:</span> <span class="kt">SKAction</span> <span class="o">=</span> <span class="kt">SKAction</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6relliK6EntityC18entityCurrentBlockAA10blockPlaceOv"></a>
+                    <a name="//apple_ref/swift/Property/entityCurrentBlock" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6relliK6EntityC18entityCurrentBlockAA10blockPlaceOv">entityCurrentBlock</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">entityCurrentBlock</span><span class="p">:</span><span class="n"><a href="../Enums/blockPlace.html">blockPlace</a></span> <span class="o">=</span> <span class="n"><a href="../Enums/blockPlace.html">blockPlace</a></span><span class="o">.</span><span class="n">unSelected</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6relliK6EntityC18entityInRangeBlockAA10blockPlaceOv"></a>
+                    <a name="//apple_ref/swift/Property/entityInRangeBlock" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6relliK6EntityC18entityInRangeBlockAA10blockPlaceOv">entityInRangeBlock</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">entityInRangeBlock</span><span class="p">:</span><span class="n"><a href="../Enums/blockPlace.html">blockPlace</a></span> <span class="o">=</span> <span class="n"><a href="../Enums/blockPlace.html">blockPlace</a></span><span class="o">.</span><span class="n">unSelected</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(py)flashRedEffect"></a>
+                    <a name="//apple_ref/swift/Property/flashRedEffect" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(py)flashRedEffect">flashRedEffect</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">flashRedEffect</span><span class="p">:</span><span class="kt">SKAction</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(py)healthLabel"></a>
+                    <a name="//apple_ref/swift/Property/healthLabel" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(py)healthLabel">healthLabel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">healthLabel</span><span class="p">:</span><span class="kt">SKLabelNode</span> <span class="o">=</span> <span class="kt">SKLabelNode</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(py)isDead"></a>
+                    <a name="//apple_ref/swift/Property/isDead" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(py)isDead">isDead</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">isDead</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(im)setEntityTypeAttribures"></a>
+                    <a name="//apple_ref/swift/Method/setEntityTypeAttribures()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(im)setEntityTypeAttribures">setEntityTypeAttribures()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">internal</span> <span class="kd">func</span> <span class="nf">setEntityTypeAttribures</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(im)sumForScore"></a>
+                    <a name="//apple_ref/swift/Method/sumForScore()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(im)sumForScore">sumForScore()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">sumForScore</span><span class="p">()</span><span class="o">-&gt;</span><span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(im)isBlockPlaceMoreThanRange"></a>
+                    <a name="//apple_ref/swift/Method/isBlockPlaceMoreThanRange()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(im)isBlockPlaceMoreThanRange">isBlockPlaceMoreThanRange()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">isBlockPlaceMoreThanRange</span><span class="p">()</span><span class="o">-&gt;</span><span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(im)initWithPosition:texture:"></a>
+                    <a name="//apple_ref/swift/Method/init(position:texture:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(im)initWithPosition:texture:">init(position:texture:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="p">(</span><span class="nv">position</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">,</span> <span class="nv">texture</span><span class="p">:</span> <span class="kt">SKTexture</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(im)getSideForLighting"></a>
+                    <a name="//apple_ref/swift/Method/getSideForLighting()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(im)getSideForLighting">getSideForLighting()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getSideForLighting</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">UInt32</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(im)initWithCoder:"></a>
+                    <a name="//apple_ref/swift/Method/init(coder:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(im)initWithCoder:">init(coder:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">required</span> <span class="nf">init</span><span class="p">?(</span><span class="n">coder</span> <span class="nv">aDecoder</span><span class="p">:</span> <span class="kt">NSCoder</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(cm)generateTexture"></a>
+                    <a name="//apple_ref/swift/Method/generateTexture()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(cm)generateTexture">generateTexture()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">generateTexture</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">SKTexture</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(im)update:"></a>
+                    <a name="//apple_ref/swift/Method/update(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(im)update:">update(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">update</span><span class="p">(</span><span class="n">_</span> <span class="nv">delta</span><span class="p">:</span> <span class="kt">TimeInterval</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(im)updateSpriteAtrributes"></a>
+                    <a name="//apple_ref/swift/Method/updateSpriteAtrributes()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(im)updateSpriteAtrributes">updateSpriteAtrributes()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">updateSpriteAtrributes</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(im)kill"></a>
+                    <a name="//apple_ref/swift/Method/kill()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(im)kill">kill()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">kill</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(im)hurt"></a>
+                    <a name="//apple_ref/swift/Method/hurt()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(im)hurt">hurt()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">hurt</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(im)moveToNextBlock"></a>
+                    <a name="//apple_ref/swift/Method/moveToNextBlock()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(im)moveToNextBlock">moveToNextBlock()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">moveToNextBlock</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(im)setAngle"></a>
+                    <a name="//apple_ref/swift/Method/setAngle()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(im)setAngle">setAngle()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setAngle</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(im)died"></a>
+                    <a name="//apple_ref/swift/Method/died()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(im)died">died()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">died</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(im)hurtEffects"></a>
+                    <a name="//apple_ref/swift/Method/hurtEffects()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(im)hurtEffects">hurtEffects()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">hurtEffects</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(im)playSoundEffect:"></a>
+                    <a name="//apple_ref/swift/Method/playSoundEffect(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(im)playSoundEffect:">playSoundEffect(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">playSoundEffect</span><span class="p">(</span><span class="n">_</span> <span class="nv">fileName</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(im)playDeadSound"></a>
+                    <a name="//apple_ref/swift/Method/playDeadSound()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(im)playDeadSound">playDeadSound()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">playDeadSound</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(im)playHurtSound"></a>
+                    <a name="//apple_ref/swift/Method/playHurtSound()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(im)playHurtSound">playHurtSound()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">playHurtSound</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(im)playattackSound"></a>
+                    <a name="//apple_ref/swift/Method/playattackSound()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(im)playattackSound">playattackSound()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">playattackSound</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(im)playMoveSound"></a>
+                    <a name="//apple_ref/swift/Method/playMoveSound()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(im)playMoveSound">playMoveSound()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">playMoveSound</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(im)playDodgeSound"></a>
+                    <a name="//apple_ref/swift/Method/playDodgeSound()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(im)playDodgeSound">playDodgeSound()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">playDodgeSound</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@relliK@objc(cs)Entity(im)playBlockSound"></a>
+                    <a name="//apple_ref/swift/Method/playBlockSound()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@relliK@objc(cs)Entity(im)playBlockSound">playBlockSound()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">playBlockSound</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2018-01-11)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

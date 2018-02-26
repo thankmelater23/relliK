@@ -1,0 +1,1944 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/AppDelegate.swift",
+      "line": 14,
+      "symbol": "AppDelegate",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/AppDelegate.swift",
+      "line": 16,
+      "symbol": "AppDelegate.window",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/AppDelegate.swift",
+      "line": 19,
+      "symbol": "AppDelegate.application(_:didFinishLaunchingWithOptions:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/AppDelegate.swift",
+      "line": 27,
+      "symbol": "AppDelegate.applicationWillResignActive(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/AppDelegate.swift",
+      "line": 32,
+      "symbol": "AppDelegate.applicationDidEnterBackground(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/AppDelegate.swift",
+      "line": 37,
+      "symbol": "AppDelegate.applicationWillEnterForeground(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/AppDelegate.swift",
+      "line": 41,
+      "symbol": "AppDelegate.applicationDidBecomeActive(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/AppDelegate.swift",
+      "line": 45,
+      "symbol": "AppDelegate.applicationWillTerminate(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/AppDelegate.swift",
+      "line": 50,
+      "symbol": "AppDelegate.printAppInfo()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Enemy.swift",
+      "line": 14,
+      "symbol": "Enemy",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Enemy.swift",
+      "line": 17,
+      "symbol": "Enemy.init(texture:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Enemy.swift",
+      "line": 28,
+      "symbol": "Enemy.createHealthBar()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Enemy.swift",
+      "line": 32,
+      "symbol": "Enemy.loadedEnemySettings()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Enemy.swift",
+      "line": 36,
+      "symbol": "Enemy.updateSpriteAtrributes()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Enemy.swift",
+      "line": 46,
+      "symbol": "Enemy.init(coder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Enemy.swift",
+      "line": 51,
+      "symbol": "Enemy.moveFunc()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Enemy.swift",
+      "line": 58,
+      "symbol": "Enemy.moveToNextBlock()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Enemy.swift",
+      "line": 61,
+      "symbol": "Enemy.moveAction()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Enemy.swift",
+      "line": 105,
+      "symbol": "Enemy.died()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Enemy.swift",
+      "line": 124,
+      "symbol": "Enemy.hurt()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Enemy.swift",
+      "line": 151,
+      "symbol": "Boss",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Enemy.swift",
+      "line": 182,
+      "symbol": "Boss.init(entityPosition:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Enemy.swift",
+      "line": 192,
+      "symbol": "Boss.setEntityTypeAttribures()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Enemy.swift",
+      "line": 205,
+      "symbol": "Boss.generateTexture()",
+      "symbol_kind": "source.lang.swift.decl.function.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Enemy.swift",
+      "line": 216,
+      "symbol": "Boss.init(coder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Enemy.swift",
+      "line": 221,
+      "symbol": "Ghost",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Enemy.swift",
+      "line": 234,
+      "symbol": "Ghost.init(entityPosition:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Enemy.swift",
+      "line": 244,
+      "symbol": "Ghost.setEntityTypeAttribures()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Enemy.swift",
+      "line": 257,
+      "symbol": "Ghost.generateTexture()",
+      "symbol_kind": "source.lang.swift.decl.function.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Enemy.swift",
+      "line": 268,
+      "symbol": "Ghost.init(coder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Enemy.swift",
+      "line": 273,
+      "symbol": "Soldier",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Enemy.swift",
+      "line": 285,
+      "symbol": "Soldier.init(entityPosition:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Enemy.swift",
+      "line": 296,
+      "symbol": "Soldier.setEntityTypeAttribures()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Enemy.swift",
+      "line": 309,
+      "symbol": "Soldier.generateTexture()",
+      "symbol_kind": "source.lang.swift.decl.function.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Enemy.swift",
+      "line": 320,
+      "symbol": "Soldier.init(coder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Enemy.swift",
+      "line": 325,
+      "symbol": "Minion",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Enemy.swift",
+      "line": 337,
+      "symbol": "Minion.init(entityPosition:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Enemy.swift",
+      "line": 347,
+      "symbol": "Minion.setEntityTypeAttribures()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Enemy.swift",
+      "line": 360,
+      "symbol": "Minion.generateTexture()",
+      "symbol_kind": "source.lang.swift.decl.function.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Enemy.swift",
+      "line": 371,
+      "symbol": "Minion.init(coder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 13,
+      "symbol": "Entity",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 14,
+      "symbol": "Entity.SharedTexture",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 15,
+      "symbol": "Entity.SharedTexture.texture",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 16,
+      "symbol": "Entity.SharedTexture.onceToken",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 18,
+      "symbol": "Entity.health",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 19,
+      "symbol": "Entity.maxHealth",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 20,
+      "symbol": "Entity.scoreValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 21,
+      "symbol": "Entity.clearedForMorgue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 22,
+      "symbol": "Entity.hurtSoundString",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 23,
+      "symbol": "Entity.attackSoundString",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 24,
+      "symbol": "Entity.moveSoundString",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 25,
+      "symbol": "Entity.diedSoundString",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 26,
+      "symbol": "Entity.blockSoundString",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 27,
+      "symbol": "Entity.dodgeSoundString",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 28,
+      "symbol": "Entity.directionOf",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 29,
+      "symbol": "Entity.move",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 30,
+      "symbol": "Entity.entityCurrentBlock",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 31,
+      "symbol": "Entity.entityInRangeBlock",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 32,
+      "symbol": "Entity.flashRedEffect",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 33,
+      "symbol": "Entity.healthLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 34,
+      "symbol": "Entity.isDead",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 36,
+      "symbol": "Entity.setEntityTypeAttribures()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 37,
+      "symbol": "Entity.sumForScore()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 56,
+      "symbol": "Entity.isBlockPlaceMoreThanRange()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 59,
+      "symbol": "Entity.init(position:texture:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 67,
+      "symbol": "Entity.getSideForLighting()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 81,
+      "symbol": "Entity.init(coder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 84,
+      "symbol": "Entity.generateTexture()",
+      "symbol_kind": "source.lang.swift.decl.function.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 88,
+      "symbol": "Entity.update(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 91,
+      "symbol": "Entity.updateSpriteAtrributes()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 93,
+      "symbol": "Entity.kill()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 97,
+      "symbol": "Entity.hurt()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 102,
+      "symbol": "Entity.moveToNextBlock()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 121,
+      "symbol": "Entity.setAngle()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 135,
+      "symbol": "Entity.died()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 152,
+      "symbol": "Entity.hurtEffects()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 167,
+      "symbol": "Entity.playSoundEffect(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 170,
+      "symbol": "Entity.playDeadSound()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 173,
+      "symbol": "Entity.playHurtSound()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 176,
+      "symbol": "Entity.playattackSound()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 179,
+      "symbol": "Entity.playMoveSound()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 182,
+      "symbol": "Entity.playDodgeSound()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Entity.swift",
+      "line": 185,
+      "symbol": "Entity.playBlockSound()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameOverScene.swift",
+      "line": 12,
+      "symbol": "GameOverScene",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameOverScene.swift",
+      "line": 13,
+      "symbol": "GameOverScene.won",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameOverScene.swift",
+      "line": 15,
+      "symbol": "GameOverScene.init(size:won:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameOverScene.swift",
+      "line": 20,
+      "symbol": "GameOverScene.didMove(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameOverScene.swift",
+      "line": 51,
+      "symbol": "GameOverScene.init(coder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 11,
+      "symbol": "GameScene",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 13,
+      "symbol": "GameScene.isGamePaused",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 16,
+      "symbol": "GameScene.monstorsInField",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 17,
+      "symbol": "GameScene.bulletsInField",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 20,
+      "symbol": "GameScene.player",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 21,
+      "symbol": "GameScene.isShootable",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 24,
+      "symbol": "GameScene.backgroundNode",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 27,
+      "symbol": "GameScene.playerBlock",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 28,
+      "symbol": "GameScene.leftBoxes",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 29,
+      "symbol": "GameScene.rightBoxes",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 30,
+      "symbol": "GameScene.upBoxes",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 31,
+      "symbol": "GameScene.downBoxes",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 34,
+      "symbol": "GameScene.leftLight",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 35,
+      "symbol": "GameScene.rightLight",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 36,
+      "symbol": "GameScene.upLight",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 37,
+      "symbol": "GameScene.downLight",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 40,
+      "symbol": "GameScene.lastUpdateTime",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 41,
+      "symbol": "GameScene.dt",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 42,
+      "symbol": "GameScene.incrementCurrentGameSpeedTime",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 43,
+      "symbol": "GameScene.incrementGameSpeedTime",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 46,
+      "symbol": "GameScene.movePointsPerSec",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 47,
+      "symbol": "GameScene.velocity",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 50,
+      "symbol": "GameScene.playableRect",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 51,
+      "symbol": "GameScene.lastTouchLocation",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 52,
+      "symbol": "GameScene.rotateRadiansPerSec",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 53,
+      "symbol": "GameScene.pointBetweenBlocks",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 54,
+      "symbol": "GameScene.shotStart",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 55,
+      "symbol": "GameScene.horizontalXAxis",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 56,
+      "symbol": "GameScene.verticalAxis",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 59,
+      "symbol": "GameScene.leftSideEnemyStartPosition",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 60,
+      "symbol": "GameScene.rightSideEnemyStartPosition",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 61,
+      "symbol": "GameScene.upSideEnemyStartPosition",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 62,
+      "symbol": "GameScene.downSideEnemyStartPosition",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 68,
+      "symbol": "GameScene.bulletMoveRightAction",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 69,
+      "symbol": "GameScene.bulletMoveLeftAction",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 70,
+      "symbol": "GameScene.bulletMoveDownAction",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 71,
+      "symbol": "GameScene.bulletMoveUpAction",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 73,
+      "symbol": "GameScene.gameOver()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 79,
+      "symbol": "GameScene.loadDefaults()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 93,
+      "symbol": "GameScene.scoreBoardLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 94,
+      "symbol": "GameScene.score",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 111,
+      "symbol": "GameScene.killBoardLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 112,
+      "symbol": "GameScene.killed",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 120,
+      "symbol": "GameScene.errorsBoardLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 121,
+      "symbol": "GameScene.errors",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 129,
+      "symbol": "GameScene.highScoreBoardLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 130,
+      "symbol": "GameScene.highscores",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 138,
+      "symbol": "GameScene.timerBoardLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 139,
+      "symbol": "GameScene.gameMiliSecToSec",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 140,
+      "symbol": "GameScene.gameTimer",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 149,
+      "symbol": "GameScene.waitTimeBoardLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 150,
+      "symbol": "GameScene.gameSpeedBoardLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 153,
+      "symbol": "GameScene.setGameTimeLabel()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 160,
+      "symbol": "GameScene.setWaitTimeLabel()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 167,
+      "symbol": "GameScene.convertGameTimer(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 183,
+      "symbol": "GameScene.paused()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 188,
+      "symbol": "GameScene.setGameLights()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 207,
+      "symbol": "GameScene.update(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 301,
+      "symbol": "GameScene.init(size:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 319,
+      "symbol": "GameScene.didMove(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 332,
+      "symbol": "GameScene.init(coder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 337,
+      "symbol": "GameScene.setPhysics()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 341,
+      "symbol": "GameScene.didBegin(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 394,
+      "symbol": "GameScene.setLabels()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 472,
+      "symbol": "GameScene.setDebugLabels()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 499,
+      "symbol": "GameScene.createSwipeRecognizers()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 520,
+      "symbol": "GameScene.debugDrawPlayableArea()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 530,
+      "symbol": "GameScene.createActions()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 536,
+      "symbol": "GameScene.touchesBegan(_:with:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 545,
+      "symbol": "GameScene.moveEnemies()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 554,
+      "symbol": "GameScene.spawnEnemy()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 582,
+      "symbol": "GameScene.randomEnemy(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 602,
+      "symbol": "GameScene.createPlayer()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 606,
+      "symbol": "GameScene.moveBullets()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 621,
+      "symbol": "GameScene.shotDirection(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 651,
+      "symbol": "GameScene.particleCreator()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 673,
+      "symbol": "GameScene.createPlayerBlock()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 697,
+      "symbol": "GameScene.createBlocks()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 736,
+      "symbol": "GameScene.upScore(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 739,
+      "symbol": "GameScene.upKilledEnemy()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 742,
+      "symbol": "GameScene.addError()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 747,
+      "symbol": "GameScene.playGameBackgroundMusic()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameScene.swift",
+      "line": 752,
+      "symbol": "GameScene.createGameOverScene(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameViewController.swift",
+      "line": 12,
+      "symbol": "GameViewController",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameViewController.swift",
+      "line": 13,
+      "symbol": "GameViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameViewController.swift",
+      "line": 24,
+      "symbol": "GameViewController.shouldAutorotate",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameViewController.swift",
+      "line": 27,
+      "symbol": "GameViewController.supportedInterfaceOrientations",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameViewController.swift",
+      "line": 34,
+      "symbol": "GameViewController.didReceiveMemoryWarning()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GameViewController.swift",
+      "line": 38,
+      "symbol": "GameViewController.prefersStatusBarHidden",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 14,
+      "symbol": "entityDirection",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 15,
+      "symbol": "entityDirection.left",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 16,
+      "symbol": "entityDirection.right",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 17,
+      "symbol": "entityDirection.up",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 18,
+      "symbol": "entityDirection.down",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 19,
+      "symbol": "entityDirection.unSelected",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 22,
+      "symbol": "blockPlace",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 23,
+      "symbol": "blockPlace.home",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 24,
+      "symbol": "blockPlace.first",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 25,
+      "symbol": "blockPlace.second",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 26,
+      "symbol": "blockPlace.third",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 27,
+      "symbol": "blockPlace.fourth",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 28,
+      "symbol": "blockPlace.fifth",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 29,
+      "symbol": "blockPlace.unSelected",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 32,
+      "symbol": "blockLabel",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 33,
+      "symbol": "blockLabel.empty",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 34,
+      "symbol": "blockLabel.enemy",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 35,
+      "symbol": "blockLabel.player",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 36,
+      "symbol": "blockLabel.bullet",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 39,
+      "symbol": "PhysicsCategory",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 40,
+      "symbol": "PhysicsCategory.All",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 41,
+      "symbol": "PhysicsCategory.Player",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 42,
+      "symbol": "PhysicsCategory.Enemy",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 43,
+      "symbol": "PhysicsCategory.Bullet",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 44,
+      "symbol": "PhysicsCategory.dead",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 45,
+      "symbol": "PhysicsCategory.None",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 48,
+      "symbol": "BitMaskOfLighting",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 49,
+      "symbol": "BitMaskOfLighting.None",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 50,
+      "symbol": "BitMaskOfLighting.right",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 51,
+      "symbol": "BitMaskOfLighting.left",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 52,
+      "symbol": "BitMaskOfLighting.down",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 53,
+      "symbol": "BitMaskOfLighting.up",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 57,
+      "symbol": "GAME_MIN_SPEED",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 58,
+      "symbol": "GAME_MAX_SPEED",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 59,
+      "symbol": "enemyWaitMinSpeed",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 60,
+      "symbol": "enemyWaitMaxSpeed",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 63,
+      "symbol": "playerScale",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 64,
+      "symbol": "enemyScale",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 65,
+      "symbol": "playerBlockScale",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 66,
+      "symbol": "enemyBlockScale",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 67,
+      "symbol": "bulletScale",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 70,
+      "symbol": "spaceBetweenEnemyBlock",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 71,
+      "symbol": "incrementalSpaceBetweenBlocks",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 72,
+      "symbol": "spaceToLastBox",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 74,
+      "symbol": "gameSpeed",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 75,
+      "symbol": "gameIncrementalSpeed",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 78,
+      "symbol": "enemyWaitIncrementalSpeed",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 79,
+      "symbol": "enemyWaitTime",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 80,
+      "symbol": "bulletCoolDownTime",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 81,
+      "symbol": "bulletCurrentCoolDownTime",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 82,
+      "symbol": "lastShot",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/GlobalsAndConstants.swift",
+      "line": 84,
+      "symbol": "gameTotalSpeed",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/MainMenuScene.swift",
+      "line": 13,
+      "symbol": "MainMenuScene",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/MainMenuScene.swift",
+      "line": 15,
+      "symbol": "MainMenuScene.init(size:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/MainMenuScene.swift",
+      "line": 19,
+      "symbol": "MainMenuScene.init(coder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/MainMenuScene.swift",
+      "line": 23,
+      "symbol": "MainMenuScene.didMove(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/MyUtils.swift",
+      "line": 13,
+      "symbol": "backgroundMusicPlayer",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/MyUtils.swift",
+      "line": 15,
+      "symbol": "+(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/MyUtils.swift",
+      "line": 19,
+      "symbol": "+=(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/MyUtils.swift",
+      "line": 23,
+      "symbol": "-(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/MyUtils.swift",
+      "line": 27,
+      "symbol": "-=(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/MyUtils.swift",
+      "line": 31,
+      "symbol": "*(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/MyUtils.swift",
+      "line": 35,
+      "symbol": "*=(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/MyUtils.swift",
+      "line": 39,
+      "symbol": "*(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/MyUtils.swift",
+      "line": 43,
+      "symbol": "*=(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/MyUtils.swift",
+      "line": 47,
+      "symbol": "/(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/MyUtils.swift",
+      "line": 51,
+      "symbol": "/=(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/MyUtils.swift",
+      "line": 55,
+      "symbol": "/(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/MyUtils.swift",
+      "line": 59,
+      "symbol": "/=(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/MyUtils.swift",
+      "line": 75,
+      "symbol": "CGPoint.length()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/MyUtils.swift",
+      "line": 79,
+      "symbol": "CGPoint.normalized()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/MyUtils.swift",
+      "line": 83,
+      "symbol": "CGPoint.angle",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/MyUtils.swift",
+      "line": 88,
+      "symbol": "π",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/MyUtils.swift",
+      "line": 90,
+      "symbol": "shortestAngleBetween(_:angle2:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/MyUtils.swift",
+      "line": 104,
+      "symbol": "CGFloat.sign()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/MyUtils.swift",
+      "line": 107,
+      "symbol": "CGFloat.random()",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/MyUtils.swift",
+      "line": 110,
+      "symbol": "CGFloat.random(min:max:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/MyUtils.swift",
+      "line": 116,
+      "symbol": "playBackgroundMusic(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Player.swift",
+      "line": 13,
+      "symbol": "Player",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Player.swift",
+      "line": 28,
+      "symbol": "Player.init(entityPosition:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Player.swift",
+      "line": 39,
+      "symbol": "Player.generateTexture()",
+      "symbol_kind": "source.lang.swift.decl.function.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Player.swift",
+      "line": 50,
+      "symbol": "Player.init(coder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Player.swift",
+      "line": 53,
+      "symbol": "Player.setAngle()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Player.swift",
+      "line": 69,
+      "symbol": "Player.updateSpriteAtrributes()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Player.swift",
+      "line": 77,
+      "symbol": "Player.setEntityTypeAttribures()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Player.swift",
+      "line": 90,
+      "symbol": "Player.hurt()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Player.swift",
+      "line": 95,
+      "symbol": "Bullet",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Player.swift",
+      "line": 108,
+      "symbol": "Bullet.outOfBoundsSoundString",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Player.swift",
+      "line": 109,
+      "symbol": "Bullet.light",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Player.swift",
+      "line": 110,
+      "symbol": "Bullet.isShot",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Player.swift",
+      "line": 111,
+      "symbol": "Bullet.stopped",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Player.swift",
+      "line": 121,
+      "symbol": "Bullet.init(entityPosition:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Player.swift",
+      "line": 143,
+      "symbol": "Bullet.setEntityTypeAttribures()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Player.swift",
+      "line": 156,
+      "symbol": "Bullet.init(coder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Player.swift",
+      "line": 159,
+      "symbol": "Bullet.generateTexture()",
+      "symbol_kind": "source.lang.swift.decl.function.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Player.swift",
+      "line": 170,
+      "symbol": "Bullet.setAngle()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Player.swift",
+      "line": 186,
+      "symbol": "Bullet.moveFunc()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Player.swift",
+      "line": 196,
+      "symbol": "Bullet.updateSpriteAtrributes()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Player.swift",
+      "line": 204,
+      "symbol": "Bullet.died()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK/relliK/Player.swift",
+      "line": 212,
+      "symbol": "Bullet.playOutOfBoundsError()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/AndreVillanueva_Com/Dropbox/Xcode 6/My Projects/relliK"
+}

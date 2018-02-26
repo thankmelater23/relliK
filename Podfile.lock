@@ -1,0 +1,39 @@
+PODS:
+  - Amplitude-iOS (4.0.4)
+  - BuddyBuildSDK (1.0.17)
+  - Flurry-iOS-SDK/FlurrySDK (8.4.0)
+  - Google-Mobile-Ads-SDK (7.29.0)
+  - iRate (1.12.2)
+  - Onboard (2.3.1)
+  - SAConfettiView (0.1.8)
+  - Siren (3.2.0)
+  - SwiftLint (0.25.0)
+  - SwiftyBeaver (1.5.1)
+
+DEPENDENCIES:
+  - Amplitude-iOS
+  - BuddyBuildSDK
+  - Flurry-iOS-SDK/FlurrySDK
+  - Google-Mobile-Ads-SDK
+  - iRate
+  - Onboard
+  - SAConfettiView
+  - Siren
+  - SwiftLint
+  - SwiftyBeaver
+
+SPEC CHECKSUMS:
+  Amplitude-iOS: 2ad4d7270c99186236c1272a3a9425463b1ae1a7
+  BuddyBuildSDK: 8ae12ee721098b356a961ea7dce70ae55f93a7d2
+  Flurry-iOS-SDK: 0c4488af4e4289e2678f81755d3e9c204c0e8bba
+  Google-Mobile-Ads-SDK: 375bbb821b3df2106c37b74f6b0a97576ddc5f6b
+  iRate: 4fc69958788624545e5d050c8ffd20884013c3f1
+  Onboard: b6871f25ac753175b2ab9a362fb2feb26a81a311
+  SAConfettiView: c87031a2280659261b730fce3669fb10e73636ee
+  Siren: 964f57553cf6a39d1bada4e403557523a213b397
+  SwiftLint: e14651157288e9e01d6e1a71db7014fb5744a8ea
+  SwiftyBeaver: 4f74563624b2c1e821c522c54142b5dd5ebb0f30
+
+PODFILE CHECKSUM: d88e038ad70d5544c39372511223a9d48a4c71dd
+
+COCOAPODS: 1.4.0
