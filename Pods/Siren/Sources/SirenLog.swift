@@ -16,4 +16,5 @@ struct SirenLog {
     init(_ message: String) {
         print("[Siren] \(message)")
     }
+
 }

@@ -1,14 +1,13 @@
 PODS:
-  - Amplitude-iOS (4.0.4)
+  - Amplitude-iOS (4.2.1)
   - BuddyBuildSDK (1.0.17)
-  - Flurry-iOS-SDK/FlurrySDK (8.4.0)
-  - Google-Mobile-Ads-SDK (7.29.0)
+  - Flurry-iOS-SDK/FlurrySDK (8.6.1)
+  - Google-Mobile-Ads-SDK (7.31.0)
   - iRate (1.12.2)
-  - Onboard (2.3.1)
+  - Onboard (2.3.3)
   - SAConfettiView (0.1.8)
-  - Siren (3.2.0)
-  - SwiftLint (0.25.0)
-  - SwiftyBeaver (1.5.1)
+  - Siren (3.4.1)
+  - SwiftyBeaver (1.6.0)
 
 DEPENDENCIES:
   - Amplitude-iOS
@@ -19,21 +18,31 @@ DEPENDENCIES:
   - Onboard
   - SAConfettiView
   - Siren
-  - SwiftLint
   - SwiftyBeaver
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Amplitude-iOS
+    - BuddyBuildSDK
+    - Flurry-iOS-SDK
+    - Google-Mobile-Ads-SDK
+    - iRate
+    - Onboard
+    - SAConfettiView
+    - Siren
+    - SwiftyBeaver
+
 SPEC CHECKSUMS:
-  Amplitude-iOS: 2ad4d7270c99186236c1272a3a9425463b1ae1a7
+  Amplitude-iOS: 84da24ca8557fa3741888502c30c0b8b365acd7d
   BuddyBuildSDK: 8ae12ee721098b356a961ea7dce70ae55f93a7d2
-  Flurry-iOS-SDK: 0c4488af4e4289e2678f81755d3e9c204c0e8bba
-  Google-Mobile-Ads-SDK: 375bbb821b3df2106c37b74f6b0a97576ddc5f6b
+  Flurry-iOS-SDK: daffe3d0afa95b7b0f1a803f2b708a926ecbf833
+  Google-Mobile-Ads-SDK: 6e529e748b45507a2ca904e0b5a52669ba3920c4
   iRate: 4fc69958788624545e5d050c8ffd20884013c3f1
-  Onboard: b6871f25ac753175b2ab9a362fb2feb26a81a311
+  Onboard: 4d6e943e20bdd6bc229df967a347dd7514bc2a6f
   SAConfettiView: c87031a2280659261b730fce3669fb10e73636ee
-  Siren: 964f57553cf6a39d1bada4e403557523a213b397
-  SwiftLint: e14651157288e9e01d6e1a71db7014fb5744a8ea
-  SwiftyBeaver: 4f74563624b2c1e821c522c54142b5dd5ebb0f30
+  Siren: 94e13d40b48d8c0ddac053140d607c36bb487767
+  SwiftyBeaver: e45759613e50b522b0e6f53b1f0f14389b45ca34
 
-PODFILE CHECKSUM: d88e038ad70d5544c39372511223a9d48a4c71dd
+PODFILE CHECKSUM: 2576d0a82f2df21d4c95e7cc150bf6c18ee00308
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3

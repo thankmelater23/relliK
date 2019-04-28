@@ -12,10 +12,11 @@ import Foundation
 
 public struct SirenError: LocalizedError {
 
-    public enum Known: Error {
+   public enum Known: Error {
         case appStoreAppIDFailure
         case appStoreDataRetrievalFailure(underlyingError: Error?)
         case appStoreJSONParsingFailure(underlyingError: Error)
+        case appStoreDataRetrievalEmptyResults
         case appStoreOSVersionNumberFailure
         case appStoreOSVersionUnsupported
         case appStoreVersionArrayFailure
@@ -27,11 +28,13 @@ public struct SirenError: LocalizedError {
             switch self {
             case .appStoreAppIDFailure:
                 return "Error retrieving trackId as the JSON does not contain a 'trackId' key."
-            case let .appStoreDataRetrievalFailure(error?):
+            case .appStoreDataRetrievalFailure(let error?):
                 return "Error retrieving App Store data as an error was returned\nAlso, the following system level error was returned: \(error)"
             case .appStoreDataRetrievalFailure(.none):
                 return "Error retrieving App Store data as an error was returned."
-            case let .appStoreJSONParsingFailure(error):
+            case .appStoreDataRetrievalEmptyResults:
+                return "Error retrieving App Store data as the JSON results were empty. Is your app available in the US? If not, change the `countryCode` variable to fix this error."
+            case .appStoreJSONParsingFailure(let error):
                 return "Error parsing App Store JSON data.\nAlso, the following system level error was returned: \(error)"
             case .appStoreOSVersionNumberFailure:
                 return "Error retrieving iOS version number as there was no data returned."
@@ -40,7 +43,7 @@ public struct SirenError: LocalizedError {
             case .appStoreVersionArrayFailure:
                 return "Error retrieving App Store verson number as the JSON does not contain a 'version' key."
             case .malformedURL:
-                return "The iTunes URL is malformed. Please leave an issue on http://github.com/ArtSabintsev/Siren with as many details as possible."
+                return "The iTunes URL is malformed. Please leave an issue on https://github.com/ArtSabintsev/Siren with as many details as possible."
             case .noUpdateAvailable:
                 return "No new update available."
             case .recentlyCheckedAlready:

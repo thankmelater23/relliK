@@ -15,7 +15,7 @@ public final class Siren: NSObject {
 
     /// Current installed version of your app.
     internal var currentInstalledVersion: String? = {
-        Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
+        return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
     }()
 
     /// The error domain for all errors created by Siren.
@@ -30,7 +30,7 @@ public final class Siren: NSObject {
     /// - sirenUserDidCancel()
     ///
     /// When a new version has been detected, and you would like to present a localized message in a custom UI. use this delegate method:
-    /// - sirenDidDetectNewVersionWithoutAlert(message: String)
+    /// - sirenDidDetectNewVersionWithoutAlert(title: String, message: String)
     public weak var delegate: SirenDelegate?
 
     /// The debug flag, which is disabled by default.
@@ -88,7 +88,7 @@ public final class Siren: NSObject {
     /// Overrides the tint color for UIAlertController.
     public var alertControllerTintColor: UIColor?
 
-    /// When this is set, the alert will only show up if the current version has already been released for X days
+    /// When this is set, the alert will only show up if the current version has already been released for X days.
     /// Defaults to 1 day to avoid an issue where Apple updates the JSON faster than the app binary propogates to the App Store.
     public var showAlertAfterCurrentVersionHasBeenReleasedForDays: Int = 1
 
@@ -144,19 +144,20 @@ public final class Siren: NSObject {
     }
 
     /// Launches the AppStore in two situations:
-    ///
+    /// 
     /// - User clicked the `Update` button in the UIAlertController modal.
     /// - Developer built a custom alert modal and needs to be able to call this function when the user chooses to update the app in the aforementioned custom modal.
     public func launchAppStore() {
         guard let appID = appID,
             let url = URL(string: "https://itunes.apple.com/app/id\(appID)") else {
-            return
+                return
         }
 
         DispatchQueue.main.async {
             UIApplication.shared.openURL(url)
         }
     }
+
 }
 
 // MARK: - Helpers (Networking)
@@ -167,15 +168,15 @@ private extension Siren {
         do {
             let url = try iTunesURLFromString()
             let request = URLRequest(url: url, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 30)
-            URLSession.shared.dataTask(with: request, completionHandler: { [unowned self] data, response, error in
-                self.processResults(withData: data, response: response, error: error)
+            URLSession.shared.dataTask(with: request, completionHandler: { [weak self] (data, response, error) in
+                self?.processResults(withData: data, response: response, error: error)
             }).resume()
         } catch _ {
             postError(.malformedURL)
         }
     }
 
-    func processResults(withData data: Data?, response _: URLResponse?, error: Error?) {
+    func processResults(withData data: Data?, response: URLResponse?, error: Error?) {
         if let error = error {
             postError(.appStoreDataRetrievalFailure(underlyingError: error))
         } else {
@@ -183,18 +184,21 @@ private extension Siren {
                 postError(.appStoreDataRetrievalFailure(underlyingError: nil))
                 return
             }
-
             do {
-                let decoder = JSONDecoder()
-                let decodedData = try decoder.decode(SirenLookupModel.self, from: data)
+                let decodedData = try JSONDecoder().decode(SirenLookupModel.self, from: data)
 
-                DispatchQueue.main.async { [unowned self] in
-                    self.printMessage("Decoded JSON results: \(decodedData)")
-
-                    // Process Results (e.g., extract current version that is available on the AppStore)
-                    self.processVersionCheck(with: decodedData)
+                guard !decodedData.results.isEmpty else {
+                    return postError(.appStoreDataRetrievalEmptyResults)
                 }
 
+                DispatchQueue.main.async { [weak self] in
+                    self?.printMessage("Decoded JSON results: \(decodedData)")
+
+                    self?.delegate?.sirenNetworkCallDidReturnWithNewVersionInformation(lookupModel: decodedData)
+
+                    // Process Results (e.g., extract current version that is available on the AppStore)
+                    self?.processVersionCheck(with: decodedData)
+                }
             } catch let error as NSError {
                 postError(.appStoreJSONParsingFailure(underlyingError: error))
             }
@@ -233,7 +237,7 @@ private extension Siren {
 
         guard daysSinceRelease >= showAlertAfterCurrentVersionHasBeenReleasedForDays else {
             let message = "Your app has been released for \(daysSinceRelease) days, but Siren cannot prompt the user until \(showAlertAfterCurrentVersionHasBeenReleasedForDays) days have passed."
-            printMessage(message)
+            self.printMessage(message)
             return
         }
 
@@ -303,7 +307,8 @@ private extension Siren {
             alertController.addAction(updateAlertAction())
             alertController.addAction(skipAlertAction())
         case .none:
-            delegate?.sirenDidDetectNewVersionWithoutAlert(message: newVersionMessage, updateType: updateType)
+            let updateTitle = localizedUpdateTitle()
+            delegate?.sirenDidDetectNewVersionWithoutAlert(title: updateTitle, message: newVersionMessage, updateType: updateType)
         }
 
         if alertType != .none && !alertViewIsVisible {
@@ -315,11 +320,15 @@ private extension Siren {
 
     func updateAlertAction() -> UIAlertAction {
         let title = localizedUpdateButtonTitle()
-        let action = UIAlertAction(title: title, style: .default) { [unowned self] _ in
-            self.hideWindow()
-            self.launchAppStore()
-            self.delegate?.sirenUserDidLaunchAppStore()
-            self.alertViewIsVisible = false
+        let action = UIAlertAction(title: title, style: .default) { [weak self] _ in
+            guard let strongSelf = self else {
+                return
+            }
+
+            strongSelf.hideWindow()
+            strongSelf.launchAppStore()
+            strongSelf.delegate?.sirenUserDidLaunchAppStore()
+            strongSelf.alertViewIsVisible = false
             return
         }
 
@@ -328,10 +337,14 @@ private extension Siren {
 
     func nextTimeAlertAction() -> UIAlertAction {
         let title = localizedNextTimeButtonTitle()
-        let action = UIAlertAction(title: title, style: .default) { [unowned self] _ in
-            self.hideWindow()
-            self.delegate?.sirenUserDidCancel()
-            self.alertViewIsVisible = false
+        let action = UIAlertAction(title: title, style: .default) { [weak self] _  in
+            guard let strongSelf = self else {
+                return
+            }
+
+            strongSelf.hideWindow()
+            strongSelf.delegate?.sirenUserDidCancel()
+            strongSelf.alertViewIsVisible = false
             return
         }
 
@@ -340,16 +353,19 @@ private extension Siren {
 
     func skipAlertAction() -> UIAlertAction {
         let title = localizedSkipButtonTitle()
-        let action = UIAlertAction(title: title, style: .default) { [unowned self] _ in
+        let action = UIAlertAction(title: title, style: .default) { [weak self] _ in
+            guard let strongSelf = self else {
+                return
+            }
 
-            if let currentAppStoreVersion = self.currentAppStoreVersion {
+            if let currentAppStoreVersion = strongSelf.currentAppStoreVersion {
                 UserDefaults.standard.set(currentAppStoreVersion, forKey: SirenDefaults.StoredSkippedVersion.rawValue)
                 UserDefaults.standard.synchronize()
             }
 
-            self.hideWindow()
-            self.delegate?.sirenUserDidSkipVersion()
-            self.alertViewIsVisible = false
+            strongSelf.hideWindow()
+            strongSelf.delegate?.sirenUserDidSkipVersion()
+            strongSelf.alertViewIsVisible = false
             return
         }
 
@@ -359,11 +375,11 @@ private extension Siren {
     func setAlertType() -> Siren.AlertType {
         guard let currentInstalledVersion = currentInstalledVersion,
             let currentAppStoreVersion = currentAppStoreVersion else {
-            return .option
+                return .option
         }
 
-        let oldVersion = currentInstalledVersion.split { $0 == "." }.map { String($0) }.map { Int($0) ?? 0 }
-        let newVersion = currentAppStoreVersion.split { $0 == "." }.map { String($0) }.map { Int($0) ?? 0 }
+        let oldVersion = (currentInstalledVersion).split {$0 == "."}.map { String($0) }.map {Int($0) ?? 0}
+        let newVersion = (currentAppStoreVersion).split {$0 == "."}.map { String($0) }.map {Int($0) ?? 0}
 
         guard let newVersionFirst = newVersion.first, let oldVersionFirst = oldVersion.first else {
             return alertType // Default value is .Option
@@ -390,6 +406,11 @@ private extension Siren {
 // MARK: - Helpers (Localization)
 
 private extension Siren {
+    func localizedUpdateTitle() -> String {
+        let updateTitleToLocalize = alertMessaging.updateTitle
+        return Bundle.localizedString(forKey: updateTitleToLocalize, forceLanguageLocalization: forceLanguageLocalization)
+    }
+
     func localizedNewVersionMessage() -> String {
         let newVersionMessageToLocalize = alertMessaging.updateMessage
         let newVersionMessage = Bundle.localizedString(forKey: newVersionMessageToLocalize, forceLanguageLocalization: forceLanguageLocalization)
@@ -444,8 +465,8 @@ extension Siren {
 private extension Siren {
     func isUpdateCompatibleWithDeviceOS(for model: SirenLookupModel) -> Bool {
         guard let requiredOSVersion = model.results.first?.minimumOSVersion else {
-            postError(.appStoreOSVersionNumberFailure)
-            return false
+                postError(.appStoreOSVersionNumberFailure)
+                return false
         }
 
         let systemVersion = UIDevice.current.systemVersion
@@ -490,7 +511,7 @@ public extension Siren {
         /// Presents user with option to update the app now, at next launch, or to skip this version all together (3 button alert).
         case skip
 
-        /// Doesn't show the alert, but instead returns a localized message
+        /// Doesn't show the alert, but instead returns a localized message 
         /// for use in a custom UI within the sirenDidDetectNewVersionWithoutAlert() delegate method.
         case none
     }
@@ -570,6 +591,7 @@ private extension Siren {
         /// Key that stores the version that a user decided to skip in UserDefaults.
         case StoredSkippedVersion
     }
+
 }
 
 // MARK: - Error Handling

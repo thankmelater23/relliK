@@ -115,7 +115,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         GlobalRellikConcurrent.sync {
             if self.player.isDead || self.errors >= 15 {
                 //      self.restartGame()
-                fatalError()
+//                fatalError()
             }
         }
     }
@@ -513,20 +513,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let newBullet = Bullet(entityPosition: CGPoint(x: playableRect.midX, y: playableRect.midY))
 
             switch sender.direction {
-            case UISwipeGestureRecognizerDirection.right:
+            case UISwipeGestureRecognizer.Direction.right:
                 newBullet.directionOf = entityDirection.right
                 //        newBullet.setAngle()
                 newBullet.move = bulletMoveRightAction
                 player.directionOf = entityDirection.right
-            case UISwipeGestureRecognizerDirection.left:
+            case UISwipeGestureRecognizer.Direction.left:
                 newBullet.directionOf = entityDirection.left
                 newBullet.move = bulletMoveLeftAction
                 player.directionOf = entityDirection.left
-            case UISwipeGestureRecognizerDirection.up:
+            case UISwipeGestureRecognizer.Direction.up:
                 newBullet.directionOf = entityDirection.up
                 newBullet.move = bulletMoveUpAction
                 player.directionOf = entityDirection.up
-            case UISwipeGestureRecognizerDirection.down:
+            case UISwipeGestureRecognizer.Direction.down:
                 newBullet.directionOf = entityDirection.down
                 newBullet.move = bulletMoveDownAction
                 player.directionOf = entityDirection.down
@@ -545,19 +545,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let newBullet = SuperBullet(entityPosition: CGPoint(x: playableRect.midX, y: playableRect.midY))
 
             switch sender.direction {
-            case UISwipeGestureRecognizerDirection.right:
+            case UISwipeGestureRecognizer.Direction.right:
                 newBullet.directionOf = entityDirection.right
                 newBullet.move = bulletMoveRightAction
                 player.directionOf = entityDirection.right
-            case UISwipeGestureRecognizerDirection.left:
+            case UISwipeGestureRecognizer.Direction.left:
                 newBullet.directionOf = entityDirection.left
                 newBullet.move = bulletMoveLeftAction
                 player.directionOf = entityDirection.left
-            case UISwipeGestureRecognizerDirection.up:
+            case UISwipeGestureRecognizer.Direction.up:
                 newBullet.directionOf = entityDirection.up
                 newBullet.move = bulletMoveUpAction
                 player.directionOf = entityDirection.up
-            case UISwipeGestureRecognizerDirection.down:
+            case UISwipeGestureRecognizer.Direction.down:
                 newBullet.directionOf = entityDirection.down
                 newBullet.move = bulletMoveDownAction
                 player.directionOf = entityDirection.down
@@ -668,7 +668,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: - Actions
     func playGameBackgroundMusic() {
         GlobalRellikSFXConcurrent.async {
-            //    playBackgroundMusic("backgroundMusic.mp3")
+                playBackgroundMusic("backgroundMusic.mp3")
         }
     }
 
@@ -700,7 +700,7 @@ extension GameScene: SceneUpdateProtocol {
 
     func errorCountUpdate() {
         GlobalRellikConcurrent.sync {
-            self.errors += 1
+//            self.errors += 1
         }
     }
 }
@@ -857,7 +857,7 @@ extension GameScene {
                 bullet?.moveFunc()
             }
             if (bullet?.stopped)! == true
-            { self.errorCountUpdate() }
+            { self.errorCountUpdate()}
             //          group.leave()
             //      }
         }
@@ -1043,32 +1043,32 @@ extension GameScene {
     func createSwipeRecognizers() {
         // 1 finger swipe
         let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.shotDirection(_:)))
-        swipeDown.direction = UISwipeGestureRecognizerDirection.down
+        swipeDown.direction = UISwipeGestureRecognizer.Direction.down
 
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.shotDirection(_:)))
-        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+        swipeRight.direction = UISwipeGestureRecognizer.Direction.right
 
         let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.shotDirection(_:)))
-        swipeUp.direction = UISwipeGestureRecognizerDirection.up
+        swipeUp.direction = UISwipeGestureRecognizer.Direction.up
 
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.shotDirection(_:)))
-        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
+        swipeLeft.direction = UISwipeGestureRecognizer.Direction.left
 
         // 2 finger swipe
         let swipeDownTwoFinger = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.shotDirectionSuper(_:)))
-        swipeDown.direction = UISwipeGestureRecognizerDirection.down
+        swipeDown.direction = UISwipeGestureRecognizer.Direction.down
         swipeDown.numberOfTouchesRequired = 2
 
         let swipeRightTwoFinger = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.shotDirectionSuper(_:)))
-        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+        swipeRight.direction = UISwipeGestureRecognizer.Direction.right
         swipeRight.numberOfTouchesRequired = 2
 
         let swipeUpTwoFinger = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.shotDirectionSuper(_:)))
-        swipeUp.direction = UISwipeGestureRecognizerDirection.up
+        swipeUp.direction = UISwipeGestureRecognizer.Direction.up
         swipeUp.numberOfTouchesRequired = 2
 
         let swipeLeftTwoFinger = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.shotDirectionSuper(_:)))
-        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
+        swipeLeft.direction = UISwipeGestureRecognizer.Direction.left
         swipeLeft.numberOfTouchesRequired = 2
 
         // Taps

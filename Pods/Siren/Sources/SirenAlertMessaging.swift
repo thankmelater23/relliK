@@ -44,10 +44,11 @@ public struct SirenAlertMessaging {
                 updateButtonMessage: String = Constants.updateNow,
                 nextTimeButtonMessage: String = Constants.nextTime,
                 skipVersionButtonMessage: String = Constants.skipVersion) {
-        updateTitle = title
+        self.updateTitle = title
         self.nextTimeButtonMessage = nextTimeButtonMessage
         self.updateButtonMessage = updateButtonMessage
-        updateMessage = message
+        self.updateMessage = message
         self.skipVersionButtonMessage = skipVersionButtonMessage
     }
+
 }

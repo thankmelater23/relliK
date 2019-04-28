@@ -12,36 +12,37 @@ extension String {
     /// cross-Swift compatible characters count
     var length: Int {
         #if swift(>=3.2)
-            return count
+            return self.count
         #else
-            return characters.count
+            return self.characters.count
         #endif
     }
-
+    
     /// cross-Swift-compatible first character
     var firstChar: Character? {
         #if swift(>=3.2)
-            return first
+            return self.first
         #else
-            return characters.first
+            return self.characters.first
         #endif
     }
-
+    
     /// cross-Swift-compatible last character
     var lastChar: Character? {
         #if swift(>=3.2)
-            return last
+            return self.last
         #else
-            return characters.last
+            return self.characters.last
         #endif
     }
-
+    
     /// cross-Swift-compatible index
-    func find(_ char: Character) -> Index? {
+    func find(_ char: Character) ->  Index? {
         #if swift(>=3.2)
-            return index(of: char)
+            return self.firstIndex(of: char)
         #else
-            return characters.index(of: char)
+            return self.characters.index(of: char)
         #endif
     }
 }
+

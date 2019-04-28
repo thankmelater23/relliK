@@ -1,0 +1,8 @@
+app_identifier("com.BangBangStudios.relliK") # The bundle identifier of your app
+apple_id("thankmelater23@me.com") # Your Apple email address
+
+itc_team_id("1572785") # iTunes Connect Team ID
+team_id("ZJWNZ643CG") # Developer Portal Team ID
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile

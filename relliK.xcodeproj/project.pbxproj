@@ -424,7 +424,6 @@
 				C6D395DE1B64579100830790 /* Resources */,
 				C68B223D1BA5B11800EB732C /* Fabric */,
 				8BD0482802C678343312E1FE /* [CP] Embed Pods Frameworks */,
-				251D3442BF5916946C83F27C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -443,8 +442,6 @@
 				C6D395F41B64579200830790 /* Sources */,
 				C6D395F51B64579200830790 /* Frameworks */,
 				C6D395F61B64579200830790 /* Resources */,
-				4E7F70B66937F3F57093CAA1 /* [CP] Embed Pods Frameworks */,
-				C1BE15E05B6D6E2EB5B93822 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -464,8 +461,6 @@
 				C6D395FF1B64579200830790 /* Sources */,
 				C6D396001B64579200830790 /* Frameworks */,
 				C6D396011B64579200830790 /* Resources */,
-				30DFB9CAE689F84E5ACDA713 /* [CP] Embed Pods Frameworks */,
-				250277496687CA62E014BB9F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -489,16 +484,16 @@
 					C6D395DF1B64579100830790 = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = ZJWNZ643CG;
-						LastSwiftMigration = 0920;
+						LastSwiftMigration = 1020;
 					};
 					C6D395F71B64579200830790 = {
 						CreatedOnToolsVersion = 7.0;
-						LastSwiftMigration = 0920;
+						LastSwiftMigration = 1020;
 						TestTargetID = C6D395DF1B64579100830790;
 					};
 					C6D396021B64579200830790 = {
 						CreatedOnToolsVersion = 7.0;
-						LastSwiftMigration = 0920;
+						LastSwiftMigration = 1020;
 						TestTargetID = C6D395DF1B64579100830790;
 					};
 				};
@@ -508,6 +503,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -581,51 +577,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		250277496687CA62E014BB9F /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-relliKUITests/Pods-relliKUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		251D3442BF5916946C83F27C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-relliK/Pods-relliK-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		30DFB9CAE689F84E5ACDA713 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-relliKUITests/Pods-relliKUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		3FE7F6D927A930B463514A73 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -642,21 +593,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4E7F70B66937F3F57093CAA1 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-relliKTests/Pods-relliKTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7BEB610B72E855B71674DB45 /* [CP] Check Pods Manifest.lock */ = {
@@ -723,21 +659,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C1BE15E05B6D6E2EB5B93822 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-relliKTests/Pods-relliKTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C68B223D1BA5B11800EB732C /* Fabric */ = {
@@ -954,8 +875,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.BangBangStudios.relliK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_SWIFT_SYMBOLS = YES;
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -976,8 +896,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.BangBangStudios.relliK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_SWIFT_SYMBOLS = YES;
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -991,8 +910,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BangBangStudios.relliKTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/relliK.app/relliK";
 			};
 			name = Debug;
@@ -1006,8 +924,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BangBangStudios.relliKTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/relliK.app/relliK";
 			};
 			name = Release;
@@ -1020,8 +937,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BangBangStudios.relliKUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = relliK;
 				USES_XCTRUNNER = YES;
 			};
@@ -1035,8 +951,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BangBangStudios.relliKUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = relliK;
 				USES_XCTRUNNER = YES;
 			};

@@ -13,7 +13,7 @@ target 'relliK' do
   ##Onboarding
   pod 'Onboard'
   ##Swift lint
-  pod 'SwiftLint'
+#  pod 'SwiftLint'
   ##Flurry analytics
   pod 'Flurry-iOS-SDK/FlurrySDK'
   ##Amplitude analytics
